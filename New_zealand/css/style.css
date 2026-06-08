@@ -653,8 +653,7 @@ main {
     border: 1px solid rgba(99, 161, 70, 0.15);
 }
 
-.highlight-green {
-    background: rgba(99, 161, 70, 0.08);
+.highlight-green { background: var(--border-glow);
     color: var(--primary);
     border-color: rgba(99, 161, 70, 0.15);
 }
@@ -4540,3 +4539,4 @@ main {
         height: 260px;
     }
 }
+
