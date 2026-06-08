@@ -1,0 +1,316 @@
+﻿diff --git a/index.html b/index.html
+index c138f9b..23bd9e4 100644
+--- a/index.html
++++ b/index.html
+@@ -19,6 +19,17 @@
+     <script src="https://unpkg.com/lucide@latest"></script>
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/scrolling.css">
++    <style>
++        /* Custom responsive rules for benefits grid scenic images */
++        @media (max-width: 991px) {
++            .benefits-grid {
++                grid-template-columns: 1fr !important;
++            }
++            .benefits-scenic-image {
++                display: none !important;
++            }
++        }
++    </style>
+ </head>
+ 
+ <body>
+@@ -125,48 +136,83 @@
+                 </div>
+             </div>
+ 
+-            <!-- Right: Dotted map shape portrait frame masking nz_tourist_beach.png -->
+-            <div class="hero-visual" style="position: relative; display: flex; justify-content: flex-end;">
+-                <div class="hero-visual-frame">
+-                    <img src="assets/nz-tourist-beach.png" alt="Scenic New Zealand Beach"
+-                        style="width: 100%; height: 100%; object-fit: cover;">
++            <!-- Right: Slideshow of Scenic New Zealand Landscapes -->
++            <div class="hero-visual" style="position: relative; display: flex; justify-content: flex-end; width: 100%; max-width: 480px; height: 480px;">
++                <div class="hero-slideshow-container" style="position: relative; width: 100%; height: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.35); border: 1.5px solid rgba(255,255,255,0.15);">
++                    <!-- Slides -->
++                    <div class="hero-slide active" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:1; transition: opacity 1s ease-in-out; z-index: 1;">
++                        <img src="assets/nz-tourist-beach.png" alt="Scenic Beach" style="width: 100%; height: 100%; object-fit: cover;">
++                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.85) 0%, rgba(6,14,66,0) 100%); padding: 25px 20px 15px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 500;">
++                            ­ƒÅû´©Å Pristine Coastline & Golden Beaches
++                        </div>
++                    </div>
++                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1;">
++                        <img src="assets/nz-landscape-1.png" alt="Scenic Landscape 1" style="width: 100%; height: 100%; object-fit: cover;">
++                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.85) 0%, rgba(6,14,66,0) 100%); padding: 25px 20px 15px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 500;">
++                            ­ƒÅö´©Å Majestic Snow-Capped Alpine Peaks
++                        </div>
++                    </div>
++                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1;">
++                        <img src="assets/nz-landscape-2.png" alt="Scenic Landscape 2" style="width: 100%; height: 100%; object-fit: cover;">
++                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.85) 0%, rgba(6,14,66,0) 100%); padding: 25px 20px 15px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 500;">
++                            ­ƒî▓ Lush Ancient Forests & Emerald Lakes
++                        </div>
++                    </div>
++                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1;">
++                        <img src="assets/nz-landscape-3.png" alt="Scenic Landscape 3" style="width: 100%; height: 100%; object-fit: cover;">
++                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.85) 0%, rgba(6,14,66,0) 100%); padding: 25px 20px 15px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 500;">
++                            ­ƒøÑ´©Å Stunning Fjords & Milford Sound Cruises
++                        </div>
++                    </div>
++
++                    <!-- Slide controls (dots) -->
++                    <div class="slideshow-dots" style="position: absolute; bottom: 15px; right: 20px; z-index: 10; display: flex; gap: 8px;">
++                        <span class="dot active" onclick="setSlide(0)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 1;"></span>
++                        <span class="dot" onclick="setSlide(1)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
++                        <span class="dot" onclick="setSlide(2)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
++                        <span class="dot" onclick="setSlide(3)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
++                    </div>
+                 </div>
+-                <div
+-                    style="position: absolute; bottom: 40px; right: 20px; width: 140px; height: 90px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; border: 3px solid white;">
+-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg"
+-                        style="width: 100%; height: 100%; object-fit: cover;" alt="NZ Flag">
++
++                <!-- Floating NZ Flag Badge -->
++                <div style="position: absolute; bottom: 25px; left: -20px; width: 100px; height: 60px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); border-radius: 6px; overflow: hidden; border: 2px solid rgba(255,255,255,0.8); z-index: 5;">
++                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg" style="width: 100%; height: 100%; object-fit: cover;" alt="NZ Flag">
+                 </div>
+             </div>
+         </div>
+     </section>
+ 
+     <!-- Experience NZ Section -->
+-    <section style="padding: 60px 0; background-color: #ffffff;">
+-        <div class="container responsive-flex-split">
+-            <div style="flex: 1;">
+-                <img src="assets/nz-scenic-travel.png" alt="Scenic Travel in New Zealand"
+-                    style="width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); max-height: 480px; object-fit: cover; aspect-ratio: 1 / 1;">
+-            </div>
+-            <div style="flex: 1;">
+-                <h2 style="font-size: 32px; font-weight: 700; color: #060E42; margin-bottom: 20px;">Experience the
+-                    Wonders of New Zealand</h2>
+-                <p style="font-size: 16px; color: #4a5568; line-height: 1.6; margin-bottom: 30px;">
+-                    A New Zealand Tourist & Visitor Visa opens the door to explore one of the world's most spectacular travel
+-                    destinations. Immerse yourself in breathtaking landscapes, rich Maori culture, and vibrant cities.
+-                    Let Vesti help you plan your journey and secure your pre-arrival finances.
+-                </p>
+-                <button class="btn btn-success btn-lg" onclick="window.openEligibilityModal()"
+-                    style="padding: 15px 40px; font-weight: 600; border-radius: 6px;">
+-                    Check Eligibility
+-                </button>
++    <section style="padding: 80px 0; background-color: transparent; position: relative; z-index: 10;">
++        <div class="container">
++            <div class="responsive-flex-split" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 40px; display: flex; gap: 40px; align-items: center;">
++                <div style="flex: 1; position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1.5px solid rgba(255,255,255,0.1);" class="group">
++                    <img src="assets/nz-scenic-travel.png" alt="Scenic Travel in New Zealand"
++                        style="width: 100%; max-height: 480px; object-fit: cover; aspect-ratio: 1 / 1; transition: transform 0.5s ease;" class="hover:scale-105 transition-transform duration-500">
++                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.8) 0%, rgba(6,14,66,0) 100%); padding: 20px; color: white; font-family: 'Outfit'; font-size: 1rem; font-weight: 600;">
++                        ­ƒç│­ƒç┐ Explore Queenstown & Lake Wakatipu
++                    </div>
++                </div>
++                <div style="flex: 1;">
++                    <h2 style="font-size: 32px; font-weight: 700; color: #ffffff; margin-bottom: 20px; font-family: 'Outfit', sans-serif;">Experience the Wonders of New Zealand</h2>
++                    <p style="font-size: 16px; color: rgba(255, 255, 255, 0.7); line-height: 1.6; margin-bottom: 30px;">
++                        A New Zealand Tourist & Visitor Visa opens the door to explore one of the world's most spectacular travel
++                        destinations. Immerse yourself in breathtaking landscapes, rich Maori culture, and vibrant cities.
++                        Let Vesti help you plan your journey and secure your pre-arrival finances.
++                    </p>
++                    <button class="btn btn-success btn-lg" onclick="window.openEligibilityModal()"
++                        style="padding: 15px 40px; font-weight: 600; border-radius: 6px;">
++                        Check Eligibility
++                    </button>
++                </div>
+             </div>
+         </div>
+     </section>
+ 
+     <!-- 340+ Success Banner -->
+-    <section style="padding: 0 0 60px 0; background-color: #ffffff;">
++    <section style="padding: 0 0 60px 0; background-color: transparent;">
+         <div class="container">
+-            <div class="success-banner-card">
++            <div class="success-banner-card" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; color: #ffffff; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                 <div class="success-banner-inner">
+                     <!-- Beautiful Scalloped Seal Badge -->
+                     <div
+@@ -177,14 +223,14 @@
+                                 d="M50,2 C53.5,2 55.4,5.4 58.7,6.3 C62,7.2 65.2,5.2 68.2,7 C71.2,8.8 71.9,12.7 74.5,15.1 C77.1,17.5 80.9,17.7 82.9,20.6 C84.9,23.5 84.4,27.3 85.8,30.6 C87.2,33.9 90.7,35.4 91.4,38.9 C92.1,42.4 89.8,45.5 89.8,49 C89.8,52.5 92.1,55.6 91.4,59.1 C90.7,62.6 87.2,64.1 85.8,67.4 C84.4,70.7 84.9,74.5 82.9,77.4 C80.9,80.3 77.1,80.5 74.5,82.9 C71.9,85.3 71.2,89.2 68.2,91 C65.2,92.8 62,90.8 58.7,91.7 C55.4,92.6 53.5,96 50,96 C46.5,96 44.6,92.6 41.3,91.7 C38,90.8 34.8,92.8 31.8,91 C28.8,89.2 28.1,85.3 25.5,82.9 C22.9,80.5 19.1,80.3 17.1,77.4 C15.1,74.5 15.6,70.7 14.2,67.4 C12.8,64.1 9.3,62.6 8.6,59.1 C7.9,55.6 10.2,52.5 10.2,49 C10.2,45.5 7.9,42.4 8.6,38.9 C9.3,35.4 12.8,33.9 14.2,30.6 C15.6,27.3 15.1,23.5 17.1,20.6 C19.1,17.7 22.9,17.5 25.5,15.1 C28.1,12.7 28.8,8.8 31.8,7 C34.8,5.2 38,7.2 41.3,6.3 C44.6,5.4 46.5,2 50,2 Z" />
+                         </svg>
+                         <span
+-                            style="font-size: 24px; font-weight: 800; color: var(--bg-main); z-index: 1; position: relative; font-family: 'Outfit', sans-serif;">340+</span>
++                            style="font-size: 24px; font-weight: 800; color: #060E42; z-index: 1; position: relative; font-family: 'Outfit', sans-serif;">340+</span>
+                         <div
+                             style="position: absolute; top: -5px; right: -5px; background-color: #62943B; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+                             <i data-lucide="check" style="width: 14px; height: 14px; stroke-width: 3;"></i>
+                         </div>
+                     </div>
+                     <p
+-                        style="font-size: 18px; line-height: 1.5; max-width: 500px; margin: 0; font-family: 'Outfit', sans-serif; font-weight: 500;">
++                        style="font-size: 18px; line-height: 1.5; max-width: 500px; margin: 0; font-family: 'Outfit', sans-serif; font-weight: 500; color: #ffffff;">
+                         We have successfully processed over 340+ New Zealand Tourist & Visitor Visas for travelers and families,
+                         making dream vacations a reality.
+                     </p>
+@@ -197,12 +243,13 @@
+         </div>
+     </section>
+     <!-- Benefits of the New Zealand Pathways Section -->
+-    <section style="padding: 60px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0;">
++    <section style="padding: 80px 0; background-color: transparent; border-top: 1px solid rgba(255,255,255,0.08);">
+         <div class="container">
+             <h2
+-                style="font-size: 36px; font-weight: 700; color: #060E42; text-align: center; margin-bottom: 36px; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px;">
++                style="font-size: 36px; font-weight: 700; color: #ffffff; text-align: center; margin-bottom: 48px; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px;">
+                 Benefits of the New Zealand Pathways</h2>
+-            <div class="benefits-grid">
++            
++            <div class="benefits-grid" style="display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: 40px; align-items: center;">
+                 <!-- Left Column -->
+                 <div style="display: flex; flex-direction: column; gap: 30px;">
+                     <div style="display: flex; gap: 20px;">
+@@ -212,9 +259,9 @@
+                         </div>
+                         <div>
+                             <h4
+-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
++                                style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                 Explore Natural Wonders</h4>
+-                            <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
++                            <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                                 Immerse yourself in New Zealand's majestic mountains, glaciers, pristine beaches, and
+                                 national parks.
+                             </p>
+@@ -227,9 +274,9 @@
+                         </div>
+                         <div>
+                             <h4
+-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
++                                style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                 Visit Friends & Family</h4>
+-                            <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
++                            <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                                 Reunite with your loved ones and enjoy quality time exploring the beauty of Aotearoa
+                                 together.
+                             </p>
+@@ -242,9 +289,9 @@
+                         </div>
+                         <div>
+                             <h4
+-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
++                                style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                 Short-Term Business</h4>
+-                            <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
++                            <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                                 Attend conferences, corporate meetings, or execute negotiations while maintaining your
+                                 global career.
+                             </p>
+@@ -252,6 +299,14 @@
+                     </div>
+                 </div>
+ 
++                <!-- Middle Column: New Zealand Scenic Landscape (Exhibiting sharpness to customer) -->
++                <div class="benefits-scenic-image" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.08); height: 100%; min-height: 380px; align-self: stretch;">
++                    <img src="assets/nz-landscape-3.png" alt="Scenic New Zealand Fjord" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
++                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.85) 0%, rgba(6,14,66,0) 100%); padding: 20px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center;">
++                        ­ƒÅö´©Å Milford Sound Scenic Cruises
++                    </div>
++                </div>
++
+                 <!-- Right Column -->
+                 <div style="display: flex; flex-direction: column; gap: 30px;">
+                     <div style="display: flex; gap: 20px;">
+@@ -261,9 +316,9 @@
+                         </div>
+                         <div>
+                             <h4
+-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
++                                style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                 Pre-Arrival NZD Wallets</h4>
+-                            <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
++                            <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                                 Open your NZD wallet in the Vesti App and swap currency early to protect your travel
+                                 funds from inflation.
+                             </p>
+@@ -276,9 +331,9 @@
+                         </div>
+                         <div>
+                             <h4
+-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
++                                style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                 Seamless Fee Payments</h4>
+-                            <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
++                            <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                                 Pay all your visa application fees, flight bookings, and travel insurance directly
+                                 through Vesti.
+                             </p>
+@@ -291,9 +346,9 @@
+                         </div>
+                         <div>
+                             <h4
+-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
++                                style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                 Travel & Settlement Support</h4>
+-                            <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
++                            <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0;">
+                                 Access specialized financial tools, proof of funds services, and guidance for a
+                                 hassle-free trip.
+                             </p>
+@@ -556,7 +611,7 @@
+ 
+     <!-- Scroll Card Stacking Section -->
+     <section id="scroll-stacking" class="relative" role="region" aria-label="Scrolling cards section"
+-        style="padding: 50px 0 0; background-color: #ffffff;">
++        style="padding: 50px 0 0; background-color: transparent;">
+         <div class="container max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8"
+             style="max-width: 1400px; width: 100%;">
+             <div class="scroll-cards-wrapper" data-scroll-container>
+@@ -1209,6 +1264,49 @@
+     <script src="js/app.js"></script>
+     <!-- Scroll Animation logic -->
+     <script src="js/scrolling.js"></script>
++    <!-- Hero Slideshow script -->
++    <script>
++        document.addEventListener('DOMContentLoaded', () => {
++            let currentHeroSlide = 0;
++            const heroSlides = document.querySelectorAll('.hero-slide');
++            const heroDots = document.querySelectorAll('.slideshow-dots .dot');
++
++            function showHeroSlide(index) {
++                if (index >= heroSlides.length) index = 0;
++                if (index < 0) index = heroSlides.length - 1;
++                
++                heroSlides.forEach((slide, idx) => {
++                    if (idx === index) {
++                        slide.style.opacity = '1';
++                        slide.style.zIndex = '2';
++                    } else {
++                        slide.style.opacity = '0';
++                        slide.style.zIndex = '1';
++                    }
++                });
++
++                heroDots.forEach((dot, idx) => {
++                    if (idx === index) {
++                        dot.style.opacity = '1';
++                    } else {
++                        dot.style.opacity = '0.5';
++                    }
++                });
++
++                currentHeroSlide = index;
++            }
++
++            // Set up click events for dots
++            window.setSlide = function(index) {
++                showHeroSlide(index);
++            };
++
++            // Autoplay every 3.5 seconds
++            setInterval(() => {
++                showHeroSlide(currentHeroSlide + 1);
++            }, 3500);
++        });
++    </script>
+ </body>
+ 
+ </html>
+\ No newline at end of file

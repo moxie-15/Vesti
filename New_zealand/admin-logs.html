@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Viewer Logs | Vesti NZ</title>
+    <meta name="description" content="Internal admin dashboard for tracking registered viewer progress on Vesti NZ clarity sessions.">
+    <!-- Official Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom Vesti Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root {
+            --bg:         #F4FAF2;
+            --bg-card:    rgba(255, 255, 255, 0.85);
+            --green:      #63A146;
+            --green-dark: #3e6f26;
+            --green-glow: rgba(99, 161, 70, 0.15);
+            --border:     rgba(6, 14, 66, 0.08);
+            --text:       #060E42;
+            --muted:      rgba(6, 14, 66, 0.55);
+            --radius:     16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg) !important;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99, 161, 70, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 90% 110%, rgba(6, 14, 66, 0.04) 0%, transparent 60%) !important;
+            background-attachment: fixed;
+            color: var(--text) !important;
+            min-height: 100vh;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        *,
+        ::after,
+        ::before {
+            border-color: var(--border) !important;
+        }
+
+        /* ── Stats Cards ── */
+        .stat-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 16px;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 20px rgba(6, 14, 66, 0.015);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 12px 30px rgba(6, 14, 66, 0.05) !important;
+            border-color: rgba(99, 161, 70, 0.2) !important;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted) !important;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text) !important;
+            line-height: 1;
+        }
+
+        /* ── Search & Filter Bar ── */
+        .search-input {
+            background: rgba(255, 255, 255, 0.8) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 10px;
+            padding: 10px 16px 10px 42px;
+            color: var(--text) !important;
+            font-size: 14px;
+            width: 100%;
+            max-width: 360px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--green) !important;
+            background: #ffffff !important;
+            box-shadow: 0 0 0 3px rgba(99, 161, 70, 0.15) !important;
+        }
+
+        .search-input::placeholder {
+            color: var(--muted) !important;
+            opacity: 0.7;
+        }
+
+        /* ── Full Table ── */
+        .logs-table-wrap {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(6, 14, 66, 0.02) !important;
+        }
+
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .logs-table thead {
+            background: rgba(6, 14, 66, 0.02) !important;
+            border-bottom: 1px solid var(--border) !important;
+        }
+
+        .logs-table th {
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted) !important;
+            white-space: nowrap;
+        }
+
+        .logs-table td {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border) !important;
+            vertical-align: middle;
+            color: var(--text) !important;
+        }
+
+        .logs-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .logs-table tbody tr:hover {
+            background: rgba(99, 161, 70, 0.03) !important;
+        }
+
+        /* ── Progress Pill ── */
+        .track-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .track-pill.done {
+            background: rgba(99, 161, 70, 0.1) !important;
+            color: var(--green-dark) !important;
+            border: 1px solid rgba(99, 161, 70, 0.3) !important;
+        }
+
+        .track-pill.pending {
+            background: rgba(6, 14, 66, 0.03) !important;
+            color: var(--muted) !important;
+            border: 1px solid var(--border) !important;
+        }
+
+        /* ── Progress Bar ── */
+        .progress-bar-outer {
+            background: rgba(6, 14, 66, 0.06) !important;
+            border-radius: 10px;
+            height: 6px;
+            width: 100%;
+            min-width: 80px;
+        }
+
+        .progress-bar-inner {
+            height: 6px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #63A146, #C0C71E);
+            transition: width 0.4s ease;
+        }
+
+        /* ── Empty State ── */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        /* ── Delete Button ── */
+        .delete-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--muted) !important;
+            padding: 6px;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .delete-btn:hover {
+            color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.08) !important;
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffffff !important;
+            border: 1px solid rgba(99, 161, 70, 0.3) !important;
+            color: var(--green-dark) !important;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(6, 14, 66, 0.08) !important;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+
+    </style>
+</head>
+ 
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="top-announcement-bar">
+        <span>🔒 Admin Area — Vesti NZ Internal Viewer Tracking Dashboard</span>
+    </div>
+ 
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-area" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+                <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+                    <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#C0C71E" />
+                    <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#C0C71E" />
+                    <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#62943B" />
+                </svg>
+                <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
+                <span class="nz-indicator" style="margin-left:10px;">NZ</span>
+            </a>
+ 
+            <ul class="nav-menu" id="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html#pathways" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="index.html#scroll-stacking" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+                </li>
+                <li><a href="travel-fees.html" class="nav-link">Travel Fees</a></li>
+                <li><a href="video-catalog.html" class="nav-link" style="color: #63A146;">← Clarity Sessions</a></li>
+            </ul>
+ 
+            <div class="nav-cta">
+                <a href="https://site.wevesti.com/auth" target="_blank" rel="noopener" class="btn-signin">Sign In</a>
+                <a href="https://site.wevesti.com/register" target="_blank" rel="noopener" class="btn btn-primary">Create an account</a>
+            </div>
+ 
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+ 
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <ul class="mobile-menu">
+            <li><a href="index.html#pathways" class="mobile-link">Products</a></li>
+            <li><a href="index.html#scroll-stacking" class="mobile-link">Company</a></li>
+            <li><a href="travel-fees.html" class="mobile-link">Travel Fees</a></li>
+            <li><a href="video-catalog.html" class="mobile-link">← Clarity Sessions</a></li>
+            <li class="mobile-drawer-ctas">
+                <a href="https://site.wevesti.com/auth" target="_blank" rel="noopener" class="btn btn-outline w-full">Sign In</a>
+                <a href="https://site.wevesti.com/register" target="_blank" rel="noopener" class="btn btn-primary w-full">Create an account</a>
+            </li>
+        </ul>
+    </div>
+ 
+    <!-- Main Content -->
+    <main style="padding: 32px 0 80px; min-height: calc(100vh - 130px);">
+        <div class="container mx-auto px-4" style="max-width: 1200px;">
+ 
+            <!-- Page Header -->
+            <div style="margin-bottom: 32px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <span class="section-tag" style="margin-bottom: 8px;">
+                        <i data-lucide="database"></i> Admin Dashboard
+                    </span>
+                    <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text); margin: 0 0 6px; line-height: 1.2;">
+                        Viewer Logs
+                    </h1>
+                    <p style="color: var(--muted); font-size: 14px; margin: 0;">
+                        All registered viewer data is read from <code style="background: rgba(6, 14, 66, 0.05); color: var(--text); padding: 2.2px 6px; border-radius: 4px; font-size: 12px;">localStorage</code> in the browser. Data is client-side only.
+                    </p>
+                </div>
+ 
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <a href="portal-settings.html" id="settings-btn"
+                        style="background: rgba(6, 14, 66, 0.04); border: 1px solid var(--border); color: var(--text); font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s; text-decoration: none;"
+                        onmouseover="this.style.background='rgba(6, 14, 66, 0.08)'"
+                        onmouseout="this.style.background='rgba(6, 14, 66, 0.04)'">
+                        <i data-lucide="settings" style="width: 14px; height: 14px;"></i>
+                        Portal Settings
+                    </a>
+                    <button id="export-btn" onclick="exportCSV()"
+                        style="background: rgba(99, 161, 70, 0.1); border: 1px solid rgba(99, 161, 70, 0.3); color: var(--green-dark); font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s;">
+                        <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+                        Export CSV
+                    </button>
+                    <button id="clear-btn" onclick="confirmClearAll()"
+                        style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); color: #dc2626; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s;">
+                        <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;" id="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(99,161,70,0.15);">
+                        <i data-lucide="users" style="width: 22px; height: 22px; color: #63A146;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Total Viewers</div>
+                        <div class="stat-value" id="stat-total">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(192,199,30,0.12);">
+                        <i data-lucide="video" style="width: 22px; height: 22px; color: #C0C71E;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Tourist Completed</div>
+                        <div class="stat-value" id="stat-tourist">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(59,130,246,0.12);">
+                        <i data-lucide="briefcase" style="width: 22px; height: 22px; color: #60a5fa;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Business Completed</div>
+                        <div class="stat-value" id="stat-business">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(168,85,247,0.12);">
+                        <i data-lucide="heart" style="width: 22px; height: 22px; color: #c084fc;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Family Completed</div>
+                        <div class="stat-value" id="stat-family">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(251,146,60,0.12);">
+                        <i data-lucide="globe" style="width: 22px; height: 22px; color: #fb923c;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Group Completed</div>
+                        <div class="stat-value" id="stat-group">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Filter -->
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+                <div style="position: relative; flex: 1; max-width: 360px;">
+                    <i data-lucide="search" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: rgba(255,255,255,0.3);"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="Search by name, email, country…" oninput="renderTable()">
+                </div>
+                <div id="record-count" style="font-size: 13px; color: rgba(255,255,255,0.35); white-space: nowrap;">
+                    — viewers
+                </div>
+                <button onclick="refreshData()" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 13px; padding: 9px 14px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,0.5)'">
+                    <i data-lucide="refresh-cw" style="width: 13px; height: 13px;"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Main Table -->
+            <div class="logs-table-wrap">
+                <table class="logs-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Viewer</th>
+                            <th>Country</th>
+                            <th>Phone</th>
+                            <th>Tourist</th>
+                            <th>Business</th>
+                            <th>Family</th>
+                            <th>Group</th>
+                            <th>Overall</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-tbody">
+                        <!-- Filled dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section" style="background-color: var(--bg-light); padding: 60px 0; color: white;">
+        <div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 60px; max-width: 1200px;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; color: white;">Some of the things you may want to know</h2>
+                <a href="#" style="color: white; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 5px;">Frequently asked questions <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+            </div>
+            <div style="flex: 1.5; min-width: 300px;" class="faq-accordion">
+                <div class="faq-item active">
+                    <h5 class="faq-trigger">What can I do with Vesti? <span class="faq-icon">&minus;</span></h5>
+                    <div class="faq-content">
+                        <p>With Vesti you get the opportunity to be financially stable in life, whether you choose to move abroad (temporarily/permanently) or stay back at home. On Vesti you can pay for difficult immigration related payments (International Payments) in your local currency, seamlessly.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h5 class="faq-trigger">Is my money secure with Vesti? <span class="faq-icon">&plus;</span></h5>
+                    <div class="faq-content">
+                        <p>Yes, Vesti complies with strict regulatory standards. All banking services and cards are provided in partnership with licensed and regulated financial institutions, including Stripe Payments Company and Celtic Bank (Member FDIC). Your funds are held securely at partner banks, and all transactions are protected by bank-grade SSL encryption and multi-factor authentication.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h5 class="faq-trigger">How do I pay for WES on Vesti? <span class="faq-icon">&plus;</span></h5>
+                    <div class="faq-content">
+                        <p>To pay for WES (World Education Services) or other credential assessments, simply log into the Vesti app, navigate to the "Services" or "Payments" tab, select "Credential Assessment Services", enter your WES reference details, and pay in your local currency. Vesti takes care of the currency conversion and processes the payment to WES on your behalf instantly.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h5 class="faq-trigger">Can I send dollar to someone with Vesti? <span class="faq-icon">&plus;</span></h5>
+                    <div class="faq-content">
+                        <p>Yes! With Vesti's Multi-Currency Wallets, you can convert local currency to USD (and other major currencies) instantly. You can send dollars directly to other Vesti users using their @username (peer-to-peer, free), or initiate a wire transfer to a US or international bank account directly from the app.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download-section">
+        <div class="container text-center">
+            <h2 class="download-title">Also available to<br>download on both</h2>
+            <div class="download-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.vesti.app&pli=1" target="_blank" class="download-btn">
+                    <div class="download-btn-content">
+                        <svg class="download-btn-icon" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                        <div class="download-btn-text">
+                            <span class="download-btn-sub">AVAILABLE ON</span>
+                            <span class="download-btn-main">Google Play</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank" class="download-btn">
+                    <div class="download-btn-content">
+                        <svg class="download-btn-icon" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                        <div class="download-btn-text">
+                            <span class="download-btn-sub">AVAILABLE ON</span>
+                            <span class="download-btn-main">Apple Store</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Vesti Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Main Footer Row -->
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+                            <!-- Top-right yellow-green leaf -->
+                            <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#C0C71E" />
+                            <!-- Left small yellow leaf -->
+                            <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#C0C71E" />
+                            <!-- Middle dark green leaf -->
+                            <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#62943B" />
+                        </svg>
+                        <span class="footer-logo-text">esti</span>
+                        <span class="nz-indicator">NZ</span>
+                    </a>
+                    <!-- Social icons -->
+                    <div class="footer-socials">
+                        <a href="https://x.com/Vestiofficial" target="_blank" aria-label="Twitter" class="social-icon-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/company/vestiofficial" target="_blank" aria-label="LinkedIn" class="social-icon-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/wevestiofficial/" target="_blank" aria-label="Facebook" class="social-icon-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/Vestiofficial" target="_blank" aria-label="Instagram" class="social-icon-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="footer-col">
+                    <h5>PRODUCTS</h5>
+                    <ul>
+                        <li><a href="https://wevesti.com/banking" target="_blank" rel="noopener">Financial Services ˅</a></li>
+                        <li><a href="https://wevesti.com/immigration" target="_blank" rel="noopener">Migration Services ˅</a></li>
+                        <li><a href="https://wevesti.com/events" target="_blank" rel="noopener">Events ˅</a></li>
+                        <li><a href="https://wevesti.com/prosper-conference" target="_blank" rel="noopener">Prosper Conference</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div class="footer-col">
+                    <h5>COMPANY</h5>
+                    <ul>
+                        <li><a href="https://wevesti.com/about" target="_blank" rel="noopener">About Us</a></li>
+                        <li><a href="https://wevesti.com/career" target="_blank" rel="noopener">Careers</a></li>
+                        <li><a href="https://wevesti.com/newsroom" target="_blank" rel="noopener">News Room</a></li>
+                        <li><a href="https://wevesti.com/success-stories" target="_blank" rel="noopener">Success Story</a></li>
+                        <li><a href="https://wevesti.com/expansion" target="_blank" rel="noopener">Vesti Expansion</a></li>
+                        <li><a href="https://wevesti.com/resources" target="_blank" rel="noopener">Resource</a></li>
+                        <li><a href="https://wevesti.com/team" target="_blank" rel="noopener">Team</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-col">
+                    <h5>LEGAL</h5>
+                    <ul>
+                        <li><a href="https://wevesti.com/aml" target="_blank" rel="noopener">AML</a></li>
+                        <li><a href="https://wevesti.com/faq" target="_blank" rel="noopener">FAQ</a></li>
+                        <li><a href="https://wevesti.com/disclosures" target="_blank" rel="noopener">Disclosures</a></li>
+                        <li><a href="https://wevesti.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col">
+                    <h5>CONTACT</h5>
+                    <ul>
+                        <li><a href="mailto:help@wevesti.com">help@wevesti.com</a></li>
+                        <li><a href="https://intercom.help/vesti" target="_blank" rel="noopener">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                <p>Vesti partners with Stripe Payments Company for money transmission services and account services with funds held at Evolve Bank &amp; Trust, Member FDIC. Vesti Visa® Prepaid Cards are issued by Celtic Bank®, Member FDIC, pursuant to a license from Visa USA Inc.</p>
+                <p style="margin-top: 15px;"><strong>Disclaimer :</strong> Vesti operates differently from a traditional law firm. We offer limited immigration services through licensed attorneys, but our owners are not lawyers themselves. This may impact certain protections, such as attorney-client privilege. We are also independently owned and unaffiliated with any government agency. Before using our services, please carefully review our privacy policy, terms of use, and fee agreement. Remember, nothing on our website constitutes legal advice. For personalized legal guidance, always consult a licensed attorney.</p>
+                <p style="margin-top: 20px;">Copyrights &copy; Vesti 2026 | <a href="admin-logs.html" style="color: rgba(255,255,255,0.3); transition: color 0.2s;" onmouseover="this.style.color='#63A146'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Admin Portal</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+        <span id="toast-msg">Done!</span>
+    </div>
+
+    <script>
+        let allUsers = [];
+
+        const safeCreateIcons = () => {
+            if (typeof lucide !== 'undefined') {
+                try { lucide.createIcons(); } catch (e) { }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileDrawer.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.setAttribute('data-lucide', mobileDrawer.classList.contains('active') ? 'x' : 'menu');
+                    safeCreateIcons();
+                });
+            }
+
+            loadData();
+            initFaqAccordion();
+            safeCreateIcons();
+        });
+
+        function initFaqAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const trigger = item.querySelector('.faq-trigger');
+                if (!trigger) return;
+                trigger.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        const icon = i.querySelector('.faq-icon');
+                        if (icon) icon.innerHTML = '&plus;';
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const icon = item.querySelector('.faq-icon');
+                        if (icon) icon.innerHTML = '&minus;';
+                    }
+                });
+            });
+        }
+
+        function loadData() {
+            const raw = localStorage.getItem('vesti_registered_users');
+            allUsers = raw ? JSON.parse(raw) : [];
+            updateStats();
+            renderTable();
+        }
+
+        function refreshData() {
+            loadData();
+            showToast('Data refreshed');
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = allUsers.length;
+            document.getElementById('stat-tourist').textContent = allUsers.filter(u => u.watched?.tourist).length;
+            document.getElementById('stat-business').textContent = allUsers.filter(u => u.watched?.business).length;
+            document.getElementById('stat-family').textContent = allUsers.filter(u => u.watched?.family).length;
+            document.getElementById('stat-group').textContent = allUsers.filter(u => u.watched?.group).length;
+        }
+
+        function renderTable() {
+            const query = (document.getElementById('search-input').value || '').toLowerCase();
+            const tbody = document.getElementById('logs-tbody');
+
+            const filtered = allUsers.filter(u => {
+                const name = (u.name || `${u.firstName || ''} ${u.lastName || ''}`).toLowerCase();
+                const email = (u.email || '').toLowerCase();
+                const country = (u.country || '').toLowerCase();
+                return name.includes(query) || email.includes(query) || country.includes(query);
+            });
+
+            document.getElementById('record-count').textContent = `${filtered.length} viewer${filtered.length !== 1 ? 's' : ''}`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10">
+                            <div class="empty-state">
+                                <i data-lucide="inbox" style="width: 48px; height: 48px; color: var(--muted); opacity: 0.3; margin: 0 auto 16px; display: block;"></i>
+                                <p style="color: var(--muted); font-size: 15px; font-weight: 500;">${query ? 'No results match your search.' : 'No viewers registered yet.'}</p>
+                                ${query ? `<button onclick="document.getElementById('search-input').value=''; renderTable();" style="margin-top: 12px; background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 7px 16px; border-radius: 8px; cursor: pointer; font-size: 13px;">Clear search</button>` : ''}
+                            </div>
+                        </td>
+                    </tr>`;
+                safeCreateIcons();
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((u, i) => {
+                const name = u.name || `${u.firstName || ''} ${u.lastName || ''}`.trim() || 'Unknown';
+                const email = u.email || '—';
+                const country = u.country || '—';
+                const phone = u.phone || '—';
+                const watched = u.watched || {};
+                const tracks = ['tourist', 'business', 'family', 'group'];
+                const doneCount = tracks.filter(t => watched[t]).length;
+                const pct = Math.round((doneCount / 4) * 100);
+
+                const pill = (done) => done
+                    ? `<span class="track-pill done"><i data-lucide="check" style="width:10px;height:10px;"></i> Done</span>`
+                    : `<span class="track-pill pending">—</span>`;
+
+                return `
+                    <tr>
+                        <td style="color: var(--muted); opacity: 0.6; font-size: 12px; font-weight: 600; width: 36px;">${allUsers.indexOf(u) + 1}</td>
+                        <td>
+                            <div style="font-weight: 600; color: var(--text); font-size: 14px; line-height: 1.3;">${name}</div>
+                            <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">${email}</div>
+                        </td>
+                        <td style="font-size: 13px; color: var(--text);">${country}</td>
+                        <td style="font-size: 12px; color: var(--muted); font-family: monospace;">${phone}</td>
+                        <td>${pill(watched.tourist)}</td>
+                        <td>${pill(watched.business)}</td>
+                        <td>${pill(watched.family)}</td>
+                        <td>${pill(watched.group)}</td>
+                        <td style="min-width: 100px;">
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <div style="font-size: 11px; font-weight: 700; color: ${pct === 100 ? '#63A146' : 'var(--muted)'};">${pct}%</div>
+                                <div class="progress-bar-outer">
+                                    <div class="progress-bar-inner" style="width: ${pct}%;"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteUser('${email}')" title="Remove viewer">
+                                <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+            }).join('');
+
+            safeCreateIcons();
+        }
+
+        function deleteUser(email) {
+            allUsers = allUsers.filter(u => u.email !== email);
+            localStorage.setItem('vesti_registered_users', JSON.stringify(allUsers));
+            updateStats();
+            renderTable();
+            showToast('Viewer removed');
+        }
+
+        function confirmClearAll() {
+            if (allUsers.length === 0) { showToast('No data to clear'); return; }
+            if (!confirm(`Delete all ${allUsers.length} viewer records? This cannot be undone.`)) return;
+            allUsers = [];
+            localStorage.removeItem('vesti_registered_users');
+            updateStats();
+            renderTable();
+            showToast('All records cleared');
+        }
+
+        function exportCSV() {
+            if (allUsers.length === 0) { showToast('No data to export'); return; }
+            const headers = ['Name', 'Email', 'Country', 'Phone', 'Tourist', 'Business', 'Family', 'Group'];
+            const rows = allUsers.map(u => {
+                const name = u.name || `${u.firstName || ''} ${u.lastName || ''}`.trim();
+                const w = u.watched || {};
+                return [name, u.email || '', u.country || '', u.phone || '',
+                    w.tourist ? 'Yes' : 'No', w.business ? 'Yes' : 'No',
+                    w.family ? 'Yes' : 'No', w.group ? 'Yes' : 'No'
+                ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(',');
+            });
+            const csv = [headers.join(','), ...rows].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vesti_nz_viewers_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('CSV exported!');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.add('show');
+            safeCreateIcons();
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+
+    </script>
+</body>
+
+</html>
