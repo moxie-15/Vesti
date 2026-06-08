@@ -4444,3 +4444,8 @@ main {
     }
 }
 
+@media (max-width: 768px) {
+    .countries-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

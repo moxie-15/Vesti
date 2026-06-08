@@ -94,55 +94,84 @@
                     class="btn btn-primary w-full">Create an account</a>
             </li>
         </ul>
-    </div>    <!-- Hero Section -->
-    <section class="hero-section" style="position: relative; min-height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: flex-start; color: white;">
-        
-        <!-- Background Slider -->
-        <div id="hero-slider" style="position: absolute; inset: 0; z-index: 1;">
-            <div class="slide-bg" style="position: absolute; inset: 0; background: linear-gradient(rgba(6, 14, 66, 0.6), rgba(6, 14, 66, 0.8)), url('assets/au-landscape-1.png') no-repeat center center/cover; opacity: 1; transition: opacity 1.5s ease-in-out;"></div>
-            <div class="slide-bg" style="position: absolute; inset: 0; background: linear-gradient(rgba(6, 14, 66, 0.6), rgba(6, 14, 66, 0.8)), url('assets/au-landscape-2.png') no-repeat center center/cover; opacity: 0; transition: opacity 1.5s ease-in-out;"></div>
-            <div class="slide-bg" style="position: absolute; inset: 0; background: linear-gradient(rgba(6, 14, 66, 0.6), rgba(6, 14, 66, 0.8)), url('assets/au-landscape-3.png') no-repeat center center/cover; opacity: 0; transition: opacity 1.5s ease-in-out;"></div>
-            <div class="slide-bg" style="position: absolute; inset: 0; background: linear-gradient(rgba(6, 14, 66, 0.6), rgba(6, 14, 66, 0.8)), url('assets/au-tourist-beach.png') no-repeat center center/cover; opacity: 0; transition: opacity 1.5s ease-in-out;"></div>
-        </div>
+    </div>    <!-- Hero Section (Replicated split grid structure from US/Canada pathways) -->
+    <section class="hero-section">
+        <div class="aurora-glow aurora-1"></div>
+        <div class="aurora-glow aurora-2"></div>
 
-        <div class="container hero-container" style="position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-top: 40px; padding-bottom: 40px;">
-            <div class="hero-content" style="max-width: 520px; text-align: left; background: rgba(6, 14, 66, 0.4); backdrop-filter: blur(12px); padding: 35px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 30px rgba(0,0,0,0.3);">
+        <div class="container hero-container" style="align-items: center;">
+            <!-- Left: Text content and dual call-to-actions -->
+            <div class="hero-content">
                 <h1 class="hero-title"
-                    style="font-size: 2.6rem; font-weight: 800; margin-bottom: 16px; line-height: 1.15;">
-                    <span class="text-success" style="color: #8CE071;">United States Visitor Visa:</span><br>Explore the Magic of United States
+                    style="font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2;">
+                    <span class="text-success">United States Visitor Visa:</span> Explore the Magic of America
                 </h1>
+
                 <p class="hero-description"
-                     style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; color: rgba(255,255,255,0.95);">
+                     style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; color: rgba(255,255,255,0.9);">
                     Ready to experience the breathtaking beauty of United States? Whether you're planning a scenic
                     vacation, visiting family and friends, or attending business meetings, Vesti helps you secure your
                     visitor visa and set up your pre-arrival travel wallet with ease.
                 </p>
-                <div class="hero-actions" style="display: flex; gap: 15px; justify-content: flex-start; align-items: center;">
+
+                <div class="hero-actions" style="display: flex; gap: 20px; position: relative; z-index: 20; align-items: center;">
                     <button id="hero-btn-qualify" class="btn btn-outline btn-lg" onclick="window.openEligibilityModal()"
-                        style="background: transparent; color: white; border-color: rgba(255,255,255,0.5); padding: 10px 24px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+                        style="background: transparent; color: white; border-color: rgba(255,255,255,0.3); padding: 12px 30px; font-weight: 600; cursor: pointer;">
                         See If You Qualify
                     </button>
+
+
                     <a href="clarity.html" class="btn btn-success btn-lg"
-                        style="background-color: #8CE071; padding: 10px 30px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: #000; border-radius: 6px; box-shadow: 0 4px 15px rgba(140, 224, 113, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                        style="padding: 12px 40px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: white; height: 48px;">
                         Get Clarity Call
                     </a>
                 </div>
             </div>
-        </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const slides = document.querySelectorAll('#hero-slider .slide-bg');
-                if(slides.length > 0) {
-                    let currentSlide = 0;
-                    setInterval(function() {
-                        slides[currentSlide].style.opacity = '0';
-                        currentSlide = (currentSlide + 1) % slides.length;
-                        slides[currentSlide].style.opacity = '1';
-                    }, 5000);
-                }
-            });
-        </script>
+            <!-- Right: Organic Pebble Slideshow of Scenic United States Landscapes -->
+            <div class="hero-visual" style="position: relative; display: flex; justify-content: flex-end; width: 100%; max-width: 480px; height: 480px;">
+                <div class="hero-visual-frame" style="box-shadow: 0 20px 45px rgba(0,0,0,0.35); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; overflow: hidden; position: relative;">
+                    <!-- Slides -->
+                    <div class="hero-slide active" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:1; transition: opacity 1s ease-in-out; z-index: 2; border-radius: inherit; overflow: hidden;">
+                        <img src="assets/au-tourist-beach.png" alt="Scenic Beach" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 60px 48px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
+                            🏖️ Pristine Coastline & Golden Beaches
+                        </div>
+                    </div>
+                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
+                        <img src="assets/au-landscape-1.png" alt="Scenic Landscape 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 60px 48px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
+                            🏔️ Majestic Snow-Capped Alpine Peaks
+                        </div>
+                    </div>
+                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
+                        <img src="assets/au-landscape-2.png" alt="Scenic Landscape 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 60px 48px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
+                            🌲 Lush Ancient Forests & Emerald Lakes
+                        </div>
+                    </div>
+                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
+                        <img src="assets/au-landscape-3.png" alt="Scenic Landscape 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 60px 48px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
+                            🛥️ Stunning Fjords & Milford Sound Cruises
+                        </div>
+                    </div>
+
+                    <!-- Slide controls (dots) in glass capsule centered inside the organic shape -->
+                    <div class="slideshow-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; background: rgba(6, 14, 66, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1.5px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 6px 12px; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
+                        <span class="dot active" onclick="setSlide(0)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 1;"></span>
+                        <span class="dot" onclick="setSlide(1)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
+                        <span class="dot" onclick="setSlide(2)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
+                        <span class="dot" onclick="setSlide(3)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
+                    </div>
+                </div>
+
+                <!-- Floating NZ Flag Badge overlapping organic shape -->
+                <div style="position: absolute; bottom: 40px; right: 20px; width: 140px; height: 90px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; border: 3px solid white; z-index: 5;">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" style="width: 100%; height: 100%; object-fit: cover;" alt="NZ Flag">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Our Services Section -->
@@ -1385,4 +1414,5 @@
 </body>
 
 </html>
+
 
