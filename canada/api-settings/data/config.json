@@ -1,0 +1,15 @@
+{
+  "rateMode": "live",
+  "rates": {
+    "USD": 1,
+    "NGN": 1650,
+    "GHS": 15.2,
+    "KES": 135
+  },
+  "markup": 7.5,
+  "payment": {
+    "beneficiary": "Vesti Technologies Ltd",
+    "bankName": "Providus Bank",
+    "accountNumber": "1023948576"
+  }
+}

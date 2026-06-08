@@ -1,0 +1,14 @@
+{
+  "name": "vesti-nz-travel-portal-api",
+  "version": "1.0.0",
+  "description": "Dynamic exchange rates and payment settings API for Vesti NZ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}

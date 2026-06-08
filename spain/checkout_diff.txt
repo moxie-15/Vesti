@@ -1,0 +1,558 @@
+﻿diff --git a/checkout.html b/checkout.html
+index e172dfa..1a185b1 100644
+--- a/checkout.html
++++ b/checkout.html
+@@ -19,8 +19,12 @@
+     <style>
+         body {
+             font-family: 'Inter', sans-serif;
+-            background-color: #060E42;
+-            color: #f8fafc;
++            background-color: #F4FAF2;
++            background-image:
++                radial-gradient(at 0% 0%, rgba(99, 161, 70, 0.08) 0px, transparent 50%),
++                radial-gradient(at 100% 100%, rgba(6, 14, 66, 0.03) 0px, transparent 50%);
++            background-size: 100% 100%;
++            color: #060E42;
+             min-height: 100vh;
+             display: flex;
+             align-items: center;
+@@ -37,7 +41,7 @@
+             filter: blur(140px);
+             pointer-events: none;
+             z-index: 0;
+-            opacity: 0.15;
++            opacity: 0.12;
+         }
+         .glow-blob-1 {
+             width: 450px;
+@@ -50,7 +54,7 @@
+         .glow-blob-2 {
+             width: 400px;
+             height: 400px;
+-            background: radial-gradient(circle, #0f4c81 0%, rgba(15, 76, 129, 0) 100%);
++            background: radial-gradient(circle, #060e42 0%, rgba(6, 14, 66, 0) 100%);
+             top: -150px;
+             right: 15%;
+             animation: pulse-glow 14s infinite alternate-reverse;
+@@ -65,20 +69,19 @@
+         }
+ 
+         @keyframes pulse-glow {
+-            0% { transform: scale(1) translate(0, 0); opacity: 0.15; }
+-            100% { transform: scale(1.1) translate(30px, -20px); opacity: 0.25; }
++            0% { transform: scale(1) translate(0, 0); opacity: 0.12; }
++            100% { transform: scale(1.1) translate(30px, -20px); opacity: 0.18; }
+         }
+ 
+         .font-heading {
+             font-family: 'Outfit', sans-serif;
+         }
+ 
+-        /* Main Container Card styling - Glassmorphism theme */
++        /* Main Container Card styling - Premium Light Theme */
+         .checkout-card {
+-            background: rgba(13, 26, 107, 0.45);
+-            backdrop-filter: blur(25px);
+-            border: 1px solid rgba(255, 255, 255, 0.08);
+-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
++            background: #ffffff;
++            border: 1px solid rgba(6, 14, 66, 0.08);
++            box-shadow: 0 20px 40px -15px rgba(6, 14, 66, 0.08), 0 0 1px 0 rgba(6, 14, 66, 0.04);
+             border-radius: 24px;
+             overflow: hidden;
+             width: 100%;
+@@ -89,29 +92,29 @@
+ 
+         /* Left side invoice column background */
+         .summary-col {
+-            background-color: rgba(4, 9, 43, 0.55);
+-            border-right: 1px solid rgba(255, 255, 255, 0.08);
++            background-color: #f7faf6;
++            border-right: 1px solid rgba(6, 14, 66, 0.06);
+         }
+ 
+         /* Right side column background */
+         .form-col {
+-            background-color: rgba(13, 26, 107, 0.35);
++            background-color: #ffffff;
+         }
+ 
+-        /* Form inputs styling - Dark themed */
++        /* Form inputs styling - Light themed */
+         .form-input {
+-            background-color: rgba(255, 255, 255, 0.06);
+-            border: 1.5px solid rgba(255, 255, 255, 0.08);
+-            color: #ffffff;
++            background-color: #f8fafc;
++            border: 1.5px solid #cbd5e1;
++            color: #0f172a;
+             transition: all 0.25s ease;
+         }
+         .form-input::placeholder {
+-            color: rgba(255, 255, 255, 0.35);
++            color: #94a3b8;
+         }
+         .form-input:focus {
+-            background-color: rgba(255, 255, 255, 0.1);
++            background-color: #ffffff;
+             border-color: #63A146;
+-            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.25);
++            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.12);
+             outline: none;
+         }
+ 
+@@ -121,25 +124,25 @@
+         }
+         .payment-tab.active {
+             border-color: #63A146;
+-            color: #ffffff;
+-            background-color: rgba(99, 161, 70, 0.15);
+-            box-shadow: 0 4px 12px rgba(99, 161, 70, 0.1);
++            color: #63A146;
++            background-color: rgba(99, 161, 70, 0.08);
++            box-shadow: 0 4px 12px rgba(99, 161, 70, 0.05);
+         }
+         .payment-tab.inactive {
+-            border-color: rgba(255, 255, 255, 0.15);
+-            color: rgba(255, 255, 255, 0.6);
++            border-color: #cbd5e1;
++            color: #475569;
+             background-color: transparent;
+         }
+         .payment-tab.inactive:hover {
+-            border-color: rgba(255, 255, 255, 0.25);
+-            background-color: rgba(255, 255, 255, 0.04);
++            border-color: #94a3b8;
++            background-color: #f8fafc;
+         }
+ 
+-        /* Custom green theme checkbox */
++        /* Custom checkbox styles */
+         .custom-checkbox {
+             width: 18px;
+             height: 18px;
+-            border: 2px solid rgba(255, 255, 255, 0.3);
++            border: 2px solid #cbd5e1;
+             border-radius: 4px;
+             display: inline-flex;
+             align-items: center;
+@@ -172,8 +175,8 @@
+ 
+         /* Generated Virtual Account card style */
+         .virtual-account-card {
+-            border: 1px dashed rgba(99, 161, 70, 0.4);
+-            background-color: rgba(6, 14, 66, 0.45);
++            border: 1.5px dashed rgba(99, 161, 70, 0.4);
++            background-color: rgba(99, 161, 70, 0.02);
+         }
+ 
+         /* Copy action tooltip alert */
+@@ -196,8 +199,8 @@
+ 
+         /* Loading spinner */
+         .spinner {
+-            border: 3px solid rgba(255, 255, 255, 0.2);
+-            border-top: 3px solid #ffffff;
++            border: 3px solid rgba(99, 161, 70, 0.2);
++            border-top: 3px solid #63A146;
+             border-radius: 50%;
+             width: 20px;
+             height: 20px;
+@@ -283,12 +286,12 @@
+                                 <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#060E42" opacity="0.85" />
+                             </svg>
+                         </div>
+-                        <span class="text-lg font-extrabold tracking-tight font-heading text-white">Vesti<span class="text-[#63A146]">Pay</span></span>
++                        <span class="text-lg font-extrabold tracking-tight font-heading text-[#060E42]">Vesti<span class="text-[#63A146]">Pay</span></span>
+                     </div>
+ 
+                     <!-- PDF Invoice Action -->
+                     <div class="mb-5">
+-                        <button onclick="window.print()" class="inline-flex items-center gap-2 text-[#63A146] hover:text-[#71B352] font-semibold text-[12.5px] transition group">
++                        <button onclick="window.print()" class="inline-flex items-center gap-2 text-[#63A146] hover:text-[#71B352] font-semibold text-[12.5px] transition group bg-transparent border-0 cursor-pointer">
+                             <i data-lucide="download" class="w-3.5 h-3.5 transition-transform group-hover:translate-y-[1px]"></i>
+                             <span>Download the invoice in PDF format</span>
+                         </button>
+@@ -299,40 +302,40 @@
+                         <!-- Default Mockup items -->
+                         <div class="flex justify-between items-start">
+                             <div>
+-                                <h4 class="font-bold text-white text-sm">Blazer Steven Meisel</h4>
+-                                <p class="text-[11px] text-slate-400 mt-0.5">Size: m &nbsp;|&nbsp; Colour: black</p>
++                                <h4 class="font-bold text-[#060E42] text-sm">Blazer Steven Meisel</h4>
++                                <p class="text-[11px] text-slate-500 mt-0.5">Size: m &nbsp;|&nbsp; Colour: black</p>
+                             </div>
+-                            <span class="font-bold text-white text-sm">$ 400.00</span>
++                            <span class="font-bold text-[#060E42] text-sm">$ 400.00</span>
+                         </div>
+                         <div class="flex justify-between items-start">
+                             <div>
+-                                <h4 class="font-bold text-white text-sm">Narrow Leather Belt</h4>
+-                                <p class="text-[11px] text-slate-400 mt-0.5">Size: s &nbsp;|&nbsp; Colour: blue</p>
++                                <h4 class="font-bold text-[#060E42] text-sm">Narrow Leather Belt</h4>
++                                <p class="text-[11px] text-slate-500 mt-0.5">Size: s &nbsp;|&nbsp; Colour: blue</p>
+                             </div>
+-                            <span class="font-bold text-white text-sm">$ 50.00</span>
++                            <span class="font-bold text-[#060E42] text-sm">$ 50.00</span>
+                         </div>
+                     </div>
+                 </div>
+ 
+                 <!-- Totals Summary -->
+-                <div class="mt-5 pt-4 border-t border-slate-700">
++                <div class="mt-5 pt-4 border-t border-slate-200">
+                     <div class="space-y-1.5">
+-                        <div class="flex justify-between text-xs font-semibold text-slate-400">
+-                            <span>Discounts & Offers</span>
++                        <div class="flex justify-between text-xs font-semibold text-slate-500">
++                            <span>Vesti Processing Charge</span>
+                             <span id="discount-display">$ 0.00</span>
+                         </div>
+-                        <div class="flex justify-between text-xs font-semibold text-slate-400">
++                        <div class="flex justify-between text-xs font-semibold text-slate-500">
+                             <span>Tax</span>
+                             <span id="tax-display">$ 0.00</span>
+                         </div>
+                     </div>
+ 
+-                    <div class="mt-3.5 pt-3.5 border-t border-dashed border-slate-600 flex justify-between items-end">
++                    <div class="mt-3.5 pt-3.5 border-t border-dashed border-slate-300 flex justify-between items-end">
+                         <div>
+                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total</span>
+-                            <h3 class="text-xl font-extrabold text-white mt-0.5 font-heading" id="grand-total-label">Total</h3>
++                            <h3 class="text-xl font-extrabold text-[#060E42] mt-0.5 font-heading" id="grand-total-label">Total</h3>
+                         </div>
+-                        <span class="text-xl font-extrabold text-white font-heading" id="grand-total-display">$ 450.00</span>
++                        <span class="text-xl font-extrabold text-[#060E42] font-heading" id="grand-total-display">$ 450.00</span>
+                     </div>
+                 </div>
+             </div>
+@@ -342,9 +345,9 @@
+                 <div>
+                     <!-- Payment Page Header -->
+                     <div class="flex justify-between items-center mb-4">
+-                        <h2 class="text-lg font-bold font-heading text-white">Payment Page</h2>
++                        <h2 class="text-lg font-bold font-heading text-[#060E42]">Payment Page</h2>
+                         <!-- Micro Session Timer -->
+-                        <div class="text-[10px] font-semibold text-slate-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full flex items-center gap-1" id="timer-container">
++                        <div class="text-[10px] font-semibold text-[#060E42] bg-[#060E42]/5 border border-[#060E42]/10 px-2 py-0.5 rounded-full flex items-center gap-1" id="timer-container">
+                             <i data-lucide="clock" class="w-3 h-3 text-[#63A146]"></i>
+                             <span id="checkout-timer">10:00</span>
+                         </div>
+@@ -352,11 +355,11 @@
+ 
+                     <!-- Payment Option Tabs -->
+                     <div class="grid grid-cols-2 gap-3 mb-4">
+-                        <button type="button" onclick="switchTab('card')" id="tab-card" class="payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading">
++                        <button type="button" onclick="switchTab('card')" id="tab-card" class="payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer">
+                             <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
+                             <span>Credit Card</span>
+                         </button>
+-                        <button type="button" onclick="switchTab('transfer')" id="tab-transfer" class="payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading">
++                        <button type="button" onclick="switchTab('transfer')" id="tab-transfer" class="payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer">
+                             <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+                             <span>Bank Transfer</span>
+                         </button>
+@@ -371,14 +374,14 @@
+ 
+                         <!-- Cardholder Name -->
+                         <div class="space-y-1">
+-                            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Cardholder's Name</label>
++                            <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Cardholder's Name</label>
+                             <input type="text" id="cardholder-name" required placeholder="PAULINA CHIMAROKE" 
+-                                class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-500 uppercase">
++                                class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-400 uppercase">
+                         </div>
+ 
+                         <!-- Card Number -->
+                         <div class="space-y-1">
+-                            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Card Number</label>
++                            <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Card Number</label>
+                             <div class="relative flex items-center">
+                                 <div class="absolute left-4 w-7 h-5 flex items-center justify-center" id="card-brand-container">
+                                     <svg viewBox="0 0 36 24" width="28" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+@@ -388,7 +391,7 @@
+                                     </svg>
+                                 </div>
+                                 <input type="text" id="card-number" required placeholder="9870 3456 7890 6473" maxlength="19"
+-                                    class="w-full form-input py-2.5 pl-14 pr-4 rounded-xl text-sm font-semibold placeholder-slate-500 tracking-wider">
++                                    class="w-full form-input py-2.5 pl-14 pr-4 rounded-xl text-sm font-semibold placeholder-slate-400 tracking-wider">
+                             </div>
+                         </div>
+ 
+@@ -396,16 +399,16 @@
+                         <div class="grid grid-cols-2 gap-4">
+                             <!-- Expiry -->
+                             <div class="space-y-1">
+-                                <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">Expiry</label>
++                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Expiry</label>
+                                 <input type="text" id="card-expiry" required placeholder="03 / 25" maxlength="7"
+-                                    class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-500 text-center">
++                                    class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-400 text-center">
+                             </div>
+ 
+                             <!-- CVC -->
+                             <div class="space-y-1">
+-                                <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">CVC</label>
++                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">CVC</label>
+                                 <input type="password" id="card-cvc" required placeholder="654" maxlength="4"
+-                                    class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-500 text-center tracking-widest">
++                                    class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-400 text-center tracking-widest">
+                             </div>
+                         </div>
+ 
+@@ -417,7 +420,7 @@
+                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                 </svg>
+                             </div>
+-                            <span onclick="toggleCheckbox('remember-card')" class="text-[12px] font-semibold text-slate-300 select-none cursor-pointer">Remember bank card</span>
++                            <span onclick="toggleCheckbox('remember-card')" class="text-[12px] font-semibold text-slate-600 select-none cursor-pointer">Remember bank card</span>
+                         </div>
+ 
+                         <!-- Action Submit Button -->
+@@ -431,12 +434,12 @@
+                         
+                         <!-- State 1: Generate Account Number -->
+                         <div id="account-generate-view" class="text-center py-4 space-y-3">
+-                            <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-[#63A146] flex items-center justify-center mx-auto shadow-sm">
++                            <div class="w-10 h-10 rounded-full bg-[#63A146]/10 text-[#63A146] flex items-center justify-center mx-auto shadow-sm">
+                                 <i data-lucide="landmark" class="w-5 h-5"></i>
+                             </div>
+                             <div class="max-w-[280px] mx-auto">
+-                                <h4 class="font-bold text-white text-xs">Dynamic Account Generation</h4>
+-                                <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">
++                                <h4 class="font-bold text-[#060E42] text-xs">Dynamic Account Generation</h4>
++                                <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                                     To protect account security, direct bank details are not exposed. Click the button below to generate a temporary, secure virtual account for this transaction.
+                                 </p>
+                             </div>
+@@ -449,17 +452,17 @@
+                         <div id="virtual-account-box" class="hidden virtual-account-card rounded-2xl p-4 space-y-3 shadow-sm relative">
+                             <!-- Header status -->
+                             <div class="flex justify-between items-center pb-2.5 border-b border-[#63A146]/20">
+-                                <span class="text-[11px] font-bold text-slate-400">Virtual Account Details</span>
++                                <span class="text-[11px] font-bold text-slate-500">Virtual Account Details</span>
+                                 <span class="text-[9px] font-bold bg-[#63A146]/20 text-[#63A146] py-0.5 px-1.5 rounded-full uppercase" id="account-status-tag">Pending Deposit</span>
+                             </div>
+ 
+                             <!-- Dynamic Details -->
+                             <div class="space-y-2.5">
+                                 <!-- Bank Name -->
+-                                <div class="flex justify-between items-center text-[12px] bg-white/5 border border-white/10 p-2.5 rounded-xl">
++                                <div class="flex justify-between items-center text-[12px] bg-slate-50 border border-slate-200 p-2.5 rounded-xl">
+                                     <div>
+-                                        <span class="text-[9px] font-semibold text-slate-400 block uppercase">Bank Name</span>
+-                                        <span class="font-bold text-white" id="bank-name-display">Providus Bank</span>
++                                        <span class="text-[9px] font-semibold text-slate-500 block uppercase">Bank Name</span>
++                                        <span class="font-bold text-[#060E42]" id="bank-name-display">Providus Bank</span>
+                                     </div>
+                                     <button onclick="copyToClipboard('bank-name-display', this)" class="text-slate-400 hover:text-[#63A146] transition relative">
+                                         <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+@@ -468,9 +471,9 @@
+                                 </div>
+ 
+                                 <!-- Account Number -->
+-                                <div class="flex justify-between items-center text-[12px] bg-white/5 border border-white/10 p-2.5 rounded-xl">
++                                <div class="flex justify-between items-center text-[12px] bg-slate-50 border border-slate-200 p-2.5 rounded-xl">
+                                     <div>
+-                                        <span class="text-[9px] font-semibold text-slate-400 block uppercase">Account Number</span>
++                                        <span class="text-[9px] font-semibold text-slate-500 block uppercase">Account Number</span>
+                                         <span class="text-sm font-extrabold text-[#63A146] tracking-wider select-all" id="bank-account-display">1023948576</span>
+                                     </div>
+                                     <button onclick="copyToClipboard('bank-account-display', this)" class="text-slate-400 hover:text-[#63A146] transition relative">
+@@ -480,10 +483,10 @@
+                                 </div>
+ 
+                                 <!-- Account Name -->
+-                                <div class="flex justify-between items-center text-[12px] bg-white/5 border border-white/10 p-2.5 rounded-xl">
++                                <div class="flex justify-between items-center text-[12px] bg-slate-50 border border-slate-200 p-2.5 rounded-xl">
+                                     <div>
+-                                        <span class="text-[9px] font-semibold text-slate-400 block uppercase">Account Name</span>
+-                                        <span class="font-bold text-white" id="bank-beneficiary-display">Vesti Technologies Ltd</span>
++                                        <span class="text-[9px] font-semibold text-slate-500 block uppercase">Account Name</span>
++                                        <span class="font-bold text-[#060E42]" id="bank-beneficiary-display">Vesti Technologies Ltd</span>
+                                     </div>
+                                     <button onclick="copyToClipboard('bank-beneficiary-display', this)" class="text-slate-400 hover:text-[#63A146] transition relative">
+                                         <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+@@ -493,20 +496,20 @@
+                             </div>
+ 
+                             <!-- Meta details (expiry and amount) -->
+-                            <div class="text-[10px] space-y-1 text-slate-400 pt-0.5">
++                            <div class="text-[10px] space-y-1 text-slate-500 pt-0.5">
+                                 <div class="flex justify-between">
+                                     <span>Amount to Transfer:</span>
+                                     <span class="font-bold text-[#63A146]" id="account-amount-label">Ôéª 742,500.00</span>
+                                 </div>
+                                 <div class="flex justify-between">
+                                     <span>Expiration:</span>
+-                                    <span class="font-bold text-slate-400">Expires in 24 hours</span>
++                                    <span class="font-bold text-slate-500">Expires in 24 hours</span>
+                                 </div>
+                             </div>
+ 
+                             <!-- Actions -->
+                             <div class="grid grid-cols-2 gap-2.5 pt-2" id="invoice-actions-row">
+-                                <button onclick="printInvoiceSlip()" class="border border-[#63A146]/30 hover:border-[#63A146] text-white text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-transparent cursor-pointer">
++                                <button onclick="printInvoiceSlip()" class="border border-[#63A146]/30 hover:border-[#63A146] text-[#63A146] hover:bg-[#63A146]/5 text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-transparent cursor-pointer">
+                                     <i data-lucide="printer" class="w-3.5 h-3.5 text-[#63A146]"></i>
+                                     <span>Print Details</span>
+                                 </button>
+@@ -520,12 +523,12 @@
+                 </div>
+ 
+                 <!-- Secure Gateway Info -->
+-                <div class="mt-6 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] text-slate-400">
++                <div class="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                     <span class="flex items-center gap-1">
+                         <i data-lucide="shield-check" class="w-3 h-3 text-[#63A146]"></i>
+                         Secure 256-bit SSL connection
+                     </span>
+-                    <a href="travel-fees.html" class="hover:text-[#63A146] transition font-semibold">Cancel payment</a>
++                    <a href="travel-fees.html" class="hover:text-[#63A146] transition font-semibold text-slate-500">Cancel payment</a>
+                 </div>
+             </div>
+             
+@@ -567,13 +570,13 @@
+             const bankContainer = document.getElementById('bank-transfer-container');
+ 
+             if (mode === 'card') {
+-                tabCard.className = "payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading";
+-                tabTransfer.className = "payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading";
++                tabCard.className = "payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
++                tabTransfer.className = "payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
+                 paymentForm.classList.remove('hidden');
+                 bankContainer.classList.add('hidden');
+             } else {
+-                tabCard.className = "payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading";
+-                tabTransfer.className = "payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading";
++                tabCard.className = "payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
++                tabTransfer.className = "payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
+                 paymentForm.classList.add('hidden');
+                 bankContainer.classList.remove('hidden');
+             }
+@@ -825,65 +828,88 @@
+                 const passengers = parseInt(localStorage.getItem('vesti_payment_passengers')) || 1;
+ 
+                 cartCurrency = currency;
+-                cartTotal = amountLocal;
+-
+-                totalLabel.textContent = `Total (${currency})`;
+-                totalDisplay.textContent = formatCurrencySymbol(amountLocal, currency);
+ 
+                 // Checked items reconstruction
+                 const visaChecked = localStorage.getItem('vesti_visa_checked') === 'true';
+                 const immigrationChecked = localStorage.getItem('vesti_immigration_checked') === 'true';
+                 const ivlChecked = localStorage.getItem('vesti_ivl_checked') === 'true';
+                 const insuranceChecked = localStorage.getItem('vesti_insurance_checked') === 'true';
+-                const vestiChecked = localStorage.getItem('vesti_vesti_checked') === 'true';
+                 const eliteChecked = localStorage.getItem('vesti_elite_checked') === 'true';
+ 
+                 const visaPrice = parseFloat(localStorage.getItem('vesti_visa_price')) || 0;
+                 const immigrationPrice = parseFloat(localStorage.getItem('vesti_immigration_price')) || 0;
+                 const ivlPrice = parseFloat(localStorage.getItem('vesti_ivl_price')) || 0;
+                 const insurancePrice = parseFloat(localStorage.getItem('vesti_insurance_price')) || 0;
+-                const vestiPrice = parseFloat(localStorage.getItem('vesti_vesti_price')) || 0;
+                 const elitePrice = parseFloat(localStorage.getItem('vesti_elite_price')) || 0;
+                 
+                 const planName = localStorage.getItem('vesti_insurance_plan_name') || 'AXA Travel Insurance';
+ 
++                let subtotalLocal = 0;
++
+                 if (visaChecked && visaPrice > 0) {
+-                    appendInvoiceItem(container, "New Zealand Visitor Visa Fee", `Official INZ pathway x ${passengers} passenger(s)`, visaPrice * rate, currency);
++                    const priceLocal = visaPrice * rate * passengers;
++                    appendInvoiceItem(container, "New Zealand Visitor Visa Fee", `Official INZ pathway x ${passengers} passenger(s)`, priceLocal, currency);
++                    subtotalLocal += priceLocal;
+                 }
+                 if (immigrationChecked && immigrationPrice > 0) {
+-                    appendInvoiceItem(container, "INZ Immigration Handling Fee", `Verification processing x ${passengers}`, immigrationPrice * rate, currency);
++                    const priceLocal = immigrationPrice * rate * passengers;
++                    appendInvoiceItem(container, "INZ Immigration Handling Fee", `Verification processing x ${passengers}`, priceLocal, currency);
++                    subtotalLocal += priceLocal;
+                 }
+                 if (ivlChecked && ivlPrice > 0) {
+-                    appendInvoiceItem(container, "International Visitor Conservation Levy (IVL)", `Government environment tax x ${passengers}`, ivlPrice * rate, currency);
++                    const priceLocal = ivlPrice * rate * passengers;
++                    appendInvoiceItem(container, "International Visitor Conservation Levy (IVL)", `Government environment tax x ${passengers}`, priceLocal, currency);
++                    subtotalLocal += priceLocal;
+                 }
+                 if (insuranceChecked && insurancePrice > 0) {
+-                    appendInvoiceItem(container, "AXA Travel Insurance", `${planName} x ${passengers}`, insurancePrice, currency);
+-                }
+-                if (vestiChecked && vestiPrice > 0) {
+-                    appendInvoiceItem(container, "Vesti Relocation Package & Verification", `Handling, packaging & support x ${passengers}`, vestiPrice * rate, currency);
++                    const priceLocal = insurancePrice * rate * passengers;
++                    appendInvoiceItem(container, "AXA Travel Insurance", `${planName} x ${passengers}`, priceLocal, currency);
++                    subtotalLocal += priceLocal;
+                 }
+                 if (eliteChecked && elitePrice > 0) {
+-                    appendInvoiceItem(container, "Vesti Elitepass Priority Support", `Dedicated advisor & airport transfer x ${passengers}`, elitePrice * rate, currency);
++                    const priceLocal = elitePrice * rate * passengers;
++                    appendInvoiceItem(container, "Vesti Elitepass Priority Support", `Dedicated advisor & airport transfer x ${passengers}`, priceLocal, currency);
++                    subtotalLocal += priceLocal;
+                 }
+ 
+                 if (container.children.length === 0) {
+-                    appendInvoiceItem(container, "New Zealand Travel Verification Services", `Total transaction sum for ${passengers} passenger(s)`, amountLocal, currency);
++                    appendInvoiceItem(container, "New Zealand Travel Verification Services", `Total transaction sum for ${passengers} passenger(s)`, subtotalLocal, currency);
++                }
++
++                const vestiChecked = localStorage.getItem('vesti_vesti_checked') === 'true';
++                let finalTotalLocal = 0;
++                let processingChargeLocal = 0;
++
++                if (vestiChecked) {
++                    finalTotalLocal = 891.40 * rate;
++                    processingChargeLocal = finalTotalLocal - subtotalLocal;
++                    if (processingChargeLocal < 0) {
++                        processingChargeLocal = 0;
++                        finalTotalLocal = subtotalLocal;
++                    }
++                } else {
++                    finalTotalLocal = subtotalLocal;
++                    processingChargeLocal = 0;
+                 }
+ 
+-                discountDisplay.textContent = formatCurrencySymbol(0, currency);
++                cartTotal = finalTotalLocal;
++
++                totalLabel.textContent = `Total (${currency})`;
++                totalDisplay.textContent = formatCurrencySymbol(finalTotalLocal, currency);
++                discountDisplay.textContent = formatCurrencySymbol(processingChargeLocal, currency);
+                 taxDisplay.textContent = formatCurrencySymbol(0, currency);
+ 
+                 // Update Submit card button to show value
+-                document.getElementById('pay-submit-btn').innerHTML = `<span>Pay ${formatCurrencySymbol(amountLocal, currency)}</span>`;
++                document.getElementById('pay-submit-btn').innerHTML = `<span>Pay ${formatCurrencySymbol(finalTotalLocal, currency)}</span>`;
+ 
+             } else {
+-                cartTotal = 450.00;
++                cartTotal = 891.40;
+                 cartCurrency = 'USD';
+                 totalLabel.textContent = "Total";
+-                totalDisplay.textContent = "$ 450.00";
+-                discountDisplay.textContent = "$ 0.00";
++                totalDisplay.textContent = "$ 891.40";
++                discountDisplay.textContent = "$ 441.40";
+                 taxDisplay.textContent = "$ 0.00";
+-                document.getElementById('pay-submit-btn').innerHTML = `<span>Pay Now</span>`;
++                document.getElementById('pay-submit-btn').innerHTML = `<span>Pay $ 891.40</span>`;
+             }
+         }
+ 
+@@ -893,10 +919,10 @@
+             div.className = "flex justify-between items-start";
+             div.innerHTML = `
+                 <div>
+-                    <h4 class="font-bold text-white text-[13px] leading-tight">${title}</h4>
+-                    <p class="text-[11px] text-slate-400 mt-0.5">${subtitle}</p>
++                    <h4 class="font-bold text-[#060E42] text-[13px] leading-tight">${title}</h4>
++                    <p class="text-[11px] text-slate-500 mt-0.5">${subtitle}</p>
+                 </div>
+-                <span class="font-bold text-white text-sm flex-shrink-0 ml-4">${formatCurrencySymbol(price, currency)}</span>
++                <span class="font-bold text-[#060E42] text-sm flex-shrink-0 ml-4">${formatCurrencySymbol(price, currency)}</span>
+             `;
+             container.appendChild(div);
+         }
