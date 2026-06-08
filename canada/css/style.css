@@ -10,8 +10,8 @@
     --bg-light: #060E42;     /* Lighter shade to de-concentrate colors */
     --bg-card: rgba(13, 26, 107, 0.65);
     
-    --primary: #E31837;      /* Vesti Leaf Green */
-    --primary-hover: #B2132A; /* Vesti Deep Forest Green Hover */
+    --primary: #63A146;      /* Vesti Leaf Green */
+    --primary-hover: #3E6F26; /* Vesti Deep Forest Green Hover */
     --secondary: #0a58ca;    /* Financial Accents */
     --accent-gold: #fbbf24;  
     
@@ -4539,4 +4539,5 @@ main {
         height: 260px;
     }
 }
+
 
