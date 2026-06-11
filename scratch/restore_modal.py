@@ -26,7 +26,10 @@ modal_html = """
             <h2 class="elig-title" style="font-size: 1.8rem; color: #060E42; margin-bottom: 10px; font-weight: 800;">Check Your Eligibility for Vesti Pathways</h2>
             <p class="elig-subtitle" style="color: #64748b; margin-bottom: 30px; font-size: 1rem;">Take this quiz to see if our pathways is a fit for you.</p>
 
-            <form id="eligibility-form">
+            <form id="eligibility-form" action="#" method="POST">
+                <!-- Hidden field to track which country page the user submitted from -->
+                <input type="hidden" name="Pathway_Country" value="{TARGET_COUNTRY}">
+                
                 <!-- Step 1 -->
                 <div id="elig-step-1">
                     <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -177,12 +180,14 @@ for country in countries:
     )
 
     # Make sure we don't inject multiple times
+    country_modal_html = modal_html.replace('{TARGET_COUNTRY}', country.replace('_', ' ').title())
+
     if 'id="eligibility-modal"' in content:
         # Replace the existing modal
-        content = re.sub(r'<!-- Eligibility Modal Form -->.*?</script>', modal_html, content, flags=re.DOTALL)
+        content = re.sub(r'<!-- Eligibility Modal Form -->.*?</script>', country_modal_html, content, flags=re.DOTALL)
     else:
         # Inject before <!-- Scripts -->
-        content = content.replace('<!-- Scripts -->', modal_html + '\n    <!-- Scripts -->')
+        content = content.replace('<!-- Scripts -->', country_modal_html + '\n    <!-- Scripts -->')
 
     with open(html_path, 'w', encoding='utf-8') as f:
         f.write(content)
