@@ -4864,3 +4864,7 @@ main {
     font-weight: 500;
     color: var(--text-white);
 }
+
+.service-card:hover .service-icon {
+    color: var(--text-white) !important;
+}

@@ -338,7 +338,7 @@
                         <!-- Default Mockup items -->
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-bold text-[#060E42] text-sm">Australia Visitor Visa Fee</h4>
+                                <h4 class="font-bold text-[#060E42] text-sm">Australia Pathways Fee</h4>
                                 <p class="text-[11px] text-slate-500 mt-0.5">Official DHA pathway x 1 passenger(s)</p>
                             </div>
                             <span class="font-bold text-[#060E42] text-sm">$ 184.05</span>
@@ -1197,7 +1197,7 @@
 
                 if (visaChecked && visaPrice > 0) {
                     const priceLocal = Math.round((visaPrice * effectiveRate * passengers) * 100) / 100;
-                    appendInvoiceItem(container, "Australia Visitor Visa Fee", `Official DHA pathway x ${passengers} passenger(s)`, priceLocal, currency);
+                    appendInvoiceItem(container, "Australia Pathways Fee", `Official DHA pathway x ${passengers} passenger(s)`, priceLocal, currency);
                     subtotalLocal += priceLocal;
                 }
                 if (immigrationChecked && immigrationPrice > 0) {
@@ -1249,7 +1249,7 @@
                 const effectiveRate = defRate * (1 + defMarkup / 100);
 
                 const itemsToRender = [
-                    { title: "Australia Visitor Visa Fee", desc: "Official DHA pathway x 1 passenger(s)", usdPrice: 184.05 },
+                    { title: "Australia Pathways Fee", desc: "Official DHA pathway x 1 passenger(s)", usdPrice: 184.05 },
                     { title: "DHA Immigration Handling Fee", desc: "Verification processing x 1", usdPrice: 25.15 },
                     { title: "International Visitor Conservation Levy (IVL)", desc: "Government environment tax x 1", usdPrice: 61.35 },
                     { title: "AXA Travel Insurance", desc: "Basic Plan (1 Month) x 1", usdPrice: 62.24 },
