@@ -4541,3 +4541,192 @@ main {
 }
 
 
+
+/* Refactored Services Section */
+.section-services {
+    padding: 80px 0;
+    background-color: var(--text-white);
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.services-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.services-divider {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary);
+    margin: 0 auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--text-white);
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.service-card .icon-wrapper {
+    flex-shrink: 0;
+    width: 80px;
+}
+
+.service-card .icon-wrapper img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+.service-content {
+    flex: 1;
+    text-align: left;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.service-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.service-btn {
+    background-color: var(--primary);
+    border: none;
+    color: var(--text-white);
+    padding: 10px 25px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: var(--radius-sm);
+}
+
+.service-card:hover {
+    background-color: var(--bg-main);
+    border-color: var(--bg-main);
+    transform: translateY(-5px);
+}
+
+.service-card:hover .icon-wrapper img {
+    filter: brightness(0) invert(1);
+}
+
+.service-card:hover h3 {
+    color: var(--text-white);
+}
+
+.service-card:hover p {
+    color: rgba(255,255,255,0.9);
+}
+
+/* Success Banner */
+.success-banner-section {
+    padding: 0 0 60px 0;
+    background-color: var(--text-white);
+}
+
+.success-banner-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--bg-main), #1a365d);
+    border-radius: var(--radius-lg);
+    padding: 40px 50px;
+    box-shadow: 0 20px 40px rgba(6, 14, 66, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.success-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.seal-badge {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.seal-badge svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: var(--text-white);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+}
+
+.seal-badge-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--bg-main);
+    z-index: 1;
+    position: relative;
+    font-family: var(--font-heading);
+}
+
+.seal-badge-check {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--primary);
+    color: var(--text-white);
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.success-banner-text {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--text-white);
+}

@@ -4,9 +4,10 @@ import re
 themes = {
     'canada': {'primary': '#E31837', 'hover': '#B2132A', 'glow': 'rgba(227, 24, 55, 0.25)'},
     'australia': {'primary': '#FFCD00', 'hover': '#E5B800', 'glow': 'rgba(255, 205, 0, 0.25)'},
-    'usa': {'primary': '#3C3B6E', 'hover': '#2B2A50', 'glow': 'rgba(60, 59, 110, 0.25)'},
+    'usa': {'primary': '#3B82F6', 'hover': '#2563EB', 'glow': 'rgba(59, 130, 246, 0.25)'}, # Bright Blue
     'france': {'primary': '#0055A4', 'hover': '#003E7A', 'glow': 'rgba(0, 85, 164, 0.25)'},
     'spain': {'primary': '#F1BF00', 'hover': '#CFA400', 'glow': 'rgba(241, 191, 0, 0.25)'}
+    # New Zealand omitted to remain untouched
 }
 
 for code, colors in themes.items():
