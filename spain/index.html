@@ -115,7 +115,7 @@
                 </p>
 
                 <div class="hero-actions" style="display: flex; gap: 20px; position: relative; z-index: 20; align-items: center;">
-                    <a href="../qualify.html" id="hero-btn-qualify" class="btn btn-outline btn-lg" style="background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 12px 30px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; height: 48px;">See If You Qualify</a>
+                    <button id="hero-btn-qualify" class="btn btn-outline btn-lg" onclick="openEligibilityModal()" style="background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 12px 30px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; height: 48px;">See If You Qualify</button>
 
 
                     <a href="clarity.html" class="btn btn-success btn-lg"
@@ -379,87 +379,75 @@
         </div>
     </div>
 
+    
     <!-- Eligibility Modal Form -->
     <div class="modal" id="eligibility-modal">
-        <div class="modal-content elig-modal-white">
-            <button class="modal-close elig-modal-close" id="eligibility-close" aria-label="Close modal">
+        <div class="modal-content elig-modal-white" style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 600px; width: 90%;">
+            <button class="modal-close elig-modal-close" id="eligibility-close" aria-label="Close modal" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; cursor: pointer; color: #64748b;">
                 <i data-lucide="x"></i>
             </button>
 
             <!-- 3-Step Progress Bar Indicator -->
-            <div class="elig-progress-bar">
-                <div class="elig-progress-step active" id="elig-dot-1"></div>
-                <div class="elig-progress-line" id="elig-line-1"></div>
-                <div class="elig-progress-step" id="elig-dot-2"></div>
-                <div class="elig-progress-line" id="elig-line-2"></div>
-                <div class="elig-progress-step" id="elig-dot-3"></div>
+            <div class="elig-progress-bar" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                <div class="elig-progress-step active" id="elig-dot-1" style="width: 12px; height: 12px; border-radius: 50%; background: #5a9e3a;"></div>
+                <div class="elig-progress-line active" id="elig-line-1" style="height: 2px; flex: 1; background: #e2e8f0;"></div>
+                <div class="elig-progress-step" id="elig-dot-2" style="width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0;"></div>
+                <div class="elig-progress-line" id="elig-line-2" style="height: 2px; flex: 1; background: #e2e8f0;"></div>
+                <div class="elig-progress-step" id="elig-dot-3" style="width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0;"></div>
             </div>
 
-            <span id="elig-step-text" class="elig-step-text">Step 1 of 3</span>
-            <h2 class="elig-title">Check Your Eligibility for a Spain Pathway</h2>
-            <p class="elig-subtitle">Take this quiz to see if the Spain Pathway is a fit for you.</p>
+            <span id="elig-step-text" class="elig-step-text" style="font-size: 0.85rem; font-weight: 700; color: #5a9e3a; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px;">Step 1 of 3</span>
+            <h2 class="elig-title" style="font-size: 1.8rem; color: #060E42; margin-bottom: 10px; font-weight: 800;">Check Your Eligibility for Vesti Pathways</h2>
+            <p class="elig-subtitle" style="color: #64748b; margin-bottom: 30px; font-size: 1rem;">Take this quiz to see if our pathways is a fit for you.</p>
 
             <form id="eligibility-form">
                 <!-- Step 1 -->
                 <div id="elig-step-1">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="elig-input-label">First Name</label>
-                            <input type="text" name="firstName" placeholder="e.g. John" required class="form-input">
+                    <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                            <label class="elig-input-label" style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase;">First Name</label>
+                            <input type="text" name="firstName" placeholder="e.g. John" required class="form-input" style="padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit'; font-size: 1rem;">
                         </div>
-                        <div class="form-group">
-                            <label class="elig-input-label">Last Name</label>
-                            <input type="text" name="lastName" placeholder="e.g. Doe" required class="form-input">
+                        <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                            <label class="elig-input-label" style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase;">Last Name</label>
+                            <input type="text" name="lastName" placeholder="e.g. Doe" required class="form-input" style="padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit'; font-size: 1rem;">
                         </div>
                     </div>
 
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="elig-input-label">Gender</label>
-                            <select name="gender" required class="form-input select-styled">
+                    <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                            <label class="elig-input-label" style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase;">Gender</label>
+                            <select name="gender" required class="form-input" style="padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit'; font-size: 1rem; background: white;">
                                 <option value="" disabled selected>Select your gender</option>
                                 <option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label class="elig-input-label">Email Address</label>
-                            <input type="email" name="email" placeholder="you@example.com" required class="form-input">
+                        <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                            <label class="elig-input-label" style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase;">Email Address</label>
+                            <input type="email" name="email" placeholder="you@example.com" required class="form-input" style="padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit'; font-size: 1rem;">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="elig-input-label">Country</label>
-                        <select name="country" required class="form-input select-styled">
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                        <label class="elig-input-label" style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase;">Country</label>
+                        <select name="country" required class="form-input" style="padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit'; font-size: 1rem; background: white;">
                             <option value="" disabled selected>Select your country</option>
+                            <option>Nigeria</option>
+                            <option>Ghana</option>
+                            <option>Kenya</option>
+                            <option>South Africa</option>
+                            <option>Other</option>
                         </select>
                     </div>
 
-                    <div class="form-group" style="position: relative;">
-                        <label class="elig-input-label">Phone Number</label>
-                        <div class="phone-input-container">
-                            <div class="phone-country-selector" id="phone-country-selector"
-                                style="cursor: pointer; display: flex; align-items: center; gap: 4px;">
-                                <img id="selected-flag-emoji" src="https://flagcdn.com/24x18/ng.png" alt="NG"
-                                    style="width:24px;height:18px;border-radius:2px;object-fit:cover;flex-shrink:0;">
-                            </div>
-                            <input type="tel" name="phone" id="phone-field" placeholder="+234 800 000 0000" required
-                                class="form-input phone-field">
-                        </div>
-                        <div class="phone-dropdown-list" id="phone-dropdown-list" style="display: none;">
-                            <div
-                                style="padding: 8px; border-bottom: 1px solid #cbd5e1; position: sticky; top: 0; background: #ffffff; z-index: 10;">
-                                <input type="text" id="phone-dropdown-search" placeholder="Search country..."
-                                    style="width: 100%; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.85rem; outline: none; box-sizing: border-box;">
-                            </div>
-                            <div id="phone-dropdown-items-container" style="max-height: 160px; overflow-y: auto;">
-                                <!-- Populated dynamically via JS -->
-                            </div>
-                        </div>
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                        <label class="elig-input-label" style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase;">Phone Number</label>
+                        <input type="tel" name="phone" placeholder="+234 800 000 0000" required class="form-input" style="padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: 'Outfit'; font-size: 1rem;">
                     </div>
 
-                    <button type="button" id="elig-btn-continue" class="btn btn-elig-primary w-full">
+                    <button type="button" id="elig-btn-continue" class="btn-primary" onclick="nextStep1()" style="background: #5a9e3a; color: white; border: none; padding: 14px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; font-size: 1.1rem;">
                         Continue
                     </button>
                 </div>
@@ -467,828 +455,85 @@
                 <!-- Step 2 -->
                 <div id="elig-step-2" style="display: none;">
                     <div style="margin-bottom: 25px;">
-                        <p class="elig-question-text">Is the primary purpose of your trip to Spain for tourism,
-                            vacation, business meetings, or visiting family?</p>
-                        <div class="radio-card-group">
-                            <label class="radio-card">
-                                <input type="radio" name="q1" value="yes" required class="radio-input-circle">
-                                <span class="radio-label-text">Yes</span>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="q1" value="no" class="radio-input-circle">
-                                <span class="radio-label-text">No</span>
-                            </label>
+                        <p class="elig-question-text" style="font-weight: 600; margin-bottom: 10px;">Is the primary purpose of your trip for tourism, vacation, business meetings, or visiting family?</p>
+                        <div class="radio-card-group" style="display: flex; flex-direction: column; gap: 10px;">
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer;"><input type="radio" name="q1" value="yes" required> Yes</label>
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer;"><input type="radio" name="q1" value="no"> No</label>
                         </div>
                     </div>
-
-                    <div style="margin-bottom: 35px;">
-                        <p class="elig-question-text">Do you have a valid passport and onward travel ticket (or are you
-                            planning to secure one)?</p>
-                        <div class="radio-card-group">
-                            <label class="radio-card">
-                                <input type="radio" name="q2" value="yes" required class="radio-input-circle">
-                                <span class="radio-label-text">Yes</span>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="q2" value="no" class="radio-input-circle">
-                                <span class="radio-label-text">No</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="elig-buttons-row">
-                        <button type="button" id="elig-btn-back-2" class="btn btn-elig-outline">
-                            Back
-                        </button>
-                        <button type="button" id="elig-btn-continue-2" class="btn btn-elig-primary">
-                            Continue
-                        </button>
-                    </div>
+                    <button type="button" class="btn-primary" onclick="nextStep2()" style="background: #5a9e3a; color: white; border: none; padding: 14px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1.1rem;">Continue</button>
                 </div>
 
                 <!-- Step 3 -->
                 <div id="elig-step-3" style="display: none;">
                     <div style="margin-bottom: 25px;">
-                        <p class="elig-question-text">Do you have sufficient personal savings or financial sponsorship
-                            to support your travel?</p>
-                        <div class="radio-card-group">
-                            <label class="radio-card">
-                                <input type="radio" name="q3" value="yes" required class="radio-input-circle">
-                                <span class="radio-label-text">Yes</span>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="q3" value="no" class="radio-input-circle">
-                                <span class="radio-label-text">No</span>
-                            </label>
+                        <p class="elig-question-text" style="font-weight: 600; margin-bottom: 10px;">Are you able to provide proof of sufficient funds to support your stay?</p>
+                        <div class="radio-card-group" style="display: flex; flex-direction: column; gap: 10px;">
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer;"><input type="radio" name="q2" value="yes" required> Yes</label>
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer;"><input type="radio" name="q2" value="no"> No</label>
                         </div>
                     </div>
-
-                    <div style="margin-bottom: 35px;">
-                        <p class="elig-question-text">Do you have a history of international travel, or do you plan to
-                            return to your home country after your visit?</p>
-                        <div class="radio-card-group">
-                            <label class="radio-card">
-                                <input type="radio" name="q4" value="yes" required class="radio-input-circle">
-                                <span class="radio-label-text">Yes</span>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="q4" value="no" class="radio-input-circle">
-                                <span class="radio-label-text">No</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="elig-buttons-row">
-                        <button type="button" id="elig-btn-back-3" class="btn btn-elig-outline">
-                            Back
-                        </button>
-                        <button type="submit" class="btn btn-elig-primary">
-                            Submit
-                        </button>
-                    </div>
+                    <button type="button" class="btn-primary" onclick="submitEligibilityForm(event)" style="background: #5a9e3a; color: white; border: none; padding: 14px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1.1rem;">Submit & Check Eligibility</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Payment Gateway Modal -->
-    <div class="modal" id="payment-modal">
-        <div class="modal-content text-center" style="max-width: 450px;">
-            <button class="modal-close" id="payment-close" aria-label="Close modal">
-                <i data-lucide="x"></i>
-            </button>
-            <div id="payment-body-content">
-                <div class="payment-icon" style="margin-bottom: 15px; display: flex; justify-content: center;">
-                    <i data-lucide="lock" class="text-success" style="width: 48px; height: 48px;"></i>
-                </div>
-                <h2 style="font-size: 24px; margin-bottom: 10px;">Book Your Clarity Session & Unlock Blueprint</h2>
-                <p class="modal-desc">Schedule a 1-on-1 consultation with an expert and instantly unlock your
-                    personalized travel & visa roadmap.</p>
+    <style>
+    /* Modal Styles to override generic */
+    #eligibility-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(6, 14, 66, 0.95);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+    }
+    #eligibility-modal.active {
+        display: flex;
+    }
+    </style>
 
-                <div class="payment-price"
-                    style="font-size: 36px; font-weight: 700; color: var(--primary); margin: 25px 0;">
-                    $50.00 <span style="font-size: 16px; color: var(--text-muted); font-weight: 400;">USD</span>
-                </div>
+    <script>
+    function openEligibilityModal() {
+        document.getElementById('eligibility-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    document.getElementById('eligibility-close').addEventListener('click', function() {
+        document.getElementById('eligibility-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    });
 
-                <div class="payment-form" style="text-align: left; margin-bottom: 25px;">
-                    <div class="form-group" style="margin-bottom: 15px;">
-                        <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px;">Card
-                            Number</label>
-                        <input type="text" class="form-input" placeholder="•••• •••• •••• ••••"
-                            value="4242 4242 4242 4242" readonly
-                            style="background-color: rgba(255, 255, 255, 0.02); color: var(--text-light); border: 1px solid var(--border-color);">
-                    </div>
-                    <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div class="form-group">
-                            <label
-                                style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px;">Expiry</label>
-                            <input type="text" class="form-input" placeholder="MM/YY" value="12/28" readonly
-                                style="background-color: rgba(255, 255, 255, 0.02); color: var(--text-light); border: 1px solid var(--border-color);">
-                        </div>
-                        <div class="form-group">
-                            <label
-                                style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px;">CVC</label>
-                            <input type="text" class="form-input" placeholder="•••" value="123" readonly
-                                style="background-color: rgba(255, 255, 255, 0.02); color: var(--text-light); border: 1px solid var(--border-color);">
-                        </div>
-                    </div>
-                </div>
+    function nextStep1() {
+        document.getElementById('elig-step-1').style.display = 'none';
+        document.getElementById('elig-step-2').style.display = 'block';
+        document.getElementById('elig-step-text').innerText = 'Step 2 of 3';
+        document.getElementById('elig-dot-2').style.background = '#5a9e3a';
+        document.getElementById('elig-line-1').style.background = '#5a9e3a';
+    }
+    
+    function nextStep2() {
+        document.getElementById('elig-step-2').style.display = 'none';
+        document.getElementById('elig-step-3').style.display = 'block';
+        document.getElementById('elig-step-text').innerText = 'Step 3 of 3';
+        document.getElementById('elig-dot-3').style.background = '#5a9e3a';
+        document.getElementById('elig-line-2').style.background = '#5a9e3a';
+    }
 
-                <button id="confirm-payment-btn" class="btn btn-success w-full"
-                    style="justify-content: center; font-size: 16px; padding: 14px;">
-                    <i data-lucide="shield-check"></i>
-                    <span>Pay $50.00 & Book Session</span>
-                </button>
-                <p
-                    style="font-size: 13px; color: var(--text-muted); margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 5px;">
-                    <i data-lucide="lock" style="width: 14px; height: 14px;"></i> Payments are secure and encrypted.
-                </p>
-            </div>
+    function submitEligibilityForm(e) {
+        e.preventDefault();
+        alert('Thank you for submitting! A Vesti expert will contact you shortly to confirm your eligibility.');
+        document.getElementById('eligibility-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    </script>
 
-            <div id="payment-success-msg" class="d-none text-center" style="padding: 40px 0;">
-                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-                    <i data-lucide="check-circle" class="text-success" style="width: 64px; height: 64px;"></i>
-                </div>
-                <h2 style="font-size: 28px; margin-bottom: 10px;">Payment Successful!</h2>
-                <p style="color: var(--text-muted); font-size: 16px;">Generating your exclusive blueprint...</p>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Scroll Card Stacking Section -->
-    <section id="scroll-stacking" class="relative" role="region" aria-label="Scrolling cards section"
-        style="padding: 50px 0 0; background-color: #ffffff;">
-        <div class="container max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8"
-            style="max-width: 1400px; width: 100%;">
-            <div class="scroll-cards-wrapper" data-scroll-container>
-
-                <!-- Stack of Cards -->
-                <div class="scroll-cards-stack">
-                    <!-- Card 1: Student Loan Card -->
-                    <div class="scroll-card" id="card-student-loan"
-                        style="background-color: #DEFAD2; color: #060E42; border: 1px solid rgba(6, 14, 66, 0.08);">
-                        <div class="scroll-card-info">
-                            <span class="scroll-card-badge"
-                                style="background: #0A1145; color: #ffffff; text-transform: uppercase;">Study Without
-                                Limits 🚀</span>
-                            <h3 class="scroll-card-title" style="color: #1B4B1B; text-shadow: none;">Education Loans
-                                Made Simple & Accessible</h3>
-                            <p class="scroll-card-desc"
-                                style="color: #1B4B1B; text-shadow: none; font-size: 1.1rem; max-width: 90%;">Whether
-                                you're studying locally or abroad, Vesti's Education Loan helps you focus on what
-                                matters most.<br><br>Get financial support for tuition, housing, and living expenses,
-                                all in one smooth process.</p>
-                            <div class="scroll-card-cta-row">
-                                <a href="https://wevesti.com/edu" class="btn btn-link"
-                                    style="color: #1B4B1B; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: flex; align-items: center; gap: 4px; padding: 0;">Apply
-                                    for loan <i data-lucide="arrow-up-right" style="width: 20px; height: 20px;"></i></a>
-                            </div>
-                        </div>
-                        <div class="scroll-card-visual">
-                            <div class="student-loan-visual">
-                                <div class="loan-glow-circle"></div>
-                                <i data-lucide="graduation-cap" class="loan-cap-icon"></i>
-                                <div class="loan-doc-tag loan-doc-tag-1">
-                                    <i data-lucide="check-circle"
-                                        style="width: 14px; height: 14px; color: #63A146;"></i>
-                                    <span>Proof of Funds</span>
-                                </div>
-                                <div class="loan-doc-tag loan-doc-tag-2">
-                                    <i data-lucide="file-text" style="width: 14px; height: 14px; color: #63A146;"></i>
-                                    <span>DHA Approved</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Global Gen Card -->
-                    <div class="scroll-card" id="card-global-gen"
-                        style="background-color: #4C8C35; border: 1px solid rgba(255, 255, 255, 0.08); margin-top: 5vh;">
-                        <div class="scroll-card-info">
-                            <span class="scroll-card-badge"
-                                style="background: #0A1145; color: #ffffff; text-transform: uppercase;">Available to
-                                Request</span>
-                            <h3 class="scroll-card-title" style="color: #ffffff; text-shadow: none;">Introducing the new
-                                Vesti GlobalGeng Mastercard.</h3>
-                            <p class="scroll-card-desc" style="color: rgba(255, 255, 255, 0.95); text-shadow: none;">
-                                From quick errands to big goals, it's made to keep up. Experience freedom that fits your
-                                lifestyle.</p>
-                            <div class="scroll-card-cta-row">
-                                <a href="https://wevesti.com/globalgeng-card" class="btn btn-outline btn-sm"
-                                    style="color: #ffffff; border-color: rgba(255, 255, 255, 0.35);">Learn More <i
-                                        data-lucide="arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="scroll-card-visual">
-                            <div class="cards-visual-container">
-                                <!-- Back Card -->
-                                <div class="visual-credit-card vcc-back">
-                                    <div class="cc-back-stripe"></div>
-                                    <div class="cc-back-sig"></div>
-                                    <div
-                                        style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
-                                        <span style="font-size: 0.5rem; color: rgba(255,255,255,0.5);">CVV 253</span>
-                                        <div class="mc-logo">
-                                            <div class="mc-circle-red" style="width: 10px; height: 10px;"></div>
-                                            <div class="mc-circle-yellow"
-                                                style="width: 10px; height: 10px; margin-left: -4px;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Front Card -->
-                                <div class="visual-credit-card vcc-front">
-                                    <div class="cc-front-header">
-                                        <span class="cc-front-brand">vesti</span>
-                                        <span
-                                            style="font-size: 0.5rem; color: rgba(255,255,255,0.6); letter-spacing: 0.5px;">#
-                                            GlobalGeng</span>
-                                    </div>
-                                    <div class="cc-front-middle">
-                                        <div class="cc-chip"></div>
-                                        <i data-lucide="globe"
-                                            style="width: 32px; height: 32px; color: rgba(255,255,255,0.15); position: absolute; right: 10px;"></i>
-                                    </div>
-                                    <div class="cc-front-footer">
-                                        <span class="cc-front-geng">DEBIT CARD</span>
-                                        <div class="mc-logo">
-                                            <div class="mc-circle-red"></div>
-                                            <div class="mc-circle-yellow"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Elite Pass Card -->
-                    <div class="scroll-card" id="card-elite-pass"
-                        style="background-color: #264B20; border: 1px solid rgba(255, 255, 255, 0.08); margin-top: 5vh;">
-                        <div class="scroll-card-info">
-                            <span class="scroll-card-badge"
-                                style="background: #0A1145; color: #ffffff; text-transform: uppercase;">Available Offer
-                                🚀</span>
-                            <h3 class="scroll-card-title" style="color: #ffffff; text-shadow: none;">Get First Class
-                                Treatment with Vesti Elitepass</h3>
-                            <p class="scroll-card-desc" style="color: rgba(255, 255, 255, 0.95); text-shadow: none;">
-                                Your personal gateway to stress-free, luxury airport experiences worldwide. Get airport
-                                transfers, 1-on-1 advisor match, and priority visa reviews.</p>
-                            <div class="scroll-card-cta-row">
-                                <a href="https://wevesti.com/elite-pass" class="btn btn-outline btn-sm"
-                                    style="color: #ffffff; border-color: rgba(255, 255, 255, 0.35);">Learn More <i
-                                        data-lucide="arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="scroll-card-visual">
-                            <div class="portrait-visual-container">
-                                <div class="portrait-orbit-ring" style="width: 200px; height: 200px;"></div>
-                                <div class="portrait-image-wrapper"
-                                    style="width: 160px; height: 160px; position: relative;">
-                                    <div class="elite-slide active"
-                                        style="position: absolute; inset: 0; opacity: 1; transition: opacity 0.8s ease-in-out; border-radius: 50%; overflow: hidden;">
-                                        <img src="assets/hero-landscape.png" alt="Scenic Beach"
-                                            style="width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                    <div class="elite-slide"
-                                        style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; border-radius: 50%; overflow: hidden;">
-                                        <img src="assets/hero-landscape.png" alt="Alpine Peak"
-                                            style="width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                    <div class="elite-slide"
-                                        style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; border-radius: 50%; overflow: hidden;">
-                                        <img src="assets/hero-landscape.png" alt="Lush Forest"
-                                            style="width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                    <div class="elite-slide"
-                                        style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; border-radius: 50%; overflow: hidden;">
-                                        <img src="assets/hero-landscape.png" alt="Stunning Fjord"
-                                            style="width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                </div>
-                                <div class="seamless-booking-tag" style="left: -10px; top: 110px;">
-                                    <i data-lucide="map" style="color: #2E6F25; width: 14px; height: 14px;"></i>
-                                    <span>Explore AU</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lead Capture & Custom Migration Blueprint Generator -->
-    <section class="section blueprint-section d-none" id="blueprint">
-        <div class="container max-w-4xl">
-            <div class="section-header text-center">
-                <span class="section-tag"><i data-lucide="file-text"></i> Instant Action Plan</span>
-                <h2 class="section-title">Get Your Free AU Tourist & Visitor Visa Blueprint</h2>
-                <p class="section-subtitle">Fill in your travel profile to generate a highly customized step-by-step
-                    tourist & visitor visa and banking blueprint. Download or print your personalized travel roadmap
-                    instantly.
-                </p>
-            </div>
-
-            <!-- Wizard Card Container -->
-            <div class="blueprint-wizard glass-panel" id="wizard-container">
-                <!-- Progress Bar -->
-                <div class="wizard-progress">
-                    <div class="progress-step active" data-step="1">1. Background</div>
-                    <div class="progress-step" data-step="2">2. Destination</div>
-                    <div class="progress-step" data-step="3">3. Travel Date</div>
-                </div>
-                <div class="wizard-progress-bar">
-                    <div class="wizard-progress-fill" id="wizard-progress-fill" style="width: 33%"></div>
-                </div>
-
-                <!-- Wizard Steps Form -->
-                <form id="blueprint-form" class="mt-6">
-                    <!-- Step 1 Content -->
-                    <div class="wizard-step-content active" id="step-1">
-                        <h3>Tell us about yourself</h3>
-                        <p class="step-desc">Your background helps us tailor the best tourist or visitor visa pathway
-                            for your trip to Spain.</p>
-
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="bp-name">Your Full Name</label>
-                                <input type="text" id="bp-name" class="form-input" placeholder="Enter your full name"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="bp-email">Email Address</label>
-                                <input type="email" id="bp-email" class="form-input" placeholder="name@domain.com"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="bp-occupation">Primary Profession</label>
-                                <select id="bp-occupation" class="form-select" required>
-                                    <option value="" disabled selected>Select occupation...</option>
-                                    <option value="Business Owner / Entrepreneur">Business Owner / Entrepreneur</option>
-                                    <option value="Corporate Professional / Manager">Corporate Professional / Manager
-                                    </option>
-                                    <option value="Self-Employed / Freelancer">Self-Employed / Freelancer</option>
-                                    <option value="Retired">Retired</option>
-                                    <option value="Student / Academic">Student / Academic</option>
-                                    <option value="Government Employee / Public Servant">Government Employee / Public
-                                        Servant</option>
-                                    <option value="Other">Other Industry</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="bp-origin">Current Location (Country)</label>
-                                <input type="text" id="bp-origin" class="form-input"
-                                    placeholder="e.g. Nigeria, Ghana, India, UK" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 Content -->
-                    <div class="wizard-step-content" id="step-2">
-                        <h3>Choose Your Travel Plan</h3>
-                        <p class="step-desc">Select your preferred visa pathway and planning preferences.</p>
-
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="bp-city">Main Travel Destination in AU</label>
-                                <select id="bp-city" class="form-select" required>
-                                    <option value="Sydney" selected>Sydney</option>
-                                    <option value="Melbourne">Melbourne</option>
-                                    <option value="Brisbane">Brisbane</option>
-                                    <option value="Perth">Perth</option>
-                                    <option value="Not Sure">Undecided / Flexible</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="bp-pathway">Preferred Visa Pathway</label>
-                                <select id="bp-pathway" class="form-select" required>
-                                    <option value="general_visitor" selected>General Visitor Visa</option>
-                                    <option value="group_visitor">Group Visitor Visa</option>
-                                    <option value="business_visitor">Business Visitor Visa</option>
-                                    <option value="family_visitor">Family/Partner Visitor Visa</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-span-2">
-                                <label for="bp-savings">Estimated Available Travel Budget (AUD equivalent)</label>
-                                <select id="bp-savings" class="form-select" required>
-                                    <option value="" disabled selected>Select amount...</option>
-                                    <option value="< $5k">Less than $5,000 AUD</option>
-                                    <option value="$5k - $15k">$5,000 - $15,000 AUD</option>
-                                    <option value="$15k - $30k">$15,000 - $30,000 AUD</option>
-                                    <option value="> $30k">More than $30,000 AUD</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 Content -->
-                    <div class="wizard-step-content" id="step-3">
-                        <h3>Travel Timeline</h3>
-                        <p class="step-desc">When do you plan to travel?</p>
-
-                        <div class="form-grid">
-                            <div class="form-group col-span-2">
-                                <label for="bp-timeline">Expected Travel Date</label>
-                                <select id="bp-timeline" class="form-select" required>
-                                    <option value="Immediately (0-3 Months)" selected>Immediately (0-3 Months)</option>
-                                    <option value="Short-term (3-6 Months)">Short-term (3-6 Months)</option>
-                                    <option value="Medium-term (6-12 Months)">Medium-term (6-12 Months)</option>
-                                    <option value="Long-term (1 Year+)">Long-term (1 Year+)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="bp-family">Accompanying Travelers</label>
-                                <select id="bp-family" class="form-select" required>
-                                    <option value="Traveling alone" selected>Traveling alone</option>
-                                    <option value="Traveling with partner">Traveling with partner</option>
-                                    <option value="Traveling with family (partner + kids)">Traveling with family
-                                        (partner + kids)</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-span-2 checkbox-group">
-                                <input type="checkbox" id="bp-loan-interest" checked>
-                                <label for="bp-loan-interest">Check if you are interested in Vesti pre-arrival Travel
-                                    Support Loans and Proof of Funds letters</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Wizard Actions Buttons -->
-                    <div class="wizard-actions mt-6">
-                        <button type="button" id="wizard-prev" class="btn btn-outline d-none">
-                            <i data-lucide="arrow-left"></i>
-                            <span>Previous Step</span>
-                        </button>
-                        <button type="button" id="wizard-next" class="btn btn-primary ml-auto">
-                            <span>Next Step</span>
-                            <i data-lucide="arrow-right"></i>
-                        </button>
-                        <button type="submit" id="wizard-submit" class="btn btn-success d-none ml-auto">
-                            <i data-lucide="lock"></i>
-                            <span>Book Clarity Session & Unlock</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Generated Blueprint Display Area -->
-            <div id="blueprint-result" class="blueprint-result glass-panel d-none">
-                <div class="result-header">
-                    <div class="result-icon-success">
-                        <i data-lucide="check-circle"></i>
-                    </div>
-                    <div>
-                        <h2>Travel Blueprint Successfully Generated!</h2>
-                        <p>We've created a custom Spain Settlement & Finance Blueprint for <strong
-                                id="res-name-title">User</strong>.</p>
-                    </div>
-                </div>
-
-                <div class="blueprint-report-card" id="printable-blueprint">
-                    <!-- Report Header -->
-                    <div class="report-header">
-                        <div class="logo-area" style="display:flex; align-items:center; gap:0px;">
-                            <svg width="27" height="30" viewBox="0 0 34 38" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" overflow="visible">
-                                <!-- Top-right yellow-green leaf -->
-                                <path
-                                    d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z"
-                                    fill="#C0C71E" />
-                                <!-- Left small yellow leaf -->
-                                <path
-                                    d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z"
-                                    fill="#C0C71E" />
-                                <!-- Middle dark green leaf -->
-                                <path
-                                    d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z"
-                                    fill="#62943B" />
-                            </svg>
-                            <span
-                                style="font-family:'Outfit',sans-serif; font-weight:700; font-size:18px; color:#060E42; letter-spacing:-0.5px; line-height:1; margin-left:-5px;">esti</span>
-                            <span class="au-indicator print-black" style="margin-left:8px;">ES</span>
-                        </div>
-                        <div class="report-date">Generated: May 2026</div>
-                    </div>
-
-                    <h3 class="report-title">Personalized Tourist & Visitor Visa Roadmap</h3>
-
-                    <div class="report-meta-grid">
-                        <div class="meta-item"><strong>Applicant Name:</strong> <span id="res-name">John Doe</span>
-                        </div>
-                        <div class="meta-item"><strong>Current Occupation:</strong> <span id="res-occupation">Business
-                                Owner</span></div>
-                        <div class="meta-item"><strong>Visa Pathway:</strong> <span id="res-pathway">General Visitor
-                                Visa</span></div>
-                        <div class="meta-item"><strong>Main Destination:</strong> <span id="res-city">Sydney</span>
-                        </div>
-                        <div class="meta-item"><strong>Travel Timeline:</strong> <span id="res-timeline">3 Months</span>
-                        </div>
-                        <div class="meta-item"><strong>Accompanying Travelers:</strong> <span id="res-family">Traveling
-                                alone</span></div>
-                    </div>
-
-                    <hr class="report-divider">
-
-                    <!-- Custom Checklist Timeline -->
-                    <div class="report-timeline">
-                        <h4>📋 Your Travel Checklist & Milestones</h4>
-
-                        <div class="report-milestone">
-                            <span class="milestone-number">1</span>
-                            <div class="milestone-info">
-                                <h5 id="milestone-title-1">Verify Travel Documents & Plan Itinerary (Months 1-2)</h5>
-                                <p id="res-occupation-text">Prepare your tourism/travel documents. Gather proof of
-                                    accommodation and a day-by-day travel plan. Vesti can assist with certified travel
-                                    financial statements.</p>
-                            </div>
-                        </div>
-
-                        <div class="report-milestone">
-                            <span class="milestone-number">2</span>
-                            <div class="milestone-info">
-                                <h5 id="milestone-title-2">Open Vesti AU Global Wallet (Month 3)</h5>
-                                <p>Generate your AUD account details pre-arrival. Open your wallet and swap local
-                                    currency to AUD inside the Vesti App to secure your savings early against inflation.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="report-milestone">
-                            <span class="milestone-number">3</span>
-                            <div class="milestone-info">
-                                <h5 id="milestone-title-3">Prepare Proof of Funds (Month 4)</h5>
-                                <p id="res-pof-text">You will require financial proof of sufficient support funds for
-                                    your tourist or visitor visa category. Use Vesti's **Proof of Funds Certificate**
-                                    service to
-                                    satisfy Immigration AU requirements seamlessly.</p>
-                            </div>
-                        </div>
-
-                        <div class="report-milestone">
-                            <span class="milestone-number">4</span>
-                            <div class="milestone-info">
-                                <h5 id="milestone-title-4">Submit Visa Application & Finalize Bookings (Months 5-6)</h5>
-                                <p>Submit documents. Once visa approved, activate your Vesti physical GlobalGeng Card,
-                                    book your flight to <span id="res-city-target">Sydney</span>, and travel with
-                                    peace of mind!</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Travel Finance Pre-Approval Callout -->
-                    <div class="report-loan-offer" id="res-loan-section">
-                        <h5>💰 Vesti Travel Support Pre-Approval Option</h5>
-                        <p>Based on your profile, you are tentatively eligible for a **Vesti tourist travel bridging
-                            loan up to $5,000 AUD** or a certified **Proof of Funds Letter** to complete your
-                            application. An immigration banking specialist will reach out to <span
-                                id="res-email">name@domain.com</span> in the next 24 hours.</p>
-                    </div>
-                </div>
-
-                <!-- Action Button Row -->
-                <div class="result-actions">
-                    <button class="btn btn-outline" id="btn-print-blueprint">
-                        <i data-lucide="printer"></i>
-                        <span>Print or Save PDF</span>
-                    </button>
-                    <button class="btn btn-primary" id="btn-reset-wizard">
-                        <i data-lucide="rotate-ccw"></i>
-                        <span>Generate Another Plan</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq-section" style="background-color: var(--bg-light); padding: 60px 0; color: white;">
-        <div class="container"
-            style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 60px; max-width: 1200px;">
-            <div style="flex: 1; min-width: 300px;">
-                <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; color: white;">Some of the things you
-                    may want to know</h2>
-                <a href="#"
-                    style="color: white; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 5px;">Frequently
-                    asked questions <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
-            </div>
-            <div style="flex: 1.5; min-width: 300px;" class="faq-accordion">
-                <div class="faq-item active">
-                    <h5 class="faq-trigger">What can I do with Vesti? <span class="faq-icon">&minus;</span></h5>
-                    <div class="faq-content">
-                        <p>With Vesti you get the opportunity to be financially stable in life, whether you choose to
-                            move abroad (temporarily/permanently) or stay back at home. On Vesti you can pay for
-                            difficult immigration related payments (International Payments) in your local currency,
-                            seamlessly.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h5 class="faq-trigger">Is my money secure with Vesti? <span class="faq-icon">&plus;</span></h5>
-                    <div class="faq-content">
-                        <p>Yes, Vesti complies with strict regulatory standards. All banking services and cards are
-                            provided in partnership with licensed and regulated financial institutions, including Stripe
-                            Payments Company and Celtic Bank (Member FDIC). Your funds are held securely at partner
-                            banks, and all transactions are protected by bank-grade SSL encryption and multi-factor
-                            authentication.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h5 class="faq-trigger">How do I pay for WES on Vesti? <span class="faq-icon">&plus;</span></h5>
-                    <div class="faq-content">
-                        <p>To pay for WES (World Education Services) or other credential assessments, simply log into
-                            the Vesti app, navigate to the "Services" or "Payments" tab, select "Credential Assessment
-                            Services", enter your WES reference details, and pay in your local currency. Vesti takes
-                            care of the currency conversion and processes the payment to WES on your behalf instantly.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h5 class="faq-trigger">Can I send dollar to someone with Vesti? <span
-                            class="faq-icon">&plus;</span></h5>
-                    <div class="faq-content">
-                        <p>Yes! With Vesti's Multi-Currency Wallets, you can convert local currency to USD (and other
-                            major currencies) instantly. You can send dollars directly to other Vesti users using their
-                            @username (peer-to-peer, free), or initiate a wire transfer to a US or international bank
-                            account directly from the app.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- App Download Section -->
-    <section class="app-download-section">
-        <div class="container text-center">
-            <h2 class="download-title">Also available to<br>download on both</h2>
-            <div class="download-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.vesti.app&pli=1" target="_blank"
-                    class="download-btn">
-                    <div class="download-btn-content">
-                        <svg class="download-btn-icon" viewBox="0 0 512 512" fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
-                        </svg>
-                        <div class="download-btn-text">
-                            <span class="download-btn-sub">AVAILABLE ON</span>
-                            <span class="download-btn-main">Google Play</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank"
-                    class="download-btn">
-                    <div class="download-btn-content">
-                        <svg class="download-btn-icon" viewBox="0 0 384 512" fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-                        </svg>
-                        <div class="download-btn-text">
-                            <span class="download-btn-sub">AVAILABLE ON</span>
-                            <span class="download-btn-main">Apple Store</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed Vesti Footer -->
-    <footer class="footer">
-        <div class="container">
-            <!-- Main Footer Row -->
-            <div class="footer-grid">
-                <!-- Brand Column -->
-                <div class="footer-brand-col">
-                    <a href="#" class="footer-logo">
-                        <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            overflow="visible">
-                            <!-- Top-right yellow-green leaf -->
-                            <path
-                                d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z"
-                                fill="#C0C71E" />
-                            <!-- Left small yellow leaf -->
-                            <path
-                                d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z"
-                                fill="#C0C71E" />
-                            <!-- Middle dark green leaf -->
-                            <path
-                                d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z"
-                                fill="#62943B" />
-                        </svg>
-                        <span class="footer-logo-text">esti</span>
-                        <span class="au-indicator">ES</span>
-                    </a>
-                    <!-- Social icons horizontally aligned under the logo -->
-                    <div class="footer-socials">
-                        <a href="https://x.com/Vestiofficial" target="_blank" aria-label="Twitter"
-                            class="social-icon-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/company/vestiofficial" target="_blank" aria-label="LinkedIn"
-                            class="social-icon-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.facebook.com/wevestiofficial/" target="_blank" aria-label="Facebook"
-                            class="social-icon-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/Vestiofficial" target="_blank" aria-label="Instagram"
-                            class="social-icon-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Products -->
-                <div class="footer-col">
-                    <h5>PRODUCTS</h5>
-                    <ul>
-                        <li><a href="https://wevesti.com/banking" target="_blank" rel="noopener">Financial Services
-                                ˅</a></li>
-                        <li><a href="https://wevesti.com/immigration" target="_blank" rel="noopener">Migration Services
-                                ˅</a></li>
-                        <li><a href="https://wevesti.com/events" target="_blank" rel="noopener">Events ˅</a></li>
-                        <li><a href="https://wevesti.com/prosper-conference" target="_blank" rel="noopener">Prosper
-                                Conference</a></li>
-                    </ul>
-                </div>
-
-                <!-- Company -->
-                <div class="footer-col">
-                    <h5>COMPANY</h5>
-                    <ul>
-                        <li><a href="https://wevesti.com/about" target="_blank" rel="noopener">About Us</a></li>
-                        <li><a href="https://wevesti.com/career" target="_blank" rel="noopener">Careers</a></li>
-                        <li><a href="https://wevesti.com/newsroom" target="_blank" rel="noopener">News Room</a></li>
-                        <li><a href="https://wevesti.com/success-stories" target="_blank" rel="noopener">Success
-                                Story</a></li>
-                        <li><a href="https://wevesti.com/expansion" target="_blank" rel="noopener">Vesti Expansion</a>
-                        </li>
-                        <li><a href="https://wevesti.com/resources" target="_blank" rel="noopener">Resource</a></li>
-                        <li><a href="https://wevesti.com/team" target="_blank" rel="noopener">Team</a></li>
-                    </ul>
-                </div>
-
-                <!-- Legal -->
-                <div class="footer-col">
-                    <h5>LEGAL</h5>
-                    <ul>
-                        <li><a href="https://wevesti.com/aml" target="_blank" rel="noopener">AML</a></li>
-                        <li><a href="https://wevesti.com/faq" target="_blank" rel="noopener">FAQ</a></li>
-                        <li><a href="https://wevesti.com/disclosures" target="_blank" rel="noopener">Disclosures</a>
-                        </li>
-                        <li><a href="https://wevesti.com/privacy-policy" target="_blank" rel="noopener">Privacy
-                                Policy</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div class="footer-col">
-                    <h5>CONTACT</h5>
-                    <ul>
-                        <li><a href="mailto:help@wevesti.com">help@wevesti.com</a></li>
-                        <li><a href="https://intercom.help/vesti" target="_blank" rel="noopener">Help Center</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-disclaimer">
-                <p>Vesti partners with Stripe Payments Company for money transmission services and account services with
-                    funds held at Evolve Bank & Trust, Member FDIC. Vesti Visa® Prepaid Cards are issued by Celtic
-                    Bank®, Member FDIC, pursuant to a license from Visa USA Inc.</p>
-                <p style="margin-top: 15px;"><strong>Disclaimer :</strong> Vesti operates differently from a traditional
-                    law firm. We offer limited immigration services through licensed attorneys, but our owners are not
-                    lawyers themselves. This may impact certain protections, such as attorney-client privilege. We are
-                    also independently owned and unaffiliated with any government agency. Before using our services,
-                    please carefully review our privacy policy, terms of use, and fee agreement. Remember, nothing on
-                    our website constitutes legal advice. For personalized legal guidance, always consult a licensed
-                    attorney.</p>
-                <p style="margin-top: 20px;">Copyrights &copy; Vesti 2026 | <a href="admin-logs.html"
-                        style="color: rgba(255,255,255,0.3); transition: color 0.2s;"
-                        onmouseover="this.style.color='#63A146'"
-                        onmouseout="this.style.color='rgba(255,255,255,0.3)'">Admin Portal</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Country Data -->
-    <script src="js/countries.js"></script>
     <!-- Core App logic -->
     <script src="js/app.js"></script>
     <!-- Scroll Animation logic -->
