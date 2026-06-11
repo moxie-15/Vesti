@@ -1,0 +1,329 @@
+﻿diff --git a/admin-logs.html b/admin-logs.html
+index d1b5f1f..709ea75 100644
+--- a/admin-logs.html
++++ b/admin-logs.html
+@@ -22,33 +22,33 @@
+     <style>
+         body {
+             font-family: 'Inter', sans-serif;
+-            background: linear-gradient(135deg, #090c15 0%, #172033 60%, #060E42 100%);
+-            background-attachment: fixed;
+-            color: #f8fafc;
++            background: #ffffff;
++            color: #475569;
+             min-height: 100vh;
+         }
+ 
+         *,
+         ::after,
+         ::before {
+-            border-color: rgba(255, 255, 255, 0.1);
++            border-color: rgba(6, 14, 66, 0.08);
+         }
+ 
+         /* ÔöÇÔöÇ Stats Cards ÔöÇÔöÇ */
+         .stat-card {
+-            background: rgba(13, 26, 107, 0.5);
+-            border: 1px solid rgba(255, 255, 255, 0.08);
++            background: #ffffff;
++            border: 1px solid rgba(6, 14, 66, 0.08);
+             border-radius: 16px;
+             padding: 24px 28px;
+             display: flex;
+             align-items: center;
+             gap: 18px;
+             transition: transform 0.2s ease, box-shadow 0.2s ease;
++            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
+         }
+ 
+         .stat-card:hover {
+             transform: translateY(-3px);
+-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
++            box-shadow: 0 10px 30px rgba(6, 14, 66, 0.06);
+         }
+ 
+         .stat-icon {
+@@ -66,7 +66,7 @@
+             font-weight: 600;
+             text-transform: uppercase;
+             letter-spacing: 1px;
+-            color: rgba(255, 255, 255, 0.5);
++            color: #718096;
+             margin-bottom: 4px;
+         }
+ 
+@@ -74,17 +74,17 @@
+             font-size: 28px;
+             font-weight: 800;
+             font-family: 'Outfit', sans-serif;
+-            color: #ffffff;
++            color: #060E42;
+             line-height: 1;
+         }
+ 
+         /* ÔöÇÔöÇ Search & Filter Bar ÔöÇÔöÇ */
+         .search-input {
+-            background: rgba(255, 255, 255, 0.05);
+-            border: 1px solid rgba(255, 255, 255, 0.12);
++            background: #ffffff;
++            border: 1px solid #cbd5e1;
+             border-radius: 10px;
+             padding: 10px 16px 10px 42px;
+-            color: #fff;
++            color: #060E42;
+             font-size: 14px;
+             width: 100%;
+             max-width: 360px;
+@@ -93,19 +93,20 @@
+         }
+ 
+         .search-input:focus {
+-            border-color: rgba(99, 161, 70, 0.5);
++            border-color: #63A146;
+         }
+ 
+         .search-input::placeholder {
+-            color: rgba(255, 255, 255, 0.3);
++            color: #94a3b8;
+         }
+ 
+         /* ÔöÇÔöÇ Full Table ÔöÇÔöÇ */
+         .logs-table-wrap {
+-            background: rgba(6, 14, 66, 0.45);
+-            border: 1px solid rgba(255, 255, 255, 0.08);
++            background: #ffffff;
++            border: 1px solid rgba(6, 14, 66, 0.08);
+             border-radius: 20px;
+             overflow: hidden;
++            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
+         }
+ 
+         .logs-table {
+@@ -114,7 +115,7 @@
+         }
+ 
+         .logs-table thead {
+-            background: rgba(0, 0, 0, 0.3);
++            background: #f8fafc;
+         }
+ 
+         .logs-table th {
+@@ -124,14 +125,15 @@
+             font-weight: 700;
+             text-transform: uppercase;
+             letter-spacing: 1.2px;
+-            color: rgba(255, 255, 255, 0.45);
++            color: #475569;
+             white-space: nowrap;
+         }
+ 
+         .logs-table td {
+             padding: 14px 20px;
+-            border-top: 1px solid rgba(255, 255, 255, 0.05);
++            border-top: 1px solid rgba(6, 14, 66, 0.05);
+             vertical-align: middle;
++            color: #060E42;
+         }
+ 
+         .logs-table tbody tr {
+@@ -139,7 +141,7 @@
+         }
+ 
+         .logs-table tbody tr:hover {
+-            background: rgba(255, 255, 255, 0.03);
++            background: #F4FAF2;
+         }
+ 
+         /* ÔöÇÔöÇ Progress Pill ÔöÇÔöÇ */
+@@ -160,14 +162,14 @@
+         }
+ 
+         .track-pill.pending {
+-            background: rgba(255, 255, 255, 0.05);
+-            color: rgba(255, 255, 255, 0.35);
+-            border: 1px solid rgba(255, 255, 255, 0.08);
++            background: #f1f5f9;
++            color: #64748b;
++            border: 1px solid #cbd5e1;
+         }
+ 
+         /* ÔöÇÔöÇ Progress Bar ÔöÇÔöÇ */
+         .progress-bar-outer {
+-            background: rgba(255, 255, 255, 0.08);
++            background: #f1f5f9;
+             border-radius: 10px;
+             height: 6px;
+             width: 100%;
+@@ -185,6 +187,7 @@
+         .empty-state {
+             text-align: center;
+             padding: 80px 20px;
++            color: #718096;
+         }
+ 
+         /* ÔöÇÔöÇ Delete Button ÔöÇÔöÇ */
+@@ -192,7 +195,7 @@
+             background: transparent;
+             border: none;
+             cursor: pointer;
+-            color: rgba(255, 255, 255, 0.2);
++            color: rgba(6, 14, 66, 0.25);
+             padding: 6px;
+             border-radius: 6px;
+             transition: color 0.2s, background 0.2s;
+@@ -210,7 +213,7 @@
+             position: fixed;
+             bottom: 30px;
+             right: 30px;
+-            background: #1a2a1a;
++            background: #f4faf2;
+             border: 1px solid rgba(99, 161, 70, 0.4);
+             color: #63A146;
+             padding: 12px 20px;
+@@ -224,6 +227,7 @@
+             transform: translateY(80px);
+             opacity: 0;
+             transition: all 0.3s ease;
++            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+         }
+ 
+         .toast.show {
+@@ -238,9 +242,9 @@
+             right: -440px;
+             width: 440px;
+             height: 100vh;
+-            background: #090c15;
+-            border-left: 1px solid rgba(255, 255, 255, 0.1);
+-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
++            background: #ffffff;
++            border-left: 1px solid #e2e8f0;
++            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.05);
+             z-index: 10000;
+             transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+             overflow-y: auto;
+@@ -257,7 +261,7 @@
+             left: 0;
+             width: 100vw;
+             height: 100vh;
+-            background: rgba(0, 0, 0, 0.6);
++            background: rgba(6, 14, 66, 0.2);
+             backdrop-filter: blur(4px);
+             z-index: 9999;
+             opacity: 0;
+@@ -271,11 +275,11 @@
+         }
+ 
+         .drawer-input {
+-            background: rgba(255, 255, 255, 0.04) !important;
+-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
++            background: #f8fafc !important;
++            border: 1px solid #cbd5e1 !important;
+             border-radius: 12px !important;
+             padding: 10px 14px !important;
+-            color: #fff !important;
++            color: #060E42 !important;
+             font-size: 14px !important;
+             width: 100% !important;
+             outline: none !important;
+@@ -284,8 +288,8 @@
+ 
+         .drawer-input:focus {
+             border-color: #63A146 !important;
+-            background: rgba(255, 255, 255, 0.08) !important;
+-            box-shadow: 0 0 0 3px rgba(99, 161, 70, 0.18) !important;
++            background: #ffffff !important;
++            box-shadow: 0 0 0 3px rgba(99, 161, 70, 0.15) !important;
+         }
+ 
+         .drawer-input:disabled {
+@@ -294,7 +298,7 @@
+         }
+ 
+         .drawer-label {
+-            color: rgba(255, 255, 255, 0.6) !important;
++            color: #4a5568 !important;
+             font-weight: 600 !important;
+             font-size: 12px !important;
+             margin-bottom: 6px !important;
+@@ -302,6 +306,81 @@
+             text-transform: uppercase !important;
+             letter-spacing: 0.5px !important;
+         }
++
++        /* ÔöÇÔöÇ Navigation Overrides ÔöÇÔöÇ */
++        .navbar {
++            background-color: rgba(255, 255, 255, 0.8) !important;
++            backdrop-filter: blur(12px);
++            -webkit-backdrop-filter: blur(12px);
++            border-bottom: 1px solid rgba(6, 14, 66, 0.05) !important;
++        }
++        .navbar .nav-link {
++            color: #060E42 !important;
++        }
++        .navbar .nav-link:hover {
++            color: #63A146 !important;
++        }
++        .navbar .btn-signin {
++            color: #060E42 !important;
++        }
++        .navbar .btn-signin:hover {
++            color: #63A146 !important;
++        }
++        .navbar .logo-area span {
++            color: #060E42 !important;
++        }
++
++        /* ÔöÇÔöÇ FAQ Overrides ÔöÇÔöÇ */
++        .faq-section {
++            background-color: #ffffff !important;
++            color: #060E42 !important;
++        }
++        .faq-item {
++            background: #ffffff !important;
++            border: 1px solid rgba(6, 14, 66, 0.08) !important;
++            border-radius: 12px;
++            margin-bottom: 12px;
++        }
++        .faq-trigger {
++            color: #060E42 !important;
++            font-weight: 700 !important;
++        }
++        .faq-content p {
++            color: #4a5568 !important;
++        }
++        .faq-item.active {
++            background: rgba(99, 161, 70, 0.06) !important;
++            border-color: rgba(99, 161, 70, 0.3) !important;
++        }
++        .faq-item.active .faq-trigger {
++            color: #63A146 !important;
++        }
++
++        /* ÔöÇÔöÇ App Download Overrides ÔöÇÔöÇ */
++        .app-download-section {
++            background-color: #F4FAF2 !important;
++            color: #060E42 !important;
++            border-top: 1px solid rgba(6, 14, 66, 0.05);
++            border-bottom: 1px solid rgba(6, 14, 66, 0.05);
++        }
++        .app-download-section .download-title {
++            color: #060E42 !important;
++        }
++        .app-download-section .download-btn {
++            background: #ffffff !important;
++            border: 1px solid rgba(6, 14, 66, 0.08) !important;
++            color: #060E42 !important;
++        }
++        .app-download-section .download-btn:hover {
++            background: rgba(99, 161, 70, 0.05) !important;
++            border-color: #63A146 !important;
++        }
++        .app-download-section .download-btn-main {
++            color: #060E42 !important;
++        }
++        .app-download-section .download-btn-sub {
++            color: #4a5568 !important;
++        }
+     </style>
+ </head>
+ 
