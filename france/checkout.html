@@ -338,14 +338,14 @@
                         <!-- Default Mockup items -->
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-bold text-[#060E42] text-sm">Australia Visitor Visa Fee</h4>
+                                <h4 class="font-bold text-[#060E42] text-sm">France Visitor Visa Fee</h4>
                                 <p class="text-[11px] text-slate-500 mt-0.5">Official DHA pathway x 1 passenger(s)</p>
                             </div>
                             <span class="font-bold text-[#060E42] text-sm">$ 184.05</span>
                         </div>
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-bold text-[#060E42] text-sm">DHA Immigration Handling Fee</h4>
+                                <h4 class="font-bold text-[#060E42] text-sm">Schengen Immigration Handling Fee</h4>
                                 <p class="text-[11px] text-slate-500 mt-0.5">Verification processing x 1</p>
                             </div>
                             <span class="font-bold text-[#060E42] text-sm">$ 25.15</span>
@@ -389,7 +389,7 @@
 
                     <!-- Official Travel Fees Footnote -->
                     <div class="mt-6 pt-4 border-t border-slate-200 text-[10px] text-slate-400 leading-normal" id="checkout-footnote">
-                        * Note: Flight ticket rates fluctuate daily in real time. Visa fee corresponds to the official DHA visitor pathway charge ($341 AUD, comprising $300 application fee and $41 immigration fee). Vesti handles document packaging and routing.
+                        * Note: Flight ticket rates fluctuate daily in real time. Visa fee corresponds to the official DHA visitor pathway charge ($341 EUR, comprising $300 application fee and $41 immigration fee). Vesti handles document packaging and routing.
                     </div>
                 </div>
             </div>
@@ -1135,7 +1135,7 @@
                 'NGN': '₦',
                 'GHS': '₵',
                 'KES': 'KSh ',
-                'AUD': 'AU$'
+                'AUD': '€'
             };
             const sym = VESTI_SYMBOLS[currencyCode] || '$';
             const num = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
@@ -1197,12 +1197,12 @@
 
                 if (visaChecked && visaPrice > 0) {
                     const priceLocal = Math.round((visaPrice * effectiveRate * passengers) * 100) / 100;
-                    appendInvoiceItem(container, "Australia Visitor Visa Fee", `Official DHA pathway x ${passengers} passenger(s)`, priceLocal, currency);
+                    appendInvoiceItem(container, "France Visitor Visa Fee", `Official DHA pathway x ${passengers} passenger(s)`, priceLocal, currency);
                     subtotalLocal += priceLocal;
                 }
                 if (immigrationChecked && immigrationPrice > 0) {
                     const priceLocal = Math.round((immigrationPrice * effectiveRate * passengers) * 100) / 100;
-                    appendInvoiceItem(container, "DHA Immigration Handling Fee", `Verification processing x ${passengers}`, priceLocal, currency);
+                    appendInvoiceItem(container, "Schengen Immigration Handling Fee", `Verification processing x ${passengers}`, priceLocal, currency);
                     subtotalLocal += priceLocal;
                 }
                 if (ivlChecked && ivlPrice > 0) {
@@ -1230,7 +1230,7 @@
                 subtotalLocal = Math.round(subtotalLocal * 100) / 100;
 
                 if (container.children.length === 0) {
-                    appendInvoiceItem(container, "Australia Travel Verification Services", `Total transaction sum for ${passengers} passenger(s)`, subtotalLocal, currency);
+                    appendInvoiceItem(container, "France Travel Verification Services", `Total transaction sum for ${passengers} passenger(s)`, subtotalLocal, currency);
                 }
 
                 cartCurrency = currency;
@@ -1249,8 +1249,8 @@
                 const effectiveRate = defRate * (1 + defMarkup / 100);
 
                 const itemsToRender = [
-                    { title: "Australia Visitor Visa Fee", desc: "Official DHA pathway x 1 passenger(s)", usdPrice: 184.05 },
-                    { title: "DHA Immigration Handling Fee", desc: "Verification processing x 1", usdPrice: 25.15 },
+                    { title: "France Visitor Visa Fee", desc: "Official DHA pathway x 1 passenger(s)", usdPrice: 184.05 },
+                    { title: "Schengen Immigration Handling Fee", desc: "Verification processing x 1", usdPrice: 25.15 },
                     { title: "International Visitor Conservation Levy (IVL)", desc: "Government environment tax x 1", usdPrice: 61.35 },
                     { title: "AXA Travel Insurance", desc: "Basic Plan (1 Month) x 1", usdPrice: 62.24 },
                     { title: "Vesti Processing Fee", desc: "Platform services & secure gateway x 1", usdPrice: 891.40 }
