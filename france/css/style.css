@@ -4751,5 +4751,5 @@ main {
 }
 
 .service-card:hover .service-icon {
-    color: var(--text-white) !important;
+    filter: brightness(0) invert(1) !important;
 }
