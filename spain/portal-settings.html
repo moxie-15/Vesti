@@ -906,7 +906,7 @@
         function loadConfig() {
             let cfg = DEFAULTS;
             try {
-                const raw = localStorage.getItem('vesti_portal_config');
+                const raw = localStorage.getItem('vesti_portal_config_spain');
                 if (raw) cfg = { ...DEFAULTS, ...JSON.parse(raw) };
                 if (cfg.rates) cfg.rates = { ...DEFAULTS.rates, ...cfg.rates };
                 if (cfg.payment) cfg.payment = { ...DEFAULTS.payment, ...cfg.payment };
@@ -931,8 +931,8 @@
         /* ── Save ── */
         function saveConfig() {
             const config = buildConfig();
-            localStorage.setItem('vesti_portal_config', JSON.stringify(config));
-            localStorage.setItem('vesti_portal_config_saved', new Date().toISOString());
+            localStorage.setItem('vesti_portal_config_spain', JSON.stringify(config));
+            localStorage.setItem('vesti_portal_config_spain_saved', new Date().toISOString());
             markSaved();
             showToast('✓ Configuration saved — all pages updated!');
         }
@@ -964,7 +964,7 @@
 
         function resetToDefaults() {
             if (!confirm('Reset all settings back to defaults? This cannot be undone.')) return;
-            localStorage.setItem('vesti_portal_config', JSON.stringify(DEFAULTS));
+            localStorage.setItem('vesti_portal_config_spain', JSON.stringify(DEFAULTS));
             loadConfig();
             previewDiscount();
             markSaved();
@@ -986,7 +986,7 @@
             updateLastSaved();
         }
         function updateLastSaved() {
-            const ts = localStorage.getItem('vesti_portal_config_saved');
+            const ts = localStorage.getItem('vesti_portal_config_spain_saved');
             const label = document.getElementById('last-saved-label');
             const footerStatus = document.getElementById('footer-status');
             if (ts) {

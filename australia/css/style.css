@@ -1830,6 +1830,24 @@ main {
 
 /* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
+    .hero-flag-box {
+        bottom: 10px !important;
+        right: 15px !important;
+        transform: scale(0.65) !important;
+        transform-origin: bottom right !important;
+        z-index: 20 !important;
+    }
+    .hero-visual {
+        height: 320px !important;
+        max-width: 360px !important;
+        margin: 0 auto 30px !important;
+        position: relative !important;
+    }
+    .hero-image-oval {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
     .section { padding: 60px 0; }
 
     /* Nav */
@@ -4452,12 +4470,12 @@ main {
         padding-top: 20px;
     }
     .hero-content {
-        order: 2;
+        order: 1;
         text-align: center;
         max-width: 100%;
     }
     .hero-visual {
-        order: 1;
+        order: 2;
         width: 100%;
         max-width: 500px;
         height: 400px;

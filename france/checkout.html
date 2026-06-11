@@ -769,7 +769,7 @@
         /** Read admin config from localStorage (set by admin portal settings). */
         function getAdminConfig() {
             try {
-                const raw = localStorage.getItem('vesti_portal_config');
+                const raw = localStorage.getItem('vesti_portal_config_france');
                 if (raw) return JSON.parse(raw);
             } catch(e) {}
             return null; // no config saved yet

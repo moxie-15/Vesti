@@ -1988,7 +1988,7 @@
 
                 // ── Step 1: Load admin-saved rates from localStorage (works without server) ──
                 try {
-                    const adminRaw = localStorage.getItem('vesti_portal_config');
+                    const adminRaw = localStorage.getItem('vesti_portal_config_usa');
                     if (adminRaw) {
                         const adminCfg = JSON.parse(adminRaw);
                         const markup = typeof adminCfg.markup === 'number' ? adminCfg.markup : 0;
@@ -2115,7 +2115,7 @@
             // Read admin-configured fee prices from localStorage
             let adminFees = {};
             try {
-                const adminRaw = localStorage.getItem('vesti_portal_config');
+                const adminRaw = localStorage.getItem('vesti_portal_config_usa');
                 if (adminRaw) adminFees = JSON.parse(adminRaw).fees || {};
             } catch(e) {}
 
