@@ -5,13 +5,13 @@
 
 /* 1. Design Variables & Base Setup */
 :root {
-    --bg-main: #060E42;      /* Vesti Midnight Deep Navy */
-    --bg-darker: #060E42;    /* Darker shade for contrast */
-    --bg-light: #060E42;     /* Lighter shade to de-concentrate colors */
-    --bg-card: rgba(13, 26, 107, 0.65);
+    --bg-main: #0A3161;      /* Vesti Midnight Deep Navy */
+    --bg-darker: #082850;    /* Darker shade for contrast */
+    --bg-light: #0C3C78;     /* Lighter shade to de-concentrate colors */
+    --bg-card: rgba(10, 49, 97, 0.65);
     
-    --primary: #3B82F6;      /* Vesti Leaf Green */
-    --primary-hover: #2563EB; /* Vesti Deep Forest Green Hover */
+    --primary: #B31942;      /* Vesti Leaf Green */
+    --primary-hover: #8C1333; /* Vesti Deep Forest Green Hover */
     --secondary: #0a58ca;    /* Financial Accents */
     --accent-gold: #fbbf24;  
     

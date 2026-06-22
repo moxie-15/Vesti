@@ -38,15 +38,15 @@
                     <!-- Top-right yellow-green leaf -->
                     <path
                         d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z"
-                        fill="#C0C71E" />
+                        fill="#FFFFFF" />
                     <!-- Left small yellow leaf -->
                     <path
                         d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z"
-                        fill="#C0C71E" />
+                        fill="#FFFFFF" />
                     <!-- Middle dark green leaf -->
                     <path
                         d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z"
-                        fill="#62943B" />
+                        fill="#B31942" />
                 </svg>
                 <span
                     style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
@@ -94,80 +94,100 @@
                     class="btn btn-primary w-full">Create an account</a>
             </li>
         </ul>
-    </div>    <!-- Hero Section (Replicated split grid structure from US/Canada pathways) -->
-    <section class="hero-section">
-        <div class="aurora-glow aurora-1"></div>
-        <div class="aurora-glow aurora-2"></div>
+    </div>    <!-- Awwwards-Style Bento Grid Hero Section -->
+    <section class="hero-bento-section" style="position: relative; background-color: #030B17; padding: 40px 20px 60px; overflow: hidden; font-family: 'Inter', sans-serif;">
+        
+        <!-- Ambient Background Glows -->
+        <div style="position: absolute; top: -10%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(179,25,66,0.15) 0%, rgba(3,11,23,0) 70%); filter: blur(80px); pointer-events: none;"></div>
+        <div style="position: absolute; bottom: -10%; right: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(10,49,97,0.3) 0%, rgba(3,11,23,0) 70%); filter: blur(80px); pointer-events: none;"></div>
 
-        <div class="container hero-container" style="align-items: center;">
-            <!-- Left: Text content and dual call-to-actions -->
-            <div class="hero-content">
-                <h1 class="hero-title"
-                    style="font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2;">
-                    <span class="text-success">United States Pathways:</span> Explore the Magic of America
-                </h1>
+        <div class="container" style="max-width: 1400px; margin: 0 auto; position: relative; z-index: 2;">
+            <div class="bento-grid" style="display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 30px; height: 550px;">
+                
+                <!-- Main Block -->
+                <div class="bento-main" style="position: relative; border-radius: 40px; overflow: hidden; background: url('assets/usa_1.png') center/cover no-repeat; box-shadow: 0 25px 60px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;">
+                    <!-- Smooth elegant gradient overlay for text readability -->
+                    <div style="position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(3, 11, 23, 0.95) 0%, rgba(3, 11, 23, 0.4) 50%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
 
-                <p class="hero-description"
-                     style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; color: rgba(255,255,255,0.9);">
-                    Ready to experience the breathtaking beauty of United States? Whether you're planning a scenic
-                    vacation, visiting family and friends, or attending business meetings, Vesti helps you secure your
-                    pathways and set up your pre-arrival travel wallet with ease.
-                </p>
-
-                <div class="hero-actions" style="display: flex; gap: 20px; position: relative; z-index: 20; align-items: center;">
-                    <button id="hero-btn-qualify" class="btn btn-outline btn-lg" onclick="openEligibilityModal()" style="background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 12px 30px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; height: 48px;">See If You Qualify</button>
-
-
-                    <a href="clarity.html" class="btn btn-success btn-lg"
-                        style="padding: 12px 40px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: white; height: 48px;">
-                        Get Clarity Call
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right: Organic Pebble Slideshow of Scenic United States Landscapes -->
-            <div class="hero-visual" style="position: relative; display: flex; justify-content: flex-end; width: 100%; max-width: 480px; height: 480px;">
-                <div class="hero-visual-frame" style="box-shadow: 0 20px 45px rgba(0,0,0,0.35); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; overflow: hidden; position: relative;">
-                    <!-- Slides -->
-                    <div class="hero-slide active" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:1; transition: opacity 1s ease-in-out; z-index: 2; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/usa_1.png" alt="The Grand Canyon" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🏜️ The Grand Canyon
+                    <!-- Clean Content (No muddy box) -->
+                    <div style="position: relative; z-index: 2;">
+                        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 50px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.2);">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" style="width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" alt="US Flag">
+                            <span style="color: #FFF; font-weight: 600; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;">United States Pathways</span>
                         </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/usa_2.png" alt="Statue of Liberty" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🗽 Statue of Liberty
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/usa_3.png" alt="Golden Gate Bridge" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🌉 Golden Gate Bridge
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/usa_4.png" alt="Yellowstone National Park" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🌋 Yellowstone National Park
-                        </div>
-                    </div>
-                    <!-- Slide controls (dots) in glass capsule centered inside the organic shape -->
-                    <div class="slideshow-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; background: rgba(6, 14, 66, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1.5px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 6px 12px; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
-                        <span class="dot active" onclick="setSlide(0)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 1;"></span>
-                        <span class="dot" onclick="setSlide(1)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                        <span class="dot" onclick="setSlide(2)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                        <span class="dot" onclick="setSlide(3)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
+
+                        <h1 class="kinetic-text" style="font-size: 4rem; font-weight: 800; color: white; margin-bottom: 15px; line-height: 1.05; font-family: 'Outfit', sans-serif; letter-spacing: -1.5px;">
+                            Explore the Magic <br>of <span style="background: linear-gradient(to right, #FFFFFF, #9BA3AF); -webkit-background-clip: text; background-clip: text; color: transparent;">America</span>
+                        </h1>
+                        
+                        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 0; line-height: 1.6; max-width: 550px; font-weight: 400; font-family: 'Inter', sans-serif;">
+                            Experience the breathtaking beauty of the United States. Whether you're planning a scenic vacation or attending business meetings, Vesti helps you secure your pathways.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Floating NZ Flag Badge overlapping organic shape -->
-                <div class="hero-flag-box" style="position: absolute; bottom: 40px; right: 20px; width: 140px; height: 90px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; border: 3px solid white; z-index: 5;">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" style="width: 100%; height: 100%; object-fit: cover;" alt="NZ Flag">
+                <!-- Secondary Blocks -->
+                <div class="bento-sidebar" style="display: flex; flex-direction: column; gap: 30px;">
+                    <!-- Top Sidebar Block -->
+                    <div class="bento-side-top" style="flex: 1.3; border-radius: 40px; overflow: hidden; position: relative; background: url('assets/usa_2.png') center/cover no-repeat; box-shadow: 0 25px 60px rgba(0,0,0,0.3); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);">
+                        <!-- Hover Gradient -->
+                        <div class="bento-overlay" style="position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(10,49,97,0.4), rgba(0,0,0,0.2)); transition: opacity 0.5s ease;"></div>
+                        
+                        <!-- Beautiful frosted badge -->
+                        <div style="position: absolute; top: 30px; right: 30px; background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 10px 20px; border-radius: 50px; color: white; font-weight: 600; font-size: 14px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline-block; margin-right: 6px; margin-bottom: -2px;"></i>
+                            New York City
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Sidebar Block (Clean CTA) -->
+                    <div class="bento-side-bottom" style="flex: 0.7; border-radius: 40px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0A3161 0%, #05162E 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 25px 60px rgba(10,49,97,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 30px;">
+                        <!-- Subtle Pattern -->
+                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
+                        
+                        <div style="position: relative; z-index: 2; width: 100%; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <h3 style="color: white; font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; margin: 0 0 8px; line-height: 1.1;">Start Your<br>Journey</h3>
+                                <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin: 0;">AI-powered visa pathways.</p>
+                            </div>
+                            
+                            <a href="clarity.html" class="bento-cta-btn" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: white; border-radius: 50%; color: #0A3161; text-decoration: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
+        
+        <style>
+            .bento-cta-btn:hover {
+                transform: translateX(10px) scale(1.05);
+                box-shadow: 0 15px 35px rgba(255,255,255,0.2);
+                background: #B31942;
+                color: white !important;
+            }
+            .liquid-glass-panel {
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.5s ease;
+            }
+            .bento-main:hover .liquid-glass-panel {
+                transform: translateY(-8px);
+                background: rgba(255,255,255,0.05);
+                box-shadow: 0 25px 45px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.08);
+            }
+            .bento-side-top:hover {
+                transform: scale(1.03);
+            }
+            .bento-side-top:hover .bento-overlay {
+                opacity: 0;
+            }
+            @media (max-width: 1024px) {
+                .bento-grid { grid-template-columns: 1fr !important; height: auto !important; }
+                .bento-main { height: 500px; }
+                .bento-sidebar { height: 600px; }
+            }
+        </style>
     </section>
 
                 <!-- Our Services Section -->
@@ -184,10 +204,10 @@
                 <div class="service-card">
                     <div class="icon-wrapper">
                           <svg class="service-icon" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: filter 0.3s ease;">
-  <path d="M25 40 V 50 A 15 10 0 0 0 55 50 V 40" fill="#060E42" />
-  <path d="M40 20 L 10 35 L 40 50 L 70 35 Z" fill="#060E42" />
-  <path d="M40 35 Q 65 35 65 55" stroke="#060E42" stroke-width="4" fill="none" />
-  <path d="M62 55 L 68 55 L 70 65 L 65 62 L 60 65 Z" fill="#060E42" />
+  <path d="M25 40 V 50 A 15 10 0 0 0 55 50 V 40" fill="#0A3161" />
+  <path d="M40 20 L 10 35 L 40 50 L 70 35 Z" fill="#0A3161" />
+  <path d="M40 35 Q 65 35 65 55" stroke="#0A3161" stroke-width="4" fill="none" />
+  <path d="M62 55 L 68 55 L 70 65 L 65 62 L 60 65 Z" fill="#0A3161" />
   <circle cx="40" cy="35" r="4" fill="#FFFFFF" />
 </svg>
                       </div>
@@ -235,7 +255,7 @@
     <section style="padding: 60px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0;">
         <div class="container">
             <h2
-                style="font-size: 36px; font-weight: 700; color: #060E42; text-align: center; margin-bottom: 36px; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px;">
+                style="font-size: 36px; font-weight: 700; color: #0A3161; text-align: center; margin-bottom: 36px; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px;">
                 Benefits of the United States Pathways</h2>
 
             <div class="benefits-grid">
@@ -243,12 +263,12 @@
                 <div style="display: flex; flex-direction: column; gap: 30px;">
                     <div style="display: flex; gap: 20px;">
                         <div
-                            style="color: #62943B; flex-shrink: 0; margin-top: 3px; background: rgba(98, 148, 59, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
                         </div>
                         <div>
                             <h4
-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
                                 Explore Natural Wonders</h4>
                             <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
                                 Immerse yourself in United States's majestic mountains, glaciers, pristine beaches, and
@@ -258,12 +278,12 @@
                     </div>
                     <div style="display: flex; gap: 20px;">
                         <div
-                            style="color: #62943B; flex-shrink: 0; margin-top: 3px; background: rgba(98, 148, 59, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
                         </div>
                         <div>
                             <h4
-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
                                 Visit Friends & Family</h4>
                             <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
                                 Reunite with your loved ones and enjoy quality time exploring the beauty of United States
@@ -273,12 +293,12 @@
                     </div>
                     <div style="display: flex; gap: 20px;">
                         <div
-                            style="color: #62943B; flex-shrink: 0; margin-top: 3px; background: rgba(98, 148, 59, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
                         </div>
                         <div>
                             <h4
-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
                                 Short-Term Business</h4>
                             <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
                                 Attend conferences, corporate meetings, or execute negotiations while maintaining your
@@ -292,12 +312,12 @@
                 <div style="display: flex; flex-direction: column; gap: 30px;">
                     <div style="display: flex; gap: 20px;">
                         <div
-                            style="color: #62943B; flex-shrink: 0; margin-top: 3px; background: rgba(98, 148, 59, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
                         </div>
                         <div>
                             <h4
-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
                                 Pre-Arrival USD Wallets</h4>
                             <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
                                 Open your USD wallet in the Vesti App and swap currency early to protect your travel
@@ -307,12 +327,12 @@
                     </div>
                     <div style="display: flex; gap: 20px;">
                         <div
-                            style="color: #62943B; flex-shrink: 0; margin-top: 3px; background: rgba(98, 148, 59, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
                         </div>
                         <div>
                             <h4
-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
                                 Seamless Fee Payments</h4>
                             <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
                                 Pay all your visa application fees, flight bookings, and travel insurance directly
@@ -322,12 +342,12 @@
                     </div>
                     <div style="display: flex; gap: 20px;">
                         <div
-                            style="color: #62943B; flex-shrink: 0; margin-top: 3px; background: rgba(98, 148, 59, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
                         </div>
                         <div>
                             <h4
-                                style="font-size: 18px; font-weight: 700; color: #060E42; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
                                 Travel & Settlement Support</h4>
                             <p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
                                 Access specialized financial tools, proof of funds services, and guidance for a
@@ -395,15 +415,15 @@
                             <!-- Top-right yellow-green leaf -->
                             <path
                                 d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z"
-                                fill="#C0C71E" />
+                                fill="#FFFFFF" />
                             <!-- Left small yellow leaf -->
                             <path
                                 d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z"
-                                fill="#C0C71E" />
+                                fill="#FFFFFF" />
                             <!-- Middle dark green leaf -->
                             <path
                                 d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z"
-                                fill="#62943B" />
+                                fill="#B31942" />
                         </svg>
                         <span class="footer-logo-text">esti</span>
                         <span class="au-indicator">US</span>
@@ -520,7 +540,7 @@
     
 <!-- Eligibility Modal Form -->
     <div class="modal" id="eligibility-modal">
-        <div class="modal-content elig-modal-white" style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 600px; width: 90%;">
+        <div class="modal-content elig-modal-white" style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 600px; width: 90%;">
             <button class="modal-close elig-modal-close" id="eligibility-close" aria-label="Close modal" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; cursor: pointer; color: #64748b;">
                 <i data-lucide="x"></i>
             </button>
@@ -535,7 +555,7 @@
             </div>
 
             <span id="elig-step-text" class="elig-step-text" style="font-size: 0.85rem; font-weight: 700; color: #5a9e3a; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px;">Step 1 of 3</span>
-            <h2 class="elig-title" style="font-size: 1.8rem; color: #060E42; margin-bottom: 10px; font-weight: 800;">Check Your Eligibility for Vesti Pathways</h2>
+            <h2 class="elig-title" style="font-size: 1.8rem; color: #0A3161; margin-bottom: 10px; font-weight: 800;">Check Your Eligibility for Vesti Pathways</h2>
             <p class="elig-subtitle" style="color: #64748b; margin-bottom: 30px; font-size: 1rem;">Take this quiz to see if our pathways is a fit for you.</p>
 
             <form id="eligibility-form" action="#" method="POST">
@@ -629,7 +649,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(6, 14, 66, 0.95);
+        background: rgba(10, 49, 97, 0.95);
         z-index: 9999;
         justify-content: center;
         align-items: center;

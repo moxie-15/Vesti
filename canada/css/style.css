@@ -5,10 +5,10 @@
 
 /* 1. Design Variables & Base Setup */
 :root {
-    --bg-main: #060E42;      /* Vesti Midnight Deep Navy */
-    --bg-darker: #060E42;    /* Darker shade for contrast */
-    --bg-light: #060E42;     /* Lighter shade to de-concentrate colors */
-    --bg-card: rgba(13, 26, 107, 0.65);
+    --bg-main: #1A1A1A;      /* Vesti Midnight Deep Navy */
+    --bg-darker: #111111;    /* Darker shade for contrast */
+    --bg-light: #2A2A2A;     /* Lighter shade to de-concentrate colors */
+    --bg-card: rgba(26, 26, 26, 0.65);
     
     --primary: #E31837;      /* Vesti Leaf Green */
     --primary-hover: #B2132A; /* Vesti Deep Forest Green Hover */

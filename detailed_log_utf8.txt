@@ -1,0 +1,934 @@
+﻿### Commit: Fix squashed eye oval image, massive text, and overlapping flag on mobile hero section
+
+**Date:** Thu Jun 11 16:58:00 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/css/style.css  | 74 +++++++++++++++++++++++++++++++++++
+ australia/css/style.css    | 74 +++++++++++++++++++++++++++++++++++
+ canada/css/style.css       | 74 +++++++++++++++++++++++++++++++++++
+ france/css/style.css       | 74 +++++++++++++++++++++++++++++++++++
+ scratch/fix_mobile_hero.py | 96 ++++++++++++++++++++++++++++++++++++++++++++++
+ spain/css/style.css        | 74 +++++++++++++++++++++++++++++++++++
+ usa/css/style.css          | 74 +++++++++++++++++++++++++++++++++++
+ 7 files changed, 540 insertions(+)
+### Commit: Fix mismatched and skipped SVGs across all country pages including New Zealand
+
+**Date:** Thu Jun 11 16:49:06 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ australia/index.html      | 71 ++------------------------------------------
+ canada/index.html         | 71 ++------------------------------------------
+ france/index.html         | 71 ++------------------------------------------
+ scratch/cross_check.py    | 41 ++++++++++++++++++++++++++
+ scratch/force_all_svgs.py | 75 +++++++++++++++++++++++++++++++++++++++++++++++
+ spain/index.html          | 71 ++------------------------------------------
+ usa/index.html            | 71 ++------------------------------------------
+ 7 files changed, 126 insertions(+), 345 deletions(-)
+### Commit: Fix regex replacement bug that accidentally deleted the first 3 visa tiles, safely restoring the HTML and injecting the new SVGs
+
+**Date:** Thu Jun 11 15:15:19 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ australia/index.html         |  67 ++++++++++++++++++++++++++
+ canada/index.html            |  67 ++++++++++++++++++++++++++
+ france/index.html            |  67 ++++++++++++++++++++++++++
+ scratch/safe_replace_svgs.py | 110 +++++++++++++++++++++++++++++++++++++++++++
+ spain/index.html             |  67 ++++++++++++++++++++++++++
+ usa/index.html               |  67 ++++++++++++++++++++++++++
+ 6 files changed, 445 insertions(+)
+### Commit: Replace SVGs with EXACT replicas of the new flat navy blue icons from screenshot
+
+**Date:** Thu Jun 11 13:49:45 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ australia/index.html          | 20 +++-------
+ canada/index.html             | 20 +++-------
+ france/index.html             | 20 +++-------
+ scratch/replace_exact_svgs.py | 89 +++++++++++++++++++++++++++++++++++++++++++
+ spain/index.html              | 20 +++-------
+ usa/index.html                | 20 +++-------
+ 6 files changed, 114 insertions(+), 75 deletions(-)
+### Commit: Replace line-art SVGs with premium filled 3D-style SVGs
+
+**Date:** Thu Jun 11 13:32:13 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/css/style.css      |   2 +-
+ australia/css/style.css        |   2 +-
+ australia/index.html           |  72 ++++++-----------------
+ canada/css/style.css           |   2 +-
+ canada/index.html              |  72 ++++++-----------------
+ france/css/style.css           |   2 +-
+ france/index.html              |  72 ++++++-----------------
+ scratch/replace_filled_svgs.py | 128 +++++++++++++++++++++++++++++++++++++++++
+ spain/css/style.css            |   2 +-
+ spain/index.html               |  72 ++++++-----------------
+ usa/css/style.css              |   2 +-
+ usa/index.html                 |  72 ++++++-----------------
+ 12 files changed, 214 insertions(+), 286 deletions(-)
+### Commit: Replace Lucide icons with custom SVGs replicating original Vesti branding
+
+**Date:** Thu Jun 11 13:13:14 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ australia/index.html                | 31 +++++++++++++--
+ canada/index.html                   | 31 +++++++++++++--
+ france/index.html                   | 31 +++++++++++++--
+ scratch/replace_with_custom_svgs.py | 75 +++++++++++++++++++++++++++++++++++++
+ spain/index.html                    | 31 +++++++++++++--
+ usa/index.html                      | 31 +++++++++++++--
+ 6 files changed, 210 insertions(+), 20 deletions(-)
+### Commit: Replace low-res pixelated raster icons with clean, scalable Lucide SVG icons in Services section
+
+**Date:** Thu Jun 11 12:51:58 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/css/style.css      |  4 ++
+ australia/checkout.html        |  6 +--
+ australia/clarity-payment.html |  6 +--
+ australia/clarity.html         | 10 ++---
+ australia/css/style.css        |  4 ++
+ australia/index.html           |  8 ++--
+ australia/video-catalog.html   |  8 ++--
+ canada/checkout.html           |  6 +--
+ canada/clarity-payment.html    |  6 +--
+ canada/clarity.html            | 14 +++---
+ canada/css/style.css           |  4 ++
+ canada/index.html              | 14 +++---
+ canada/video-catalog.html      | 30 ++++++-------
+ france/checkout.html           |  6 +--
+ france/clarity-payment.html    |  6 +--
+ france/clarity.html            | 14 +++---
+ france/css/style.css           |  4 ++
+ france/index.html              | 14 +++---
+ france/video-catalog.html      | 30 ++++++-------
+ scratch/fix_pathways.py        | 97 ++++++++++++++++++++++++++++++++++++++++++
+ scratch/replace_icons.py       | 60 ++++++++++++++++++++++++++
+ spain/checkout.html            |  6 +--
+ spain/clarity-payment.html     |  6 +--
+ spain/clarity.html             | 14 +++---
+ spain/css/style.css            |  4 ++
+ spain/index.html               | 14 +++---
+ spain/video-catalog.html       | 30 ++++++-------
+ usa/checkout.html              |  6 +--
+ usa/clarity-payment.html       |  6 +--
+ usa/clarity.html               | 14 +++---
+ usa/css/style.css              |  4 ++
+ usa/index.html                 | 16 +++----
+ usa/video-catalog.html         | 30 ++++++-------
+ 33 files changed, 341 insertions(+), 160 deletions(-)
+### Commit: Restore app download section and replace hardcoded Australia text with dynamic country specific text
+
+**Date:** Thu Jun 11 12:33:25 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/index.html          | 28 +++++++++++++
+ australia/index.html            | 28 +++++++++++++
+ canada/checkout.html            | 18 ++++-----
+ canada/index.html               | 28 +++++++++++++
+ canada/portal-settings.html     | 20 +++++-----
+ canada/travel-fees.html         | 52 ++++++++++++------------
+ france/checkout.html            | 18 ++++-----
+ france/index.html               | 28 +++++++++++++
+ france/portal-settings.html     | 20 +++++-----
+ france/travel-fees.html         | 52 ++++++++++++------------
+ scratch/fix_country_labels.py   | 87 +++++++++++++++++++++++++++++++++++++++++
+ scratch/restore_app_download.py | 49 +++++++++++++++++++++++
+ spain/checkout.html             | 18 ++++-----
+ spain/index.html                | 28 +++++++++++++
+ spain/portal-settings.html      | 20 +++++-----
+ spain/travel-fees.html          | 52 ++++++++++++------------
+ usa/checkout.html               | 18 ++++-----
+ usa/index.html                  | 28 +++++++++++++
+ usa/portal-settings.html        | 20 +++++-----
+ usa/travel-fees.html            | 52 ++++++++++++------------
+ 20 files changed, 484 insertions(+), 180 deletions(-)
+### Commit: Fix mobile CSS image/text logic and scope portal config storage to individual countries
+
+**Date:** Thu Jun 11 12:19:08 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/checkout.html        |   2 +-
+ New_zealand/css/style.css        |  22 +++++-
+ New_zealand/index.html           | 143 +++++++++++++++++++++++++++++++++++-
+ New_zealand/portal-settings.html |  10 +--
+ New_zealand/travel-fees.html     |   4 +-
+ australia/checkout.html          |   2 +-
+ australia/css/style.css          |  22 +++++-
+ australia/index.html             | 151 +++++++++++++++++++++++++++++++++++++--
+ australia/portal-settings.html   |  10 +--
+ australia/travel-fees.html       |   4 +-
+ canada/checkout.html             |   2 +-
+ canada/css/style.css             |  22 +++++-
+ canada/index.html                | 151 +++++++++++++++++++++++++++++++++++++--
+ canada/portal-settings.html      |  10 +--
+ canada/travel-fees.html          |   4 +-
+ france/checkout.html             |   2 +-
+ france/css/style.css             |  22 +++++-
+ france/index.html                | 151 +++++++++++++++++++++++++++++++++++++--
+ france/portal-settings.html      |  10 +--
+ france/travel-fees.html          |   4 +-
+ scratch/fix_footer.py            |  58 +++++++++++++++
+ scratch/fix_mobile_and_text.py   |  65 +++++++++++++++++
+ scratch/fix_prices_and_mobile.py |  63 ++++++++++++++++
+ spain/checkout.html              |   2 +-
+ spain/css/style.css              |  22 +++++-
+ spain/index.html                 | 151 +++++++++++++++++++++++++++++++++++++--
+ spain/portal-settings.html       |  10 +--
+ spain/travel-fees.html           |   4 +-
+ usa/checkout.html                |   2 +-
+ usa/css/style.css                |  22 +++++-
+ usa/index.html                   | 149 ++++++++++++++++++++++++++++++++++++--
+ usa/portal-settings.html         |  10 +--
+ usa/travel-fees.html             |   4 +-
+ 33 files changed, 1213 insertions(+), 97 deletions(-)
+### Commit: Add hidden country field to eligibility forms
+
+**Date:** Thu Jun 11 11:43:43 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/index.html   |  7 ++++++-
+ australia/index.html     |  7 ++++++-
+ canada/index.html        |  7 ++++++-
+ france/index.html        |  7 ++++++-
+ scratch/restore_modal.py | 11 ++++++++---
+ spain/index.html         |  7 ++++++-
+ usa/index.html           |  7 ++++++-
+ 7 files changed, 44 insertions(+), 9 deletions(-)
+### Commit: Restore modal overlay to all country pages, deleting standalone qualify.html
+
+**Date:** Thu Jun 11 11:39:10 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/index.html           | 948 +++++---------------------------------
+ australia/index.html             | 959 +++++----------------------------------
+ canada/index.html                | 959 +++++----------------------------------
+ france/index.html                | 959 +++++----------------------------------
+ qualify.html                     | 252 ----------
+ scratch/fix_qualify_page.py      | 126 +++++
+ scratch/france_modal.html        | Bin 0 -> 188336 bytes
+ scratch/rebuild_qualify_exact.py |  76 ++++
+ scratch/restore_modal.py         | 190 ++++++++
+ spain/index.html                 | 959 +++++----------------------------------
+ usa/index.html                   | 959 +++++----------------------------------
+ 11 files changed, 1004 insertions(+), 5383 deletions(-)
+### Commit: Remove header and footer from qualify page to match exact modal picture
+
+**Date:** Thu Jun 11 11:33:12 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ qualify.html | 290 +++--------------------------------------------------------
+ 1 file changed, 10 insertions(+), 280 deletions(-)
+### Commit: Fix Qualify Form content missing and clean hardcoded text
+
+**Date:** Thu Jun 11 11:29:28 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ qualify.html | 491 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 489 insertions(+), 2 deletions(-)
+### Commit: Fix UI bugs, submodule issue, and deploy Qualify page
+
+**Date:** Thu Jun 11 10:01:04 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/index.html                      |   13 +-
+ australia                                   |    1 -
+ australia/.gitignore                        |    4 +
+ australia/README.md                         |   73 +
+ australia/add_sauce.js                      |   94 +
+ australia/admin-logs.html                   |  822 +++++
+ australia/admin_logs_diff.txt               |  329 ++
+ australia/api-settings/data/config.json     |   15 +
+ australia/api-settings/package-lock.json    |  854 +++++
+ australia/api-settings/package.json         |   14 +
+ australia/api-settings/server.js            |  102 +
+ australia/apply_ui_fixes.js                 |   79 +
+ australia/assets/au-advisor-headset.png     |  Bin 0 -> 824572 bytes
+ australia/assets/au-landscape-1.png         |  Bin 0 -> 925596 bytes
+ australia/assets/au-landscape-2.png         |  Bin 0 -> 906556 bytes
+ australia/assets/au-landscape-3.png         |  Bin 0 -> 1014133 bytes
+ australia/assets/au-scenic-travel.png       |  Bin 0 -> 1054331 bytes
+ australia/assets/au-tech-professional.png   |  Bin 0 -> 649885 bytes
+ australia/assets/au-tourist-beach.png       |  Bin 0 -> 860944 bytes
+ australia/assets/au-visa-demo.mp4           |  Bin 0 -> 2533815 bytes
+ australia/assets/australia_1.png            |  Bin 0 -> 937612 bytes
+ australia/assets/education-globe.png        |  Bin 0 -> 663946 bytes
+ australia/assets/elite-man.png              |  Bin 0 -> 686566 bytes
+ australia/assets/favicon.svg                |    5 +
+ australia/assets/happy-migrant-headshot.png |  Bin 0 -> 693913 bytes
+ australia/assets/logo.png                   |  Bin 0 -> 2764 bytes
+ australia/assets/vesti-cards.png            |  Bin 0 -> 525994 bytes
+ australia/assets/viseas/about-img.jpg       |  Bin 0 -> 239678 bytes
+ australia/assets/viseas/c1.jpg              |  Bin 0 -> 57536 bytes
+ australia/assets/viseas/c2.jpg              |  Bin 0 -> 81246 bytes
+ australia/assets/viseas/c3.jpg              |  Bin 0 -> 64921 bytes
+ australia/assets/viseas/c4.jpg              |  Bin 0 -> 100807 bytes
+ australia/assets/viseas/c5.jpg              |  Bin 0 -> 64104 bytes
+ australia/assets/viseas/c6.jpg              |  Bin 0 -> 88809 bytes
+ australia/assets/viseas/client-1.jpg        |  Bin 0 -> 20013 bytes
+ australia/assets/viseas/client-2.jpg        |  Bin 0 -> 23652 bytes
+ australia/assets/viseas/client.png          |  Bin 0 -> 109958 bytes
+ australia/assets/viseas/contact-bg.jpg      |  Bin 0 -> 221539 bytes
+ australia/assets/viseas/favicon.png         |  Bin 0 -> 24923 bytes
+ australia/assets/viseas/hero-bg.jpg         |  Bin 0 -> 270482 bytes
+ australia/assets/viseas/s1.png              |  Bin 0 -> 5088 bytes
+ australia/assets/viseas/s2.png              |  Bin 0 -> 5481 bytes
+ australia/assets/viseas/s3.png              |  Bin 0 -> 8383 bytes
+ australia/assets/viseas/s4.png              |  Bin 0 -> 11231 bytes
+ australia/build_ui.js                       |  133 +
+ australia/checkout-pricing.js               |  148 +
+ australia/checkout.html                     | 1306 ++++++++
+ australia/checkout_diff.txt                 |  558 +++
+ australia/clarity-payment.html              |  409 +++
+ australia/clarity.html                      |  742 ++++
+ australia/css/scrolling.css                 |  179 +
+ australia/css/style.css                     | 4848 +++++++++++++++++++++++++++
+ australia/deep_clean.js                     |   37 +
+ australia/dev/footer-template.html          |  126 +
+ australia/dev/scrolling-preview.html        |   98 +
+ australia/dev/tools/update-links.py         |   15 +
+ australia/diff_index.txt                    |  316 ++
+ australia/index.html                        | 1364 ++++++++
+ australia/integrate.js                      |   32 +
+ australia/js/app.js                         | 1171 +++++++
+ australia/js/countries.js                   | 1216 +++++++
+ australia/js/scrolling.js                   |   76 +
+ australia/portal-settings.html              | 1039 ++++++
+ australia/replace.js                        |   37 +
+ australia/testing.html                      |    0
+ australia/travel-fees.html                  | 2371 +++++++++++++
+ australia/video-catalog.html                | 1058 ++++++
+ canada/clarity.html                         |   48 +-
+ canada/index.html                           |   75 +-
+ france/clarity.html                         |   48 +-
+ france/index.html                           |   75 +-
+ qualify.html                                |   35 +
+ scratch/clean_services.py                   |   78 +
+ scratch/create_qualify_page.py              |  114 +
+ scratch/fix_clarity.py                      |   53 +
+ scratch/fix_nz_images.py                    |   19 +
+ spain/clarity.html                          |   48 +-
+ spain/index.html                            |   75 +-
+ usa/clarity.html                            |   48 +-
+ usa/index.html                              |   75 +-
+ 80 files changed, 20214 insertions(+), 261 deletions(-)
+### Commit: update
+
+**Date:** Thu Jun 11 09:46:58 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ Assets/favicon.svg             |   5 ++
+ New_zealand/css/style.css      | 189 +++++++++++++++++++++++++++++++++++++++
+ New_zealand/index.html         |  45 +++++-----
+ all countries/main.html        |  75 ++++++++--------
+ all countries/style.css        | 115 ++++++++++++++++++++++++
+ apply_themes.py                |   3 +-
+ canada/assets/canada_1.png     | Bin 0 -> 1039851 bytes
+ canada/assets/canada_2.png     | Bin 0 -> 893848 bytes
+ canada/assets/canada_3.png     | Bin 0 -> 854917 bytes
+ canada/assets/canada_4.png     | Bin 0 -> 1082090 bytes
+ canada/css/style.css           | 189 +++++++++++++++++++++++++++++++++++++++
+ canada/index.html              | 138 +++++++++--------------------
+ france/assets/france_1.png     | Bin 0 -> 840558 bytes
+ france/assets/france_2.png     | Bin 0 -> 809654 bytes
+ france/assets/france_3.png     | Bin 0 -> 1145897 bytes
+ france/assets/france_4.png     | Bin 0 -> 1113583 bytes
+ france/css/style.css           | 189 +++++++++++++++++++++++++++++++++++++++
+ france/index.html              | 138 +++++++++--------------------
+ scratch/fix_caption_padding.py |  21 +++++
+ scratch/fix_services.py        |  79 +++++++++++++++++
+ scratch/fix_slideshow.py       | 112 +++++++++++++++++++++++
+ scratch/france_head.html       | Bin 0 -> 190152 bytes
+ scratch/nz_head.html           | Bin 0 -> 179354 bytes
+ scratch/restore_services.py    |  79 +++++++++++++++++
+ spain/assets/spain_1.png       | Bin 0 -> 1005024 bytes
+ spain/assets/spain_2.png       | Bin 0 -> 1003761 bytes
+ spain/assets/spain_3.png       | Bin 0 -> 1022213 bytes
+ spain/assets/spain_4.png       | Bin 0 -> 982764 bytes
+ spain/css/style.css            | 189 +++++++++++++++++++++++++++++++++++++++
+ spain/index.html               | 138 +++++++++--------------------
+ usa/assets/usa_1.png           | Bin 0 -> 984598 bytes
+ usa/assets/usa_2.png           | Bin 0 -> 846168 bytes
+ usa/assets/usa_3.png           | Bin 0 -> 851158 bytes
+ usa/assets/usa_4.png           | Bin 0 -> 806710 bytes
+ usa/css/style.css              | 195 ++++++++++++++++++++++++++++++++++++++++-
+ usa/index.html                 | 138 +++++++++--------------------
+ 36 files changed, 1590 insertions(+), 447 deletions(-)
+### Commit: Restore distinct primary colors per country so themes are unique
+
+**Date:** Tue Jun 9 00:57:43 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ canada/css/style.css | 5 +++--
+ france/css/style.css | 5 +++--
+ spain/css/style.css  | 5 +++--
+ usa/css/style.css    | 5 +++--
+ 4 files changed, 12 insertions(+), 8 deletions(-)
+### Commit: Restore Vesti Green as primary color to maintain brand identity, keeping country colors as accent glows
+
+**Date:** Tue Jun 9 00:56:17 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/css/style.css | 1 +
+ canada/css/style.css      | 5 +++--
+ france/css/style.css      | 5 +++--
+ spain/css/style.css       | 5 +++--
+ usa/css/style.css         | 5 +++--
+ 5 files changed, 13 insertions(+), 8 deletions(-)
+### Commit: Update visa pathways and prices using PS
+
+**Date:** Tue Jun 9 00:49:50 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ canada/index.html | 1 +
+ france/index.html | 1 +
+ spain/index.html  | 1 +
+ usa/index.html    | 1 +
+ 4 files changed, 4 insertions(+)
+### Commit: Fix dynamic CSS themes and imagery across all countries
+
+**Date:** Tue Jun 9 00:49:21 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/css/style.css |  4 ++--
+ New_zealand/index.html    |  9 +++++----
+ canada/css/style.css      | 10 +++++-----
+ canada/index.html         | 17 +++++++++--------
+ fix_dynamic.py            | 35 +++++++++++++++++++++++++++++++++++
+ france/css/style.css      | 10 +++++-----
+ france/index.html         | 17 +++++++++--------
+ spain/css/style.css       | 10 +++++-----
+ spain/index.html          | 17 +++++++++--------
+ usa/css/style.css         | 10 +++++-----
+ usa/index.html            | 17 +++++++++--------
+ 11 files changed, 98 insertions(+), 58 deletions(-)
+### Commit: Apply custom color themes to all countries
+
+**Date:** Tue Jun 9 00:47:04 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ apply_themes.py                  |  27 ++++++++
+ canada/assets/hero-landscape.png | Bin 0 -> 1040424 bytes
+ fix_pathways.py                  | 137 +++++++++++++++++++++++++++++++++++++++
+ fix_visas.py                     |  47 ++++++++++++++
+ france/assets/hero-landscape.png | Bin 0 -> 945510 bytes
+ spain/assets/hero-landscape.png  | Bin 0 -> 1015917 bytes
+ usa/assets/hero-landscape.png    | Bin 0 -> 967109 bytes
+ 7 files changed, 211 insertions(+)
+### Commit: Fix desktop grid layout for main countries page
+
+**Date:** Tue Jun 9 00:40:51 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ all countries/style.css | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+### Commit: Update specific visa types for each country
+
+**Date:** Tue Jun 9 00:32:55 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/index.html | 2 +-
+ canada/index.html      | 1 +
+ france/index.html      | 1 +
+ spain/index.html       | 1 +
+ usa/index.html         | 1 +
+ 5 files changed, 5 insertions(+), 1 deletion(-)
+### Commit: Make all country pages and main grid fully responsive
+
+**Date:** Tue Jun 9 00:31:47 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand/css/style.css | 96 +++++++++++++++++++++++++++++++++++++++++++++++
+ all countries/main.html   |  2 +-
+ all countries/style.css   |  5 +++
+ canada/css/style.css      | 96 +++++++++++++++++++++++++++++++++++++++++++++++
+ canada/index.html         | 96 +++++++++++++++++++++++++++++++----------------
+ fix_layout_v2.py          | 73 +++++++++++++++++++++++++++++++++++
+ france/css/style.css      | 96 +++++++++++++++++++++++++++++++++++++++++++++++
+ france/index.html         | 96 +++++++++++++++++++++++++++++++----------------
+ spain/css/style.css       | 96 +++++++++++++++++++++++++++++++++++++++++++++++
+ spain/index.html          | 96 +++++++++++++++++++++++++++++++----------------
+ usa/css/style.css         | 96 +++++++++++++++++++++++++++++++++++++++++++++++
+ usa/index.html            | 96 +++++++++++++++++++++++++++++++----------------
+ 12 files changed, 811 insertions(+), 133 deletions(-)
+### Commit: Apply pebble layout to all countries
+
+**Date:** Tue Jun 9 00:14:06 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ canada/index.html |  1 +
+ fix_layout.py     | 68 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ france/index.html |  1 +
+ spain/index.html  |  1 +
+ usa/index.html    |  1 +
+ 5 files changed, 72 insertions(+)
+### Commit: Restore pebble layout for New Zealand and fix embedded git repo
+
+**Date:** Tue Jun 9 00:08:59 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ New_zealand                                   |    1 -
+ New_zealand/.gitignore                        |    4 +
+ New_zealand/README.md                         |   73 +
+ New_zealand/SIWES_REVIEW.md                   |   80 +
+ New_zealand/admin-logs.html                   |  822 +++++
+ New_zealand/admin_logs_diff.txt               |  329 ++
+ New_zealand/api-settings/data/config.json     |   15 +
+ New_zealand/api-settings/package-lock.json    |  854 +++++
+ New_zealand/api-settings/package.json         |   14 +
+ New_zealand/api-settings/server.js            |  102 +
+ New_zealand/assets/education-globe.png        |  Bin 0 -> 663946 bytes
+ New_zealand/assets/elite-man.png              |  Bin 0 -> 686566 bytes
+ New_zealand/assets/favicon.svg                |    5 +
+ New_zealand/assets/happy-migrant-headshot.png |  Bin 0 -> 693913 bytes
+ New_zealand/assets/logo.png                   |  Bin 0 -> 2764 bytes
+ New_zealand/assets/nz-advisor-headset.png     |  Bin 0 -> 824572 bytes
+ New_zealand/assets/nz-landscape-1.png         |  Bin 0 -> 925596 bytes
+ New_zealand/assets/nz-landscape-2.png         |  Bin 0 -> 906556 bytes
+ New_zealand/assets/nz-landscape-3.png         |  Bin 0 -> 1014133 bytes
+ New_zealand/assets/nz-scenic-travel.png       |  Bin 0 -> 1054331 bytes
+ New_zealand/assets/nz-tech-professional.png   |  Bin 0 -> 649885 bytes
+ New_zealand/assets/nz-tourist-beach.png       |  Bin 0 -> 860944 bytes
+ New_zealand/assets/nz-visa-demo.mp4           |  Bin 0 -> 2533815 bytes
+ New_zealand/assets/vesti-cards.png            |  Bin 0 -> 525994 bytes
+ New_zealand/checkout-pricing.js               |  148 +
+ New_zealand/checkout.html                     | 1306 ++++++++
+ New_zealand/checkout_diff.txt                 |  558 ++++
+ New_zealand/clarity-payment.html              |  409 +++
+ New_zealand/clarity.html                      |  742 +++++
+ New_zealand/css/scrolling.css                 |  179 +
+ New_zealand/css/style.css                     | 4446 +++++++++++++++++++++++++
+ New_zealand/d.txt                             |    1 +
+ New_zealand/dev/footer-template.html          |  126 +
+ New_zealand/dev/scrolling-preview.html        |   98 +
+ New_zealand/dev/tools/update-links.py         |   15 +
+ New_zealand/diff_index.txt                    |  316 ++
+ New_zealand/index.html                        | 1319 ++++++++
+ New_zealand/js/app.js                         | 1171 +++++++
+ New_zealand/js/countries.js                   | 1216 +++++++
+ New_zealand/js/scrolling.js                   |   76 +
+ New_zealand/portal-settings.html              | 1039 ++++++
+ New_zealand/testing.html                      |    0
+ New_zealand/travel-fees.html                  | 2371 +++++++++++++
+ New_zealand/video-catalog.html                | 1058 ++++++
+ 44 files changed, 18892 insertions(+), 1 deletion(-)
+### Commit: Fix embedded git repositories in country folders
+
+**Date:** Mon Jun 8 23:56:40 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ canada                                   |    1 -
+ canada/.gitignore                        |    4 +
+ canada/README.md                         |   73 +
+ canada/add_sauce.js                      |   94 +
+ canada/admin-logs.html                   |  822 ++++++
+ canada/admin_logs_diff.txt               |  329 +++
+ canada/api-settings/data/config.json     |   15 +
+ canada/api-settings/package-lock.json    |  854 ++++++
+ canada/api-settings/package.json         |   14 +
+ canada/api-settings/server.js            |  102 +
+ canada/apply_ui_fixes.js                 |   79 +
+ canada/assets/au-advisor-headset.png     |  Bin 0 -> 824572 bytes
+ canada/assets/au-landscape-1.png         |  Bin 0 -> 925596 bytes
+ canada/assets/au-landscape-2.png         |  Bin 0 -> 906556 bytes
+ canada/assets/au-landscape-3.png         |  Bin 0 -> 1014133 bytes
+ canada/assets/au-scenic-travel.png       |  Bin 0 -> 1054331 bytes
+ canada/assets/au-tech-professional.png   |  Bin 0 -> 649885 bytes
+ canada/assets/au-tourist-beach.png       |  Bin 0 -> 860944 bytes
+ canada/assets/au-visa-demo.mp4           |  Bin 0 -> 2533815 bytes
+ canada/assets/education-globe.png        |  Bin 0 -> 663946 bytes
+ canada/assets/elite-man.png              |  Bin 0 -> 686566 bytes
+ canada/assets/favicon.svg                |    5 +
+ canada/assets/happy-migrant-headshot.png |  Bin 0 -> 693913 bytes
+ canada/assets/logo.png                   |  Bin 0 -> 2764 bytes
+ canada/assets/vesti-cards.png            |  Bin 0 -> 525994 bytes
+ canada/assets/viseas/about-img.jpg       |  Bin 0 -> 239678 bytes
+ canada/assets/viseas/c1.jpg              |  Bin 0 -> 57536 bytes
+ canada/assets/viseas/c2.jpg              |  Bin 0 -> 81246 bytes
+ canada/assets/viseas/c3.jpg              |  Bin 0 -> 64921 bytes
+ canada/assets/viseas/c4.jpg              |  Bin 0 -> 100807 bytes
+ canada/assets/viseas/c5.jpg              |  Bin 0 -> 64104 bytes
+ canada/assets/viseas/c6.jpg              |  Bin 0 -> 88809 bytes
+ canada/assets/viseas/client-1.jpg        |  Bin 0 -> 20013 bytes
+ canada/assets/viseas/client-2.jpg        |  Bin 0 -> 23652 bytes
+ canada/assets/viseas/client.png          |  Bin 0 -> 109958 bytes
+ canada/assets/viseas/contact-bg.jpg      |  Bin 0 -> 221539 bytes
+ canada/assets/viseas/favicon.png         |  Bin 0 -> 24923 bytes
+ canada/assets/viseas/hero-bg.jpg         |  Bin 0 -> 270482 bytes
+ canada/assets/viseas/s1.png              |  Bin 0 -> 5088 bytes
+ canada/assets/viseas/s2.png              |  Bin 0 -> 5481 bytes
+ canada/assets/viseas/s3.png              |  Bin 0 -> 8383 bytes
+ canada/assets/viseas/s4.png              |  Bin 0 -> 11231 bytes
+ canada/build_ui.js                       |  133 +
+ canada/checkout-pricing.js               |  148 +
+ canada/checkout.html                     | 1306 +++++++++
+ canada/checkout_diff.txt                 |  558 ++++
+ canada/clarity-payment.html              |  409 +++
+ canada/clarity.html                      |  742 +++++
+ canada/css/scrolling.css                 |  179 ++
+ canada/css/style.css                     | 4446 ++++++++++++++++++++++++++++++
+ canada/deep_clean.js                     |   37 +
+ canada/dev/footer-template.html          |  126 +
+ canada/dev/scrolling-preview.html        |   98 +
+ canada/dev/tools/update-links.py         |   15 +
+ canada/diff_index.txt                    |  316 +++
+ canada/index.html                        | 1387 ++++++++++
+ canada/integrate.js                      |   32 +
+ canada/js/app.js                         | 1171 ++++++++
+ canada/js/countries.js                   | 1216 ++++++++
+ canada/js/scrolling.js                   |   76 +
+ canada/portal-settings.html              | 1039 +++++++
+ canada/replace.js                        |   37 +
+ canada/testing.html                      |    0
+ canada/travel-fees.html                  | 2371 ++++++++++++++++
+ canada/video-catalog.html                | 1058 +++++++
+ france                                   |    1 -
+ france/.gitignore                        |    4 +
+ france/README.md                         |   73 +
+ france/add_sauce.js                      |   94 +
+ france/admin-logs.html                   |  822 ++++++
+ france/admin_logs_diff.txt               |  329 +++
+ france/api-settings/data/config.json     |   15 +
+ france/api-settings/package-lock.json    |  854 ++++++
+ france/api-settings/package.json         |   14 +
+ france/api-settings/server.js            |  102 +
+ france/apply_ui_fixes.js                 |   79 +
+ france/assets/au-advisor-headset.png     |  Bin 0 -> 824572 bytes
+ france/assets/au-landscape-1.png         |  Bin 0 -> 925596 bytes
+ france/assets/au-landscape-2.png         |  Bin 0 -> 906556 bytes
+ france/assets/au-landscape-3.png         |  Bin 0 -> 1014133 bytes
+ france/assets/au-scenic-travel.png       |  Bin 0 -> 1054331 bytes
+ france/assets/au-tech-professional.png   |  Bin 0 -> 649885 bytes
+ france/assets/au-tourist-beach.png       |  Bin 0 -> 860944 bytes
+ france/assets/au-visa-demo.mp4           |  Bin 0 -> 2533815 bytes
+ france/assets/education-globe.png        |  Bin 0 -> 663946 bytes
+ france/assets/elite-man.png              |  Bin 0 -> 686566 bytes
+ france/assets/favicon.svg                |    5 +
+ france/assets/happy-migrant-headshot.png |  Bin 0 -> 693913 bytes
+ france/assets/logo.png                   |  Bin 0 -> 2764 bytes
+ france/assets/vesti-cards.png            |  Bin 0 -> 525994 bytes
+ france/assets/viseas/about-img.jpg       |  Bin 0 -> 239678 bytes
+ france/assets/viseas/c1.jpg              |  Bin 0 -> 57536 bytes
+ france/assets/viseas/c2.jpg              |  Bin 0 -> 81246 bytes
+ france/assets/viseas/c3.jpg              |  Bin 0 -> 64921 bytes
+ france/assets/viseas/c4.jpg              |  Bin 0 -> 100807 bytes
+ france/assets/viseas/c5.jpg              |  Bin 0 -> 64104 bytes
+ france/assets/viseas/c6.jpg              |  Bin 0 -> 88809 bytes
+ france/assets/viseas/client-1.jpg        |  Bin 0 -> 20013 bytes
+ france/assets/viseas/client-2.jpg        |  Bin 0 -> 23652 bytes
+ france/assets/viseas/client.png          |  Bin 0 -> 109958 bytes
+ france/assets/viseas/contact-bg.jpg      |  Bin 0 -> 221539 bytes
+ france/assets/viseas/favicon.png         |  Bin 0 -> 24923 bytes
+ france/assets/viseas/hero-bg.jpg         |  Bin 0 -> 270482 bytes
+ france/assets/viseas/s1.png              |  Bin 0 -> 5088 bytes
+ france/assets/viseas/s2.png              |  Bin 0 -> 5481 bytes
+ france/assets/viseas/s3.png              |  Bin 0 -> 8383 bytes
+ france/assets/viseas/s4.png              |  Bin 0 -> 11231 bytes
+ france/build_ui.js                       |  133 +
+ france/checkout-pricing.js               |  148 +
+ france/checkout.html                     | 1306 +++++++++
+ france/checkout_diff.txt                 |  558 ++++
+ france/clarity-payment.html              |  409 +++
+ france/clarity.html                      |  742 +++++
+ france/css/scrolling.css                 |  179 ++
+ france/css/style.css                     | 4446 ++++++++++++++++++++++++++++++
+ france/deep_clean.js                     |   37 +
+ france/dev/footer-template.html          |  126 +
+ france/dev/scrolling-preview.html        |   98 +
+ france/dev/tools/update-links.py         |   15 +
+ france/diff_index.txt                    |  316 +++
+ france/index.html                        | 1387 ++++++++++
+ france/integrate.js                      |   32 +
+ france/js/app.js                         | 1171 ++++++++
+ france/js/countries.js                   | 1216 ++++++++
+ france/js/scrolling.js                   |   76 +
+ france/portal-settings.html              | 1039 +++++++
+ france/replace.js                        |   37 +
+ france/testing.html                      |    0
+ france/travel-fees.html                  | 2371 ++++++++++++++++
+ france/video-catalog.html                | 1058 +++++++
+ spain                                    |    1 -
+ spain/.gitignore                         |    4 +
+ spain/README.md                          |   73 +
+ spain/add_sauce.js                       |   94 +
+ spain/admin-logs.html                    |  822 ++++++
+ spain/admin_logs_diff.txt                |  329 +++
+ spain/api-settings/data/config.json      |   15 +
+ spain/api-settings/package-lock.json     |  854 ++++++
+ spain/api-settings/package.json          |   14 +
+ spain/api-settings/server.js             |  102 +
+ spain/apply_ui_fixes.js                  |   79 +
+ spain/assets/au-advisor-headset.png      |  Bin 0 -> 824572 bytes
+ spain/assets/au-landscape-1.png          |  Bin 0 -> 925596 bytes
+ spain/assets/au-landscape-2.png          |  Bin 0 -> 906556 bytes
+ spain/assets/au-landscape-3.png          |  Bin 0 -> 1014133 bytes
+ spain/assets/au-scenic-travel.png        |  Bin 0 -> 1054331 bytes
+ spain/assets/au-tech-professional.png    |  Bin 0 -> 649885 bytes
+ spain/assets/au-tourist-beach.png        |  Bin 0 -> 860944 bytes
+ spain/assets/au-visa-demo.mp4            |  Bin 0 -> 2533815 bytes
+ spain/assets/education-globe.png         |  Bin 0 -> 663946 bytes
+ spain/assets/elite-man.png               |  Bin 0 -> 686566 bytes
+ spain/assets/favicon.svg                 |    5 +
+ spain/assets/happy-migrant-headshot.png  |  Bin 0 -> 693913 bytes
+ spain/assets/logo.png                    |  Bin 0 -> 2764 bytes
+ spain/assets/vesti-cards.png             |  Bin 0 -> 525994 bytes
+ spain/assets/viseas/about-img.jpg        |  Bin 0 -> 239678 bytes
+ spain/assets/viseas/c1.jpg               |  Bin 0 -> 57536 bytes
+ spain/assets/viseas/c2.jpg               |  Bin 0 -> 81246 bytes
+ spain/assets/viseas/c3.jpg               |  Bin 0 -> 64921 bytes
+ spain/assets/viseas/c4.jpg               |  Bin 0 -> 100807 bytes
+ spain/assets/viseas/c5.jpg               |  Bin 0 -> 64104 bytes
+ spain/assets/viseas/c6.jpg               |  Bin 0 -> 88809 bytes
+ spain/assets/viseas/client-1.jpg         |  Bin 0 -> 20013 bytes
+ spain/assets/viseas/client-2.jpg         |  Bin 0 -> 23652 bytes
+ spain/assets/viseas/client.png           |  Bin 0 -> 109958 bytes
+ spain/assets/viseas/contact-bg.jpg       |  Bin 0 -> 221539 bytes
+ spain/assets/viseas/favicon.png          |  Bin 0 -> 24923 bytes
+ spain/assets/viseas/hero-bg.jpg          |  Bin 0 -> 270482 bytes
+ spain/assets/viseas/s1.png               |  Bin 0 -> 5088 bytes
+ spain/assets/viseas/s2.png               |  Bin 0 -> 5481 bytes
+ spain/assets/viseas/s3.png               |  Bin 0 -> 8383 bytes
+ spain/assets/viseas/s4.png               |  Bin 0 -> 11231 bytes
+ spain/build_ui.js                        |  133 +
+ spain/checkout-pricing.js                |  148 +
+ spain/checkout.html                      | 1306 +++++++++
+ spain/checkout_diff.txt                  |  558 ++++
+ spain/clarity-payment.html               |  409 +++
+ spain/clarity.html                       |  742 +++++
+ spain/css/scrolling.css                  |  179 ++
+ spain/css/style.css                      | 4446 ++++++++++++++++++++++++++++++
+ spain/deep_clean.js                      |   37 +
+ spain/dev/footer-template.html           |  126 +
+ spain/dev/scrolling-preview.html         |   98 +
+ spain/dev/tools/update-links.py          |   15 +
+ spain/diff_index.txt                     |  316 +++
+ spain/index.html                         | 1387 ++++++++++
+ spain/integrate.js                       |   32 +
+ spain/js/app.js                          | 1171 ++++++++
+ spain/js/countries.js                    | 1216 ++++++++
+ spain/js/scrolling.js                    |   76 +
+ spain/portal-settings.html               | 1039 +++++++
+ spain/replace.js                         |   37 +
+ spain/testing.html                       |    0
+ spain/travel-fees.html                   | 2371 ++++++++++++++++
+ spain/video-catalog.html                 | 1058 +++++++
+ usa                                      |    1 -
+ usa/.gitignore                           |    4 +
+ usa/README.md                            |   73 +
+ usa/add_sauce.js                         |   94 +
+ usa/admin-logs.html                      |  822 ++++++
+ usa/admin_logs_diff.txt                  |  329 +++
+ usa/api-settings/data/config.json        |   15 +
+ usa/api-settings/package-lock.json       |  854 ++++++
+ usa/api-settings/package.json            |   14 +
+ usa/api-settings/server.js               |  102 +
+ usa/apply_ui_fixes.js                    |   79 +
+ usa/assets/au-advisor-headset.png        |  Bin 0 -> 824572 bytes
+ usa/assets/au-landscape-1.png            |  Bin 0 -> 925596 bytes
+ usa/assets/au-landscape-2.png            |  Bin 0 -> 906556 bytes
+ usa/assets/au-landscape-3.png            |  Bin 0 -> 1014133 bytes
+ usa/assets/au-scenic-travel.png          |  Bin 0 -> 1054331 bytes
+ usa/assets/au-tech-professional.png      |  Bin 0 -> 649885 bytes
+ usa/assets/au-tourist-beach.png          |  Bin 0 -> 860944 bytes
+ usa/assets/au-visa-demo.mp4              |  Bin 0 -> 2533815 bytes
+ usa/assets/education-globe.png           |  Bin 0 -> 663946 bytes
+ usa/assets/elite-man.png                 |  Bin 0 -> 686566 bytes
+ usa/assets/favicon.svg                   |    5 +
+ usa/assets/happy-migrant-headshot.png    |  Bin 0 -> 693913 bytes
+ usa/assets/logo.png                      |  Bin 0 -> 2764 bytes
+ usa/assets/vesti-cards.png               |  Bin 0 -> 525994 bytes
+ usa/assets/viseas/about-img.jpg          |  Bin 0 -> 239678 bytes
+ usa/assets/viseas/c1.jpg                 |  Bin 0 -> 57536 bytes
+ usa/assets/viseas/c2.jpg                 |  Bin 0 -> 81246 bytes
+ usa/assets/viseas/c3.jpg                 |  Bin 0 -> 64921 bytes
+ usa/assets/viseas/c4.jpg                 |  Bin 0 -> 100807 bytes
+ usa/assets/viseas/c5.jpg                 |  Bin 0 -> 64104 bytes
+ usa/assets/viseas/c6.jpg                 |  Bin 0 -> 88809 bytes
+ usa/assets/viseas/client-1.jpg           |  Bin 0 -> 20013 bytes
+ usa/assets/viseas/client-2.jpg           |  Bin 0 -> 23652 bytes
+ usa/assets/viseas/client.png             |  Bin 0 -> 109958 bytes
+ usa/assets/viseas/contact-bg.jpg         |  Bin 0 -> 221539 bytes
+ usa/assets/viseas/favicon.png            |  Bin 0 -> 24923 bytes
+ usa/assets/viseas/hero-bg.jpg            |  Bin 0 -> 270482 bytes
+ usa/assets/viseas/s1.png                 |  Bin 0 -> 5088 bytes
+ usa/assets/viseas/s2.png                 |  Bin 0 -> 5481 bytes
+ usa/assets/viseas/s3.png                 |  Bin 0 -> 8383 bytes
+ usa/assets/viseas/s4.png                 |  Bin 0 -> 11231 bytes
+ usa/build_ui.js                          |  133 +
+ usa/checkout-pricing.js                  |  148 +
+ usa/checkout.html                        | 1306 +++++++++
+ usa/checkout_diff.txt                    |  558 ++++
+ usa/clarity-payment.html                 |  409 +++
+ usa/clarity.html                         |  742 +++++
+ usa/css/scrolling.css                    |  179 ++
+ usa/css/style.css                        | 4446 ++++++++++++++++++++++++++++++
+ usa/deep_clean.js                        |   37 +
+ usa/dev/footer-template.html             |  126 +
+ usa/dev/scrolling-preview.html           |   98 +
+ usa/dev/tools/update-links.py            |   15 +
+ usa/diff_index.txt                       |  316 +++
+ usa/index.html                           | 1387 ++++++++++
+ usa/integrate.js                         |   32 +
+ usa/js/app.js                            | 1171 ++++++++
+ usa/js/countries.js                      | 1216 ++++++++
+ usa/js/scrolling.js                      |   76 +
+ usa/portal-settings.html                 | 1039 +++++++
+ usa/replace.js                           |   37 +
+ usa/testing.html                         |    0
+ usa/travel-fees.html                     | 2371 ++++++++++++++++
+ usa/video-catalog.html                   | 1058 +++++++
+ 260 files changed, 77164 insertions(+), 4 deletions(-)
+### Commit: Create missing country routes (France, Canada, USA, Spain) based on Australia template
+
+**Date:** Mon Jun 8 23:56:13 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ canada | 1 +
+ france | 1 +
+ spain  | 1 +
+ usa    | 1 +
+ 4 files changed, 4 insertions(+)
+### Commit: Fix case-sensitivity of Assets path and adjust country links for Vercel
+
+**Date:** Mon Jun 8 23:53:27 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ all countries/main.html | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+### Commit: Update hero layout scaling, add countries link to nav, fix main favicon
+
+**Date:** Mon Jun 8 23:27:20 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ all countries/main.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+### Commit: Fix hover states, Australia hero background, and Vercel routing
+
+**Date:** Mon Jun 8 15:57:58 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ Assets/viseas/about-img.jpg  |  Bin 0 -> 239678 bytes
+ Assets/viseas/c1.jpg         |  Bin 0 -> 57536 bytes
+ Assets/viseas/c2.jpg         |  Bin 0 -> 81246 bytes
+ Assets/viseas/c3.jpg         |  Bin 0 -> 64921 bytes
+ Assets/viseas/c4.jpg         |  Bin 0 -> 100807 bytes
+ Assets/viseas/c5.jpg         |  Bin 0 -> 64104 bytes
+ Assets/viseas/c6.jpg         |  Bin 0 -> 88809 bytes
+ Assets/viseas/client-1.jpg   |  Bin 0 -> 20013 bytes
+ Assets/viseas/client-2.jpg   |  Bin 0 -> 23652 bytes
+ Assets/viseas/client.png     |  Bin 0 -> 109958 bytes
+ Assets/viseas/contact-bg.jpg |  Bin 0 -> 221539 bytes
+ Assets/viseas/favicon.png    |  Bin 0 -> 24923 bytes
+ Assets/viseas/hero-bg.jpg    |  Bin 0 -> 270482 bytes
+ Assets/viseas/s1.png         |  Bin 0 -> 5088 bytes
+ Assets/viseas/s2.png         |  Bin 0 -> 5481 bytes
+ Assets/viseas/s3.png         |  Bin 0 -> 8383 bytes
+ Assets/viseas/s4.png         |  Bin 0 -> 11231 bytes
+ New_zealand                  |    1 +
+ all countries/main.html      |  342 ++++
+ all countries/scrolling.css  |  179 ++
+ all countries/style.css      | 4446 ++++++++++++++++++++++++++++++++++++++++++
+ australia                    |    1 +
+ index.html                   |   14 +
+ vercel.json                  |    8 +
+ 24 files changed, 4991 insertions(+)
+### Commit: Initial commit
+
+**Date:** Mon Jun 8 15:26:28 2026 +0100
+
+**Message:**
+
+**Changes:**
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
