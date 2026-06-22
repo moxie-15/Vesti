@@ -244,80 +244,55 @@
                     class="btn btn-primary w-full">Create an account</a>
             </li>
         </ul>
-    </div>    <!-- Hero Section (Replicated split grid structure from US/Canada pathways) -->
-    <section class="hero-section">
-        <div class="aurora-glow aurora-1"></div>
-        <div class="aurora-glow aurora-2"></div>
+    </div>        <!-- Australia Bespoke Parallax Hero Section -->
+    <section class="au-hero-section" style="position: relative; width: 100%; height: 95vh; min-height: 700px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000;">
+        <!-- Parallax Background Image -->
+        <div class="au-parallax-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 120%; background-image: url('assets/australia_1.png'); background-size: cover; background-position: center; background-attachment: fixed; filter: brightness(0.65) saturate(1.2);"></div>
+        
+        <!-- Gradient Overlay -->
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,83,69,0.3) 0%, rgba(11,83,69,0.8) 100%);"></div>
 
-        <div class="container hero-container" style="align-items: center;">
-            <!-- Left: Text content and dual call-to-actions -->
-            <div class="hero-content">
-                <h1 class="hero-title"
-                    style="font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2;">
-                    <span class="text-success">Australia Pathways:</span> Explore the Magic of Australia
-                </h1>
-
-                <p class="hero-description"
-                     style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; color: rgba(255,255,255,0.9);">
-                    Ready to experience the breathtaking beauty of Australia? Whether you're planning a scenic
-                    vacation, visiting family and friends, or attending business meetings, Vesti helps you secure your
-                    pathways and set up your pre-arrival travel wallet with ease.
-                </p>
-
-                <div class="hero-actions" style="display: flex; gap: 20px; position: relative; z-index: 20; align-items: center;">
-                    <button id="hero-btn-qualify" class="btn btn-outline btn-lg" onclick="openEligibilityModal()" style="background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 12px 30px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; height: 48px;">See If You Qualify</button>
-
-
-                    <a href="clarity.html" class="btn btn-success btn-lg"
-                        style="padding: 12px 40px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: white; height: 48px;">
-                        Get Clarity Call
-                    </a>
-                </div>
+        <div class="container" style="position: relative; z-index: 10; text-align: center; max-width: 1000px; padding: 0 20px; display: flex; flex-direction: column; align-items: center;">
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 30px; margin-bottom: 30px; animation: slideDown 1s ease-out forwards;">
+                <span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: #FFD700; box-shadow: 0 0 10px #FFD700;"></span>
+                <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #FFF; letter-spacing: 1px; text-transform: uppercase;">Discover Down Under</span>
             </div>
-
-            <!-- Right: Organic Pebble Slideshow of Scenic Australia Landscapes -->
-            <div class="hero-visual" style="position: relative; display: flex; justify-content: flex-end; width: 100%; max-width: 480px; height: 480px;">
-                <div class="hero-visual-frame" style="box-shadow: 0 20px 45px rgba(0,0,0,0.35); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; overflow: hidden; position: relative;">
-                    <!-- Slides -->
-                    <div class="hero-slide active" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:1; transition: opacity 1s ease-in-out; z-index: 2; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/australia_1.png" alt="Sydney Opera House" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(11,83,69,0.95) 0%, rgba(11,83,69,0.6) 50%, rgba(11,83,69,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🏛️ Sydney Opera House
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Uluru_Sunset_11.jpg/800px-Uluru_Sunset_11.jpg" alt="Uluru (Ayers Rock)" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(11,83,69,0.95) 0%, rgba(11,83,69,0.6) 50%, rgba(11,83,69,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🏜️ Uluru (Ayers Rock)
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Great_Barrier_Reef_Australia.jpg/800px-Great_Barrier_Reef_Australia.jpg" alt="Great Barrier Reef" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(11,83,69,0.95) 0%, rgba(11,83,69,0.6) 50%, rgba(11,83,69,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🐠 Great Barrier Reef
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Melbourne_Skyline_from_Southbank.jpg/800px-Melbourne_Skyline_from_Southbank.jpg" alt="Melbourne Skyline" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(11,83,69,0.95) 0%, rgba(11,83,69,0.6) 50%, rgba(11,83,69,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🏙️ Melbourne Skyline
-                        </div>
-                    </div>
-                    <!-- Slide controls (dots) in glass capsule centered inside the organic shape -->
-                    <div class="slideshow-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; background: rgba(11, 83, 69, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1.5px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 6px 12px; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
-                        <span class="dot active" onclick="setSlide(0)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 1;"></span>
-                        <span class="dot" onclick="setSlide(1)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                        <span class="dot" onclick="setSlide(2)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                        <span class="dot" onclick="setSlide(3)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                    </div>
-                </div>
-
-                <!-- Floating NZ Flag Badge overlapping organic shape -->
-                <div class="hero-flag-box" style="position: absolute; bottom: 40px; right: 20px; width: 140px; height: 90px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; border: 3px solid white; z-index: 5;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" style="width: 100%; height: 100%; object-fit: cover;" alt="NZ Flag">
-                </div>
+            
+            <h1 style="font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; color: #FFF; line-height: 1.1; margin-bottom: 25px; letter-spacing: -2px; animation: fadeUp 1s ease-out 0.2s forwards; opacity: 0;">
+                Live the <span style="color: #FFD700; text-shadow: 0 0 30px rgba(255,215,0,0.4);">Aussie Dream</span><br>with Zero Friction.
+            </h1>
+            
+            <p style="font-family: 'Inter', sans-serif; font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto 45px; line-height: 1.6; animation: fadeUp 1s ease-out 0.4s forwards; opacity: 0;">
+                Whether you're migrating for work, studying at a world-class university, or just visiting. Vesti handles your visa, AUD wallet, and settlement in one app.
+            </p>
+            
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0;">
+                <button onclick="openEligibilityModal()" style="background: #FFD700; color: #0B5345; border: none; padding: 18px 45px; border-radius: 30px; font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 35px rgba(255,215,0,0.3);" onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 20px 45px rgba(255,215,0,0.4)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 35px rgba(255,215,0,0.3)';">See If You Qualify</button>
+                <a href="clarity.html" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); color: #FFF; padding: 18px 45px; border-radius: 30px; font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(255,255,255,0.2)';" onmouseout="this.style.background='rgba(255,255,255,0.1)';">Get Clarity Call</a>
             </div>
         </div>
+
+        <!-- Scroll Indicator -->
+        <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.7; animation: pulse 2s infinite;">
+            <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: #FFF; letter-spacing: 2px; text-transform: uppercase;">Scroll to explore</span>
+            <div style="width: 1px; height: 40px; background: linear-gradient(to bottom, #FFF, transparent);"></div>
+        </div>
+
+        <style>
+            @keyframes slideDown {
+                from { transform: translateY(-20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            @keyframes fadeUp {
+                from { transform: translateY(30px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            @keyframes pulse {
+                0% { opacity: 0.5; }
+                50% { opacity: 1; }
+                100% { opacity: 0.5; }
+            }
+        </style>
     </section>
 
                 <!-- Our Services Section -->
