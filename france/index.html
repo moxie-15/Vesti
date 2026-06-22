@@ -244,80 +244,88 @@
                     class="btn btn-primary w-full">Create an account</a>
             </li>
         </ul>
-    </div>    <!-- Hero Section (Replicated split grid structure from US/Canada pathways) -->
-    <section class="hero-section">
-        <div class="aurora-glow aurora-1"></div>
-        <div class="aurora-glow aurora-2"></div>
+    </div>        <!-- Europe Bespoke Magazine Hero Section -->
+    <section class="eu-magazine-hero" style="position: relative; width: 100%; min-height: 85vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #F8F9FA; padding: 120px 20px 60px;">
+        
+        <!-- Subtle Background Elements -->
+        <div style="position: absolute; top: -10%; left: -5%; width: 50%; height: 60%; background: radial-gradient(circle, rgba(var(--primary-rgb, 200,50,50), 0.05) 0%, rgba(248,249,250,0) 70%); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; bottom: -10%; right: -5%; width: 60%; height: 70%; background: radial-gradient(circle, rgba(var(--secondary-rgb, 50,50,200), 0.05) 0%, rgba(248,249,250,0) 70%); border-radius: 50%; z-index: 0;"></div>
 
-        <div class="container hero-container" style="align-items: center;">
-            <!-- Left: Text content and dual call-to-actions -->
-            <div class="hero-content">
-                <h1 class="hero-title"
-                    style="font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2;">
-                    <span class="text-success">France Pathways:</span> Explore the Magic of France
+        <div class="container" style="position: relative; z-index: 10; max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            
+            <!-- Left Editorial Text -->
+            <div style="animation: fadeRight 1s ease-out forwards;">
+                <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #888; letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 20px;">Vesti European Pathways</span>
+                <h1 style="font-family: 'Outfit', sans-serif; font-size: clamp(3.5rem, 5vw, 4.5rem); font-weight: 300; color: var(--bg-main); line-height: 1.1; margin-bottom: 30px; letter-spacing: -1px;">
+                    Experience the <br><strong style="font-weight: 700; font-style: italic; color: var(--primary);">Elegance</strong> of Europe.
                 </h1>
-
-                <p class="hero-description"
-                     style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; color: rgba(255,255,255,0.9);">
-                    Ready to experience the breathtaking beauty of France? Whether you're planning a scenic
-                    vacation, visiting family and friends, or attending business meetings, Vesti helps you secure your
-                    pathways and set up your pre-arrival travel wallet with ease.
+                <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #555; max-width: 450px; line-height: 1.8; margin-bottom: 40px; position: relative; padding-left: 20px; border-left: 2px solid var(--primary);">
+                    Effortless immigration, study, and financial setup. Navigate Europe's complex systems with Vesti's bespoke concierge platform.
                 </p>
-
-                <div class="hero-actions" style="display: flex; gap: 20px; position: relative; z-index: 20; align-items: center;">
-                    <button id="hero-btn-qualify" class="btn btn-outline btn-lg" onclick="openEligibilityModal()" style="background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 12px 30px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; height: 48px;">See If You Qualify</button>
-
-
-                    <a href="clarity.html" class="btn btn-success btn-lg"
-                        style="padding: 12px 40px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: white; height: 48px;">
-                        Get Clarity Call
-                    </a>
+                <div style="display: flex; gap: 15px;">
+                    <button onclick="openEligibilityModal()" style="background: var(--bg-main); color: #FFF; border: none; padding: 16px 36px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">Start Your Journey</button>
+                    <a href="clarity.html" style="background: transparent; color: var(--bg-main); border: 1px solid var(--bg-main); padding: 16px 36px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: flex; align-items: center;" onmouseover="this.style.background='var(--bg-main)'; this.style.color='#FFF';" onmouseout="this.style.background='transparent'; this.style.color='var(--bg-main)';">Book Consultation</a>
                 </div>
             </div>
 
-            <!-- Right: Organic Pebble Slideshow of Scenic France Landscapes -->
-            <div class="hero-visual" style="position: relative; display: flex; justify-content: flex-end; width: 100%; max-width: 480px; height: 480px;">
-                <div class="hero-visual-frame" style="box-shadow: 0 20px 45px rgba(0,0,0,0.35); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; overflow: hidden; position: relative;">
-                    <!-- Slides -->
-                    <div class="hero-slide active" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:1; transition: opacity 1s ease-in-out; z-index: 2; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/france_1.png" alt="The Eiffel Tower" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🗼 The Eiffel Tower
-                        </div>
+            <!-- Right Glassmorphic Masonry / Collage -->
+            <div style="position: relative; height: 600px; animation: fadeLeft 1s ease-out forwards;">
+                <!-- Main Image -->
+                <div style="position: absolute; top: 0; right: 0; width: 80%; height: 80%; border-radius: 8px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80" alt="European Architecture" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(0.2) contrast(1.1);">
+                </div>
+                
+                <!-- Floating Glass Card 1 -->
+                <div style="position: absolute; bottom: 10%; left: 0; width: 260px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); padding: 25px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                    <div style="width: 40px; height: 40px; background: var(--bg-main); color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/france_2.png" alt="Mont Saint-Michel" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🏰 Mont Saint-Michel
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/france_3.png" alt="Provence Lavender Fields" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🪻 Provence Lavender Fields
-                        </div>
-                    </div>
-                    <div class="hero-slide" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; z-index: 1; border-radius: inherit; overflow: hidden;">
-                        <img src="assets/france_4.png" alt="The French Riviera" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                        <div class="slide-caption" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(6,14,66,0.95) 0%, rgba(6,14,66,0.6) 50%, rgba(6,14,66,0) 100%); padding: 40px 160px 48px 60px; color: white; font-family: 'Outfit'; font-size: 0.95rem; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; border-radius: inherit;">
-                            🛥️ The French Riviera
-                        </div>
-                    </div>
-                    <!-- Slide controls (dots) in glass capsule centered inside the organic shape -->
-                    <div class="slideshow-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; background: rgba(6, 14, 66, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1.5px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 6px 12px; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
-                        <span class="dot active" onclick="setSlide(0)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 1;"></span>
-                        <span class="dot" onclick="setSlide(1)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                        <span class="dot" onclick="setSlide(2)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                        <span class="dot" onclick="setSlide(3)" style="width: 8px; height: 8px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s; opacity: 0.5;"></span>
-                    </div>
+                    <h4 style="font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: var(--bg-main); margin-bottom: 8px;">Premium Support</h4>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #666; line-height: 1.5; margin: 0;">White-glove service for your visa application and relocation.</p>
                 </div>
 
-                <!-- Floating NZ Flag Badge overlapping organic shape -->
-                <div class="hero-flag-box" style="position: absolute; bottom: 40px; right: 20px; width: 140px; height: 90px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; border: 3px solid white; z-index: 5;">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" style="width: 100%; height: 100%; object-fit: cover;" alt="NZ Flag">
+                <!-- Floating Glass Card 2 -->
+                <div style="position: absolute; top: 15%; left: -10%; background: #FFF; padding: 15px 25px; border-radius: 40px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.08);">
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #888; text-transform: uppercase; font-weight: 600;">Success Rate</span>
+                        <span style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: var(--primary);">98.5%</span>
+                    </div>
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(var(--primary-rgb, 100,200,100), 0.1); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <style>
+            @keyframes fadeRight {
+                from { transform: translateX(-40px); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes fadeLeft {
+                from { transform: translateX(40px); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @media (max-width: 992px) {
+                .eu-magazine-hero .container {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
+                .eu-magazine-hero p {
+                    margin: 0 auto 40px;
+                    border-left: none;
+                    border-top: 2px solid var(--primary);
+                    padding-left: 0;
+                    padding-top: 20px;
+                }
+                .eu-magazine-hero .container > div:last-child {
+                    display: none; /* Hide complex collage on mobile for cleaner look */
+                }
+                .eu-magazine-hero .container > div:first-child > div {
+                    justify-content: center;
+                }
+            }
+        </style>
     </section>
 
                 <!-- Our Services Section -->
