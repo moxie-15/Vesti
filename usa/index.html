@@ -341,32 +341,57 @@
     </section>
 
                 <!-- Our Services Section -->
-    <section class="section-services">
+    <!-- Our Services Section -->
+    <section class="section-services" style="padding: 100px 0; background-color: #F8FAF7; border-top: 1px solid rgba(0,0,0,0.05);">
         <div class="container">
-            <div class="services-header">
-                <h2 class="services-title">Our Core Services</h2>
-                <div class="services-divider"></div>
-                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Discover tailored visa pathways designed to simplify your journey and support your international goals.</p>
+            <div class="services-header" style="text-align: center; margin-bottom: 60px;">
+                <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px;">What We Offer</span>
+                <h2 class="services-title" style="font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 800; color: var(--bg-main); margin-top: 10px; margin-bottom: 20px; letter-spacing: -1px;">Our Core Services</h2>
+                <p style="color: #4A5568; font-size: 1.15rem; max-width: 650px; margin: 0 auto; line-height: 1.6;">Discover tailored mobility pathways designed to simplify your journey and support your global aspirations.</p>
             </div>
             
-            <div class="services-grid">
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                
                 <!-- Card 1 -->
-                <div class="service-card">
-                    <div class="icon-wrapper">
-                          <svg class="service-icon" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: filter 0.3s ease;">
-  <path d="M25 40 V 50 A 15 10 0 0 0 55 50 V 40" fill="#0A3161" />
-  <path d="M40 20 L 10 35 L 40 50 L 70 35 Z" fill="#0A3161" />
-  <path d="M40 35 Q 65 35 65 55" stroke="#0A3161" stroke-width="4" fill="none" />
-  <path d="M62 55 L 68 55 L 70 65 L 65 62 L 60 65 Z" fill="#0A3161" />
-  <circle cx="40" cy="35" r="4" fill="#FFFFFF" />
-</svg>
-                      </div>
-                    <div class="service-content">
-                        <h3>STUDENT VISA</h3>
-                        <p>Unlock world-class education abroad. We assist with proof of funds and securing your study permits.</p>
-                        <a href="clarity.html" class="service-btn">Read More</a>
+                <div class="service-card" style="background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';">
+                    <div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(98, 148, 59, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                     </div>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Student Visa</h3>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Unlock world-class education abroad. We assist with proof of funds and securing your study permits.</p>
+                    <a href="clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
                 </div>
+
+                <!-- Card 2 -->
+                <div class="service-card" style="background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';">
+                    <div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(98, 148, 59, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Work Permit</h3>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Elevate your career internationally. We guide you through employer sponsorships and work authorizations.</p>
+                    <a href="clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card" style="background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';">
+                    <div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(98, 148, 59, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Permanent Residency</h3>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Build your life abroad permanently. Expert assistance with Express Entry and provincial nominations.</p>
+                    <a href="clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card" style="background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';">
+                    <div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(98, 148, 59, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Business Visa</h3>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Expand your enterprise globally. Seamless support for investors, entrepreneurs, and intra-company transfers.</p>
+                    <a href="clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+                </div>
+                
             </div>
         </div>
     </section>
