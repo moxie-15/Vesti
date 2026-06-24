@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Global Mobility | Vesti</title>
 <!-- Official Favicon -->
-<link href="assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -15,102 +15,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link href="pages/countries/all countries/style.css" rel="stylesheet"/>
 <link href="pages/countries/all countries/scrolling.css" rel="stylesheet"/>
-<style>
-        /* Animations */
-        @keyframes glowPulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.2); opacity: 0.4; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes floatIdle { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-
-        .hero-text { position: relative; z-index: 1; animation: fadeInUp 0.8s ease-out forwards; }
-        .hero-masonry > div:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.2s forwards, floatIdle 6s infinite ease-in-out 0.8s; opacity: 0; }
-        .hero-masonry > div:nth-child(2) { animation: fadeInUp 0.8s ease-out 0.4s forwards, floatIdle 7s infinite ease-in-out 1.2s; opacity: 0; }
-        .hero-masonry > div:nth-child(3) { animation: fadeInUp 0.8s ease-out 0.6s forwards, floatIdle 8s infinite ease-in-out 1.6s; opacity: 0; }
-
-        /* Glassmorphism */
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.7) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(90deg, #13110f, #737373);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-    
-        /* Premium Navbar Styling */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-            background-color: rgba(19, 17, 15, 0.95) !important;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .nav-menu a {
-            color: rgba(255, 255, 255, 0.85);
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.2s ease, transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .nav-menu a:hover {
-            color: #FFFFFF;
-            transform: translateY(-1px);
-        }
-        
-        .btn-signin {
-            color: #FFFFFF;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            margin-right: 25px;
-            text-decoration: none;
-            font-size: 15px;
-            transition: opacity 0.2s;
-        }
-        
-        .btn-signin:hover {
-            opacity: 0.8;
-        }
-
-        .btn-create-account {
-            background-color: #f9f5f0;
-            color: #13110f;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 15px;
-            transition: all 0.2s ease;
-            display: inline-block;
-        }
-        
-        .btn-create-account:hover {
-            background-color: #E2E8F0;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-        }
-    
-        </style>
+<link href="assets/css/global-inline.css" rel="stylesheet"/>
 <style>
         .pathway-card {
             position: relative;
@@ -424,9 +329,9 @@
     </li>
 
 </ul>
-<div class="nav-cta">
-<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
-<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+<div class="nav-cta" style="display: flex; align-items: center; gap: 20px;">
+<a class="btn-signin" href="pages/auth/login.html" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='#ccc'" onmouseout="this.style.color='#fff'">Sign In</a>
+<a class="btn btn-primary" href="pages/auth/signup.html" style="background-color: #fff; color: #13110f; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.backgroundColor='#e2e8f0'" onmouseout="this.style.backgroundColor='#fff'">Create an account</a>
 </div>
 </div>
 </nav>
@@ -815,14 +720,6 @@
 <script>
         lucide.createIcons();
     </script>
-
-<!-- Script to trigger modal after a few seconds -->
-<script>
-        setTimeout(() => {
-            document.getElementById('agentModal').classList.add('active');
-            document.getElementById('floatingAgentBtn').style.display = 'none';
-        }, 3000); // Popup appears 3 seconds after page loads
-    </script>
 <!-- Masonry Slideshow Script -->
 <script>
         const masonry1Data = [
@@ -864,7 +761,7 @@
         }, 4000); // Change image and text every 4 seconds
     </script>
 <!-- Live Agent Floating Button -->
-<a href="tel:+1234567890" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #13110f; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(19, 17, 15, 0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s;">
+<a href="javascript:void(0)" onclick="document.getElementById('agentModal').classList.add('active'); this.style.display='none';" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #13110f; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(19, 17, 15, 0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s;">
 <svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
 </a>
 <!-- Agent Helper Modal -->
@@ -876,19 +773,130 @@
             </svg>
         </button>
         
-        <div id="modal-state-initial" style="display: flex; width: 100%; height: 100%;">
+        <div id="modal-state-tutorial" style="display: flex; width: 100%; height: 100%;">
             <div class="agent-modal-left" style="background: url('assets/images/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
                 <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
                 <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
                 <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
             </div>
             <div class="agent-modal-right">
-                <h2 class="agent-title">Need help with your Visa? 👋</h2>
-                <p class="agent-desc">Hi! I'm Bunmi from the Vesti support team. I noticed you're looking at our global mobility pathways. Let me know if you need an expert to guide you through the process!</p>
-                <button class="agent-action-btn" onclick="showAssessmentState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                <h2 class="agent-title">Hi, I'm Bunmi! 👋</h2>
+                <p class="agent-desc">I am your personal AI assistant. I'm here to help you navigate your global mobility options. You can always reach me by clicking the floating phone icon at the bottom right of the screen!</p>
+                <button class="agent-action-btn" onclick="showInitialState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                    Got it, thanks!
+                </button>
+            </div>
+        </div>
+
+        <div id="modal-state-initial" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background: url('assets/images/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+                <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title">Need help with your Visa? 🛂</h2>
+                <p class="agent-desc">I noticed you're looking at our global mobility pathways. Let me know if you need an expert to guide you through the process!</p>
+                <button class="agent-action-btn" onclick="showTestState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                     Talk to a Live Agent
                 </button>
+            </div>
+        </div>
+
+        <div id="modal-state-test" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background-color: #13110f; position: relative;">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+                <div style="position: absolute; bottom: 12px; left: 30px; color: #13110f; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; z-index: 2;">
+                    <span style="width: 8px; height: 8px; background: #13110f; border-radius: 50%; display: inline-block;"></span> Available Now
+                </div>
+            </div>
+            <div class="agent-modal-right" style="position: relative;">
+                <!-- Step 1: Lead Capture -->
+                <div id="test-step-1" style="display: block;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Let's get to know you!</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Please provide your basic information so our legal experts can reach out to you with your personalized roadmap.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="agent-fullname" placeholder="Full Name" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <input type="email" id="agent-email" placeholder="Email Address" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <input type="tel" id="agent-phone" placeholder="Phone Number" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    
+                    <button class="agent-action-btn" onclick="nextTestStep(2)" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Continue</button>
+                </div>
+
+                <!-- Step 2: Professional -->
+                <div id="test-step-2" style="display: none;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Your Professional Profile</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Tell us about what you do.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Primary Profession</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Software Engineer</option>
+                            <option>Founder / Entrepreneur</option>
+                            <option>Researcher / Academic</option>
+                            <option>Artist / Musician</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Years of Experience</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>0 - 3 years</option>
+                            <option>4 - 7 years</option>
+                            <option>8 - 12 years</option>
+                            <option>12+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="agent-action-btn" onclick="nextTestStep(1)" style="padding: 12px 0; font-size: 14px; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer; background:#fff; color:#4A5568; width:30%;">Back</button>
+                        <button class="agent-action-btn" onclick="nextTestStep(3)" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:70%;">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Qualifications -->
+                <div id="test-step-3" style="display: none;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Key Qualifications</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Highlight your top achievements.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Highest Education Level</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Bachelor's Degree</option>
+                            <option>Master's Degree</option>
+                            <option>PhD or equivalent</option>
+                            <option>No Degree</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Do you have international awards or publications?</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Yes, multiple</option>
+                            <option>Yes, a few</option>
+                            <option>Working on it</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="agent-action-btn" onclick="nextTestStep(2)" style="padding: 12px 0; font-size: 14px; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer; background:#fff; color:#4A5568; width:30%;">Back</button>
+                        <button class="agent-action-btn" onclick="finishTestAndShowAssessment()" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:70%;">Calculate Score</button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="test-loading" style="display: none; height: 100%; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width:40px; height:40px; border:4px solid #f9f5f0; border-top-color:#13110f; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px;"></div>
+                    <h3 style="font-family: 'Outfit', sans-serif; margin:0; font-size:18px;">Analyzing your profile...</h3>
+                </div>
+
             </div>
         </div>
         
@@ -936,34 +944,67 @@
         
     </div>
 </div>
-<script id="agent-modal-script">function showAssessmentState(){document.getElementById("modal-state-initial").style.display="none";document.getElementById("modal-state-assessment").style.display="flex"}function submitAssessment(){const rightPanel=document.querySelector("#modal-state-assessment .agent-modal-right");rightPanel.innerHTML=<div style="display:flex; flex-direction:column; height:100%; justify-content:center;"><div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;"><div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div><h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2></div><p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p><div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;"><p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p></div><button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button></div>}setTimeout(()=>{document.getElementById("agentModal").classList.add("active");const btn=document.getElementById("floatingAgentBtn");if(btn)btn.style.display="none"},3000);</script>
 <script id="agent-modal-script">
-        function showAssessmentState() {
-            document.getElementById('modal-state-initial').style.display = 'none';
-            document.getElementById('modal-state-assessment').style.display = 'flex';
+    function showInitialState() {
+        document.getElementById('modal-state-tutorial').style.display = 'none';
+        document.getElementById('modal-state-initial').style.display = 'flex';
+    }
+    
+    function showTestState() {
+        document.getElementById('modal-state-initial').style.display = 'none';
+        document.getElementById('modal-state-test').style.display = 'flex';
+        nextTestStep(1);
+    }
+    
+    function nextTestStep(stepNum) {
+        if (stepNum === 2) {
+            // Basic validation
+            const name = document.getElementById('agent-fullname').value;
+            const email = document.getElementById('agent-email').value;
+            if (!name || !email) {
+                alert("Please provide your name and email to continue.");
+                return;
+            }
         }
         
-        function submitAssessment() {
-            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-            rightPanel.innerHTML = 
-                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
-                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
-                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
-                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
-                    </div>
-                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
-                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
-                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
-                    </div>
-                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
-                </div>
-            ;
-        }
+        document.getElementById('test-step-1').style.display = 'none';
+        document.getElementById('test-step-2').style.display = 'none';
+        document.getElementById('test-step-3').style.display = 'none';
+        document.getElementById('test-step-' + stepNum).style.display = 'block';
+    }
+    
+    function finishTestAndShowAssessment() {
+        document.getElementById('test-step-3').style.display = 'none';
+        document.getElementById('test-loading').style.display = 'flex';
         
         setTimeout(() => {
-            document.getElementById('agentModal').classList.add('active');
-            const btn = document.getElementById('floatingAgentBtn');
-            if (btn) btn.style.display = 'none';
-        }, 3000);
-    </script></body>
+            document.getElementById('modal-state-test').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }, 1500);
+    }
+    
+    function submitAssessment() {
+        const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+        rightPanel.innerHTML = `
+            <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                    <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                    <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                </div>
+                <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                    <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                </div>
+                <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+            </div>
+        `;
+    }
+    
+    // Automatically pop up after 30 seconds
+    setTimeout(() => {
+        document.getElementById('agentModal').classList.add('active');
+        const btn = document.getElementById('floatingAgentBtn');
+        if (btn) btn.style.display = 'none';
+    }, 30000);
+</script></body>
 </html>

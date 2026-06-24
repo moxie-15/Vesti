@@ -91,3 +91,16 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
         }
+
+        /* Floating Agent Button Theme Support */
+        #floatingAgentBtn {
+            background-color: #13110f !important;
+            color: #FFF !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            #floatingAgentBtn {
+                background-color: #f9f5f0 !important;
+                color: #13110f !important;
+            }
+        }

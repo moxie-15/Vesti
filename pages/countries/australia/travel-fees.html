@@ -4,1018 +4,238 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Australia Visa Travel Fee &amp; Cost Estimator | Vesti</title>
-<meta content="Calculate your Australia travel fees, visa application costs, Vesti handling fees, and estimated flight ticket prices in USD and AUD dynamically." name="description"/>
+<title>Global Mobility | Vesti</title>
 <!-- Official Favicon -->
-<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<!-- Tailwind CSS for layout utilities -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<!-- Lucide Icons CDN -->
-<script src="https://unpkg.com/lucide@latest"></script>
+<link href="/assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Custom Vesti Stylesheet -->
-<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="../../../pages/countries/all countries/style.css" rel="stylesheet"/>
+<link href="../../../pages/countries/all countries/scrolling.css" rel="stylesheet"/>
+<link href="../../../assets/css/global-inline.css" rel="stylesheet"/>
 <style>
-        .navbar {
-            background-color: #13110f !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        }
-
-        .calculator-hero-banner {
-            background-color: #13110f !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9f5f0;
-            background-image:
-                radial-gradient(at 0% 0%, rgba(99, 161, 70, 0.08) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(19, 17, 15, 0.03) 0px, transparent 50%);
-            background-size: 100% 100%;
-            color: #13110f;
+        .pathway-card {
             position: relative;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        .font-heading {
-            font-family: 'Outfit', sans-serif;
-        }
-
-        /* Custom Scrollbar for premium feel */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(4, 9, 43, 0.5);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(99, 161, 70, 0.4);
-        }
-
-        /* Form styling focus */
-        input:focus,
-        select:focus {
-            box-shadow: 0 0 0 3px rgba(99, 161, 70, 0.3);
-            outline: none;
-        }
-
-        /* Overlapping aurora glow elements */
-        .aurora-glow-1 {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.15;
-            z-index: 1;
-            pointer-events: none;
-            width: 600px;
-            height: 600px;
-            background: #13110f;
-            top: -150px;
-            right: -100px;
-            animation: pulse-glow 8s infinite alternate;
-        }
-
-        .aurora-glow-2 {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.18;
-            z-index: 1;
-            pointer-events: none;
-            width: 700px;
-            height: 700px;
-            background: #0f4c81;
-            bottom: -150px;
-            left: -200px;
-            animation: pulse-glow 12s infinite alternate-reverse;
-        }
-
-        @keyframes pulse-glow {
-            0% {
-                transform: scale(1) translate(0, 0);
-            }
-
-            100% {
-                transform: scale(1.15) translate(20px, 30px);
-            }
-        }
-
-        @keyframes pulse-dot {
-            0% {
-                transform: scale(0.85);
-                opacity: 0.6;
-            }
-            100% {
-                transform: scale(1.15);
-                opacity: 1;
-            }
-        }
-
-        /* Segmented control for Trip Type */
-        .trip-type-container {
-            display: flex;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 5px;
-            gap: 4px;
-        }
-
-        .trip-type-btn {
-            flex: 1;
-            text-align: center;
-            padding: 12px 16px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            border: none;
-            background: transparent;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .trip-type-btn:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .trip-type-btn.active {
-            background: linear-gradient(135deg, #13110f 0%, #4f8736 100%) !important;
-            color: #ffffff !important;
-            box-shadow: 0 4px 15px rgba(99, 161, 70, 0.35);
-        }
-
-        /* Styled inputs */
-        .glass-input-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            border-radius: 14px;
-            padding: 14px 18px;
-            font-size: 0.9rem;
-            width: 100%;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            backdrop-filter: blur(8px);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
-        }
-
-        .glass-input-field:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-1px);
-        }
-
-        .glass-input-field:focus {
-            border-color: #13110f;
-            background: rgba(255, 255, 255, 0.07);
-            box-shadow: 0 0 20px rgba(99, 161, 70, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.1);
-            outline: none;
-        }
-
-        select.glass-input-field {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 18px center;
-            appearance: none;
-            cursor: pointer;
-        }
-
-        /* Number stepper styling */
-        .stepper-container {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
+            height: 380px;
+            border-radius: 20px;
             overflow: hidden;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .stepper-container:focus-within {
-            border-color: #13110f;
-            box-shadow: 0 0 15px rgba(99, 161, 70, 0.15);
-        }
-
-        .stepper-btn {
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
-            transition: all 0.2s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
-
-        .stepper-btn:hover {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .stepper-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            text-align: center;
-            font-size: 0.95rem;
-            font-weight: 700;
-            width: 100%;
-            height: 48px;
-            pointer-events: none;
-        }
-
-        /* Premium Relocation Add-on Choice Card */
-        .elitepass-select-card {
-            display: block;
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .elitepass-select-card:hover {
-            border-color: rgba(99, 161, 70, 0.3);
-            background: linear-gradient(135deg, rgba(99, 161, 70, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .elitepass-select-card.active-selected {
-            border-color: #13110f;
-            background: linear-gradient(135deg, rgba(99, 161, 70, 0.12) 0%, rgba(19, 17, 15, 0.3) 100%);
-            box-shadow: 0 15px 30px rgba(99, 161, 70, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        /* High-tech Custom Checkboxes */
-        input[type="checkbox"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            vertical-align: middle;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        input[type="checkbox"]:hover {
-            border-color: rgba(99, 161, 70, 0.6);
-            background: rgba(99, 161, 70, 0.05);
-        }
-
-        input[type="checkbox"]:checked {
-            border-color: #13110f;
-            background: #13110f;
-            box-shadow: 0 0 10px rgba(99, 161, 70, 0.4);
-        }
-
-        input[type="checkbox"]:checked::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 2px;
-            width: 4px;
-            height: 8px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-
-        /* â”€â”€ Hero Slideshow Backgrounds â”€â”€ */
-        .calculator-hero-banner {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg-slide {
+        .pathway-bg {
             position: absolute;
             inset: 0;
-            z-index: 0;
             background-size: cover;
             background-position: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .pathway-card:hover .pathway-bg {
+            transform: scale(1.08);
+        }
+        .pathway-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(19, 17, 15, 0.95) 0%, rgba(19, 17, 15, 0.4) 40%, rgba(19, 17, 15, 0) 100%);
+            transition: opacity 0.4s;
+        }
+        .pathway-card:hover .pathway-overlay {
+            opacity: 0.8;
+        }
+        .pathway-title-box {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            z-index: 2;
+            transition: opacity 0.3s, transform 0.4s;
+        }
+        .pathway-card:hover .pathway-title-box {
             opacity: 0;
-            transition: transform 18s linear;
+            transform: translateY(-20px);
+        }
+        .pathway-details {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            padding: 35px 25px 25px;
+            border-radius: 20px;
+            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
+        .pathway-card:hover .pathway-details {
+            bottom: -5px; /* Slight overlap */
+        }
+        .pathway-flag-top {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 46px;
+            height: 46px;
+            background: #FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    .premium-box {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .premium-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.1) !important;
+    }
+</style>
+
+
+    
+
+
+    
+    <style>
+        .agent-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(19, 17, 15, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .agent-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .slide-1 {
-            background-image: linear-gradient(rgba(19, 17, 15, 0.65), rgba(19, 17, 15, 0.75)), url('assets/au-landscape-1.png');
-            animation: fadeSlide1 18s infinite;
-        }
-
-        .slide-2 {
-            background-image: linear-gradient(rgba(19, 17, 15, 0.65), rgba(19, 17, 15, 0.75)), url('assets/au-landscape-2.png');
-            animation: fadeSlide2 18s infinite;
-        }
-
-        .slide-3 {
-            background-image: linear-gradient(rgba(19, 17, 15, 0.65), rgba(19, 17, 15, 0.75)), url('assets/au-landscape-3.png');
-            animation: fadeSlide3 18s infinite;
-        }
-
-        @keyframes fadeSlide1 {
-
-            0%,
-            27.78% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-
-            33.33%,
-            94.44% {
-                opacity: 0;
-                transform: scale(1);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes fadeSlide2 {
-
-            0%,
-            27.78% {
-                opacity: 0;
-                transform: scale(1);
-            }
-
-            33.33%,
-            61.11% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-
-            66.67%,
-            100% {
-                opacity: 0;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeSlide3 {
-
-            0%,
-            61.11% {
-                opacity: 0;
-                transform: scale(1);
-            }
-
-            66.67%,
-            94.44% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-
-            100% {
-                opacity: 0;
-                transform: scale(1);
-            }
-        }
-
-        /* Centering container overriding Tailwind Play CDN */
-        .container {
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-
-        /* Grid Layout Overrides  */
-        .calc-grid {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 20px !important;
-            /* Reduced from 30px */
-            align-items: start !important;
-            margin-top: 24px !important;
-            /* Reduced from 40px */
-            margin-bottom: 60px !important;
-            /* Reduced from 80px */
-            max-width: 1100px !important;
-            width: 100% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-
-        .calc-summary-container {
-            grid-column: span 2 !important;
-            width: 100% !important;
-            margin-top: 10px !important;
-        }
-
-        @media (max-width: 1023px) {
-            .calc-grid {
-                grid-template-columns: 1fr !important;
-                gap: 20px !important;
-            }
-
-            .calc-summary-container {
-                grid-column: span 1 !important;
-            }
-        }
-
-        /* ── Premium Light Theme Container Overrides ── */
-        .calc-form-container {
-            background: #ffffff !important;
-            border: 1px solid rgba(19, 17, 15, 0.05) !important;
-            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.05), 0 0 1px 0 rgba(19, 17, 15, 0.04) !important;
-            border-radius: 24px !important;
-            padding: 24px 28px !important;
-            position: relative;
+        .agent-modal {
+            background: #FFFFFF;
+            width: 90%;
+            max-width: 750px;
+            border-radius: 24px;
+            display: flex;
             overflow: hidden;
-            max-width: 600px !important;
-            width: 100% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-
-        /* Remove dark background radial glow template legacy element */
-        .calc-form-container::before {
-            display: none !important;
-        }
-
-        /* Dark headers and labels for readability on light container */
-        .calc-form-container h2,
-        .calc-card-results h2 {
-            color: #13110f !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.3px !important;
-        }
-
-        .calc-form-container label {
-            color: #475569 !important;
-            font-weight: 600 !important;
-            font-size: 0.8rem !important;
-            margin-bottom: 4px !important;
-            text-transform: none !important;
-            letter-spacing: normal !important;
-            display: block;
-        }
-
-        /* Modern light input field styles */
-        .calc-form-container .glass-input-field {
-            background: #f9f5f0 !important;
-            border: 1px solid #f9f5f0 !important;
-            color: #0f172a !important;
-            border-radius: 12px !important;
-            padding: 10px 14px !important;
-            font-size: 0.875rem !important;
-            width: 100% !important;
-            box-shadow: none !important;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-
-        .calc-form-container .glass-input-field::placeholder {
-            color: #94a3b8 !important;
-        }
-
-        .calc-form-container .glass-input-field:hover {
-            background: #f1f5f9 !important;
-            border-color: #cbd5e1 !important;
-        }
-
-        .calc-form-container .glass-input-field:focus {
-            border-color: #13110f !important;
-            background: #ffffff !important;
-            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.12) !important;
-            outline: none;
-        }
-
-        /* Select dropdown arrow with strict no-repeat & dark arrow */
-        .calc-form-container select.glass-input-field {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
-            background-repeat: no-repeat !important;
-            background-position: right 16px center !important;
-            background-size: 12px !important;
-            appearance: none !important;
-            -webkit-appearance: none !important;
-            padding-right: 36px !important;
-        }
-
-        .calc-form-container select.glass-input-field option {
-            background-color: #ffffff !important;
-            color: #0f172a !important;
-        }
-
-        /* Trip type segmented controls */
-        .calc-form-container .trip-type-container {
-            background: #f1f5f9 !important;
-            border: 1px solid #f9f5f0 !important;
-            border-radius: 12px !important;
-            padding: 3px !important;
-        }
-
-        .calc-form-container .trip-type-btn {
-            color: #475569 !important;
-            font-weight: 600 !important;
-            border-radius: 8px !important;
-            padding: 8px 12px !important;
-            transition: all 0.2s ease !important;
-            background: transparent !important;
-            font-size: 0.85rem !important;
-        }
-
-        .calc-form-container .trip-type-btn:hover {
-            color: #0f172a !important;
-            background: rgba(15, 23, 42, 0.04) !important;
-        }
-
-        .calc-form-container .trip-type-btn.active {
-            background: #13110f !important;
-            color: #ffffff !important;
-            box-shadow: 0 2px 6px rgba(99, 161, 70, 0.15) !important;
-        }
-
-        /* Passengers & Bags Stepper styling */
-        .calc-form-container .stepper-container {
-            background: #f9f5f0 !important;
-            border: 1px solid #f9f5f0 !important;
-            border-radius: 12px !important;
-        }
-
-        .calc-form-container .stepper-container:focus-within {
-            border-color: #13110f !important;
-            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.12) !important;
-        }
-
-        .calc-form-container .stepper-btn {
-            color: #475569 !important;
-            width: 44px !important;
-            height: 44px !important;
-        }
-
-        .calc-form-container .stepper-btn:hover {
-            color: #0f172a !important;
-            background-color: #f9f5f0 !important;
-        }
-
-        .calc-form-container .stepper-input {
-            color: #0f172a !important;
-            height: 44px !important;
-            font-size: 0.95rem !important;
-        }
-
-        /* Elitepass select card styling */
-        .calc-form-container .elitepass-select-card {
-            border: 1px solid #f9f5f0 !important;
-            background: #f9f5f0 !important;
-            border-radius: 16px !important;
-            padding: 14px 16px !important;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-
-        .calc-form-container .elitepass-select-card:hover {
-            border-color: rgba(99, 161, 70, 0.3) !important;
-            background: #f1f5f9 !important;
-        }
-
-        .calc-form-container .elitepass-select-card.active-selected {
-            border-color: #13110f !important;
-            background: #f9f5f0 !important;
-            box-shadow: 0 10px 20px rgba(99, 161, 70, 0.04) !important;
-        }
-
-        .calc-form-container .elitepass-select-card .text-white {
-            color: #13110f !important;
-        }
-
-        .calc-form-container .elitepass-select-card .text-slate-400 {
-            color: #475569 !important;
-        }
-
-        .calc-form-container .elitepass-select-card .text-emerald-400 {
-            color: #1b5e20 !important;
-        }
-
-        /* Custom Checkbox within container - LARGER SIZE (20px) with white background on checked */
-        .calc-form-container input[type="checkbox"],
-        .calc-card-results input[type="checkbox"] {
-            -webkit-appearance: none !important;
-            appearance: none !important;
-            border: 2px solid #cbd5e1 !important;
-            background: #ffffff !important;
-            border-radius: 6px !important;
-            width: 20px !important;
-            height: 20px !important;
-            cursor: pointer !important;
-            transition: all 0.2s ease !important;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            flex-shrink: 0;
+        }
+        
+        .agent-modal-overlay.active .agent-modal {
+            transform: scale(1) translateY(0);
         }
 
-        .calc-form-container input[type="checkbox"]:hover,
-        .calc-card-results input[type="checkbox"]:hover {
-            border-color: #13110f !important;
-        }
-
-        .calc-form-container input[type="checkbox"]:checked,
-        .calc-card-results input[type="checkbox"]:checked {
-            border-color: #13110f !important;
-            background: #13110f !important;
-        }
-
-        .calc-form-container input[type="checkbox"]:checked::after,
-        .calc-card-results input[type="checkbox"]:checked::after {
-            content: "" !important;
-            position: absolute !important;
-            left: 6px !important;
-            top: 2px !important;
-            width: 5px !important;
-            height: 9px !important;
-            border: solid #ffffff !important;
-            border-width: 0 2.5px 2.5px 0 !important;
-            transform: rotate(45deg) !important;
-        }
-
-        /* ── Results Container Light Redesign overrides ── */
-        .calc-card-results {
-            background: #ffffff !important;
-            border: 1px solid rgba(19, 17, 15, 0.05) !important;
-            border-radius: 24px !important;
-            padding: 24px 28px !important;
-            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.05), 0 0 1px 0 rgba(19, 17, 15, 0.04) !important;
-            max-width: 600px !important;
-            width: 100% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-
-        .results-breakdown-list .border-b {
-            border-color: #f1f5f9 !important;
-        }
-
-        .results-breakdown-list h3 {
-            color: #475569 !important;
-            font-weight: 700 !important;
-        }
-
-        /* Checklist rows with larger, cleaner typography and tight spacing */
-        .breakdown-row {
-            font-size: 0.975rem !important;
+        .agent-modal-left {
+            width: 45%;
+            background: #13110f; /* Vesti Green */
+            position: relative;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        /* The decorative background element */
+        .agent-modal-left::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
         }
 
-        .breakdown-label {
-            color: #1e293b !important;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .agent-modal-left img {
+            width: 130%;
+            max-width: none;
+            margin-bottom: -10px;
+            margin-left: -15px;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.3));
         }
 
-        .breakdown-value span.text-white {
-            color: #0f172a !important;
-            font-weight: 700;
-        }
-
-        .breakdown-value span.text-slate-400 {
-            color: #64748b !important;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* Base subtotal row card - Light theme */
-        .results-breakdown-list div.bg-slate-900\/35 {
-            background: #f9f5f0 !important;
-            border: 1px solid #f9f5f0 !important;
-            border-radius: 12px !important;
-            padding: 10px 14px !important;
-            margin-top: 8px !important;
-            margin-bottom: 8px !important;
-        }
-
-        .results-breakdown-list div.bg-slate-900\/35 .breakdown-label {
-            color: #0f172a !important;
-            font-weight: 600;
-            font-size: 0.925rem;
-        }
-
-        /* Insurance config dropdown overrides for light card */
-        #insurance-config-container {
-            background: #ffffff !important;
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 16px !important;
-        }
-
-        #insurance-config-container button {
-            background: #ffffff !important;
-            border: 1px solid #cbd5e1 !important;
-            color: #475569 !important;
-            border-radius: 12px !important;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-
-        #insurance-config-container button:hover {
-            background: #f9f5f0 !important;
-            border-color: #94a3b8 !important;
-            color: #0f172a !important;
-        }
-
-        /* Selected plan styles inside config */
-        #insurance-config-container button.bg-\[\#13110f\]\/5 {
-            border-color: #13110f !important;
-            background: rgba(99, 161, 70, 0.05) !important;
-            color: #0f172a !important;
-            box-shadow: 0 4px 12px rgba(99, 161, 70, 0.08) !important;
-        }
-
-        #ins-summary-title {
-            color: #0f172a !important;
-        }
-
-        #ins-summary-desc {
-            color: #475569 !important;
-        }
-
-        #ins-summary-features div {
-            color: #475569 !important;
-        }
-
-        /* ── Summary Card White Redesign Overrides ── */
-        .calc-card-summary {
-            background: #ffffff !important;
-            border: 1px solid rgba(19, 17, 15, 0.05) !important;
-            border-radius: 24px !important;
-            padding: 24px 32px !important;
-            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.05), 0 0 1px 0 rgba(19, 17, 15, 0.04) !important;
-            width: 100% !important;
-        }
-
-        .summary-grid-container {
-            display: grid !important;
-            grid-template-columns: 1fr 1.3fr !important;
-            gap: 24px !important;
-            align-items: center !important;
-        }
-
-        @media (max-width: 768px) {
-            .summary-grid-container {
-                grid-template-columns: 1fr !important;
-                gap: 20px !important;
-                text-align: center !important;
-            }
-        }
-
-        .results-price-group {
+        .agent-modal-right {
+            width: 55%;
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
-        .results-price-label {
-            color: #475569 !important;
-            font-weight: 600 !important;
-            font-size: 0.8rem !important;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .agent-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #F7FAFC;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #13110f;
+            transition: all 0.2s;
+        }
+        
+        .agent-close-btn:hover {
+            background: #f9f5f0;
+            transform: rotate(90deg);
         }
 
-        .results-price-value-usd {
-            color: #0f172a !important;
-            font-size: 2.25rem !important;
-            font-weight: 800 !important;
-            text-shadow: none !important;
-            margin: 4px 0 !important;
+        .agent-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #13110f;
+            margin: 0 0 15px;
             line-height: 1.1;
         }
 
-        .results-price-value-nzd {
-            color: #15803d !important;
-            font-weight: 700 !important;
-            font-size: 1.05rem !important;
+        .agent-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #4A5568;
+            margin: 0 0 30px;
+            line-height: 1.6;
         }
-
-        .summary-actions {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 12px !important;
-            width: 100% !important;
-        }
-
-        @media (max-width: 640px) {
-            .summary-actions {
-                flex-direction: column !important;
-                gap: 10px !important;
-            }
-        }
-
-        /* Action buttons overrides - Compact py paddings */
-        .summary-actions a.bg-\[\#13110f\] {
-            background-color: #13110f !important;
-            color: #ffffff !important;
-            border-radius: 12px !important;
-            box-shadow: 0 4px 15px rgba(99, 161, 70, 0.2) !important;
-            padding: 14px 20px !important;
-            font-size: 0.925rem !important;
-            font-weight: 700 !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px !important;
-            transition: all 0.2s ease !important;
-            text-decoration: none !important;
-            flex: 1.2;
-        }
-
-        .summary-actions a.bg-\[\#13110f\]:hover {
-            background-color: #3e6f26 !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 6px 20px rgba(99, 161, 70, 0.25) !important;
-        }
-
-        .summary-actions button.bg-\[\#0d1854\] {
-            background-color: #f9f5f0 !important;
-            color: #475569 !important;
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 12px !important;
-            padding: 14px 20px !important;
-            font-size: 0.875rem !important;
-            font-weight: 600 !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px !important;
-            cursor: pointer !important;
-            transition: all 0.2s ease !important;
-            flex: 1;
-        }
-
-        .summary-actions button.bg-\[\#0d1854\]:hover {
-            background-color: #f1f5f9 !important;
-            color: #0f172a !important;
-            border-color: #94a3b8 !important;
-        }
-
-        /* Rate Conversion Alerts underneath the total */
-        /* ── FAQ Section Styles ── */
-        .faq-section {
-            margin-top: 40px !important;
-            margin-bottom: 20px !important;
-            max-width: 1100px !important;
-            width: 100% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-
-        /* Responsive FAQ Grid for Travel Fees page */
-        .responsive-faq-grid {
-            display: grid !important;
-            grid-template-columns: 320px 1fr !important;
-            gap: 80px !important;
-            align-items: start !important;
-        }
-
-        .responsive-faq-grid-left {
-            position: sticky !important;
-            top: 120px !important;
-        }
-
-        @media (max-width: 992px) {
-            .responsive-faq-grid {
-                grid-template-columns: 1fr !important;
-                gap: 32px !important;
-            }
-
-            .responsive-faq-grid-left {
-                position: static !important;
-                /* Remove sticky positioning on mobile */
-            }
-        }
-
-        .faq-container {
-            background: #ffffff !important;
-            border: 1px solid #f9f5f0 !important;
-            border-radius: 16px !important;
-            padding: 24px 30px !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
-        }
-
-        .faq-title {
-            color: #13110f !important;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800 !important;
-            font-size: 1.5rem !important;
-            text-align: center;
-            margin-bottom: 20px !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .faq-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .faq-item {
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 10px !important;
-            background: #f9f5f0 !important;
-            overflow: hidden;
-            transition: all 0.3s ease !important;
-        }
-
-        .faq-item:hover {
-            border-color: #13110f !important;
-            background: #f1f5f9 !important;
-        }
-
-        .faq-item.active {
-            border-color: #13110f !important;
-            background: #ffffff !important;
-            box-shadow: 0 4px 15px rgba(99, 161, 70, 0.06) !important;
-        }
-
-        .faq-trigger {
-            width: 100%;
-            padding: 14px 18px !important;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent;
+        
+        .agent-action-btn {
+            background: #13110f;
+            color: #FFF;
             border: none;
+            padding: 16px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            text-align: left;
-            font-size: 0.925rem !important;
-            font-weight: 700 !important;
-            color: #0f172a !important;
-            outline: none;
-            transition: color 0.2s ease !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
-
-        .faq-trigger:focus {
-            outline: none;
-        }
-
-        .faq-trigger:hover {
-            color: #13110f !important;
-        }
-
-        .faq-icon {
-            width: 16px;
-            height: 16px;
-            color: #475569;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-            flex-shrink: 0;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-            color: #13110f;
-        }
-
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-
-        .faq-content-inner {
-            padding: 0 18px 14px 18px !important;
-            font-size: 0.85rem !important;
-            color: #475569 !important;
-            line-height: 1.6 !important;
-            border-top: 1px solid transparent;
-        }
-
-        .faq-item.active .faq-content-inner {
-            border-top-color: #cbd5e1 !important;
+        
+        .agent-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(19, 17, 15, 0.2);
         }
     </style>
 <style id="custom-dropdown-css">
@@ -1052,39 +272,26 @@
         color: #fff;
     }
 </style>
-<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style></head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
-<!-- Fixed Back Button -->
-<a class="fixed top-5 left-5 flex items-center gap-2 text-slate-300 hover:text-white text-sm font-bold transition-colors duration-200 z-50 bg-[#13110f]/50 backdrop-blur px-4 py-2 rounded-full border border-white/10" href="index.html">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
-<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-        Back to Home
-    </a>
-<!-- Aurora backgrounds for visual depth -->
-<div style="position: absolute; width: 100%; top: 0; left: 0; height: 100%; overflow: hidden; pointer-events: none; z-index: 1;">
-<div class="aurora-glow-1"></div>
-<div class="aurora-glow-2"></div>
-</div>
-<!-- Top Announcement Bar for credibility -->
-<div class="top-announcement-bar">
-<span> Vesti Travel Support: Proudly helping 15,000+ global citizens travel and explore the world.</span>
-</div>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f9f5f0 !important; color: #13110f;">
 <!-- Navigation Bar (Replicated from live wevesti.com) -->
 <nav class="navbar" id="navbar">
 <div class="nav-container">
 <!-- Official Vesti SVG Logo -->
-<a class="logo-area" href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<a class="logo-area" href="../../../../index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
 <svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
-<!-- Top-right yellow-green leaf -->
 <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
-<!-- Left small yellow leaf -->
 <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
-<!-- Middle dark green leaf -->
 <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
 </svg>
 <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
-<span class="au-indicator" style="margin-left:10px;">AU</span>
 </a>
 <ul class="nav-menu" id="nav-menu">
     <li class="dropdown" style="position: relative;">
@@ -1122,26 +329,10 @@
     </li>
 
 </ul>
-</li>
-<li class="dropdown" style="position: relative;">
-<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
-<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
-<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
-<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
-<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
-<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
-<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
-<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
-</ul>
-</li>
-</ul>
-<div class="nav-cta">
-<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
-<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+<div class="nav-cta" style="display: flex; align-items: center; gap: 20px;">
+<a class="btn-signin" href="../../../pages/auth/login.html" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='#ccc'" onmouseout="this.style.color='#fff'">Sign In</a>
+<a class="btn btn-primary" href="../../../pages/auth/signup.html" style="background-color: #fff; color: #13110f; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.backgroundColor='#e2e8f0'" onmouseout="this.style.backgroundColor='#fff'">Create an account</a>
 </div>
-<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
-<i data-lucide="menu"></i>
-</button>
 </div>
 </nav>
 <!-- Mobile Navigation Drawer -->
@@ -1529,767 +720,352 @@
 </div>
 </section>
 <!-- Detailed Vesti Footer -->
-<footer class="footer relative z-10">
-<div class="container mx-auto">
-<div class="footer-grid">
-<!-- Brand col with logo and socials -->
-<div class="footer-brand-col">
-<a class="footer-logo" href="index.html">
-<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                <a href="../../../index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+<svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
 <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
 <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
 <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
 </svg>
-<span class="footer-logo-text">esti</span>
-<span class="au-indicator">AU</span>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:26px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">esti</span>
 </a>
-<!-- Social Icons -->
-<div class="footer-socials">
-<a aria-label="Twitter" class="social-icon-link" href="https://x.com/Vestiofficial" target="_blank">
-<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-</svg>
-</a>
-<a aria-label="LinkedIn" class="social-icon-link" href="https://www.linkedin.com/company/vestiofficial" target="_blank">
-<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-</svg>
-</a>
-<a aria-label="Facebook" class="social-icon-link" href="https://www.facebook.com/wevestiofficial/" target="_blank">
-<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
-</svg>
-</a>
-<a aria-label="Instagram" class="social-icon-link" href="https://www.instagram.com/Vestiofficial" target="_blank">
-<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
-</svg>
-</a>
-</div><div class="footer-col">
-    <h5>INTELLIGENCE</h5>
-    <ul>
-        <li><a href="../../../scoring.html">O-1 Scoring</a></li>
-        <li><a href="../../../eb1a-roadmap.html">EB-1A Roadmap</a></li>
-        <li><a href="../../../niw-builder.html">NIW Builder</a></li>
-        <li><a href="../../../express-entry.html">Express Entry</a></li>
-    </ul>
-</div>
-<div class="footer-col">
-    <h5>HUMAN LAYER</h5>
-    <ul>
-        <li><a href="../../../network.html">Expert Network</a></li>
-        <li><a href="../../../legal-reviews.html">Legal Reviews</a></li>
-        <li><a href="../../../concierge.html">Concierge</a></li>
-        <li><a href="../../../success-stories.html">Success Stories</a></li>
-    </ul>
-</div>
-<div class="footer-col">
-    <h5>COMPANY</h5>
-    <ul>
-        <li><a href="../../../methodology.html">Methodology</a></li>
-        <li><a href="../../../pricing.html">Pricing</a></li>
-        <li><a href="../../../careers.html">Careers</a></li>
-        <li><a href="../../../contact.html">Contact</a></li>
-    </ul>
-</div>
-<div class="footer-col">
-    <h5>LEGAL</h5>
-    <ul>
-        <li><a href="../../../privacy.html">Privacy Policy</a></li>
-        <li><a href="../../../terms.html">Terms of Service</a></li>
-        <li><a href="../../../aml.html">AML</a></li>
-        <li><a href="../../../disclosures.html">Disclosures</a></li>
-    </ul>
-</div><div class="footer-disclaimer">
-<p>Vesti partners with Stripe Payments Company for money transmission services and account services with
-                    funds held at Evolve Bank &amp; Trust, Member FDIC. Vesti Visa® Prepaid Cards are issued by Celtic
-                    Bank®, Member FDIC, pursuant to a license from Visa USA Inc.</p>
-<p style="margin-top: 15px;"><strong>Disclaimer :</strong> Vesti operates differently from a traditional
-                    law firm. We offer limited immigration services through licensed attorneys, but our owners are not
-                    lawyers themselves. This may impact certain protections, such as attorney-client privilege. We are
-                    also independently owned and unaffiliated with any government agency. Before using our services,
-                    please carefully review our privacy policy, terms of use, and fee agreement. Remember, nothing on
-                    our website constitutes legal advice. For personalized legal guidance, always consult a licensed
-                    attorney.</p>
-<p style="margin-top: 20px;">Copyrights © Vesti 2026 | <a href="../../../admin-logs.html" onmouseout="this.style.color='rgba(255,255,255,0.3)'" onmouseover="this.style.color='#13110f'" style="color: rgba(255,255,255,0.3); transition: color 0.2s;">Admin Portal</a></p>
-</div>
-</div>
+                <p style="font-size: 14px; color: #A3A3A3; line-height: 1.6;">The operating system for global talent migration. Built for the ambitious, guided by humans.</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">INTELLIGENCE</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">O-1 Scoring</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">EB-1A Roadmap</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">NIW Builder</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Express Entry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">HUMAN LAYER</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Expert Network</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Legal Reviews</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Concierge</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">COMPANY</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Methodology</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Pricing</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Careers</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">LEGAL</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Terms of Service</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">AML</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; padding-top: 20px; color: #A3A3A3; font-size: 12px; text-align: left;">
+        </div>
+    </div>
 </footer>
-<!-- Scripts Section -->
-<script src="js/countries.js"></script>
+<script src="../../../assets/js/script.js"></script>
 <script>
-        // AUD Conversion Exchange Rate Constants
-        const USD_TO_NZD = 1.63;
+        lucide.createIcons();
+    </script>
+<!-- Masonry Slideshow Script -->
+<script>
+        const masonry1Data = [
+            { img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Know the rules. Skip the queues.' },
+            { img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Discover the heart of Paris' },
+            { img: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Sail through Venice canals' },
+            { img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Business expansion in Dubai' },
+            { img: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Breathtaking Swiss Alps' }
+        ];
+        
+        const masonry2Data = [
+            { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'One place for all travel requirements.' },
+            { img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relax on tropical beaches' },
+            { img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'European mobility options' },
+            { img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Explore the United States' },
+            { img: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Work & live in London' }
+        ];
+        
+        const masonry3Data = [
+            { img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global opportunities await' },
+            { img: 'https://images.unsplash.com/photo-1504150558240-0b4fd8946624?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global visas made easy' },
+            { img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Pack your bags, we handle the rest' },
+            { img: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relocate to Canada fast' },
+            { img: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'New life in Australia' }
+        ];
 
-        // AXA Travel Insurance Options & Pricing (Euros)
-        const INSURANCE_DETAILS = {
-            '2weeks': {
-                basic: { eur: 39.90, name: 'Basic Plan', desc: 'Minimum coverage for Australia visa', features: ['Australia & Oceania coverage', '24/7 emergency medical assistance', '$50,000 USD medical expenses cover', 'Emergency repatriation'] },
-                essential: { eur: 61.00, name: 'Essential Plan', desc: 'Comprehensive medical and travel protection', features: ['$150,000 USD medical expenses cover', 'Australia & Oceania coverage', '24/7 emergency medical assistance', 'Trip cancellation protection'] },
-                premium: { eur: 99.90, name: 'Premium Plan', desc: 'Ultimate peace of mind for your Australia trip', features: ['$500,000 USD medical & liability cover', 'Australia & Oceania coverage', '24/7 priority emergency support', 'Baggage loss & damage protection', 'Flight delay & trip interruption benefits'] }
-            },
-            '1month': {
-                basic: { eur: 57.10, name: 'Basic Plan', desc: 'Minimum coverage for Australia visa', features: ['Australia & Oceania coverage', '24/7 emergency medical assistance', '$50,000 USD medical expenses cover', 'Emergency repatriation'] },
-                essential: { eur: 99.00, name: 'Essential Plan', desc: 'Comprehensive medical and travel protection', features: ['$150,000 USD medical expenses cover', 'Australia & Oceania coverage', '24/7 emergency medical assistance', 'Trip cancellation protection'] },
-                premium: { eur: 149.90, name: 'Premium Plan', desc: 'Ultimate peace of mind for your Australia trip', features: ['$500,000 USD medical & liability cover', 'Australia & Oceania coverage', '24/7 priority emergency support', 'Baggage loss & damage protection', 'Flight delay & trip interruption benefits'] }
-            }
-        };
-
-        const EUR_TO_USD = 1.09; // EUR to USD Conversion Factor
-
-        let selectedInsuranceDuration = '1month';
-        let selectedInsuranceTier = 'basic';
-
-        function setInsuranceDuration(dur) {
-            selectedInsuranceDuration = dur;
-            updateInsuranceDetailsUI();
-            calculateFees();
-        }
-
-        function setInsuranceTier(tier) {
-            selectedInsuranceTier = tier;
-            updateInsuranceDetailsUI();
-            calculateFees();
-        }
-
-        function updateInsuranceDetailsUI() {
-            const plan = INSURANCE_DETAILS[selectedInsuranceDuration][selectedInsuranceTier];
-            const capitalizedTier = selectedInsuranceTier.charAt(0).toUpperCase() + selectedInsuranceTier.slice(1);
-            const durationLabel = selectedInsuranceDuration === '1month' ? '1 Month' : '2 Weeks';
-
-            // Update badge text in the left input card
-            const badge = document.getElementById('insurance-selected-badge');
-            if (badge) badge.textContent = capitalizedTier;
-
-            // Update badge in the right summary card
-            const summaryBadge = document.getElementById('insurance-selected-badge-summary');
-            if (summaryBadge) summaryBadge.textContent = capitalizedTier;
-
-            // Update the AXA dropdown header summary text (duration label)
-            const axaSummaryDuration = document.getElementById('axa-selected-summary-duration');
-            if (axaSummaryDuration) axaSummaryDuration.textContent = `${durationLabel} coverage`;
-
-            // Update plan card details inside the dropdown container (if present)
-            const summaryTitle = document.getElementById('ins-summary-title');
-            const summaryDesc = document.getElementById('ins-summary-desc');
-            if (summaryTitle) summaryTitle.textContent = `${plan.name} (${durationLabel})`;
-            if (summaryDesc) summaryDesc.textContent = plan.desc;
-
-            const featuresList = document.getElementById('ins-summary-features');
-            if (featuresList) {
-                featuresList.innerHTML = '';
-                plan.features.forEach(feat => {
-                    const li = document.createElement('div');
-                    li.className = 'flex items-center gap-2 py-0.5 text-slate-600';
-                    li.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-[#13110f] flex-shrink-0"></i> <span class="font-medium">${feat}</span>`;
-                    featuresList.appendChild(li);
-                });
-            }
-
-            // Update tier buttons styling and checks
-            const tiers = ['basic', 'essential', 'premium'];
-            tiers.forEach(t => {
-                const btn = document.getElementById(`ins-plan-${t}`);
-                const check = document.getElementById(`ins-plan-check-${t}`);
-                if (!btn) return;
-                
-                const labelDiv = btn.querySelector('div');
-                if (t === selectedInsuranceTier) {
-                    btn.style.border = '2px solid #13110f';
-                    btn.style.background = 'linear-gradient(135deg, #f0faf0, #e6f5e0)';
-                    if (labelDiv) {
-                        labelDiv.style.color = '#13110f';
-                    }
-                    if (check) {
-                        check.style.display = 'flex';
-                    }
-                } else {
-                    btn.style.border = '1.5px solid #f9f5f0';
-                    btn.style.background = '#fafafa';
-                    if (labelDiv) {
-                        labelDiv.style.color = '#475569';
-                    }
-                    if (check) {
-                        check.style.display = 'none';
-                    }
-                }
-            });
-
-            // Update duration buttons styling
-            const dur2w = document.getElementById('dur-btn-2weeks');
-            const dur1m = document.getElementById('dur-btn-1month');
-            if (dur2w && dur1m) {
-                if (selectedInsuranceDuration === '2weeks') {
-                    dur2w.style.border = '2px solid #13110f';
-                    dur2w.style.background = '#f0faf0';
-                    dur2w.style.color = '#3E6F26';
-                    
-                    dur1m.style.border = '1.5px solid #f9f5f0';
-                    dur1m.style.background = '#f9f5f0';
-                    dur1m.style.color = '#475569';
-                } else {
-                    dur1m.style.border = '2px solid #13110f';
-                    dur1m.style.background = '#f0faf0';
-                    dur1m.style.color = '#3E6F26';
-                    
-                    dur2w.style.border = '1.5px solid #f9f5f0';
-                    dur2w.style.background = '#f9f5f0';
-                    dur2w.style.color = '#475569';
-                }
-            }
-
-            // Re-render Lucide icons
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                lucide.createIcons();
-            }
-        }
-
-        // AXA Dropdown toggle function
-        let isAxaDropdownOpen = false; // starts collapsed by default
-
-        function toggleAxaDropdown(event) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            const body = document.getElementById('axa-dropdown-body');
-            const chevron = document.getElementById('axa-chevron');
-            const toggleLabel = document.getElementById('axa-toggle-label');
-            if (!body) return;
-
-            isAxaDropdownOpen = !isAxaDropdownOpen;
-
-            if (isAxaDropdownOpen) {
-                body.style.maxHeight = body.scrollHeight + 'px';
-                body.style.opacity = '1';
-                if (chevron) chevron.style.transform = 'rotate(180deg)';
-                if (toggleLabel) toggleLabel.textContent = 'CHANGE PLAN';
-            } else {
-                body.style.maxHeight = '0px';
-                body.style.opacity = '0';
-                if (chevron) chevron.style.transform = 'rotate(0deg)';
-                if (toggleLabel) toggleLabel.textContent = 'VIEW PLAN';
-            }
-        }
-
-
-        // Vesti Wallet Exchange Rates (1 USD = X Local)
-        const VESTI_RATES = {
-            'USD': 1.0,
-            'NGN': 1650.0,
-            'GHS': 15.20,
-            'KES': 135.00
-        };
-
-        const VESTI_SYMBOLS = {
-            'USD': '$',
-            'NGN': '\u20A6', // Naira symbol (₦)
-            'GHS': '\u20B5', // Cedi symbol (₵)
-            'KES': 'KSh ',
-            'AUD': 'AU$'
-        };
-
-        function toggleElitepassCardClass(checkbox) {
-            const label = document.getElementById('elitepass-card-label');
-            if (label) {
-                if (checkbox.checked) label.classList.add('active-selected');
-                else label.classList.remove('active-selected');
-            }
-            calculateFees();
-        }
-
-        function toggleInsuranceCardClass(checkbox) {
-            const label = document.getElementById('insurance-card-label');
-            if (label) {
-                if (checkbox.checked) label.classList.add('active-selected');
-                else label.classList.remove('active-selected');
-            }
-            const leftInsConfig = document.getElementById('insurance-left-config-group');
-            const chevron = document.getElementById('left-insurance-chevron');
-            if (leftInsConfig) {
-                if (!checkbox.checked) {
-                    leftInsConfig.style.display = 'none';
-                    if (chevron) chevron.style.transform = 'rotate(0deg)';
-                }
-            }
-            calculateFees();
-        }
-
-        function toggleLeftInsuranceDropdown(event) {
-            if (event) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
-            const panel = document.getElementById('insurance-left-config-group');
-            const chevron = document.getElementById('left-insurance-chevron');
-            const checkbox = document.getElementById('calc-insurance');
+        let slideIndex = 0;
+        setInterval(() => {
+            slideIndex = (slideIndex + 1) % masonry1Data.length;
             
-            if (!panel || !checkbox) return;
-
-            // Auto-check main insurance checkbox if unchecked
-            if (!checkbox.checked) {
-                checkbox.checked = true;
-                toggleInsuranceCardClass(checkbox);
-            }
-
-            const isOpen = panel.style.display === 'grid';
-            if (isOpen) {
-                panel.style.display = 'none';
-                if (chevron) chevron.style.transform = 'rotate(0deg)';
-            } else {
-                panel.style.display = 'grid';
-                if (chevron) chevron.style.transform = 'rotate(180deg)';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const originSelect = document.getElementById('calc-origin');
-            if (originSelect && typeof COUNTRIES_LIST !== 'undefined') {
-                const sortedCountries = [...COUNTRIES_LIST].sort((a, b) => a.name.localeCompare(b.name));
-                sortedCountries.forEach(country => {
-                    const opt = document.createElement('option');
-                    opt.value = country.name;
-                    opt.textContent = country.name;
-                    if (country.name === 'Nigeria') opt.selected = true;
-                    originSelect.appendChild(opt);
-                });
-            }
-
-            const controlIds = ['calc-origin', 'calc-passengers', 'calc-currency', 'calc-exchange-rate'];
-            controlIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.addEventListener('change', calculateFees);
-                    el.addEventListener('input', calculateFees);
-                }
-            });
-
-            // Handle currency change to update exchange rate input
-            const currencySelect = document.getElementById('calc-currency');
-            const rateContainer = document.getElementById('exchange-rate-container');
-            const rateInput = document.getElementById('calc-exchange-rate');
-            const rateSuffix = document.getElementById('exchange-rate-suffix');
-
-            if (currencySelect) {
-                currencySelect.addEventListener('change', () => {
-                    const curr = currencySelect.value;
-                    if (curr === 'USD') {
-                        rateInput.value = '1.00';
-                        rateSuffix.textContent = 'USD';
-                    } else {
-                        rateInput.value = (VESTI_RATES[curr] || 1.0).toFixed(2);
-                        rateSuffix.textContent = curr;
-                    }
-                    calculateFees();
-                });
-
-                // ── Step 1: Load admin-saved rates from localStorage (works without server) ──
-                try {
-                    const adminRaw = localStorage.getItem('vesti_portal_config_australia');
-                    if (adminRaw) {
-                        const adminCfg = JSON.parse(adminRaw);
-                        const markup = typeof adminCfg.markup === 'number' ? adminCfg.markup : 0;
-                        if (adminCfg.rates) {
-                            Object.keys(adminCfg.rates).forEach(k => {
-                                if (k === 'USD') {
-                                    VESTI_RATES[k] = adminCfg.rates[k];
-                                } else {
-                                    VESTI_RATES[k] = adminCfg.rates[k] * (1 + markup / 100);
-                                }
-                            });
-                        }
-                    }
-                } catch(e) { /* ignore */ }
-
-                // Render immediately with localStorage rates
-                syncAndRecalculate();
-
-                function syncAndRecalculate() {
-                    const curr = currencySelect.value;
-                    if (curr !== 'USD') {
-                        rateInput.value = (VESTI_RATES[curr] || 1.0).toFixed(2);
-                    }
-                    calculateFees();
-                }
-            }
-
-            const navbar = document.getElementById('navbar');
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileDrawer = document.getElementById('mobile-drawer');
-
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
-            });
-
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileDrawer.classList.toggle('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileDrawer.classList.contains('active')) icon.setAttribute('data-lucide', 'x');
-                    else icon.setAttribute('data-lucide', 'menu');
-                    if (typeof lucide !== 'undefined') lucide.createIcons();
-                });
-            }
-
-            const initialSideCheck = document.getElementById('calc-elitepass');
-            if (initialSideCheck) toggleElitepassCardClass(initialSideCheck);
-
-            // Open first FAQ item by default
-            const firstItem = document.querySelector('.vfaq-item.active');
-            if (firstItem) {
-                const content = firstItem.querySelector('.vfaq-content');
-                if (content) content.style.maxHeight = content.scrollHeight + 'px';
-            }
-
-            updateInsuranceDetailsUI();
-            calculateFees();
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        });
-
-        function adjustCount(id, diff) {
-            const input = document.getElementById(id);
-            if (!input) return;
-            let val = parseInt(input.value) || 0;
-            const min = parseInt(input.min) || 0;
-            const max = parseInt(input.max) || 99;
-            val += diff;
-            if (val < min) val = min;
-            if (val > max) val = max;
-            input.value = val;
-            calculateFees();
-        }
-
-        function calculateFees() {
-            const originCountry = document.getElementById('calc-origin').value;
-            const passengers = parseInt(document.getElementById('calc-passengers').value) || 1;
-            const billingCurrency = document.getElementById('calc-currency').value;
-
-            const isVisaChecked = true;
-            const isImmigrationChecked = true;
-            const isIvlChecked = true;
-            const isVestiChecked = true;
-            const isInsuranceChecked = true; // Insurance is always included
-            const isEliteChecked = document.getElementById('calc-elitepass').checked;
-
-            // Insurance row is hidden from table list (redundant with the selector card)
-            const rowInsurance = document.getElementById('row-insurance');
-            if (rowInsurance) rowInsurance.style.display = 'block';
-
-            const rowElite = document.getElementById('row-elite');
-            if (rowElite) {
-                rowElite.style.display = isEliteChecked ? 'flex' : 'none';
-            }
-
-            // Read exchange rate dynamically from the input control
-            const vestiRate = parseFloat(document.getElementById('calc-exchange-rate').value) || 1.0;
-
-            const rateNzdEl = document.getElementById('rate-nzd-display');
-            const rateWalletEl = document.getElementById('rate-wallet-display');
-            if (rateNzdEl) rateNzdEl.textContent = `1 AUD = ${(1 / USD_TO_NZD).toFixed(2)} USD (Official AUD to USD)`;
-            if (rateWalletEl) rateWalletEl.textContent = `1 USD = ${formatCurrencyValue(vestiRate, billingCurrency)} (Vesti Dollar Rate)`;
-
-            // Manage the configuration dropdown container display and toggle button state
-            const insConfigContainer = document.getElementById('insurance-config-container');
-            const insChevron = document.getElementById('insurance-chevron');
-
-            if (insConfigContainer) {
-                if (isInsuranceChecked) {
-                    if (isInsuranceDropdownOpen) {
-                        insConfigContainer.style.display = 'block';
-                        if (insChevron) insChevron.style.transform = 'rotate(180deg)';
-                    } else {
-                        insConfigContainer.style.display = 'none';
-                        if (insChevron) insChevron.style.transform = 'rotate(0deg)';
-                    }
-                } else {
-                    insConfigContainer.style.display = 'none';
-                    if (insChevron) insChevron.style.transform = 'rotate(0deg)';
-                    isInsuranceDropdownOpen = false;
-                }
-            }
-
-            // Read admin-configured fee prices from localStorage
-            let adminFees = {};
-            try {
-                const adminRaw = localStorage.getItem('vesti_portal_config_australia');
-                if (adminRaw) adminFees = JSON.parse(adminRaw).fees || {};
-            } catch(e) {}
-
-            const FEE_VISA_NZD        = adminFees.visaNZD        !== undefined ? adminFees.visaNZD        : 300;
-            const FEE_IMMIGRATION_NZD = adminFees.immigrationNZD !== undefined ? adminFees.immigrationNZD : 41;
-            const FEE_IVL_NZD         = adminFees.ivlNZD         !== undefined ? adminFees.ivlNZD         : 100;
-            const FEE_VESTI_GROSS_USD = adminFees.vestiGrossUSD  !== undefined ? adminFees.vestiGrossUSD  : 1500.00;
-            const FEE_VESTI_NET_USD   = adminFees.vestiNetUSD    !== undefined ? adminFees.vestiNetUSD    : 891.40;
-            const FEE_ELITE_USD       = adminFees.eliteUSD       !== undefined ? adminFees.eliteUSD       : 150.00;
-
-            const visaUSD        = Math.round((FEE_VISA_NZD        * passengers / USD_TO_NZD) * 100) / 100;
-            const immigrationUSD = Math.round((FEE_IMMIGRATION_NZD * passengers / USD_TO_NZD) * 100) / 100;
-            const ivlUSD         = Math.round((FEE_IVL_NZD         * passengers / USD_TO_NZD) * 100) / 100;
-
-            // Dynamic AXA Travel Insurance Pricing
-            const selectedPlan = INSURANCE_DETAILS[selectedInsuranceDuration][selectedInsuranceTier];
-            const insuranceUSD = Math.round((selectedPlan.eur * EUR_TO_USD * passengers) * 100) / 100;
-
-            const visaLocal = Math.round((visaUSD * vestiRate) * 100) / 100;
-            const immigrationLocal = Math.round((immigrationUSD * vestiRate) * 100) / 100;
-            const ivlLocal = Math.round((ivlUSD * vestiRate) * 100) / 100;
-            const insuranceLocal = Math.round((insuranceUSD * vestiRate) * 100) / 100;
-
-            // Dynamically calculate and format individual card prices in the selected currency (per passenger)
-            const basicEur = INSURANCE_DETAILS[selectedInsuranceDuration]['basic'].eur;
-            const essentialEur = INSURANCE_DETAILS[selectedInsuranceDuration]['essential'].eur;
-            const premiumEur = INSURANCE_DETAILS[selectedInsuranceDuration]['premium'].eur;
-
-            const basicUSD = basicEur * EUR_TO_USD;
-            const basicLocal = basicUSD * vestiRate;
-
-            const essentialUSD = essentialEur * EUR_TO_USD;
-            const essentialLocal = essentialUSD * vestiRate;
-
-            const premiumUSD = premiumEur * EUR_TO_USD;
-            const premiumLocal = premiumUSD * vestiRate;
-
-            // Set the prices in the button cards
-            const basicPriceEl = document.getElementById('ins-plan-price-basic');
-            if (basicPriceEl) basicPriceEl.textContent = formatCurrencyValue(basicLocal, billingCurrency);
-
-            const essentialPriceEl = document.getElementById('ins-plan-price-essential');
-            if (essentialPriceEl) essentialPriceEl.textContent = formatCurrencyValue(essentialLocal, billingCurrency);
-
-            const premiumPriceEl = document.getElementById('ins-plan-price-premium');
-            if (premiumPriceEl) premiumPriceEl.textContent = formatCurrencyValue(premiumLocal, billingCurrency);
-
-            // Update the plan summary price to show the total price in selected currency
-            const insSummaryPriceEl = document.getElementById('ins-summary-eur');
-            if (insSummaryPriceEl) {
-                insSummaryPriceEl.textContent = `${formatCurrencyValue(insuranceLocal, billingCurrency)} ${billingCurrency}`;
-            }
-
-            let subtotalUSD = 0, subtotalLocal = 0;
-            if (isVisaChecked) { subtotalUSD += visaUSD; subtotalLocal += visaLocal; }
-            if (isImmigrationChecked) { subtotalUSD += immigrationUSD; subtotalLocal += immigrationLocal; }
-            if (isIvlChecked) { subtotalUSD += ivlUSD; subtotalLocal += ivlLocal; }
-            if (isInsuranceChecked) { subtotalUSD += insuranceUSD; subtotalLocal += insuranceLocal; }
-            subtotalUSD = Math.round(subtotalUSD * 100) / 100;
-            subtotalLocal = Math.round(subtotalLocal * 100) / 100;
-
-            // Vesti service fee: Base is $1500.00, discount is $608.60, making net $891.40 per passenger
-            const eliteUSD = Math.round((isEliteChecked ? FEE_ELITE_USD * passengers : 0) * 100) / 100;
-            const eliteLocal = Math.round((eliteUSD * vestiRate) * 100) / 100;
-
-            let combinedVestiUSD = 0;
-            let vestiDiscountUSD = 0;
-            let vestiNetUSD = 0;
-            if (isVestiChecked) {
-                combinedVestiUSD = FEE_VESTI_GROSS_USD * passengers;
-                vestiNetUSD      = FEE_VESTI_NET_USD   * passengers;
-                vestiDiscountUSD = combinedVestiUSD - vestiNetUSD;
-            }
-            combinedVestiUSD = Math.round(combinedVestiUSD * 100) / 100;
-            vestiDiscountUSD = Math.round(vestiDiscountUSD * 100) / 100;
-            vestiNetUSD = Math.round(vestiNetUSD * 100) / 100;
-
-            const combinedVestiLocal = Math.round((vestiNetUSD * vestiRate) * 100) / 100;
-
-            const totalUSD = Math.round((subtotalUSD + vestiNetUSD + eliteUSD) * 100) / 100;
-            const totalLocal = Math.round((subtotalLocal + combinedVestiLocal + eliteLocal) * 100) / 100;
-            const totalNZD = Math.round((totalUSD * USD_TO_NZD) * 100) / 100;
-
-            if (billingCurrency !== 'USD') {
-                document.getElementById('total-usd-display').textContent = formatCurrencyValue(totalLocal, billingCurrency);
-                document.getElementById('total-nzd-display').textContent = `~ ${formatCurrencyValue(totalUSD, 'USD')} | ~ ${formatCurrencyValue(totalNZD, 'AUD')}`;
-            } else {
-                document.getElementById('total-usd-display').textContent = formatCurrencyValue(totalUSD, 'USD');
-                document.getElementById('total-nzd-display').textContent = `~ ${formatCurrencyValue(totalNZD, 'AUD')}`;
-            }
-
-            const subtotalEl = document.getElementById('subtotal-display');
-            if (subtotalEl) {
-                subtotalEl.textContent = formatCurrencyValue(subtotalLocal, billingCurrency);
-            }
-            document.getElementById('visa-usd-display').textContent = formatCurrencyValue(visaLocal, billingCurrency);
-            document.getElementById('visa-nzd-display').textContent = `(${formatCurrencyValue(300 * passengers, 'AUD')})`;
-            document.getElementById('immigration-usd-display').textContent = formatCurrencyValue(immigrationLocal, billingCurrency);
-            document.getElementById('immigration-nzd-display').textContent = `(${formatCurrencyValue(41 * passengers, 'AUD')})`;
-            document.getElementById('ivl-usd-display').textContent = formatCurrencyValue(ivlLocal, billingCurrency);
-            document.getElementById('ivl-nzd-display').textContent = `(${formatCurrencyValue(100 * passengers, 'AUD')})`;
-            document.getElementById('insurance-usd-display').textContent = formatCurrencyValue(insuranceLocal, billingCurrency);
-            document.getElementById('insurance-nzd-display').textContent = `(${formatCurrencyValue(insuranceUSD * USD_TO_NZD, 'AUD')})`;
+            document.getElementById('masonry-1').style.backgroundImage = `url('${masonry1Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-1').innerText = masonry1Data[slideIndex].text;
             
-            const axaHeaderPrice = document.getElementById('axa-header-price');
-            if (axaHeaderPrice) {
-                axaHeaderPrice.textContent = formatCurrencyValue(insuranceLocal, billingCurrency);
-            }
-            const axaHeaderPriceNzd = document.getElementById('axa-header-price-nzd');
-            if (axaHeaderPriceNzd) {
-                axaHeaderPriceNzd.textContent = `(${formatCurrencyValue(insuranceUSD * USD_TO_NZD, 'AUD')})`;
-            }
+            document.getElementById('masonry-2').style.backgroundImage = `url('${masonry2Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-2').innerText = masonry2Data[slideIndex].text;
+            
+            document.getElementById('masonry-3').style.backgroundImage = `url('${masonry3Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-3').innerText = masonry3Data[slideIndex].text;
+        }, 4000); // Change image and text every 4 seconds
+    </script>
+<!-- Live Agent Floating Button -->
+<a href="javascript:void(0)" onclick="document.getElementById('agentModal').classList.add('active'); this.style.display='none';" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #13110f; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(19, 17, 15, 0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+</a>
+<!-- Agent Helper Modal -->
+<div class="agent-modal-overlay" id="agentModal">
+    <div class="agent-modal">
+        <button class="agent-close-btn" onclick="document.getElementById('agentModal').classList.remove('active'); document.getElementById('floatingAgentBtn').style.display='flex';">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <div id="modal-state-tutorial" style="display: flex; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background: url('assets/images/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+                <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title">Hi, I'm Bunmi! 👋</h2>
+                <p class="agent-desc">I am your personal AI assistant. I'm here to help you navigate your global mobility options. You can always reach me by clicking the floating phone icon at the bottom right of the screen!</p>
+                <button class="agent-action-btn" onclick="showInitialState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                    Got it, thanks!
+                </button>
+            </div>
+        </div>
 
-            // Combined Vesti display
-            document.getElementById('vesti-usd-display').textContent = formatCurrencyValue(combinedVestiLocal, billingCurrency);
-            document.getElementById('vesti-nzd-display').textContent = `~ ${formatCurrencyValue(vestiNetUSD * USD_TO_NZD, 'AUD')}`;
+        <div id="modal-state-initial" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background: url('assets/images/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+                <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title">Need help with your Visa? 🛂</h2>
+                <p class="agent-desc">I noticed you're looking at our global mobility pathways. Let me know if you need an expert to guide you through the process!</p>
+                <button class="agent-action-btn" onclick="showTestState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Talk to a Live Agent
+                </button>
+            </div>
+        </div>
 
-            document.getElementById('elite-usd-display').textContent = formatCurrencyValue(eliteLocal, billingCurrency);
-            document.getElementById('elite-nzd-display').textContent = `~ ${formatCurrencyValue(eliteUSD * USD_TO_NZD, 'AUD')}`;
+        <div id="modal-state-test" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background-color: #13110f; position: relative;">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+                <div style="position: absolute; bottom: 12px; left: 30px; color: #13110f; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; z-index: 2;">
+                    <span style="width: 8px; height: 8px; background: #13110f; border-radius: 50%; display: inline-block;"></span> Available Now
+                </div>
+            </div>
+            <div class="agent-modal-right" style="position: relative;">
+                <!-- Step 1: Lead Capture -->
+                <div id="test-step-1" style="display: block;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Let's get to know you!</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Please provide your basic information so our legal experts can reach out to you with your personalized roadmap.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="agent-fullname" placeholder="Full Name" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <input type="email" id="agent-email" placeholder="Email Address" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <input type="tel" id="agent-phone" placeholder="Phone Number" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    
+                    <button class="agent-action-btn" onclick="nextTestStep(2)" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Continue</button>
+                </div>
 
-            const summaryTotalEl = document.getElementById('summary-total-display');
-            if (summaryTotalEl) summaryTotalEl.textContent = formatCurrencyValue(totalLocal, billingCurrency);
+                <!-- Step 2: Professional -->
+                <div id="test-step-2" style="display: none;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Your Professional Profile</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Tell us about what you do.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Primary Profession</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Software Engineer</option>
+                            <option>Founder / Entrepreneur</option>
+                            <option>Researcher / Academic</option>
+                            <option>Artist / Musician</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Years of Experience</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>0 - 3 years</option>
+                            <option>4 - 7 years</option>
+                            <option>8 - 12 years</option>
+                            <option>12+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="agent-action-btn" onclick="nextTestStep(1)" style="padding: 12px 0; font-size: 14px; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer; background:#fff; color:#4A5568; width:30%;">Back</button>
+                        <button class="agent-action-btn" onclick="nextTestStep(3)" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:70%;">Continue</button>
+                    </div>
+                </div>
 
-            // Dynamic Vesti service fee discount text updating
-            const vestiDiscountEl = document.getElementById('vesti-discount-tag');
-            const vestiOriginalPriceEl = document.getElementById('vesti-original-price');
-            if (vestiDiscountEl) {
-                const origVal = formatCurrencyValue(FEE_VESTI_GROSS_USD * vestiRate, billingCurrency);
-                const savings = formatCurrencyValue((FEE_VESTI_GROSS_USD - FEE_VESTI_NET_USD) * vestiRate, billingCurrency);
-                vestiDiscountEl.innerHTML = `<span class="bg-[#13110f]/10 text-[#13110f] border border-[#13110f]/20 text-[9px] font-bold px-1.5 py-0.5 rounded">Discount Applied</span><span class="text-[10px] text-slate-500 font-medium">Save ${savings}</span>`;
+                <!-- Step 3: Qualifications -->
+                <div id="test-step-3" style="display: none;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Key Qualifications</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Highlight your top achievements.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Highest Education Level</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Bachelor's Degree</option>
+                            <option>Master's Degree</option>
+                            <option>PhD or equivalent</option>
+                            <option>No Degree</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Do you have international awards or publications?</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Yes, multiple</option>
+                            <option>Yes, a few</option>
+                            <option>Working on it</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="agent-action-btn" onclick="nextTestStep(2)" style="padding: 12px 0; font-size: 14px; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer; background:#fff; color:#4A5568; width:30%;">Back</button>
+                        <button class="agent-action-btn" onclick="finishTestAndShowAssessment()" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:70%;">Calculate Score</button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="test-loading" style="display: none; height: 100%; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width:40px; height:40px; border:4px solid #f9f5f0; border-top-color:#13110f; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px;"></div>
+                    <h3 style="font-family: 'Outfit', sans-serif; margin:0; font-size:18px;">Analyzing your profile...</h3>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="modal-state-assessment" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background-color: #13110f; position: relative;">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+                <div style="position: absolute; bottom: 12px; left: 30px; color: #13110f; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; z-index: 2;">
+                    <span style="width: 8px; height: 8px; background: #13110f; border-radius: 50%; display: inline-block;"></span> Available Now
+                </div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title" style="font-size: 28px; margin-bottom: 8px;">Your Global Mobility Score</h2>
+                <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Based on your achievement markers, we identified six pathways. Three are within reach today.</p>
                 
-                if (vestiOriginalPriceEl) {
-                    vestiOriginalPriceEl.textContent = origVal;
-                }
-            }
+                <div class="assessment-cards" style="display: flex; flex-direction: column; gap: 12px; max-height: 350px; overflow-y: auto; padding-right: 10px;">
+                    <div class="pathway-card" style="border: 1px solid #f9f5f0; border-radius: 12px; padding: 16px; background: #f9f5f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin:0; font-family: 'Outfit', sans-serif; font-size: 16px; color: #13110f;">United States | O-1A Visa</h4>
+                            <span style="background: #E2E8F0; color: #13110f; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">84% Match</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; font-size: 12px; color: #4A5568;">
+                            <div><strong>Strength:</strong> Extraordinary</div>
+                            <div><strong>Risk Profile:</strong> Low</div>
+                            <div style="grid-column: span 2;"><strong>Processing:</strong> 15 Days (Premium)</div>
+                        </div>
+                        <button class="agent-action-btn" onclick="submitAssessment()" style="padding: 10px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">View Roadmap</button>
+                    </div>
 
-            // Save numerical pricing data dynamically to sync with payment gateway
-            localStorage.setItem('vesti_payment_amount_usd', totalUSD);
-            localStorage.setItem('vesti_payment_amount_local', totalLocal);
-            localStorage.setItem('vesti_payment_currency', billingCurrency);
-            localStorage.setItem('vesti_payment_rate', vestiRate);
+                    <div class="pathway-card" style="border: 1px solid #f9f5f0; border-radius: 12px; padding: 16px; background: #f9f5f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin:0; font-family: 'Outfit', sans-serif; font-size: 16px; color: #13110f;">United States | EB-1A</h4>
+                            <span style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">61% Match</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; font-size: 12px; color: #4A5568;">
+                            <div><strong>Strength:</strong> Emerging</div>
+                            <div><strong>Gap:</strong> 2 Peer Reviews</div>
+                            <div style="grid-column: span 2;"><strong>Timeline:</strong> 12–18 Months</div>
+                        </div>
+                        <button class="agent-action-btn" onclick="submitAssessment()" style="padding: 10px 0; font-size: 14px; background: #EDF2F7; color: #13110f; border:none; border-radius:8px; cursor:pointer; width:100%;">Bridge the Gap</button>
+                    </div>
+                </div>
 
-            // Item-by-item breakdown states and individual values for checkout.html
-            localStorage.setItem('vesti_visa_checked', isVisaChecked);
-            localStorage.setItem('vesti_visa_price', visaUSD / passengers); 
-            localStorage.setItem('vesti_immigration_checked', isImmigrationChecked);
-            localStorage.setItem('vesti_immigration_price', immigrationUSD / passengers); 
-            localStorage.setItem('vesti_ivl_checked', isIvlChecked);
-            localStorage.setItem('vesti_ivl_price', ivlUSD / passengers); 
-            localStorage.setItem('vesti_insurance_checked', isInsuranceChecked);
-            localStorage.setItem('vesti_insurance_price', insuranceUSD / passengers); 
-            localStorage.setItem('vesti_vesti_checked', isVestiChecked);
-            localStorage.setItem('vesti_vesti_price',    isVestiChecked ? FEE_VESTI_GROSS_USD : 0);
-            localStorage.setItem('vesti_vesti_discount',  isVestiChecked ? (FEE_VESTI_GROSS_USD - FEE_VESTI_NET_USD) : 0);
-            localStorage.setItem('vesti_elite_checked',   isEliteChecked);
-            localStorage.setItem('vesti_elite_price',     isEliteChecked ? FEE_ELITE_USD : 0); 
-        }
-
-        let isInsuranceDropdownOpen = false;
-
-        function toggleInsuranceDropdown(event) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-
-            const checkbox = document.getElementById('item-insurance-checkbox');
-            const container = document.getElementById('insurance-config-container');
-            const chevron = document.getElementById('insurance-chevron');
-
-            if (checkbox && !checkbox.checked) {
-                checkbox.checked = true;
-                isInsuranceDropdownOpen = true;
-                calculateFees(); // Re-run calculations to update the layout and set price
-                if (container) container.style.display = 'block';
-                if (chevron) chevron.style.transform = 'rotate(180deg)';
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script id="agent-modal-script">
+    function showInitialState() {
+        document.getElementById('modal-state-tutorial').style.display = 'none';
+        document.getElementById('modal-state-initial').style.display = 'flex';
+    }
+    
+    function showTestState() {
+        document.getElementById('modal-state-initial').style.display = 'none';
+        document.getElementById('modal-state-test').style.display = 'flex';
+        nextTestStep(1);
+    }
+    
+    function nextTestStep(stepNum) {
+        if (stepNum === 2) {
+            // Basic validation
+            const name = document.getElementById('agent-fullname').value;
+            const email = document.getElementById('agent-email').value;
+            if (!name || !email) {
+                alert("Please provide your name and email to continue.");
                 return;
             }
-
-            isInsuranceDropdownOpen = !isInsuranceDropdownOpen;
-
-            if (container) {
-                if (isInsuranceDropdownOpen) {
-                    container.style.display = 'block';
-                    if (chevron) chevron.style.transform = 'rotate(180deg)';
-                } else {
-                    container.style.display = 'none';
-                    if (chevron) chevron.style.transform = 'rotate(0deg)';
-                }
-            }
-        }
-
-
-        // Vesti-style FAQ Toggle
-        function toggleVFaq(button) {
-            const item = button.parentElement;
-            const content = item.querySelector('.vfaq-content');
-            const icon = button.querySelector('.vfaq-icon');
-            const isActive = item.classList.contains('active');
-
-            // Close all
-            document.querySelectorAll('.vfaq-item').forEach(el => {
-                el.classList.remove('active');
-                el.querySelector('.vfaq-content').style.maxHeight = '0';
-                el.querySelector('.vfaq-icon').textContent = '+';
-            });
-
-            // Open clicked if it was closed
-            if (!isActive) {
-                item.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + 'px';
-                icon.textContent = '\u2212';
-            }
-        }
-
-        function updateRowOpacity(rowId, isActive) {
-            const row = document.getElementById(rowId);
-            if (row) row.style.opacity = isActive ? '1' : '0.45';
-        }
-
-        function formatCurrencyValue(value, currencyCode) {
-            const sym = VESTI_SYMBOLS[currencyCode] || '$';
-            const num = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
-            return `${sym}${num}`;
-        }
-
-        function printEstimate() { window.print(); }
-
-        function savePaymentInfo(event) {
-            const totalUSD = document.getElementById('total-usd-display').textContent;
-            const passengers = document.getElementById('calc-passengers').value;
-
-            localStorage.setItem('vesti_payment_amount', totalUSD);
-            localStorage.setItem('vesti_payment_passengers', passengers);
-
-            // Save selected plan info for the checkout screen summary
-            const plan = INSURANCE_DETAILS[selectedInsuranceDuration][selectedInsuranceTier];
-            const billingCurrency = document.getElementById('calc-currency').value;
-            const vestiRate = parseFloat(document.getElementById('calc-exchange-rate').value) || 1.0;
-            const durationLabel = selectedInsuranceDuration === '1month' ? '1 Month' : '2 Weeks';
-
-            // Converted total price for the selected passengers
-            const insuranceUSD = plan.eur * EUR_TO_USD * passengers;
-            const insuranceLocal = insuranceUSD * vestiRate;
-
-            localStorage.setItem('vesti_insurance_checked', 'true');
-            localStorage.setItem('vesti_insurance_plan_name', `${plan.name} (${durationLabel})`);
-            localStorage.setItem('vesti_insurance_plan_price', formatCurrencyValue(insuranceLocal, billingCurrency));
-        }
-    </script>
-<script id="agent-modal-script">
-        function showAssessmentState() {
-            document.getElementById('modal-state-initial').style.display = 'none';
-            document.getElementById('modal-state-assessment').style.display = 'flex';
         }
         
-        function submitAssessment() {
-            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-            rightPanel.innerHTML = 
-                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
-                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
-                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
-                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
-                    </div>
-                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
-                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
-                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
-                    </div>
-                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
-                </div>
-            ;
-        }
+        document.getElementById('test-step-1').style.display = 'none';
+        document.getElementById('test-step-2').style.display = 'none';
+        document.getElementById('test-step-3').style.display = 'none';
+        document.getElementById('test-step-' + stepNum).style.display = 'block';
+    }
+    
+    function finishTestAndShowAssessment() {
+        document.getElementById('test-step-3').style.display = 'none';
+        document.getElementById('test-loading').style.display = 'flex';
         
         setTimeout(() => {
-            document.getElementById('agentModal').classList.add('active');
-            const btn = document.getElementById('floatingAgentBtn');
-            if (btn) btn.style.display = 'none';
-        }, 3000);
-    </script></body>
+            document.getElementById('modal-state-test').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }, 1500);
+    }
+    
+    function submitAssessment() {
+        const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+        rightPanel.innerHTML = `
+            <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                    <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                    <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                </div>
+                <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                    <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                </div>
+                <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+            </div>
+        `;
+    }
+    
+    // Automatically pop up after 30 seconds
+    setTimeout(() => {
+        document.getElementById('agentModal').classList.add('active');
+        const btn = document.getElementById('floatingAgentBtn');
+        if (btn) btn.style.display = 'none';
+    }, 30000);
+</script></body>
 </html>

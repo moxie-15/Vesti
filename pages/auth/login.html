@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sign Up | Vesti</title>
+    <title>Log In | Vesti</title>
     <link href="/assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,8 +24,8 @@
         .signup-container {
             display: flex;
             width: 100%;
-            max-width: 900px; /* slightly narrower */
-            margin: 4vh auto; /* Centers horizontally, slight push from top */
+            max-width: 900px;
+            margin: 4vh auto;
             background: #fff;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
@@ -87,14 +87,13 @@
         .info-panel .illustration {
             margin-bottom: 45px;
             display: flex;
-            width: 100%;
-            justify-content: space-between;
+            gap: 20px;
             align-items: center;
         }
         
         #icon-main-container {
-            width: 92px;
-            height: 92px;
+            width: 80px;
+            height: 80px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -109,8 +108,8 @@
         }
 
         .glass-badge-sub {
-            width: 64px; 
-            height: 64px; 
+            width: 56px; 
+            height: 56px; 
             background: rgba(255, 255, 255, 0.1); 
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -307,16 +306,16 @@
             <div class="info-content">
                 <div class="illustration">
                     <div id="icon-main-container" style="animation: float1 6s ease-in-out infinite;">
-                        <i id="slide-icon-main" data-lucide="plane" style="width: 56px; height: 56px; color: #FFF; transition: opacity 0.3s ease;"></i>
+                        <i id="slide-icon-main" data-lucide="plane" style="width: 48px; height: 48px; color: #FFF; transition: opacity 0.3s ease;"></i>
                     </div>
                     <div class="glass-badge-sub" id="icon-sub-container" style="animation: float2 5.5s ease-in-out infinite;">
-                        <i id="slide-icon-sub" data-lucide="calendar" style="width: 32px; height: 32px; transition: opacity 0.3s ease;"></i>
+                        <i id="slide-icon-sub" data-lucide="calendar" style="width: 28px; height: 28px; transition: opacity 0.3s ease;"></i>
                     </div>
                     <div class="glass-badge-sub" id="icon-extra1-container" style="animation: float3 7s ease-in-out infinite;">
-                        <i id="slide-icon-extra1" data-lucide="globe" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>
+                        <i id="slide-icon-extra1" data-lucide="globe" style="width: 24px; height: 24px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>
                     </div>
                     <div class="glass-badge-sub" id="icon-extra2-container" style="animation: float4 6.2s ease-in-out infinite;">
-                        <i id="slide-icon-extra2" data-lucide="shield-check" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>
+                        <i id="slide-icon-extra2" data-lucide="shield-check" style="width: 24px; height: 24px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>
                     </div>
                 </div>
                 <h2 id="slide-title" style="transition: opacity 0.3s ease;">Secure Your Global Pathways</h2>
@@ -340,34 +339,32 @@
                 <span>esti</span>
             </a>
 
-            <div style="width: 100%; max-width: 350px; margin-bottom: 25px; text-align: center;">
-                <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; color: #13110f; margin: 0 0 5px;">Create an account</h3>
-                <p style="color: #718096; font-size: 14px; margin: 0;">Start your global journey today.</p>
+            <div style="width: 100%; max-width: 340px; margin-bottom: 25px; text-align: center;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; color: #13110f; margin: 0 0 5px;">Welcome back</h3>
+                <p style="color: #718096; font-size: 14px; margin: 0;">Log in to continue your global journey.</p>
             </div>
 
-            <form style="width: 100%; max-width: 350px;">
+            <form style="width: 100%; max-width: 340px;">
                 <div style="position: relative; margin-bottom: 20px;">
-                    <input type="text" id="fullname" placeholder="Full Name" style="width: 100%; padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 15px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
-                </div>
-                <div style="position: relative; margin-bottom: 20px;">
-                    <input type="email" id="email" placeholder="Email Address" style="width: 100%; padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 15px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
+                    <input type="email" id="email" placeholder="Email Address" style="width: 100%; padding: 14px 16px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 14px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
                 </div>
                 <div style="position: relative; margin-bottom: 25px;">
-                    <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 15px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
+                    <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 14px 16px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 14px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
+                    <div style="text-align: right; margin-top: 8px;">
+                        <a href="#" style="font-size: 13px; color: #718096; text-decoration: none;">Forgot password?</a>
+                    </div>
                 </div>
 
-                <div style="display: flex; gap: 15px; margin-bottom: 20px;">
-                    <button type="button" class="btn-primary" style="flex: 1; height: 54px; padding: 0; margin-bottom: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 16px;" onclick="window.location.href='login.html'">Sign Up</button>
-                    <button type="button" style="flex: 1; height: 54px; padding: 0; margin-bottom: 0; box-sizing: border-box; border: 1px solid #E2E8F0; border-radius: 12px; background: #fff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #13110f; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">
-                        <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
-                        Google
-                    </button>
-                </div>
+                <button type="button" class="btn-primary" style="margin-bottom: 15px;" onclick="window.location.href='../../index.html'">Log In</button>
             </form>
 
-            <p style="font-size: 14px; color: #4A5568; margin-top: 20px; text-align: center;">Already have an account? <a href="login.html" style="color: #13110f; font-weight: 600; text-decoration: none;">Log in</a></p>
+            <div class="divider">Or</div>
 
-            <p class="terms">By clicking "Sign Up," you agree to our <br><a href="#">Privacy Policy</a> and <a href="#">Terms & Conditions</a></p>
+            <button class="btn-social">
+                <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+                Log in with Google
+            </button>
+            <p style="font-size: 14px; color: #4A5568; margin-top: 20px;">Don't have an account? <a href="signup.html" style="color: #13110f; font-weight: 600; text-decoration: none;">Sign up</a></p>
         </div>
     </div>
 
@@ -427,10 +424,10 @@
                 titleEl.innerText = slides[currentSlide].title;
                 descEl.innerText = slides[currentSlide].desc;
                 
-                iconMainContainer.innerHTML = `<i id="slide-icon-main" data-lucide="${slides[currentSlide].iconMain}" style="width: 56px; height: 56px; color: #FFF; transition: opacity 0.3s ease;"></i>`;
-                iconSubContainer.innerHTML = `<i id="slide-icon-sub" data-lucide="${slides[currentSlide].iconSub}" style="width: 32px; height: 32px; transition: opacity 0.3s ease;"></i>`;
-                iconExtra1Container.innerHTML = `<i id="slide-icon-extra1" data-lucide="${slides[currentSlide].iconExtra1}" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>`;
-                iconExtra2Container.innerHTML = `<i id="slide-icon-extra2" data-lucide="${slides[currentSlide].iconExtra2}" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>`;
+                iconMainContainer.innerHTML = `<i id="slide-icon-main" data-lucide="${slides[currentSlide].iconMain}" style="width: 48px; height: 48px; color: #FFF; transition: opacity 0.3s ease;"></i>`;
+                iconSubContainer.innerHTML = `<i id="slide-icon-sub" data-lucide="${slides[currentSlide].iconSub}" style="width: 28px; height: 28px; transition: opacity 0.3s ease;"></i>`;
+                iconExtra1Container.innerHTML = `<i id="slide-icon-extra1" data-lucide="${slides[currentSlide].iconExtra1}" style="width: 24px; height: 24px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>`;
+                iconExtra2Container.innerHTML = `<i id="slide-icon-extra2" data-lucide="${slides[currentSlide].iconExtra2}" style="width: 24px; height: 24px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>`;
                 
                 lucide.createIcons();
                 

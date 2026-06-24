@@ -4,112 +4,238 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AU Pathways Clarity Session Catalog | Vesti</title>
-<meta content="Access Vesti's video catalog for Australia tourist, business, partner, and group pathways. Track your watch progress and prepare your travel applications." name="description"/>
+<title>Global Mobility | Vesti</title>
 <!-- Official Favicon -->
-<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<!-- Tailwind CSS for utility styles -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<!-- Lucide Icons CDN -->
-<script src="https://unpkg.com/lucide@latest"></script>
+<link href="/assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Custom Vesti Styleheet -->
-<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="../../../pages/countries/all countries/style.css" rel="stylesheet"/>
+<link href="../../../pages/countries/all countries/scrolling.css" rel="stylesheet"/>
+<link href="../../../assets/css/global-inline.css" rel="stylesheet"/>
 <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #090c15 0%, #172033 60%, #13110f 100%);
-            background-attachment: fixed;
-            color: #f9f5f0;
+        .pathway-card {
+            position: relative;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        .pathway-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .pathway-card:hover .pathway-bg {
+            transform: scale(1.08);
+        }
+        .pathway-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(19, 17, 15, 0.95) 0%, rgba(19, 17, 15, 0.4) 40%, rgba(19, 17, 15, 0) 100%);
+            transition: opacity 0.4s;
+        }
+        .pathway-card:hover .pathway-overlay {
+            opacity: 0.8;
+        }
+        .pathway-title-box {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            z-index: 2;
+            transition: opacity 0.3s, transform 0.4s;
+        }
+        .pathway-card:hover .pathway-title-box {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .pathway-details {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            padding: 35px 25px 25px;
+            border-radius: 20px;
+            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
+        .pathway-card:hover .pathway-details {
+            bottom: -5px; /* Slight overlap */
+        }
+        .pathway-flag-top {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 46px;
+            height: 46px;
+            background: #FFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    .premium-box {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .premium-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.1) !important;
+    }
+</style>
+
+
+    
+
+
+    
+    <style>
+        .agent-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(19, 17, 15, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .agent-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .font-heading {
+        .agent-modal {
+            background: #FFFFFF;
+            width: 90%;
+            max-width: 750px;
+            border-radius: 24px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .agent-modal-overlay.active .agent-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .agent-modal-left {
+            width: 45%;
+            background: #13110f; /* Vesti Green */
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        /* The decorative background element */
+        .agent-modal-left::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+
+        .agent-modal-left img {
+            width: 130%;
+            max-width: none;
+            margin-bottom: -10px;
+            margin-left: -15px;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.3));
+        }
+
+        .agent-modal-right {
+            width: 55%;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .agent-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #F7FAFC;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #13110f;
+            transition: all 0.2s;
+        }
+        
+        .agent-close-btn:hover {
+            background: #f9f5f0;
+            transform: rotate(90deg);
+        }
+
+        .agent-title {
             font-family: 'Outfit', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #13110f;
+            margin: 0 0 15px;
+            line-height: 1.1;
         }
 
-        /* Override Tailwind border color style conflict */
-        *,
-        ::after,
-        ::before {
-            border-color: rgba(255, 255, 255, 0.1);
+        .agent-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #4A5568;
+            margin: 0 0 30px;
+            line-height: 1.6;
         }
-
-        /* Make Main Content Area White and adjust styles for readability */
-        main {
-            background-color: #ffffff !important;
-            color: #1e293b !important; /* text-slate-800 */
-            margin-top: 0px !important;
-            padding-top: 32px !important;
+        
+        .agent-action-btn {
+            background: #13110f;
+            color: #FFF;
+            border: none;
+            padding: 16px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
-
-        main h1 {
-            color: #13110f !important; /* Vesti Midnight Navy */
-        }
-
-        /* Frameless Video Player layout for a clean, sharp look */
-        .catalog-player-container {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            overflow: visible !important;
-        }
-
-        .video-wrapper {
-            border-radius: 16px !important;
-            overflow: hidden !important;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
-        }
-
-        .yt-metadata-section {
-            padding: 0 !important;
-            margin-top: 20px !important;
-        }
-
-        /* Sidebar Up Next styles for white background */
-        .yt-sidebar-title {
-            color: #13110f !important;
-        }
-
-        .yt-sidebar-info h4 {
-            color: #0f172a !important; /* slate-900 */
-        }
-
-        .yt-sidebar-item {
-            border-left: 3px solid transparent !important;
-        }
-
-        .yt-sidebar-item:hover, .yt-sidebar-item.active {
-            background-color: rgba(0, 0, 0, 0.05) !important;
-        }
-
-        .yt-sidebar-item.active {
-            border-left: 3px solid var(--primary) !important;
-        }
-
-        /* Description Box adjustments for white background */
-        .yt-description-box {
-            background-color: #f9f5f0 !important; /* light slate gray */
-            color: #334155 !important; /* slate-700 */
-            border: 1px solid #f9f5f0 !important;
-            padding: 16px 20px !important;
-            border-radius: 12px !important;
-            margin-top: 14px !important;
-        }
-
-        .yt-video-title {
-            color: #13110f !important;
-            font-size: 1.6rem !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.5px !important;
-            margin-bottom: 8px !important;
-        }
-
-        /* Solid navbar background when scrolled to keep header text readable */
-        .navbar.scrolled {
-            background: #13110f !important;
+        
+        .agent-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(19, 17, 15, 0.2);
         }
     </style>
 <style id="custom-dropdown-css">
@@ -154,33 +280,18 @@
     }
 </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative">
-<!-- Background Aurora Glow Elements for visual depth -->
-<div style="position: absolute; width: 100%; top: 0; left: 0; height: 100%; overflow: hidden; pointer-events: none; z-index: 1;">
-<div style="position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; z-index: 1; pointer-events: none; width: 600px; height: 600px; background: #13110f; top: -150px; right: -100px;">
-</div>
-<div style="position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: 1; pointer-events: none; width: 700px; height: 700px; background: #0f4c81; bottom: -150px; left: -200px;">
-</div>
-</div>
-<!-- Top Announcement Bar for credibility -->
-<div class="top-announcement-bar">
-<span>🚀 Vesti Travel Support: Proudly helping 15,000+ global citizens travel and explore the world.</span>
-</div>
+<body style="margin: 0; padding: 0; background-color: #f9f5f0 !important; color: #13110f;">
 <!-- Navigation Bar (Replicated from live wevesti.com) -->
 <nav class="navbar" id="navbar">
 <div class="nav-container">
 <!-- Official Vesti SVG Logo -->
-<a class="logo-area" href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<a class="logo-area" href="../../../../index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
 <svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
-<!-- Top-right yellow-green leaf -->
 <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
-<!-- Left small yellow leaf -->
 <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
-<!-- Middle dark green leaf -->
 <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
 </svg>
 <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
-<span class="au-indicator" style="margin-left:10px;">AU</span>
 </a>
 <ul class="nav-menu" id="nav-menu">
     <li class="dropdown" style="position: relative;">
@@ -218,26 +329,10 @@
     </li>
 
 </ul>
-</li>
-<li class="dropdown" style="position: relative;">
-<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
-<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
-<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
-<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
-<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
-<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
-<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
-<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
-</ul>
-</li>
-</ul>
-<div class="nav-cta" id="nav-user-actions">
-<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
-<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+<div class="nav-cta" style="display: flex; align-items: center; gap: 20px;">
+<a class="btn-signin" href="../../../pages/auth/login.html" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='#ccc'" onmouseout="this.style.color='#fff'">Sign In</a>
+<a class="btn btn-primary" href="../../../pages/auth/signup.html" style="background-color: #fff; color: #13110f; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.backgroundColor='#e2e8f0'" onmouseout="this.style.backgroundColor='#fff'">Create an account</a>
 </div>
-<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
-<i data-lucide="menu"></i>
-</button>
 </div>
 </nav>
 <!-- Mobile Navigation Drawer -->
@@ -458,7 +553,7 @@
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
             <div style="flex: 1; min-width: 250px; max-width: 350px;">
-                <a href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+                <a href="../../../index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
 <svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
 <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
 <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
@@ -511,506 +606,295 @@
         </div>
     </div>
 </footer>
-<!-- App Logic Scripts -->
+<script src="../../../assets/js/script.js"></script>
 <script>
-        // Track meta descriptions and URLs
-        const visaTracks = {
-            tourist: {
-                title: "Australia Tourist Visa Guide",
-                desc: "Ultimate documentation blueprint for individuals traveling for leisure, holidays, sightseeing, or visiting family.",
-                src: "assets/au-visa-demo.mp4"
-            },
-            business: {
-                title: "Australia Business & Investment Visa Blueprint",
-                desc: "Instructions on visa applications for attending business consultation meetings, conferences, or exploring corporate expansions.",
-                src: "assets/au-visa-demo.mp4"
-            },
-            family: {
-                title: "Australia Family Vacation Guide",
-                desc: "Learn about partner and family visitor requirements, sponsor criteria, and pathway pathways.",
-                src: "assets/au-visa-demo.mp4"
-            },
-            group: {
-                title: "Australia Group Travel Documentation Process",
-                desc: "Guidelines for group travel, tourism companies, organized delegations visa coordination.",
-                src: "assets/au-visa-demo.mp4"
-            }
-        };
-
-        let currentTrack = 'tourist';
-        let currentUser = null;
-        let registeredUsers = [];
-        let videoElement = null;
-        let savedTime = 0;
-
-        // Safe wrapper for Lucide icons
-        const safeCreateIcons = () => {
-            if (typeof lucide !== 'undefined') {
-                try { lucide.createIcons(); } catch (e) { }
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            videoElement = document.getElementById('catalog-video');
-
-            // 1. Mobile Drawer and Nav Scrolled
-            const navbar = document.getElementById('navbar');
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileDrawer = document.getElementById('mobile-drawer');
-
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
-            });
-
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileDrawer.classList.toggle('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileDrawer.classList.contains('active')) {
-                        icon.setAttribute('data-lucide', 'x');
-                    } else {
-                        icon.setAttribute('data-lucide', 'menu');
-                    }
-                    safeCreateIcons();
-                });
-            }
-
-            // 2. Load User Profile
-            loadUserProfile();
-
-            // Add end event listener for auto-advance
-            videoElement.addEventListener('ended', function() {
-                // Find next track key based on currentTrack order
-                const trackKeys = Object.keys(visaTracks);
-                const currentIdx = trackKeys.indexOf(currentTrack);
-                if (currentIdx >= 0 && currentIdx < trackKeys.length - 1) {
-                    const nextKey = trackKeys[currentIdx + 1];
-                    switchVisaTrack(nextKey);
-                }
-                // Mark this track as fully watched
-                const pctElem = document.getElementById(`pct-${currentTrack}`);
-                if (pctElem) {
-                    pctElem.textContent = '100% watched';
-                    pctElem.classList.add('watched');
-                }
-            });
-
-            // 3. Custom video player listeners
-            initVideoPlayer();
-
-            // 4. Load Admin Viewer Tracking List
-            loadAdminTrackingData();
-
-            // 5. Initialize FAQ Accordion
-            initFaqAccordion();
-
-            safeCreateIcons();
-        });
-
-        // Load Current User & State
-        function loadUserProfile() {
-            const rawUser = localStorage.getItem('vesti_current_user');
-            if (rawUser) {
-                currentUser = JSON.parse(rawUser);
-
-                // Load user watched stats from global list if matching
-                const listRaw = localStorage.getItem('vesti_registered_users');
-                if (listRaw) {
-                    registeredUsers = JSON.parse(listRaw);
-                    const matchingUser = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
-                    if (matchingUser) {
-                        currentUser = matchingUser;
-                    }
-                }
-            } else {
-                // Fallback dummy user if page opened directly
-                currentUser = {
-                    name: 'Guest User',
-                    firstName: 'Guest',
-                    email: 'guest@wevesti.com',
-                    country: 'Nigeria',
-                    phone: '+234 812 3456',
-                    watched: { tourist: false, business: false, family: false, group: false }
-                };
-                localStorage.setItem('vesti_current_user', JSON.stringify(currentUser));
-            }
-
-            // Update UI with User Profile Pill in Navbar and Mobile Drawer
-            updateNavbarUserUI();
-
-            updateSideTabsCompletionUI();
-            safeCreateIcons();
-        }
-
-        function updateNavbarUserUI() {
-            const userName = currentUser.firstName || currentUser.name || 'Visitor';
-            const userInitial = userName.charAt(0).toUpperCase();
-
-            // 1. Desktop Navbar Profile Pill
-            const navUserActions = document.getElementById('nav-user-actions');
-            if (navUserActions) {
-                navUserActions.innerHTML = `
-                    <div class="flex items-center gap-3 bg-slate-900/60 border border-white/10 rounded-full pl-2 pr-4 py-1.5 hover:border-white/20 transition-all duration-200 cursor-pointer">
-                        <div class="w-8 h-8 rounded-full bg-[#13110f] text-white flex items-center justify-center font-bold text-sm shadow-md uppercase">
-                            ${userInitial}
-                        </div>
-                        <div class="flex flex-col text-left">
-                            <span class="text-[10px] text-slate-400 font-medium leading-none mb-0.5">Welcome,</span>
-                            <span class="text-xs font-bold text-white leading-none">${userName}</span>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // 2. Mobile Drawer Profile Widget
-            const mobileUserActions = document.getElementById('mobile-user-actions');
-            if (mobileUserActions) {
-                mobileUserActions.innerHTML = `
-                    <div class="flex items-center gap-3 bg-slate-900/60 border border-white/10 rounded-2xl p-4 w-full">
-                        <div class="w-10 h-10 rounded-full bg-[#13110f] text-white flex items-center justify-center font-bold text-base shadow-md uppercase">
-                            ${userInitial}
-                        </div>
-                        <div class="flex flex-col text-left">
-                            <span class="text-xs text-slate-400 font-medium">Welcome back,</span>
-                            <span class="text-sm font-bold text-white">${userName}</span>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function updateSideTabsCompletionUI() {
-            Object.keys(visaTracks).forEach(track => {
-                const isWatched = currentUser.watched[track];
-
-                // Update text
-                const textSpan = document.getElementById(`pct-${track}`);
-                if (textSpan) {
-                    textSpan.textContent = isWatched ? "100% watched" : "0% watched";
-                    textSpan.style.color = isWatched ? "#13110f" : "var(--primary)";
-                }
-            });
-        }
-
-        // Custom Video Player Controls
-        function initVideoPlayer() {
-            // Set up video controls
-            videoElement.addEventListener('timeupdate', updateVideoProgress);
-            videoElement.addEventListener('loadedmetadata', () => {
-                document.getElementById('duration-display').textContent = formatTime(videoElement.duration);
-            });
-            videoElement.addEventListener('ended', onVideoCompleted);
-
-            // Check for continue watch position
-            checkContinueWatchState();
-        }
-
-        function checkContinueWatchState() {
-            const seekKey = `vesti_seek_position_${currentUser.email}_${currentTrack}`;
-            const seekPos = localStorage.getItem(seekKey);
-
-            if (seekPos && parseFloat(seekPos) > 1.5) {
-                savedTime = parseFloat(seekPos);
-
-                videoElement.addEventListener('loadedmetadata', function onMeta() {
-                    const pct = Math.floor((savedTime / videoElement.duration) * 100);
-                    if (pct < 98) {
-                        videoElement.currentTime = savedTime;
-                    }
-                    videoElement.removeEventListener('loadedmetadata', onMeta);
-                });
-            }
-        }
-
-        // Toggle play/pause
-        function togglePlay() {
-            const centerBtn = document.getElementById('center-play-btn');
-            const controlPlayIcon = document.getElementById('play-pause-icon').querySelector('i');
-
-            if (videoElement.paused) {
-                videoElement.play();
-                centerBtn.style.display = 'none';
-                controlPlayIcon.setAttribute('data-lucide', 'pause');
-            } else {
-                videoElement.pause();
-                centerBtn.style.display = 'flex';
-                controlPlayIcon.setAttribute('data-lucide', 'play');
-            }
-            safeCreateIcons();
-        }
-
-        function skipBackward() {
-            videoElement.currentTime = Math.max(0, videoElement.currentTime - 10);
-        }
-
-        function skipForward() {
-            videoElement.currentTime = Math.min(videoElement.duration || 0, videoElement.currentTime + 10);
-        }
-
-        function updateVideoProgress() {
-            const pct = (videoElement.currentTime / videoElement.duration) * 100;
-            document.getElementById('video-progress-fill').style.width = `${pct}%`;
-            document.getElementById('current-time-display').textContent = formatTime(videoElement.currentTime);
-
-            // Save seek position in localStorage every 3 seconds to avoid heavy writing
-            if (Math.floor(videoElement.currentTime) % 2 === 0) {
-                const seekKey = `vesti_seek_position_${currentUser.email}_${currentTrack}`;
-                localStorage.setItem(seekKey, videoElement.currentTime.toString());
-            }
-        }
-
-        function seekVideo(event) {
-            const rect = document.getElementById('video-progress-container').getBoundingClientRect();
-            const clickX = event.clientX - rect.left;
-            const width = rect.width;
-            const newTime = (clickX / width) * videoElement.duration;
-            videoElement.currentTime = newTime;
-        }
-
-        function toggleMute() {
-            const muteBtn = document.getElementById('mute-icon').querySelector('i');
-            videoElement.muted = !videoElement.muted;
-            if (videoElement.muted) {
-                muteBtn.setAttribute('data-lucide', 'volume-x');
-            } else {
-                muteBtn.setAttribute('data-lucide', 'volume-2');
-            }
-            safeCreateIcons();
-        }
-
-        function toggleFullscreen() {
-            if (videoElement.requestFullscreen) {
-                videoElement.requestFullscreen();
-            } else if (videoElement.webkitRequestFullscreen) {
-                videoElement.webkitRequestFullscreen(); // Safari
-            }
-        }
-
-        function onVideoCompleted() {
-            // Auto complete check box
-            toggleWatchedState(true);
-
-            // Reset seek history
-            const seekKey = `vesti_seek_position_${currentUser.email}_${currentTrack}`;
-            localStorage.setItem(seekKey, '0');
-
-            // Play overlay button back
-            document.getElementById('center-play-btn').style.display = 'flex';
-            document.getElementById('play-pause-icon').querySelector('i').setAttribute('data-lucide', 'play');
-            safeCreateIcons();
-        }
-
-        // Switch track tabs
-        function switchVisaTrack(trackId) {
-            if (trackId === currentTrack) return;
-
-            // Toggle active styles on buttons
-            document.querySelectorAll('.yt-sidebar-item').forEach(btn => {
-                if (btn.getAttribute('data-track') === trackId) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            // Set variables
-            currentTrack = trackId;
-            const meta = visaTracks[trackId];
-
-            // Set Player Text
-            document.getElementById('video-title-header').textContent = meta.title;
-            document.getElementById('video-desc-header').textContent = meta.desc;
-
-            // Set Player Source
-            videoElement.src = meta.src;
-
-            // Set completion checkbox checked state (if exists)
-            const isCompleted = currentUser.watched[trackId] || false;
-            const checkboxEl = document.getElementById('watched-checkbox');
-            if (checkboxEl) {
-                checkboxEl.checked = isCompleted;
-            }
-            const checkLabel = document.getElementById('watched-checkbox-label');
-            if (checkLabel) {
-                if (isCompleted) {
-                    checkLabel.classList.add('completed');
-                } else {
-                    checkLabel.classList.remove('completed');
-                }
-            }
-
-            // Play overlay state
-            document.getElementById('center-play-btn').style.display = 'flex';
-            document.getElementById('play-pause-icon').querySelector('i').setAttribute('data-lucide', 'play');
-            safeCreateIcons();
-
-            // Check resume history
-            checkContinueWatchState();
-        }
-
-        // Set watch state
-        function toggleWatchedState(isWatched) {
-            currentUser.watched[currentTrack] = isWatched;
-
-            // Sync checkbox visual check label (if they exist)
-            const checkboxEl = document.getElementById('watched-checkbox');
-            if (checkboxEl) checkboxEl.checked = isWatched;
-
-            const checkLabel = document.getElementById('watched-checkbox-label');
-            if (checkLabel) {
-                if (isWatched) {
-                    checkLabel.classList.add('completed');
-                } else {
-                    checkLabel.classList.remove('completed');
-                }
-            }
-
-            // Save user profile state
-            localStorage.setItem('vesti_current_user', JSON.stringify(currentUser));
-
-            // Save in registered users list
-            const listRaw = localStorage.getItem('vesti_registered_users');
-            if (listRaw) {
-                let list = JSON.parse(listRaw);
-                const idx = list.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
-                if (idx >= 0) {
-                    list[idx].watched = currentUser.watched;
-                    localStorage.setItem('vesti_registered_users', JSON.stringify(list));
-                }
-            }
-
-            // Re-render UI list details
-            updateSideTabsCompletionUI();
-
-            // Refresh Admin tracking list
-            loadAdminTrackingData();
-        }
-
-        // Time Formatter helper
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '00:00';
-            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-            const s = Math.floor(seconds % 60).toString().padStart(2, '0');
-            return `${m}:${s}`;
-        }
-
-        // Slide Admin Drawer Overlay
-        function toggleAdminDrawer() {
-            const drawer = document.getElementById('admin-drawer');
-            const backdrop = document.getElementById('admin-backdrop');
-            if (drawer) drawer.classList.toggle('open');
-            if (backdrop) backdrop.classList.toggle('open');
-            if (drawer && drawer.classList.contains('open')) {
-                loadAdminTrackingData();
-            }
-        }
-
-        // FAQ Accordion Toggle Logic
-        function initFaqAccordion() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const trigger = item.querySelector('.faq-trigger');
-                if (!trigger) return;
-                trigger.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-
-                    // Close all open items
-                    faqItems.forEach(i => {
-                        i.classList.remove('active');
-                        const icon = i.querySelector('.faq-icon');
-                        if (icon) icon.innerHTML = '&plus;';
-                    });
-
-                    // If it wasn't active, open it
-                    if (!isActive) {
-                        item.classList.add('active');
-                        const icon = item.querySelector('.faq-icon');
-                        if (icon) icon.innerHTML = '&minus;';
-                    }
-                });
-            });
-        }
-
-        function loadAdminTrackingData() {
-            const tableBody = document.getElementById('admin-table-body');
-            if (!tableBody) return;
-            const rawUsers = localStorage.getItem('vesti_registered_users');
-
-            if (rawUsers) {
-                registeredUsers = JSON.parse(rawUsers);
-                if (registeredUsers.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-8 text-slate-500">No viewers registered yet.</td></tr>`;
-                    return;
-                }
-
-                tableBody.innerHTML = '';
-                registeredUsers.forEach(user => {
-                    const row = document.createElement('tr');
-
-                    // Progress badges mapping
-                    const getBadge = (watchedVal) => {
-                        return watchedVal
-                            ? `<span class="admin-status-badge watched"><i data-lucide="check" class="inline w-3 h-3 mr-0.5"></i>Yes</span>`
-                            : `<span class="admin-status-badge pending">No</span>`;
-                    };
-
-                    const tBadge = getBadge(user.watched.tourist);
-                    const bBadge = getBadge(user.watched.business);
-                    const fBadge = getBadge(user.watched.family);
-                    const gBadge = getBadge(user.watched.group);
-
-                    row.innerHTML = `
-                        <td class="py-3">
-                            <div class="font-semibold text-white text-xs">${user.name || (user.firstName + ' ' + user.lastName)}</div>
-                            <div class="text-[10px] text-slate-400 font-medium">${user.email}</div>
-                        </td>
-                        <td class="text-xs font-medium text-slate-300 py-3">${user.country || 'N/A'}</td>
-                        <td class="text-xs font-mono text-slate-400 py-3">${user.phone || 'N/A'}</td>
-                        <td class="py-3">
-                            <div class="flex items-center gap-1.5 flex-wrap">
-                                <span class="text-[10px] text-slate-500">Tour:</span> ${tBadge}
-                                <span class="text-[10px] text-slate-500 ml-1">Biz:</span> ${bBadge}
-                                <span class="text-[10px] text-slate-500 ml-1">Fam:</span> ${fBadge}
-                                <span class="text-[10px] text-slate-500 ml-1">Grp:</span> ${gBadge}
-                            </div>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            } else {
-                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-8 text-slate-500">No viewers registered yet.</td></tr>`;
-            }
-            safeCreateIcons();
-        }
+        lucide.createIcons();
     </script>
+<!-- Masonry Slideshow Script -->
+<script>
+        const masonry1Data = [
+            { img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Know the rules. Skip the queues.' },
+            { img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Discover the heart of Paris' },
+            { img: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Sail through Venice canals' },
+            { img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Business expansion in Dubai' },
+            { img: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Breathtaking Swiss Alps' }
+        ];
+        
+        const masonry2Data = [
+            { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'One place for all travel requirements.' },
+            { img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relax on tropical beaches' },
+            { img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'European mobility options' },
+            { img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Explore the United States' },
+            { img: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Work & live in London' }
+        ];
+        
+        const masonry3Data = [
+            { img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global opportunities await' },
+            { img: 'https://images.unsplash.com/photo-1504150558240-0b4fd8946624?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global visas made easy' },
+            { img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Pack your bags, we handle the rest' },
+            { img: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relocate to Canada fast' },
+            { img: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'New life in Australia' }
+        ];
+
+        let slideIndex = 0;
+        setInterval(() => {
+            slideIndex = (slideIndex + 1) % masonry1Data.length;
+            
+            document.getElementById('masonry-1').style.backgroundImage = `url('${masonry1Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-1').innerText = masonry1Data[slideIndex].text;
+            
+            document.getElementById('masonry-2').style.backgroundImage = `url('${masonry2Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-2').innerText = masonry2Data[slideIndex].text;
+            
+            document.getElementById('masonry-3').style.backgroundImage = `url('${masonry3Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-3').innerText = masonry3Data[slideIndex].text;
+        }, 4000); // Change image and text every 4 seconds
+    </script>
+<!-- Live Agent Floating Button -->
+<a href="javascript:void(0)" onclick="document.getElementById('agentModal').classList.add('active'); this.style.display='none';" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #13110f; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(19, 17, 15, 0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+</a>
+<!-- Agent Helper Modal -->
+<div class="agent-modal-overlay" id="agentModal">
+    <div class="agent-modal">
+        <button class="agent-close-btn" onclick="document.getElementById('agentModal').classList.remove('active'); document.getElementById('floatingAgentBtn').style.display='flex';">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <div id="modal-state-tutorial" style="display: flex; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background: url('assets/images/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+                <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title">Hi, I'm Bunmi! 👋</h2>
+                <p class="agent-desc">I am your personal AI assistant. I'm here to help you navigate your global mobility options. You can always reach me by clicking the floating phone icon at the bottom right of the screen!</p>
+                <button class="agent-action-btn" onclick="showInitialState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                    Got it, thanks!
+                </button>
+            </div>
+        </div>
+
+        <div id="modal-state-initial" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background: url('assets/images/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+                <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title">Need help with your Visa? 🛂</h2>
+                <p class="agent-desc">I noticed you're looking at our global mobility pathways. Let me know if you need an expert to guide you through the process!</p>
+                <button class="agent-action-btn" onclick="showTestState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Talk to a Live Agent
+                </button>
+            </div>
+        </div>
+
+        <div id="modal-state-test" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background-color: #13110f; position: relative;">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+                <div style="position: absolute; bottom: 12px; left: 30px; color: #13110f; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; z-index: 2;">
+                    <span style="width: 8px; height: 8px; background: #13110f; border-radius: 50%; display: inline-block;"></span> Available Now
+                </div>
+            </div>
+            <div class="agent-modal-right" style="position: relative;">
+                <!-- Step 1: Lead Capture -->
+                <div id="test-step-1" style="display: block;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Let's get to know you!</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Please provide your basic information so our legal experts can reach out to you with your personalized roadmap.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="agent-fullname" placeholder="Full Name" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <input type="email" id="agent-email" placeholder="Email Address" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <input type="tel" id="agent-phone" placeholder="Phone Number" style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box;">
+                    </div>
+                    
+                    <button class="agent-action-btn" onclick="nextTestStep(2)" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Continue</button>
+                </div>
+
+                <!-- Step 2: Professional -->
+                <div id="test-step-2" style="display: none;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Your Professional Profile</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Tell us about what you do.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Primary Profession</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Software Engineer</option>
+                            <option>Founder / Entrepreneur</option>
+                            <option>Researcher / Academic</option>
+                            <option>Artist / Musician</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Years of Experience</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>0 - 3 years</option>
+                            <option>4 - 7 years</option>
+                            <option>8 - 12 years</option>
+                            <option>12+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="agent-action-btn" onclick="nextTestStep(1)" style="padding: 12px 0; font-size: 14px; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer; background:#fff; color:#4A5568; width:30%;">Back</button>
+                        <button class="agent-action-btn" onclick="nextTestStep(3)" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:70%;">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Qualifications -->
+                <div id="test-step-3" style="display: none;">
+                    <h2 class="agent-title" style="font-size: 22px; margin-bottom: 8px;">Key Qualifications</h2>
+                    <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Highlight your top achievements.</p>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Highest Education Level</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Bachelor's Degree</option>
+                            <option>Master's Degree</option>
+                            <option>PhD or equivalent</option>
+                            <option>No Degree</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display:block; font-size:12px; font-weight:600; margin-bottom:6px; color:#4A5568;">Do you have international awards or publications?</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; box-sizing: border-box; background:#fff;">
+                            <option>Yes, multiple</option>
+                            <option>Yes, a few</option>
+                            <option>Working on it</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="agent-action-btn" onclick="nextTestStep(2)" style="padding: 12px 0; font-size: 14px; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer; background:#fff; color:#4A5568; width:30%;">Back</button>
+                        <button class="agent-action-btn" onclick="finishTestAndShowAssessment()" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:70%;">Calculate Score</button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="test-loading" style="display: none; height: 100%; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width:40px; height:40px; border:4px solid #f9f5f0; border-top-color:#13110f; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px;"></div>
+                    <h3 style="font-family: 'Outfit', sans-serif; margin:0; font-size:18px;">Analyzing your profile...</h3>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="modal-state-assessment" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background-color: #13110f; position: relative;">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+                <div style="position: absolute; bottom: 12px; left: 30px; color: #13110f; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; z-index: 2;">
+                    <span style="width: 8px; height: 8px; background: #13110f; border-radius: 50%; display: inline-block;"></span> Available Now
+                </div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title" style="font-size: 28px; margin-bottom: 8px;">Your Global Mobility Score</h2>
+                <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Based on your achievement markers, we identified six pathways. Three are within reach today.</p>
+                
+                <div class="assessment-cards" style="display: flex; flex-direction: column; gap: 12px; max-height: 350px; overflow-y: auto; padding-right: 10px;">
+                    <div class="pathway-card" style="border: 1px solid #f9f5f0; border-radius: 12px; padding: 16px; background: #f9f5f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin:0; font-family: 'Outfit', sans-serif; font-size: 16px; color: #13110f;">United States | O-1A Visa</h4>
+                            <span style="background: #E2E8F0; color: #13110f; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">84% Match</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; font-size: 12px; color: #4A5568;">
+                            <div><strong>Strength:</strong> Extraordinary</div>
+                            <div><strong>Risk Profile:</strong> Low</div>
+                            <div style="grid-column: span 2;"><strong>Processing:</strong> 15 Days (Premium)</div>
+                        </div>
+                        <button class="agent-action-btn" onclick="submitAssessment()" style="padding: 10px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">View Roadmap</button>
+                    </div>
+
+                    <div class="pathway-card" style="border: 1px solid #f9f5f0; border-radius: 12px; padding: 16px; background: #f9f5f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin:0; font-family: 'Outfit', sans-serif; font-size: 16px; color: #13110f;">United States | EB-1A</h4>
+                            <span style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">61% Match</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; font-size: 12px; color: #4A5568;">
+                            <div><strong>Strength:</strong> Emerging</div>
+                            <div><strong>Gap:</strong> 2 Peer Reviews</div>
+                            <div style="grid-column: span 2;"><strong>Timeline:</strong> 12–18 Months</div>
+                        </div>
+                        <button class="agent-action-btn" onclick="submitAssessment()" style="padding: 10px 0; font-size: 14px; background: #EDF2F7; color: #13110f; border:none; border-radius:8px; cursor:pointer; width:100%;">Bridge the Gap</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+</div>
 <script id="agent-modal-script">
-        function showAssessmentState() {
-            document.getElementById('modal-state-initial').style.display = 'none';
-            document.getElementById('modal-state-assessment').style.display = 'flex';
+    function showInitialState() {
+        document.getElementById('modal-state-tutorial').style.display = 'none';
+        document.getElementById('modal-state-initial').style.display = 'flex';
+    }
+    
+    function showTestState() {
+        document.getElementById('modal-state-initial').style.display = 'none';
+        document.getElementById('modal-state-test').style.display = 'flex';
+        nextTestStep(1);
+    }
+    
+    function nextTestStep(stepNum) {
+        if (stepNum === 2) {
+            // Basic validation
+            const name = document.getElementById('agent-fullname').value;
+            const email = document.getElementById('agent-email').value;
+            if (!name || !email) {
+                alert("Please provide your name and email to continue.");
+                return;
+            }
         }
         
-        function submitAssessment() {
-            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-            rightPanel.innerHTML = 
-                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
-                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
-                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
-                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
-                    </div>
-                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
-                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
-                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
-                    </div>
-                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
-                </div>
-            ;
-        }
+        document.getElementById('test-step-1').style.display = 'none';
+        document.getElementById('test-step-2').style.display = 'none';
+        document.getElementById('test-step-3').style.display = 'none';
+        document.getElementById('test-step-' + stepNum).style.display = 'block';
+    }
+    
+    function finishTestAndShowAssessment() {
+        document.getElementById('test-step-3').style.display = 'none';
+        document.getElementById('test-loading').style.display = 'flex';
         
         setTimeout(() => {
-            document.getElementById('agentModal').classList.add('active');
-            const btn = document.getElementById('floatingAgentBtn');
-            if (btn) btn.style.display = 'none';
-        }, 3000);
-    </script></body>
+            document.getElementById('modal-state-test').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }, 1500);
+    }
+    
+    function submitAssessment() {
+        const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+        rightPanel.innerHTML = `
+            <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                    <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                    <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                </div>
+                <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                    <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                </div>
+                <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+            </div>
+        `;
+    }
+    
+    // Automatically pop up after 30 seconds
+    setTimeout(() => {
+        document.getElementById('agentModal').classList.add('active');
+        const btn = document.getElementById('floatingAgentBtn');
+        if (btn) btn.style.display = 'none';
+    }, 30000);
+</script></body>
 </html>
