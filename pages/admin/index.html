@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Vesti Admin</title>
+    <!-- Official Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../../assets/css/admin.css">
+<style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <svg width="24" height="28" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF" />
+                <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF" />
+                <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#13110f" />
+            </svg>
+            <span>esti Admin</span>
+        </div>
+        <nav class="admin-nav">
+            <a href="index.html" class="admin-nav-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+            <a href="users.html" class="admin-nav-item"><i data-lucide="users"></i> Users</a>
+            <a href="assessments.html" class="admin-nav-item"><i data-lucide="clipboard-check"></i> Assessments</a>
+            <a href="pathways.html" class="admin-nav-item"><i data-lucide="map"></i> Pathways</a>
+            <a href="#" class="admin-nav-item"><i data-lucide="settings"></i> Settings</a>
+        <style>.dropdown:hover .dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+</nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-search">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Search users, assessments...">
+            </div>
+            <div class="header-actions">
+                <button class="header-action-btn"><i data-lucide="bell"></i></button>
+                <div class="header-profile">
+                    <div class="profile-avatar">M</div>
+                    <span style="font-weight: 500; font-size: 14px;">Moxie</span>
+                    <i data-lucide="chevron-down" style="width: 16px; color: var(--admin-text-muted);"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="admin-content">
+            <h1 class="page-title">Dashboard Overview</h1>
+
+            <!-- Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Total Users</span>
+                        <div class="metric-icon"><i data-lucide="users"></i></div>
+                    </div>
+                    <div class="metric-value">12,482</div>
+                    <div class="metric-trend trend-up">
+                        <i data-lucide="trending-up" style="width: 14px;"></i>
+                        <span>+12% from last month</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Active Assessments</span>
+                        <div class="metric-icon"><i data-lucide="clipboard-list"></i></div>
+                    </div>
+                    <div class="metric-value">843</div>
+                    <div class="metric-trend trend-up">
+                        <i data-lucide="trending-up" style="width: 14px;"></i>
+                        <span>+5% from last month</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Pending Visas</span>
+                        <div class="metric-icon"><i data-lucide="file-clock"></i></div>
+                    </div>
+                    <div class="metric-value">156</div>
+                    <div class="metric-trend trend-down">
+                        <i data-lucide="trending-down" style="width: 14px;"></i>
+                        <span>-2% from last month</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Success Rate</span>
+                        <div class="metric-icon"><i data-lucide="award"></i></div>
+                    </div>
+                    <div class="metric-value">94.2%</div>
+                    <div class="metric-trend trend-up">
+                        <i data-lucide="trending-up" style="width: 14px;"></i>
+                        <span>+1.2% from last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Bottom Sections -->
+            <div class="dashboard-sections">
+                <!-- Recent Assessments Table -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">Recent Assessments</h2>
+                        <a href="assessments.html" style="font-size: 13px; color: var(--admin-accent); font-weight: 600; text-decoration: none;">View All</a>
+                    </div>
+                    <div class="admin-card-body">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Target Country</th>
+                                    <th>Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: 500;">Oluwaseun Adebayo</td>
+                                    <td>United Kingdom</td>
+                                    <td>85/100</td>
+                                    <td><span class="badge badge-approved">Approved</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Chioma Nnamdi</td>
+                                    <td>United States (O-1)</td>
+                                    <td>92/100</td>
+                                    <td><span class="badge badge-approved">Approved</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Kwame Mensah</td>
+                                    <td>Canada</td>
+                                    <td>65/100</td>
+                                    <td><span class="badge badge-pending">Pending Review</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Aisha Bello</td>
+                                    <td>Australia</td>
+                                    <td>78/100</td>
+                                    <td><span class="badge badge-pending">Pending Review</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Activity Feed -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">Recent Activity</h2>
+                    </div>
+                    <div class="admin-card-body activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon"><i data-lucide="user-plus" style="width: 16px;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Tunde Ali</strong> created a new account.</p>
+                                <span class="activity-time">5 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #DEF7EC; color: #03543F;"><i data-lucide="check-circle" style="width: 16px;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Bunmi (Agent)</strong> approved O-1 Visa for Chioma Nnamdi.</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background-color: #FEF3C7; color: #D97706;"><i data-lucide="alert-circle" style="width: 16px;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>System</strong> flagged assessment #4892 for manual review.</p>
+                                <span class="activity-time">5 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+<footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                <a href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+<svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:26px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">esti</span>
+</a>
+                <p style="font-size: 14px; color: #A3A3A3; line-height: 1.6;">The operating system for global talent migration. Built for the ambitious, guided by humans.</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">INTELLIGENCE</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">O-1 Scoring</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">EB-1A Roadmap</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">NIW Builder</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Express Entry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">HUMAN LAYER</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Expert Network</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Legal Reviews</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Concierge</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">COMPANY</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Methodology</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Pricing</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Careers</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">LEGAL</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Terms of Service</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">AML</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; padding-top: 20px; color: #A3A3A3; font-size: 12px; text-align: left;">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

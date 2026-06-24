@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Checkout | Vesti</title>
+<meta content="Secure payment gateway checkout portal." name="description"/>
+<!-- Official Favicon -->
+<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Tailwind CSS v4 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Custom Checkout Pricing Script -->
+<script src="checkout-pricing.js"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f5f0;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(99, 161, 70, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(19, 17, 15, 0.03) 0px, transparent 50%);
+            background-size: 100% 100%;
+            color: #13110f;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 1rem;
+        }
+
+        /* Floating background glowing circles - Vesti Leaf Green & Midnight Navy */
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+        }
+        .glow-blob-1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #13110f 0%, rgba(99, 161, 70, 0) 100%);
+            bottom: -100px;
+            right: -100px;
+            animation: pulse-glow 9s infinite alternate;
+        }
+        .glow-blob-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #13110f 0%, rgba(19, 17, 15, 0) 100%);
+            top: -150px;
+            right: 15%;
+            animation: pulse-glow 14s infinite alternate-reverse;
+        }
+        .glow-blob-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #13110f 0%, rgba(0, 199, 88, 0) 100%);
+            bottom: 20%;
+            left: -150px;
+            animation: pulse-glow 11s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.12; }
+            100% { transform: scale(1.1) translate(30px, -20px); opacity: 0.18; }
+        }
+
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Main Container Card styling - Premium Light Theme */
+        .checkout-card {
+            background: #ffffff;
+            border: 1px solid rgba(19, 17, 15, 0.08);
+            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.08), 0 0 1px 0 rgba(19, 17, 15, 0.04);
+            border-radius: 24px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 950px;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Left side invoice column background */
+        .summary-col {
+            background-color: #f7faf6;
+            border-right: 1px solid rgba(19, 17, 15, 0.06);
+        }
+
+        /* Right side column background */
+        .form-col {
+            background-color: #ffffff;
+        }
+
+        /* Form inputs styling - Light themed */
+        .form-input {
+            background-color: #f9f5f0;
+            border: 1.5px solid #cbd5e1;
+            color: #0f172a;
+            transition: all 0.25s ease;
+        }
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+        .form-input:focus {
+            background-color: #ffffff;
+            border-color: #13110f;
+            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.12);
+            outline: none;
+        }
+
+        /* Vesti payment mode tabs styling */
+        .payment-tab {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .payment-tab.active {
+            border-color: #13110f;
+            color: #13110f;
+            background-color: rgba(99, 161, 70, 0.08);
+            box-shadow: 0 4px 12px rgba(99, 161, 70, 0.05);
+        }
+        .payment-tab.inactive {
+            border-color: #cbd5e1;
+            color: #475569;
+            background-color: transparent;
+        }
+        .payment-tab.inactive:hover {
+            border-color: #94a3b8;
+            background-color: #f9f5f0;
+        }
+
+        /* Custom checkbox styles */
+        .custom-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #cbd5e1;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .custom-checkbox.checked {
+            background-color: #13110f;
+            border-color: #13110f;
+        }
+        .custom-checkbox.checked svg {
+            display: block;
+        }
+
+        /* Vesti Leaf Green payment CTA buttons */
+        .pay-btn {
+            background: linear-gradient(135deg, #13110f 0%, #4E8236 100%);
+            box-shadow: 0 6px 14px rgba(99, 161, 70, 0.2);
+            transition: all 0.25s ease;
+        }
+        .pay-btn:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 10px 18px rgba(99, 161, 70, 0.3);
+            background: linear-gradient(135deg, #71B352 0%, #5B9440 100%);
+        }
+        .pay-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Generated Virtual Account card style */
+        .virtual-account-card {
+            border: 1.5px dashed rgba(99, 161, 70, 0.4);
+            background-color: rgba(99, 161, 70, 0.02);
+        }
+
+        /* Copy action tooltip alert */
+        .copy-tooltip {
+            position: absolute;
+            background: #13110f;
+            color: #fff;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            top: -30px;
+            right: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .copy-tooltip.show {
+            opacity: 1;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid rgba(99, 161, 70, 0.2);
+            border-top: 3px solid #13110f;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* CSS Print Overrides: Isolate just the Account Details Slip */
+        @media print {
+            body.print-invoice-only {
+                background: white !important;
+                color: black !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            body.print-invoice-only .glow-blob,
+            body.print-invoice-only .checkout-card > div > div:not(.summary-col),
+            body.print-invoice-only #tab-card,
+            body.print-invoice-only #tab-transfer,
+            body.print-invoice-only #payment-form,
+            body.print-invoice-only #timer-container,
+            body.print-invoice-only #bank-transfer-container > div:first-child,
+            body.print-invoice-only #invoice-actions-row,
+            body.print-invoice-only .summary-actions,
+            body.print-invoice-only .checkout-card {
+                display: none !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            
+            body.print-invoice-only .summary-col {
+                width: 100% !important;
+                max-width: 100% !important;
+                display: block !important;
+                background: white !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+
+            body.print-invoice-only #invoice-items-container {
+                margin-top: 30px !important;
+            }
+
+            body.print-invoice-only #bank-transfer-container {
+                display: block !important;
+                width: 100% !important;
+                margin-top: 40px !important;
+                border-top: 2px dashed #ccc !important;
+                padding-top: 40px !important;
+            }
+
+            body.print-invoice-only #virtual-account-box,
+            body.print-invoice-only #remita-details-box,
+            body.print-invoice-only #transfer-details-box,
+            body.print-invoice-only #ussd-details-box {
+                border: 1px solid #000 !important;
+                background: white !important;
+                padding: 25px !important;
+                box-shadow: none !important;
+            }
+
+            body.print-invoice-only button,
+            body.print-invoice-only select,
+            body.print-invoice-only .no-print {
+                display: none !important;
+            }
+
+            /* Print Styling for Success Receipt */
+            body.print-receipt-only {
+                background: white !important;
+                color: black !important;
+            }
+            body.print-receipt-only .checkout-card {
+                box-shadow: none !important;
+                border: none !important;
+                background: transparent !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            body.print-receipt-only .summary-col,
+            body.print-receipt-only .form-col > div > *:not(#payment-success-view),
+            body.print-receipt-only .no-print,
+            body.print-receipt-only .glow-blob,
+            body.print-receipt-only #timer-container {
+                display: none !important;
+            }
+            body.print-receipt-only .form-col {
+                width: 100% !important;
+                padding: 0 !important;
+            }
+            body.print-receipt-only #payment-success-view {
+                display: block !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
+        }
+        
+    </style>
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body>
+<!-- Vesti Background Glow Blobs -->
+<div class="glow-blob glow-blob-1"></div>
+<div class="glow-blob glow-blob-2"></div>
+<div class="glow-blob glow-blob-3"></div>
+<div class="checkout-card">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<!-- Left Column: Cart / Invoice Summary -->
+<div class="summary-col p-6 md:p-8 flex flex-col justify-between">
+<div>
+<!-- Vesti Brand Logo -->
+<div class="flex items-center gap-2 mb-5">
+<svg fill="none" height="31" overflow="visible" viewbox="0 0 34 38" width="28" xmlns="http://www.w3.org/2000/svg">
+<!-- Top-right yellow-green leaf -->
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<!-- Left small yellow leaf -->
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<!-- Middle dark green leaf -->
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span class="text-lg font-extrabold tracking-tight font-heading text-[#13110f]" style="line-height:1; display:inline-block; margin-top: 2px; margin-left: -10px;">esti<span class="text-[#13110f]">Pay</span></span>
+</div>
+<!-- Items List -->
+<div class="space-y-3.5" id="invoice-items-container">
+<!-- Default Mockup items -->
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-[#13110f] text-sm">Australia Pathways Fee</h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Official DHA pathway x 1 passenger(s)</p>
+</div>
+<span class="font-bold text-[#13110f] text-sm">$ 184.05</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-[#13110f] text-sm">DHA Immigration Handling Fee</h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Verification processing x 1</p>
+</div>
+<span class="font-bold text-[#13110f] text-sm">$ 25.15</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-[#13110f] text-sm">International Visitor Conservation Levy (IVL)</h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Government environment tax x 1</p>
+</div>
+<span class="font-bold text-[#13110f] text-sm">$ 61.35</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-[#13110f] text-sm">AXA Travel Insurance</h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Basic Plan (1 Month) x 1</p>
+</div>
+<span class="font-bold text-[#13110f] text-sm">$ 62.24</span>
+</div>
+</div>
+</div>
+<!-- Totals Summary -->
+<div class="mt-5 pt-4 border-t border-slate-200">
+<div class="mt-3.5 pt-3.5 border-t border-dashed border-slate-300 flex justify-between items-end">
+<div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Total</span>
+<h3 class="text-xl font-extrabold text-[#13110f] mt-0.5 font-heading" id="grand-total-label">Total</h3>
+</div>
+<span class="text-xl font-extrabold text-[#13110f] font-heading" id="grand-total-display">$ 0.00</span>
+</div>
+<script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const baseAmount = 1224.19;
+                            if (typeof initPricing === 'function') {
+                                initPricing(baseAmount);
+                            }
+                        });
+                    </script>
+<!-- Official Travel Fees Footnote -->
+<div class="mt-6 pt-4 border-t border-slate-200 text-[10px] text-slate-400 leading-normal" id="checkout-footnote">
+                        * Note: Flight ticket rates fluctuate daily in real time. Visa fee corresponds to the official DHA visitor pathway charge ($341 AUD, comprising $300 application fee and $41 immigration fee). Vesti handles document packaging and routing.
+                    </div>
+</div>
+</div>
+<!-- Right Column: Payment Form -->
+<div class="form-col p-6 md:p-8 flex flex-col justify-between">
+<div>
+<div id="payment-forms-wrapper">
+<!-- Payment Page Header -->
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-bold font-heading text-[#13110f]">Payment Page</h2>
+<!-- Micro Session Timer -->
+<div class="text-[10px] font-semibold text-[#13110f] bg-[#13110f]/5 border border-[#13110f]/10 px-2 py-0.5 rounded-full flex items-center gap-1" id="timer-container">
+<i class="w-3 h-3 text-[#13110f]" data-lucide="clock"></i>
+<span id="checkout-timer">10:00</span>
+</div>
+</div>
+<!-- Payment Option Tabs -->
+<div class="grid grid-cols-2 gap-3 mb-4">
+<button class="payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer" id="tab-card" onclick="switchTab('card')" type="button">
+<i class="w-3.5 h-3.5" data-lucide="credit-card"></i>
+<span>Credit Card</span>
+</button>
+<button class="payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer" id="tab-transfer" onclick="switchTab('transfer')" type="button">
+<i class="w-3.5 h-3.5" data-lucide="receipt"></i>
+<span>Bank Transfer</span>
+</button>
+</div>
+<!-- Tab 1: Credit Card Form (Dollar/USD Only) -->
+<form class="space-y-3.5" id="payment-form" onsubmit="processPayment(event)">
+<div class="bg-[#13110f]/10 border border-[#13110f]/20 rounded-lg px-3 py-2 text-[10px] font-semibold text-[#13110f] flex items-center gap-1.5">
+<i class="w-3.5 h-3.5 flex-shrink-0" data-lucide="globe"></i>
+<span>Accepts USD and International cards only.</span>
+</div>
+<!-- Cardholder Name -->
+<div class="space-y-1">
+<label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Cardholder's Name</label>
+<input class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-400 uppercase" id="cardholder-name" placeholder="PAULINA CHIMAROKE" required="" type="text"/>
+</div>
+<!-- Card Number -->
+<div class="space-y-1">
+<label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Card Number</label>
+<div class="relative flex items-center">
+<div class="absolute left-4 w-7 h-5 flex items-center justify-center" id="card-brand-container">
+<svg fill="none" height="20" viewbox="0 0 36 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#CBD5E1" height="24" rx="4" width="36"></rect>
+<circle cx="14" cy="12" fill="#94A3B8" r="6"></circle>
+<circle cx="22" cy="12" fill="#64748B" r="6"></circle>
+</svg>
+</div>
+<input class="w-full form-input py-2.5 pl-14 pr-4 rounded-xl text-sm font-semibold placeholder-slate-400 tracking-wider" id="card-number" maxlength="19" placeholder="9870 3456 7890 6473" required="" type="text"/>
+</div>
+</div>
+<!-- Expiry and CVC -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Expiry -->
+<div class="space-y-1">
+<label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Expiry</label>
+<input class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-400 text-center" id="card-expiry" maxlength="7" placeholder="03 / 25" required="" type="text"/>
+</div>
+<!-- CVC -->
+<div class="space-y-1">
+<label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">CVC</label>
+<input class="w-full form-input py-2.5 px-4 rounded-xl text-sm font-semibold placeholder-slate-400 text-center tracking-widest" id="card-cvc" maxlength="4" placeholder="654" required="" type="password"/>
+</div>
+</div>
+<!-- Remember card checkbox -->
+<div class="flex items-center gap-3 pt-0.5">
+<input class="hidden" id="remember-card" type="checkbox"/>
+<div class="custom-checkbox checked" id="chk-box" onclick="toggleCheckbox('remember-card')">
+<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[12px] font-semibold text-slate-600 select-none cursor-pointer" onclick="toggleCheckbox('remember-card')">Remember bank card</span>
+</div>
+<!-- Action Submit Button -->
+<button class="w-full pay-btn text-white font-bold py-3.5 rounded-xl text-sm tracking-wide mt-1 cursor-pointer flex items-center justify-center gap-2" id="pay-submit-btn" type="submit">
+<span>Pay Now</span>
+</button>
+</form>
+<!-- Tab 2: Bank Transfer - Virtual Account Flow -->
+<div class="hidden space-y-4" id="bank-transfer-container">
+<!-- State 1: Select Payment Method -->
+<div class="space-y-3" id="bank-method-select-view">
+<h4 class="font-bold text-[#13110f] text-xs mb-1 text-left">Select Bank Payment Method</h4>
+<!-- Remita Option -->
+<div class="flex items-center gap-3 p-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#13110f]/50 rounded-xl cursor-pointer transition shadow-sm" onclick="selectBankMethod('remita')">
+<div class="w-9 h-9 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                                    R
+                                </div>
+<div class="flex-grow text-left">
+<h5 class="font-bold text-[#13110f] text-[12px]">Remita RRR</h5>
+<p class="text-[10px] text-slate-500">Pay via bank branch, card, or internet banking using Remita RRR.</p>
+</div>
+<i class="w-4 h-4 text-slate-400" data-lucide="chevron-right"></i>
+</div>
+<!-- Direct Transfer Option -->
+<div class="flex items-center gap-3 p-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#13110f]/50 rounded-xl cursor-pointer transition shadow-sm" onclick="selectBankMethod('transfer')">
+<div class="w-9 h-9 rounded-lg bg-emerald-50 text-[#13110f] flex items-center justify-center flex-shrink-0">
+<i class="w-4 h-4" data-lucide="landmark"></i>
+</div>
+<div class="flex-grow text-left">
+<h5 class="font-bold text-[#13110f] text-[12px]">Direct Bank Transfer</h5>
+<p class="text-[10px] text-slate-500">Transfer directly to a secure Providus Bank virtual account.</p>
+</div>
+<i class="w-4 h-4 text-slate-400" data-lucide="chevron-right"></i>
+</div>
+<!-- USSD Option -->
+<div class="flex items-center gap-3 p-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#13110f]/50 rounded-xl cursor-pointer transition shadow-sm" onclick="selectBankMethod('ussd')">
+<div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+<i class="w-4 h-4" data-lucide="phone"></i>
+</div>
+<div class="flex-grow text-left">
+<h5 class="font-bold text-[#13110f] text-[12px]">USSD Code</h5>
+<p class="text-[10px] text-slate-500">Pay using your bank's instant USSD dial code.</p>
+</div>
+<i class="w-4 h-4 text-slate-400" data-lucide="chevron-right"></i>
+</div>
+</div>
+<!-- Remita Details View -->
+<div class="hidden virtual-account-card rounded-2xl p-4 space-y-3 shadow-sm relative text-left" id="remita-details-box">
+<div class="flex justify-between items-center pb-2.5 border-b border-slate-100">
+<button class="text-[10px] font-bold text-slate-500 flex items-center gap-1 bg-slate-100 hover:bg-slate-205 border-0 px-2 py-1 rounded cursor-pointer transition" onclick="goBackToBankSelect()">
+<i class="w-3 h-3" data-lucide="arrow-left"></i> Back
+                                </button>
+<span class="text-[9px] font-bold bg-orange-100 text-orange-800 py-0.5 px-1.5 rounded-full uppercase">Remita RRR</span>
+</div>
+<div class="space-y-2.5">
+<div class="flex justify-between items-center text-[12px] bg-slate-50 border border-slate-200 p-2.5 rounded-xl">
+<div>
+<span class="text-[9px] font-semibold text-slate-500 block uppercase">Remita Retrieval Reference (RRR)</span>
+<span class="font-bold text-[#13110f] font-mono tracking-wider" id="remita-rrr-display">RRR123456789</span>
+</div>
+<button class="text-slate-400 hover:text-[#13110f] transition relative bg-transparent border-0 cursor-pointer" onclick="copyToClipboard('remita-rrr-display', this)">
+<i class="w-3.5 h-3.5" data-lucide="copy"></i>
+<span class="copy-tooltip">Copied!</span>
+</button>
+</div>
+<p class="text-[10px] text-slate-500 leading-relaxed bg-orange-50/50 p-2 rounded-lg border border-orange-100/50">
+                                    Instructions: Please copy the RRR number above and use your banking application's "Pay Bills / Remita" functionality, or walk into any commercial bank branch to complete payment.
+                                </p>
+</div>
+<div class="text-[10px] space-y-1 text-slate-500 pt-0.5">
+<div class="flex justify-between">
+<span>Amount to Transfer:</span>
+<span class="font-bold text-[#13110f] remita-amount-label">₦ 0.00</span>
+</div>
+<div class="flex justify-between">
+<span>Expiration:</span>
+<span class="font-bold text-slate-500">Expires in 24 hours</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2.5 pt-2">
+<button class="border border-[#13110f]/30 hover:border-[#13110f] text-[#13110f] hover:bg-[#13110f]/5 text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-transparent cursor-pointer" onclick="printInvoiceSlip()">
+<i class="w-3.5 h-3.5" data-lucide="printer"></i>
+<span>Print Details</span>
+</button>
+<button class="pay-btn text-white text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer" onclick="verifyAccountPayment('Remita RRR')">
+<span>Verify Payment</span>
+</button>
+</div>
+</div>
+<!-- Direct Bank Transfer Details View -->
+<div class="hidden virtual-account-card rounded-2xl p-4 space-y-3 shadow-sm relative text-left" id="transfer-details-box">
+<div class="flex justify-between items-center pb-2.5 border-b border-slate-100">
+<button class="text-[10px] font-bold text-slate-500 flex items-center gap-1 bg-slate-100 hover:bg-slate-205 border-0 px-2 py-1 rounded cursor-pointer transition" onclick="goBackToBankSelect()">
+<i class="w-3 h-3" data-lucide="arrow-left"></i> Back
+                                </button>
+<span class="text-[9px] font-bold bg-[#13110f]/20 text-[#13110f] py-0.5 px-1.5 rounded-full uppercase">Bank Transfer</span>
+</div>
+<div class="space-y-2.5 text-xs text-[#13110f]">
+<div class="flex justify-between items-center p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+<div>
+<span class="text-[9px] font-semibold text-slate-500 block uppercase">Bank Name</span>
+<span class="font-bold text-[#13110f]" id="bank-name-display">Providus Bank</span>
+</div>
+<button class="text-slate-400 hover:text-[#13110f] transition relative bg-transparent border-0 cursor-pointer" onclick="copyToClipboard('bank-name-display', this)">
+<i class="w-3.5 h-3.5" data-lucide="copy"></i>
+<span class="copy-tooltip">Copied!</span>
+</button>
+</div>
+<div class="flex justify-between items-center p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+<div>
+<span class="text-[9px] font-semibold text-slate-500 block uppercase">Account Number</span>
+<span class="font-bold font-mono tracking-wider text-[#13110f]" id="bank-account-display">1023948576</span>
+</div>
+<button class="text-slate-400 hover:text-[#13110f] transition relative bg-transparent border-0 cursor-pointer" onclick="copyToClipboard('bank-account-display', this)">
+<i class="w-3.5 h-3.5" data-lucide="copy"></i>
+<span class="copy-tooltip">Copied!</span>
+</button>
+</div>
+<div class="flex justify-between items-center p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+<div>
+<span class="text-[9px] font-semibold text-slate-500 block uppercase">Beneficiary Name</span>
+<span class="font-bold text-[#13110f]" id="bank-beneficiary-display">Vesti Technologies Ltd</span>
+</div>
+<button class="text-slate-400 hover:text-[#13110f] transition relative bg-transparent border-0 cursor-pointer" onclick="copyToClipboard('bank-beneficiary-display', this)">
+<i class="w-3.5 h-3.5" data-lucide="copy"></i>
+<span class="copy-tooltip">Copied!</span>
+</button>
+</div>
+</div>
+<div class="text-[10px] space-y-1 text-slate-500 pt-0.5">
+<div class="flex justify-between">
+<span>Amount to Transfer:</span>
+<span class="font-bold text-[#13110f] transfer-amount-label">₦ 0.00</span>
+</div>
+<div class="flex justify-between">
+<span>Expiration:</span>
+<span class="font-bold text-slate-500">Expires in 24 hours</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2.5 pt-2">
+<button class="border border-[#13110f]/30 hover:border-[#13110f] text-[#13110f] hover:bg-[#13110f]/5 text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-transparent cursor-pointer" onclick="printInvoiceSlip()">
+<i class="w-3.5 h-3.5" data-lucide="printer"></i>
+<span>Print Details</span>
+</button>
+<button class="pay-btn text-white text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer" onclick="verifyAccountPayment('Direct Bank Transfer')">
+<span>Verify Payment</span>
+</button>
+</div>
+</div>
+<!-- USSD Code Details View -->
+<div class="hidden virtual-account-card rounded-2xl p-4 space-y-3 shadow-sm relative text-left" id="ussd-details-box">
+<div class="flex justify-between items-center pb-2.5 border-b border-slate-100">
+<button class="text-[10px] font-bold text-slate-500 flex items-center gap-1 bg-slate-100 hover:bg-slate-205 border-0 px-2 py-1 rounded cursor-pointer transition" onclick="goBackToBankSelect()">
+<i class="w-3 h-3" data-lucide="arrow-left"></i> Back
+                                </button>
+<span class="text-[9px] font-bold bg-blue-100 text-blue-800 py-0.5 px-1.5 rounded-full uppercase">USSD Payment</span>
+</div>
+<div class="space-y-3">
+<div>
+<label class="text-[9px] font-semibold text-slate-500 block uppercase mb-1">Select Bank</label>
+<select class="w-full bg-[#f9f5f0] border border-slate-200 rounded-xl px-3 py-2 text-slate-700 text-xs focus:outline-none cursor-pointer" id="ussd-bank-select" onchange="updateUssdCode(this.value)">
+<option value="">-- Choose your Bank --</option>
+<option value="gtb">GTBank</option>
+<option value="access">Access Bank</option>
+<option value="zenith">Zenith Bank</option>
+<option value="uba">UBA</option>
+</select>
+</div>
+<div class="hidden flex justify-between items-center text-[12px] bg-slate-50 border border-slate-200 p-2.5 rounded-xl" id="ussd-code-display-container">
+<div>
+<span class="text-[9px] font-semibold text-slate-500 block uppercase">USSD Dial Code</span>
+<span class="font-bold text-[#13110f] font-mono tracking-wider text-[13px]" id="ussd-code-display">*737*1*2*1023948576#</span>
+</div>
+<button class="text-slate-400 hover:text-[#13110f] transition relative bg-transparent border-0 cursor-pointer" onclick="copyToClipboard('ussd-code-display', this)">
+<i class="w-3.5 h-3.5" data-lucide="copy"></i>
+<span class="copy-tooltip">Copied!</span>
+</button>
+</div>
+<p class="text-[10px] text-slate-500 leading-relaxed bg-blue-50/50 p-2 rounded-lg border border-blue-100/50" id="ussd-instruction-text">
+                                    Please select your bank from the dropdown list to generate the corresponding USSD payment code.
+                                </p>
+</div>
+<div class="text-[10px] space-y-1 text-slate-500 pt-0.5">
+<div class="flex justify-between">
+<span>Amount to Transfer:</span>
+<span class="font-bold text-[#13110f] ussd-amount-label">₦ 0.00</span>
+</div>
+<div class="flex justify-between">
+<span>Expiration:</span>
+<span class="font-bold text-slate-500">Expires in 24 hours</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2.5 pt-2">
+<button class="border border-[#13110f]/30 hover:border-[#13110f] text-[#13110f] hover:bg-[#13110f]/5 text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 bg-transparent cursor-pointer" onclick="printInvoiceSlip()">
+<i class="w-3.5 h-3.5" data-lucide="printer"></i>
+<span>Print Details</span>
+</button>
+<button class="pay-btn text-white text-[11px] font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer" onclick="verifyAccountPayment('USSD Code')">
+<span>Verify Payment</span>
+</button>
+</div>
+</div>
+</div>
+</div> <!-- closes payment-forms-wrapper -->
+<!-- Payment Success View -->
+<div class="hidden space-y-5 py-4 text-center" id="payment-success-view">
+<div class="w-16 h-16 bg-emerald-50 rounded-full border border-emerald-200 text-emerald-500 flex items-center justify-center mx-auto shadow-sm">
+<i class="w-10 h-10 animate-bounce" data-lucide="check-circle"></i>
+</div>
+<div>
+<h3 class="text-xl font-extrabold text-emerald-800 font-heading">Payment Successful!</h3>
+<p class="text-xs text-slate-500 mt-1">Your AU Travel Portal transaction was processed successfully.</p>
+</div>
+<!-- Transaction Info Table -->
+<div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left space-y-2.5 text-xs">
+<div class="flex justify-between items-center pb-2 border-b border-slate-200/60">
+<span class="text-slate-500 font-semibold uppercase text-[9px] tracking-wider">Reference ID</span>
+<span class="font-mono font-bold text-[#13110f]" id="receipt-ref-id">VESTI-AU-827394</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-slate-200/60">
+<span class="text-slate-500 font-semibold uppercase text-[9px] tracking-wider">Date &amp; Time</span>
+<span class="font-semibold text-slate-700" id="receipt-date-time">June 5, 2026, 11:41 AM</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-slate-200/60">
+<span class="text-slate-500 font-semibold uppercase text-[9px] tracking-wider">Amount Paid</span>
+<span class="font-extrabold text-[#13110f]" id="receipt-amount-paid">$ 1,224.19</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-slate-200/60">
+<span class="text-slate-500 font-semibold uppercase text-[9px] tracking-wider">Payment Method</span>
+<span class="font-semibold text-slate-700" id="receipt-method">Credit Card</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500 font-semibold uppercase text-[9px] tracking-wider">Status</span>
+<span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 py-0.5 px-2 rounded-full uppercase">VERIFIED</span>
+</div>
+</div>
+<!-- Purchased Items (Cart Summary) -->
+<div class="border-t border-slate-200 pt-4 text-left">
+<h4 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+<i class="w-3.5 h-3.5 text-[#13110f]" data-lucide="shopping-cart"></i> Cart Summary / Purchased Items
+                            </h4>
+<div class="space-y-3.5" id="receipt-items-container">
+<!-- Dynamically populated copy of invoice items -->
+</div>
+</div>
+<!-- Actions row -->
+<div class="grid grid-cols-2 gap-3 pt-2 no-print">
+<button class="border border-[#13110f]/30 hover:border-[#13110f] text-[#13110f] hover:bg-[#13110f]/5 text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-1.5 bg-transparent cursor-pointer" onclick="printReceipt()">
+<i class="w-4 h-4" data-lucide="download"></i>
+<span>Download PDF Invoice</span>
+</button>
+<a class="pay-btn text-white text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer no-underline" href="../../../travel-fees.html">
+<i class="w-4 h-4" data-lucide="arrow-left"></i>
+<span>Back to Portal</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Secure Gateway Info -->
+<div class="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500" id="secure-gateway-info">
+<span class="flex items-center gap-1">
+<i class="w-3 h-3 text-[#13110f]" data-lucide="shield-check"></i>
+                        Secure 256-bit SSL connection
+                    </span>
+<a class="hover:text-[#13110f] transition font-semibold text-slate-500" href="../../../travel-fees.html">Cancel payment</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Scripting for Checkout Portal Dynamic Operations -->
+<script>
+        // Global variables for cart state
+        let cartTotal = 0;
+        let cartCurrency = 'NGN';
+        let apiConfigData = null;
+
+        /** Read admin config from localStorage (set by admin portal settings). */
+        function getAdminConfig() {
+            try {
+                const raw = localStorage.getItem('vesti_portal_config_australia');
+                if (raw) return JSON.parse(raw);
+            } catch(e) {}
+            return null; // no config saved yet
+        }
+
+        // Countdown Timer Logic (10:00 minutes)
+        let timerSeconds = 600;
+        function startTimer() {
+            const timerEl = document.getElementById('checkout-timer');
+            const interval = setInterval(() => {
+                let minutes = Math.floor(timerSeconds / 60);
+                let seconds = timerSeconds % 60;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                timerEl.textContent = `${minutes}:${seconds}`;
+                
+                if (timerSeconds <= 0) {
+                    clearInterval(interval);
+                    alert("Your checkout session has expired. Please recalculate your rates.");
+                    window.location.href = "travel-fees.html";
+                }
+                timerSeconds--;
+            }, 1000);
+        }
+
+        // Tab Switching Mechanism
+        function switchTab(mode) {
+            const tabCard = document.getElementById('tab-card');
+            const tabTransfer = document.getElementById('tab-transfer');
+            const paymentForm = document.getElementById('payment-form');
+            const bankContainer = document.getElementById('bank-transfer-container');
+
+            if (mode === 'card') {
+                tabCard.className = "payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
+                tabTransfer.className = "payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
+                paymentForm.classList.remove('hidden');
+                bankContainer.classList.add('hidden');
+            } else {
+                tabCard.className = "payment-tab inactive py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
+                tabTransfer.className = "payment-tab active py-2.5 px-3.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-bold font-heading cursor-pointer";
+                paymentForm.classList.add('hidden');
+                bankContainer.classList.remove('hidden');
+                goBackToBankSelect();
+            }
+        }
+
+        // Custom checkbox toggle
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            const chkBox = document.getElementById('chk-box');
+            if (checkbox && chkBox) {
+                checkbox.checked = !checkbox.checked;
+                if (checkbox.checked) {
+                    chkBox.classList.add('checked');
+                } else {
+                    chkBox.classList.remove('checked');
+                }
+            }
+        }
+
+        // Credit Card Type Detection (Visa vs Mastercard SVG switcher)
+        const visaSvg = `
+            <svg viewBox="0 0 36 24" width="28" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="4" fill="#1A1F71"/>
+                <path d="M12.5 15.5L14.2 7H16.8L15.1 15.5H12.5ZM21.9 7.2C21.4 7 20.6 6.8 19.7 6.8C17.3 6.8 15.7 8 15.7 9.8C15.7 11.1 16.9 11.8 17.8 12.2C18.7 12.6 19 12.9 19 13.3C19 13.9 18.3 14.2 17.6 14.2C16.4 14.2 15.7 13.9 15.2 13.6L14.7 15.3C15.2 15.5 16.3 15.7 17.4 15.7C19.9 15.7 21.6 14.5 21.6 12.6C21.6 10.6 18.9 10.3 18.9 9.4C18.9 9.1 19.2 8.8 19.8 8.8C20.1 8.8 20.8 8.8 21.4 9.1L21.9 7.2ZM26.4 7H24.4C23.8 7 23.4 7.2 23.1 7.8L19.7 15.5H22.4L22.9 14H26.2L26.5 15.5H28.9L26.4 7ZM23.6 12.2L24.8 8.9L25.5 12.2H23.6ZM11.1 7L8.6 12.8L7.8 8.8C7.6 7.6 6.7 7.2 5.7 7L10.3 15.5H13L16.8 7H11.1Z" fill="white"/>
+            </svg>
+        `;
+
+        const mastercardSvg = `
+            <svg viewBox="0 0 36 24" width="28" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="4" fill="#1E1E24"/>
+                <circle cx="14" cy="12" r="6.5" fill="#EB001B"/>
+                <circle cx="22" cy="12" r="6.5" fill="#F79E1B"/>
+                <path d="M18 7.3C16.8 8.5 16.1 10.2 16.1 12C16.1 13.8 16.8 15.5 18 16.7C19.2 15.5 19.9 13.8 19.9 12C19.9 10.2 19.2 8.5 18 7.3Z" fill="#FF5F00"/>
+            </svg>
+        `;
+
+        const defaultSvg = `
+            <svg viewBox="0 0 36 24" width="28" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="4" fill="#CBD5E1"/>
+                <circle cx="14" cy="12" r="6" fill="#94A3B8"/>
+                <circle cx="22" cy="12" r="6" fill="#64748B"/>
+            </svg>
+        `;
+
+        // Format Card Number (adds spaces every 4 digits)
+        const cardNumberInput = document.getElementById('card-number');
+        const cardBrandContainer = document.getElementById('card-brand-container');
+
+        cardNumberInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formatted = '';
+            
+            // Auto detect brand logo
+            if (value.startsWith('4')) {
+                cardBrandContainer.innerHTML = visaSvg;
+            } else if (value.startsWith('5')) {
+                cardBrandContainer.innerHTML = mastercardSvg;
+            } else {
+                cardBrandContainer.innerHTML = defaultSvg;
+            }
+
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formatted += ' ';
+                }
+                formatted += value[i];
+            }
+            e.target.value = formatted;
+        });
+
+        // Format Expiry Date (adds slash after MM)
+        const cardExpiryInput = document.getElementById('card-expiry');
+        cardExpiryInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formatted = '';
+            
+            if (value.length > 2) {
+                formatted = value.substring(0, 2) + ' / ' + value.substring(2, 4);
+            } else {
+                formatted = value;
+            }
+            e.target.value = formatted;
+        });
+
+        // Cardholder's Name auto uppercase
+        const cardholderInput = document.getElementById('cardholder-name');
+        cardholderInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        // Format CVC field (digits only)
+        const cardCvcInput = document.getElementById('card-cvc');
+        cardCvcInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/gi, '');
+        });
+
+        // Copy Bank Details action helper
+        function copyToClipboard(elementId, btn) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const tooltip = btn.querySelector('.copy-tooltip');
+                tooltip.classList.add('show');
+                
+                // Toggle copy icon to checkmark
+                const icon = btn.querySelector('i');
+                icon.setAttribute('data-lucide', 'check');
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                    icon.setAttribute('data-lucide', 'copy');
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Bank Transfer details switching handlers
+        function selectBankMethod(method) {
+            // Hide selection view
+            document.getElementById('bank-method-select-view').classList.add('hidden');
+            
+            // Hide all details boxes
+            document.getElementById('remita-details-box').classList.add('hidden');
+            document.getElementById('transfer-details-box').classList.add('hidden');
+            document.getElementById('ussd-details-box').classList.add('hidden');
+            
+            // Load configs for Direct Bank Transfer
+            const config = getAdminConfig();
+            if (config && config.payment) {
+                document.getElementById('bank-name-display').textContent = config.payment.bankName || 'Providus Bank';
+                document.getElementById('bank-account-display').textContent = config.payment.accountNumber || '1023948576';
+                document.getElementById('bank-beneficiary-display').textContent = config.payment.beneficiary || 'Vesti Technologies Ltd';
+                document.getElementById('remita-rrr-display').textContent = config.payment.rrr || 'RRR123456789';
+            }
+
+            // Update amounts
+            const amountStr = formatCurrencySymbol(cartTotal, cartCurrency);
+            document.querySelectorAll('.remita-amount-label, .transfer-amount-label, .ussd-amount-label').forEach(el => {
+                el.textContent = amountStr;
+            });
+
+            // Show selected view
+            if (method === 'remita') {
+                document.getElementById('remita-details-box').classList.remove('hidden');
+            } else if (method === 'transfer') {
+                document.getElementById('transfer-details-box').classList.remove('hidden');
+            } else if (method === 'ussd') {
+                document.getElementById('ussd-details-box').classList.remove('hidden');
+                // Reset select dropdown
+                document.getElementById('ussd-bank-select').value = '';
+                document.getElementById('ussd-code-display-container').classList.add('hidden');
+                document.getElementById('ussd-instruction-text').textContent = 'Please select your bank from the dropdown list to generate the corresponding USSD payment code.';
+            }
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function goBackToBankSelect() {
+            document.getElementById('bank-method-select-view').classList.remove('hidden');
+            document.getElementById('remita-details-box').classList.add('hidden');
+            document.getElementById('transfer-details-box').classList.add('hidden');
+            document.getElementById('ussd-details-box').classList.add('hidden');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function updateUssdCode(bankCode) {
+            const container = document.getElementById('ussd-code-display-container');
+            const codeEl = document.getElementById('ussd-code-display');
+            const instrEl = document.getElementById('ussd-instruction-text');
+            const config = getAdminConfig();
+            const acctNum = (config && config.payment && config.payment.accountNumber) ? config.payment.accountNumber : '1023948576';
+
+            if (!bankCode) {
+                container.classList.add('hidden');
+                instrEl.textContent = 'Please select your bank from the dropdown list to generate the corresponding USSD payment code.';
+                return;
+            }
+
+            let codePattern = '';
+            let bankName = '';
+            if (bankCode === 'gtb') {
+                codePattern = `*737*1*2*${acctNum}#`;
+                bankName = 'GTBank';
+            } else if (bankCode === 'access') {
+                codePattern = `*901*2*${acctNum}#`;
+                bankName = 'Access Bank';
+            } else if (bankCode === 'zenith') {
+                codePattern = `*966*3*${acctNum}#`;
+                bankName = 'Zenith Bank';
+            } else if (bankCode === 'uba') {
+                codePattern = `*919*4*${acctNum}#`;
+                bankName = 'UBA';
+            }
+
+            codeEl.textContent = codePattern;
+            container.classList.remove('hidden');
+            instrEl.textContent = `Dial the code above from your registered phone number linked to ${bankName} to authorize and complete this transfer.`;
+            
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // Print slip helper
+        function printInvoiceSlip() {
+            document.body.classList.add('print-invoice-only');
+            window.print();
+            document.body.classList.remove('print-invoice-only');
+        }
+
+        // Show Receipt helper on Success
+        function showReceipt(method) {
+            // Hide the forms column elements that are not part of the receipt
+            document.getElementById('payment-forms-wrapper').classList.add('hidden');
+            document.getElementById('secure-gateway-info').classList.add('hidden');
+
+            // Generate transaction reference
+            const randRef = 'VESTI-AU-' + Math.floor(100000 + Math.random() * 900000);
+            const dateStr = new Date().toLocaleString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+
+            document.getElementById('receipt-ref-id').textContent = randRef;
+            document.getElementById('receipt-date-time').textContent = dateStr;
+            document.getElementById('receipt-amount-paid').textContent = formatCurrencySymbol(cartTotal, cartCurrency);
+            document.getElementById('receipt-method').textContent = method;
+
+            // Copy itemized list to receipt items container (Cart Summary)
+            const receiptItems = document.getElementById('receipt-items-container');
+            const sourceItems = document.getElementById('invoice-items-container');
+            if (receiptItems && sourceItems) {
+                receiptItems.innerHTML = sourceItems.innerHTML;
+            }
+
+            // Show success screen
+            document.getElementById('payment-success-view').classList.remove('hidden');
+
+            // Clear dynamic calculator states
+            cleanPaymentStorage();
+
+            // Refresh icons
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // Print Receipt helper
+        function printReceipt() {
+            document.body.classList.add('print-receipt-only');
+            window.print();
+            document.body.classList.remove('print-receipt-only');
+        }
+
+        // Verify account deposit status
+        function verifyAccountPayment(methodName) {
+            let verifyBtn;
+            if (methodName === 'Remita RRR') {
+                verifyBtn = document.querySelector('#remita-details-box button.pay-btn');
+            } else if (methodName === 'Direct Bank Transfer') {
+                verifyBtn = document.querySelector('#transfer-details-box button.pay-btn');
+            } else if (methodName === 'USSD Code') {
+                verifyBtn = document.querySelector('#ussd-details-box button.pay-btn');
+            } else {
+                verifyBtn = document.getElementById('account-verify-btn');
+            }
+
+            if (!verifyBtn) return;
+
+            verifyBtn.disabled = true;
+            verifyBtn.innerHTML = `<div class="spinner"></div> <span>Verifying...</span>`;
+
+            setTimeout(() => {
+                verifyBtn.innerHTML = `<i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400 animate-bounce"></i> <span>Success</span>`;
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+
+                setTimeout(() => {
+                    showReceipt(methodName || "Bank Transfer");
+                }, 1000);
+            }, 2500);
+        }
+
+        // Process Credit Card Payment Form Submission
+        function processPayment(event) {
+            event.preventDefault();
+            const btn = document.getElementById('pay-submit-btn');
+            
+            btn.disabled = true;
+            btn.innerHTML = `<div class="spinner"></div> <span>Processing payment...</span>`;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 animate-bounce"></i> <span>Payment Successful!</span>`;
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                
+                setTimeout(() => {
+                    showReceipt("Credit Card");
+                }, 1000);
+            }, 2500);
+        }
+
+        // Clean local cache keys helper
+        function cleanPaymentStorage() {
+            localStorage.removeItem('vesti_payment_amount_usd');
+            localStorage.removeItem('vesti_payment_amount_local');
+            localStorage.removeItem('vesti_payment_currency');
+            localStorage.removeItem('vesti_payment_rate');
+            localStorage.removeItem('vesti_payment_passengers');
+            localStorage.removeItem('vesti_insurance_checked');
+            localStorage.removeItem('vesti_visa_checked');
+            localStorage.removeItem('vesti_immigration_checked');
+            localStorage.removeItem('vesti_ivl_checked');
+            localStorage.removeItem('vesti_vesti_checked');
+            localStorage.removeItem('vesti_elite_checked');
+        }
+
+        // Currency Formatting Helper
+        function formatCurrencySymbol(value, currencyCode) {
+            const VESTI_SYMBOLS = {
+                'USD': '$',
+                'NGN': '₦',
+                'GHS': '₵',
+                'KES': 'KSh ',
+                'AUD': 'AU$'
+            };
+            const sym = VESTI_SYMBOLS[currencyCode] || '$';
+            const num = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+            return `${sym} ${num}`;
+        }
+
+        // Load Invoice details from localStorage OR fall back to standard design mockup items
+        function loadInvoiceDetails() {
+            const container   = document.getElementById('invoice-items-container');
+            const totalDisplay = document.getElementById('grand-total-display');
+            const totalLabel   = document.getElementById('grand-total-label');
+
+            // Read admin config for exchange rates (set in Portal Settings)
+            const adminConfig   = getAdminConfig();
+            const storedCurrency = localStorage.getItem('vesti_selected_currency') || localStorage.getItem('vesti_payment_currency') || (adminConfig ? Object.keys(adminConfig.rates || {})[0] : 'USD');
+            const hasDynamicAmount = localStorage.getItem('vesti_payment_amount_usd') !== null;
+
+            if (hasDynamicAmount) {
+                container.innerHTML = '';
+
+                const amountUsd  = parseFloat(localStorage.getItem('vesti_payment_amount_usd')) || 0;
+                const currency   = storedCurrency;
+
+                // Determine the conversion rate to apply:
+                // If selected currency matches travel-fees currency, use the stored rate (it has manual overrides)
+                // Otherwise calculate using config base rate + markup.
+                let effectiveRate;
+                const storedRate = parseFloat(localStorage.getItem('vesti_payment_rate')) || 1.0;
+                const storedPaymentCurrency = localStorage.getItem('vesti_payment_currency');
+
+                if (currency === storedPaymentCurrency && storedRate > 0) {
+                    effectiveRate = storedRate;
+                } else {
+                    let rate = (adminConfig && adminConfig.rates && adminConfig.rates[currency]) ? adminConfig.rates[currency] : 1.0;
+                    const markup = adminConfig ? (adminConfig.markup || 0) : 0;
+                    effectiveRate = rate * (1 + markup / 100);
+                }
+
+                const passengers = parseInt(localStorage.getItem('vesti_payment_passengers')) || 1;
+
+                // Checked items reconstruction
+                const visaChecked        = localStorage.getItem('vesti_visa_checked') === 'true';
+                const immigrationChecked = localStorage.getItem('vesti_immigration_checked') === 'true';
+                const ivlChecked         = localStorage.getItem('vesti_ivl_checked') === 'true';
+                const insuranceChecked   = localStorage.getItem('vesti_insurance_checked') === 'true';
+                const vestiChecked       = localStorage.getItem('vesti_vesti_checked') === 'true';
+                const eliteChecked       = localStorage.getItem('vesti_elite_checked') === 'true';
+
+                const visaPrice        = parseFloat(localStorage.getItem('vesti_visa_price')) || 0;
+                const immigrationPrice = parseFloat(localStorage.getItem('vesti_immigration_price')) || 0;
+                const ivlPrice         = parseFloat(localStorage.getItem('vesti_ivl_price')) || 0;
+                const insurancePrice   = parseFloat(localStorage.getItem('vesti_insurance_price')) || 0;
+                const vestiPrice       = parseFloat(localStorage.getItem('vesti_vesti_price')) || 0;
+                const vestiDiscountVal = parseFloat(localStorage.getItem('vesti_vesti_discount')) || 0;
+                const elitePrice       = parseFloat(localStorage.getItem('vesti_elite_price')) || 0;
+                const planName         = localStorage.getItem('vesti_insurance_plan_name') || 'AXA Travel Insurance';
+
+                let subtotalLocal = 0;
+
+                if (visaChecked && visaPrice > 0) {
+                    const priceLocal = Math.round((visaPrice * effectiveRate * passengers) * 100) / 100;
+                    appendInvoiceItem(container, "Australia Pathways Fee", `Official DHA pathway x ${passengers} passenger(s)`, priceLocal, currency);
+                    subtotalLocal += priceLocal;
+                }
+                if (immigrationChecked && immigrationPrice > 0) {
+                    const priceLocal = Math.round((immigrationPrice * effectiveRate * passengers) * 100) / 100;
+                    appendInvoiceItem(container, "DHA Immigration Handling Fee", `Verification processing x ${passengers}`, priceLocal, currency);
+                    subtotalLocal += priceLocal;
+                }
+                if (ivlChecked && ivlPrice > 0) {
+                    const priceLocal = Math.round((ivlPrice * effectiveRate * passengers) * 100) / 100;
+                    appendInvoiceItem(container, "International Visitor Conservation Levy (IVL)", `Government environment tax x ${passengers}`, priceLocal, currency);
+                    subtotalLocal += priceLocal;
+                }
+                if (insuranceChecked && insurancePrice > 0) {
+                    const priceLocal = Math.round((insurancePrice * effectiveRate * passengers) * 100) / 100;
+                    appendInvoiceItem(container, "AXA Travel Insurance", `${planName} x ${passengers}`, priceLocal, currency);
+                    subtotalLocal += priceLocal;
+                }
+                if (vestiChecked && vestiPrice > 0) {
+                    const netVestiPrice = vestiPrice - vestiDiscountVal;
+                    const priceLocal = Math.round((netVestiPrice * effectiveRate * passengers) * 100) / 100;
+                    appendInvoiceItem(container, "Vesti Processing Fee", `Platform services & secure gateway x ${passengers}`, priceLocal, currency);
+                    subtotalLocal += priceLocal;
+                }
+                if (eliteChecked && elitePrice > 0) {
+                    const priceLocal = Math.round((elitePrice * effectiveRate * passengers) * 100) / 100;
+                    appendInvoiceItem(container, "Vesti Elitepass Priority Support", `Dedicated advisor & airport transfer x ${passengers}`, priceLocal, currency);
+                    subtotalLocal += priceLocal;
+                }
+
+                subtotalLocal = Math.round(subtotalLocal * 100) / 100;
+
+                if (container.children.length === 0) {
+                    appendInvoiceItem(container, "Australia Travel Verification Services", `Total transaction sum for ${passengers} passenger(s)`, subtotalLocal, currency);
+                }
+
+                cartCurrency = currency;
+                cartTotal    = subtotalLocal;
+
+                totalLabel.textContent   = `Total (${currency})`;
+                totalDisplay.textContent = formatCurrencySymbol(subtotalLocal, currency);
+                document.getElementById('pay-submit-btn').innerHTML = `<span>Pay ${formatCurrencySymbol(subtotalLocal, currency)}</span>`;
+
+            } else {
+                // No travel-fees data – show placeholder and dynamically rebuild items list to match grand total in selected currency
+                const cfg    = getAdminConfig();
+                const defCur = storedCurrency;
+                const defRate = cfg && cfg.rates ? (cfg.rates[defCur] || 1) : (defCur === 'NGN' ? 1650 : 1);
+                const defMarkup = cfg ? (typeof cfg.markup === 'number' ? cfg.markup : 0) : 7.5;
+                const effectiveRate = defRate * (1 + defMarkup / 100);
+
+                const itemsToRender = [
+                    { title: "Australia Pathways Fee", desc: "Official DHA pathway x 1 passenger(s)", usdPrice: 184.05 },
+                    { title: "DHA Immigration Handling Fee", desc: "Verification processing x 1", usdPrice: 25.15 },
+                    { title: "International Visitor Conservation Levy (IVL)", desc: "Government environment tax x 1", usdPrice: 61.35 },
+                    { title: "AXA Travel Insurance", desc: "Basic Plan (1 Month) x 1", usdPrice: 62.24 },
+                    { title: "Vesti Processing Fee", desc: "Platform services & secure gateway x 1", usdPrice: 891.40 }
+                ];
+
+                container.innerHTML = '';
+                let subtotalLocal = 0;
+                for (let i = 0; i < itemsToRender.length; i++) {
+                    const item = itemsToRender[i];
+                    const priceLocal = Math.round((item.usdPrice * effectiveRate) * 100) / 100;
+                    appendInvoiceItem(container, item.title, item.desc, priceLocal, defCur);
+                    subtotalLocal += priceLocal;
+                }
+
+                subtotalLocal = Math.round(subtotalLocal * 100) / 100;
+                cartTotal    = subtotalLocal;
+                cartCurrency = defCur;
+                totalLabel.textContent   = `Total (${defCur})`;
+                totalDisplay.textContent = formatCurrencySymbol(subtotalLocal, defCur);
+                document.getElementById('pay-submit-btn').innerHTML = `<span>Pay ${formatCurrencySymbol(subtotalLocal, defCur)}</span>`;
+            }
+
+        }
+
+
+        // Helper to append dynamic invoice rows
+        function appendInvoiceItem(container, title, subtitle, price, currency) {
+            const div = document.createElement('div');
+            div.className = "flex justify-between items-start";
+            div.innerHTML = `
+                <div>
+                    <h4 class="font-bold text-[#13110f] text-[13px] leading-tight">${title}</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5">${subtitle}</p>
+                </div>
+                <span class="font-bold text-[#13110f] text-sm flex-shrink-0 ml-4">${formatCurrencySymbol(price, currency)}</span>
+            `;
+            container.appendChild(div);
+        }
+
+        // Expose globally
+        window.loadInvoiceDetails = loadInvoiceDetails;
+
+        // Initialize elements
+        document.addEventListener('DOMContentLoaded', () => {
+            startTimer();
+            loadInvoiceDetails();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AU Pathways Clarity Session Catalog | Vesti</title>
+<meta content="Access Vesti's video catalog for Canada tourist, business, partner, and group pathways. Track your watch progress and prepare your travel applications." name="description"/>
+<!-- Official Favicon -->
+<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Tailwind CSS for utility styles -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Vesti Styleheet -->
+<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #090c15 0%, #172033 60%, #13110f 100%);
+            background-attachment: fixed;
+            color: #f9f5f0;
+        }
+
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Override Tailwind border color style conflict */
+        *,
+        ::after,
+        ::before {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Make Main Content Area White and adjust styles for readability */
+        main {
+            background-color: #ffffff !important;
+            color: #1e293b !important; /* text-slate-800 */
+            margin-top: 0px !important;
+            padding-top: 32px !important;
+        }
+
+        main h1 {
+            color: #13110f !important; /* Vesti Midnight Navy */
+        }
+
+        /* Frameless Video Player layout for a clean, sharp look */
+        .catalog-player-container {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: visible !important;
+        }
+
+        .video-wrapper {
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .yt-metadata-section {
+            padding: 0 !important;
+            margin-top: 20px !important;
+        }
+
+        /* Sidebar Up Next styles for white background */
+        .yt-sidebar-title {
+            color: #13110f !important;
+        }
+
+        .yt-sidebar-info h4 {
+            color: #0f172a !important; /* slate-900 */
+        }
+
+        .yt-sidebar-item {
+            border-left: 3px solid transparent !important;
+        }
+
+        .yt-sidebar-item:hover, .yt-sidebar-item.active {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .yt-sidebar-item.active {
+            border-left: 3px solid var(--primary) !important;
+        }
+
+        /* Description Box adjustments for white background */
+        .yt-description-box {
+            background-color: #f9f5f0 !important; /* light slate gray */
+            color: #334155 !important; /* slate-700 */
+            border: 1px solid #f9f5f0 !important;
+            padding: 16px 20px !important;
+            border-radius: 12px !important;
+            margin-top: 14px !important;
+        }
+
+        .yt-video-title {
+            color: #13110f !important;
+            font-size: 1.6rem !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.5px !important;
+            margin-bottom: 8px !important;
+        }
+
+        /* Solid navbar background when scrolled to keep header text readable */
+        .navbar.scrolled {
+            background: #13110f !important;
+        }
+    </style>
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative">
+<!-- Background Aurora Glow Elements for visual depth -->
+<div style="position: absolute; width: 100%; top: 0; left: 0; height: 100%; overflow: hidden; pointer-events: none; z-index: 1;">
+<div style="position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; z-index: 1; pointer-events: none; width: 600px; height: 600px; background: #13110f; top: -150px; right: -100px;">
+</div>
+<div style="position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: 1; pointer-events: none; width: 700px; height: 700px; background: #0f4c81; bottom: -150px; left: -200px;">
+</div>
+</div>
+<!-- Top Announcement Bar for credibility -->
+<div class="top-announcement-bar">
+<span>🚀 Vesti Travel Support: Proudly helping 15,000+ global citizens travel and explore the world.</span>
+</div>
+<!-- Navigation Bar (Replicated from live wevesti.com) -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<!-- Official Vesti SVG Logo -->
+<a class="logo-area" href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<!-- Top-right yellow-green leaf -->
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<!-- Left small yellow leaf -->
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<!-- Middle dark green leaf -->
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
+<span class="au-indicator" style="margin-left:10px;">CA</span>
+</a>
+<ul class="nav-menu" id="nav-menu">
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
+            <li><a href="../../../consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
+            <li><a href="../../../visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
+            <li><a href="../../../banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+            <li><a href="../../../careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+            <li><a href="../../../press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+            <li><a href="../../../faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+            <li><a href="../../../contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+            <li><a href="../../../updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="../../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+        <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
+            <li><a href="../../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+        </ul>
+    </li>
+
+</ul>
+</li>
+<li class="dropdown" style="position: relative;">
+<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
+<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+</ul>
+</li>
+</ul>
+<div class="nav-cta" id="nav-user-actions">
+<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</div>
+<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
+<i data-lucide="menu"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+<ul class="mobile-menu">
+<li><a class="mobile-link" href="index.html#pathways">Products</a></li>
+<li><a class="mobile-link" href="index.html#scroll-stacking">Company</a></li>
+<li><a class="mobile-link" href="../../../travel-fees.html">Travel Fees</a></li>
+<li class="mobile-drawer-ctas" id="mobile-user-actions">
+<a class="btn btn-outline w-full" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary w-full" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</li>
+</ul>
+</div>
+<!-- Main Content Area -->
+<main class="flex-grow pt-8 pb-10 relative z-10">
+<div class="container mx-auto px-4 max-w-[1200px]">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-5">
+<div>
+<span class="section-tag" style="margin-bottom: 8px; display: inline-flex;"><i data-lucide="video"></i> Clarity Sessions</span>
+<h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight" style="margin-bottom: 6px;">Canada Pathways Library</h1>
+</div>
+</div>
+<!-- Catalog Section Grid -->
+<div class="youtube-grid" style="margin-bottom: 60px;">
+<!-- Main Video Catalog Player Container (Left Side) -->
+<div class="flex flex-col gap-6">
+<div class="catalog-player-container">
+<!-- The Video Element with Overlay Controls -->
+<div class="video-wrapper">
+<!-- HTML5 Video element -->
+<video id="catalog-video" playsinline="" src="../../../assets/au-visa-demo.mp4"></video>
+<!-- Large center Play Button when paused -->
+<button class="play-overlay-btn" id="center-play-btn" onclick="togglePlay()">
+<i class="w-8 h-8 fill-white" data-lucide="play"></i>
+</button>
+<!-- Custom Control Panel Overlay -->
+<div class="custom-video-controls" id="custom-controls">
+<!-- Progress bar track -->
+<div class="video-progress-bar-container" id="video-progress-container" onclick="seekVideo(event)">
+<div class="video-progress-fill" id="video-progress-fill">
+<div class="video-progress-handle"></div>
+</div>
+</div>
+<div class="video-controls-row">
+<!-- Backward, Play/Pause, Forward, timer -->
+<div class="video-controls-left">
+<button class="video-btn" onclick="skipBackward()" title="Rewind 10s">
+<i class="w-5 h-5" data-lucide="rewind"></i>
+</button>
+<button class="video-btn" id="play-pause-icon" onclick="togglePlay()">
+<i class="w-5 h-5" data-lucide="play"></i>
+</button>
+<button class="video-btn" onclick="skipForward()" title="Forward 10s">
+<i class="w-5 h-5" data-lucide="fast-forward"></i>
+</button>
+<div class="video-time">
+<span id="current-time-display">00:00</span> / <span id="duration-display">00:00</span>
+</div>
+</div>
+<!-- Mute, Fullscreen -->
+<div class="video-controls-right">
+<button class="video-btn" id="mute-icon" onclick="toggleMute()">
+<i class="w-5 h-5" data-lucide="volume-2"></i>
+</button>
+<button class="video-btn" onclick="toggleFullscreen()">
+<i class="w-5 h-5" data-lucide="maximize"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Simplified Clean Metadata Section -->
+<div class="yt-metadata-section">
+<h2 class="yt-video-title" id="video-title-header">Canada Tourist Visa Guide</h2>
+<div class="yt-description-box">
+<p id="video-desc-header" style="margin-bottom: 0;">Ultimate documentation blueprint for
+                                    individuals traveling for leisure, holidays, sightseeing, or visiting family.</p>
+</div>
+</div>
+</div>
+</div> <!-- End Main Video Container -->
+<!-- YouTube Style Sidebar (Up Next) -->
+<div class="yt-sidebar" id="sidebar-tabs">
+<h3 class="yt-sidebar-title">Up next</h3>
+<!-- Tourist Visa -->
+<button class="yt-sidebar-item active" data-track="tourist" onclick="switchVisaTrack('tourist')">
+<div class="yt-sidebar-thumbnail">
+<img alt="Tourist Visa" src="../../../assets/au-landscape-1.png"/>
+<span class="yt-time-badge">12:45</span>
+</div>
+<div class="yt-sidebar-info">
+<h4>Canada Tourist Visa Guide</h4>
+<span class="completion-percent" id="pct-tourist">0% watched</span>
+</div>
+</button>
+<!-- Business Visa -->
+<button class="yt-sidebar-item" data-track="business" onclick="switchVisaTrack('business')">
+<div class="yt-sidebar-thumbnail">
+<img alt="Business Visa" src="../../../assets/au-tech-professional.png"/>
+<span class="yt-time-badge">08:30</span>
+</div>
+<div class="yt-sidebar-info">
+<h4>Canada Business &amp; Investment Visa Blueprint</h4>
+<span class="completion-percent" id="pct-business">0% watched</span>
+</div>
+</button>
+<!-- Family/Partner Visa -->
+<button class="yt-sidebar-item" data-track="family" onclick="switchVisaTrack('family')">
+<div class="yt-sidebar-thumbnail">
+<img alt="Family Visa" src="../../../assets/au-landscape-2.png"/>
+<span class="yt-time-badge">15:20</span>
+</div>
+<div class="yt-sidebar-info">
+<h4>Canada Family Vacation Guide</h4>
+<span class="completion-percent" id="pct-family">0% watched</span>
+</div>
+</button>
+<!-- Group Visa -->
+<button class="yt-sidebar-item" data-track="group" onclick="switchVisaTrack('group')">
+<div class="yt-sidebar-thumbnail">
+<img alt="Group Visa" src="../../../assets/au-landscape-3.png"/>
+<span class="yt-time-badge">10:15</span>
+</div>
+<div class="yt-sidebar-info">
+<h4>Canada Group Travel Documentation Process</h4>
+<span class="completion-percent" id="pct-group">0% watched</span>
+</div>
+</button>
+</div>
+</div> <!-- End youtube-grid -->
+</div>
+</main>
+<!-- FAQ Section -->
+<section class="section faq-section" style="background-color: var(--bg-light); padding: 80px 0; color: white;">
+<div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 60px; max-width: 1200px;">
+<div style="flex: 1; min-width: 300px;">
+<h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; color: white;">Some of the things you
+                    may want to know</h2>
+<a href="#" style="color: white; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 5px;">Frequently
+                    asked questions <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+</div>
+<div class="faq-accordion" style="flex: 1.5; min-width: 300px;">
+<div class="faq-item active">
+<h5 class="faq-trigger">What can I do with Vesti? <span class="faq-icon">−</span></h5>
+<div class="faq-content">
+<p>With Vesti you get the opportunity to be financially stable in life, whether you choose to
+                            move abroad (temporarily/permanently) or stay back at home. On Vesti you can pay for
+                            difficult immigration related payments (International Payments) in your local currency,
+                            seamlessly.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">Is my money secure with Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>Yes, Vesti complies with strict regulatory standards. All banking services and cards are
+                            provided in partnership with licensed and regulated financial institutions, including Stripe
+                            Payments Company and Celtic Bank (Member FDIC). Your funds are held securely at partner
+                            banks, and all transactions are protected by bank-grade SSL encryption and multi-factor
+                            authentication.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">How do I pay for WES on Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>To pay for WES (World Education Services) or other credential assessments, simply log into
+                            the Vesti app, navigate to the "Services" or "Payments" tab, select "Credential Assessment
+                            Services", enter your WES reference details, and pay in your local currency. Vesti takes
+                            care of the currency conversion and processes the payment to WES on your behalf instantly.
+                        </p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">Can I send dollar to someone with Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>Yes! With Vesti's Multi-Currency Wallets, you can convert local currency to USD (and other
+                            major currencies) instantly. You can send dollars directly to other Vesti users using their
+                            @username (peer-to-peer, free), or initiate a wire transfer to a US or international bank
+                            account directly from the app.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Download Section -->
+<section class="app-download-section">
+<div class="container text-center">
+<h2 class="download-title">Also available to<br/>download on both</h2>
+<div class="download-buttons">
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.vesti.app&amp;pli=1" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path>
+</svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Google Play</span>
+</div>
+</div>
+</a>
+<a class="download-btn" href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
+</svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Apple Store</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Detailed Vesti Footer -->
+<footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                <a href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+<svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:26px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">esti</span>
+</a>
+                <p style="font-size: 14px; color: #A3A3A3; line-height: 1.6;">The operating system for global talent migration. Built for the ambitious, guided by humans.</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">INTELLIGENCE</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">O-1 Scoring</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">EB-1A Roadmap</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">NIW Builder</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Express Entry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">HUMAN LAYER</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Expert Network</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Legal Reviews</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Concierge</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">COMPANY</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Methodology</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Pricing</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Careers</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">LEGAL</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Terms of Service</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">AML</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; padding-top: 20px; color: #A3A3A3; font-size: 12px; text-align: left;">
+        </div>
+    </div>
+</footer>
+<!-- App Logic Scripts -->
+<script>
+        // Track meta descriptions and URLs
+        const visaTracks = {
+            tourist: {
+                title: "Canada Tourist Visa Guide",
+                desc: "Ultimate documentation blueprint for individuals traveling for leisure, holidays, sightseeing, or visiting family.",
+                src: "assets/au-visa-demo.mp4"
+            },
+            business: {
+                title: "Canada Business & Investment Visa Blueprint",
+                desc: "Instructions on visa applications for attending business consultation meetings, conferences, or exploring corporate expansions.",
+                src: "assets/au-visa-demo.mp4"
+            },
+            family: {
+                title: "Canada Family Vacation Guide",
+                desc: "Learn about partner and family visitor requirements, sponsor criteria, and pathway pathways.",
+                src: "assets/au-visa-demo.mp4"
+            },
+            group: {
+                title: "Canada Group Travel Documentation Process",
+                desc: "Guidelines for group travel, tourism companies, organized delegations visa coordination.",
+                src: "assets/au-visa-demo.mp4"
+            }
+        };
+
+        let currentTrack = 'tourist';
+        let currentUser = null;
+        let registeredUsers = [];
+        let videoElement = null;
+        let savedTime = 0;
+
+        // Safe wrapper for Lucide icons
+        const safeCreateIcons = () => {
+            if (typeof lucide !== 'undefined') {
+                try { lucide.createIcons(); } catch (e) { }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            videoElement = document.getElementById('catalog-video');
+
+            // 1. Mobile Drawer and Nav Scrolled
+            const navbar = document.getElementById('navbar');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            });
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileDrawer.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileDrawer.classList.contains('active')) {
+                        icon.setAttribute('data-lucide', 'x');
+                    } else {
+                        icon.setAttribute('data-lucide', 'menu');
+                    }
+                    safeCreateIcons();
+                });
+            }
+
+            // 2. Load User Profile
+            loadUserProfile();
+
+            // Add end event listener for auto-advance
+            videoElement.addEventListener('ended', function() {
+                // Find next track key based on currentTrack order
+                const trackKeys = Object.keys(visaTracks);
+                const currentIdx = trackKeys.indexOf(currentTrack);
+                if (currentIdx >= 0 && currentIdx < trackKeys.length - 1) {
+                    const nextKey = trackKeys[currentIdx + 1];
+                    switchVisaTrack(nextKey);
+                }
+                // Mark this track as fully watched
+                const pctElem = document.getElementById(`pct-${currentTrack}`);
+                if (pctElem) {
+                    pctElem.textContent = '100% watched';
+                    pctElem.classList.add('watched');
+                }
+            });
+
+            // 3. Custom video player listeners
+            initVideoPlayer();
+
+            // 4. Load Admin Viewer Tracking List
+            loadAdminTrackingData();
+
+            // 5. Initialize FAQ Accordion
+            initFaqAccordion();
+
+            safeCreateIcons();
+        });
+
+        // Load Current User & State
+        function loadUserProfile() {
+            const rawUser = localStorage.getItem('vesti_current_user');
+            if (rawUser) {
+                currentUser = JSON.parse(rawUser);
+
+                // Load user watched stats from global list if matching
+                const listRaw = localStorage.getItem('vesti_registered_users');
+                if (listRaw) {
+                    registeredUsers = JSON.parse(listRaw);
+                    const matchingUser = registeredUsers.find(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+                    if (matchingUser) {
+                        currentUser = matchingUser;
+                    }
+                }
+            } else {
+                // Fallback dummy user if page opened directly
+                currentUser = {
+                    name: 'Guest User',
+                    firstName: 'Guest',
+                    email: 'guest@wevesti.com',
+                    country: 'Nigeria',
+                    phone: '+234 812 3456',
+                    watched: { tourist: false, business: false, family: false, group: false }
+                };
+                localStorage.setItem('vesti_current_user', JSON.stringify(currentUser));
+            }
+
+            // Update UI with User Profile Pill in Navbar and Mobile Drawer
+            updateNavbarUserUI();
+
+            updateSideTabsCompletionUI();
+            safeCreateIcons();
+        }
+
+        function updateNavbarUserUI() {
+            const userName = currentUser.firstName || currentUser.name || 'Visitor';
+            const userInitial = userName.charAt(0).toUpperCase();
+
+            // 1. Desktop Navbar Profile Pill
+            const navUserActions = document.getElementById('nav-user-actions');
+            if (navUserActions) {
+                navUserActions.innerHTML = `
+                    <div class="flex items-center gap-3 bg-slate-900/60 border border-white/10 rounded-full pl-2 pr-4 py-1.5 hover:border-white/20 transition-all duration-200 cursor-pointer">
+                        <div class="w-8 h-8 rounded-full bg-[#13110f] text-white flex items-center justify-center font-bold text-sm shadow-md uppercase">
+                            ${userInitial}
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] text-slate-400 font-medium leading-none mb-0.5">Welcome,</span>
+                            <span class="text-xs font-bold text-white leading-none">${userName}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 2. Mobile Drawer Profile Widget
+            const mobileUserActions = document.getElementById('mobile-user-actions');
+            if (mobileUserActions) {
+                mobileUserActions.innerHTML = `
+                    <div class="flex items-center gap-3 bg-slate-900/60 border border-white/10 rounded-2xl p-4 w-full">
+                        <div class="w-10 h-10 rounded-full bg-[#13110f] text-white flex items-center justify-center font-bold text-base shadow-md uppercase">
+                            ${userInitial}
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-xs text-slate-400 font-medium">Welcome back,</span>
+                            <span class="text-sm font-bold text-white">${userName}</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function updateSideTabsCompletionUI() {
+            Object.keys(visaTracks).forEach(track => {
+                const isWatched = currentUser.watched[track];
+
+                // Update text
+                const textSpan = document.getElementById(`pct-${track}`);
+                if (textSpan) {
+                    textSpan.textContent = isWatched ? "100% watched" : "0% watched";
+                    textSpan.style.color = isWatched ? "#13110f" : "var(--primary)";
+                }
+            });
+        }
+
+        // Custom Video Player Controls
+        function initVideoPlayer() {
+            // Set up video controls
+            videoElement.addEventListener('timeupdate', updateVideoProgress);
+            videoElement.addEventListener('loadedmetadata', () => {
+                document.getElementById('duration-display').textContent = formatTime(videoElement.duration);
+            });
+            videoElement.addEventListener('ended', onVideoCompleted);
+
+            // Check for continue watch position
+            checkContinueWatchState();
+        }
+
+        function checkContinueWatchState() {
+            const seekKey = `vesti_seek_position_${currentUser.email}_${currentTrack}`;
+            const seekPos = localStorage.getItem(seekKey);
+
+            if (seekPos && parseFloat(seekPos) > 1.5) {
+                savedTime = parseFloat(seekPos);
+
+                videoElement.addEventListener('loadedmetadata', function onMeta() {
+                    const pct = Math.floor((savedTime / videoElement.duration) * 100);
+                    if (pct < 98) {
+                        videoElement.currentTime = savedTime;
+                    }
+                    videoElement.removeEventListener('loadedmetadata', onMeta);
+                });
+            }
+        }
+
+        // Toggle play/pause
+        function togglePlay() {
+            const centerBtn = document.getElementById('center-play-btn');
+            const controlPlayIcon = document.getElementById('play-pause-icon').querySelector('i');
+
+            if (videoElement.paused) {
+                videoElement.play();
+                centerBtn.style.display = 'none';
+                controlPlayIcon.setAttribute('data-lucide', 'pause');
+            } else {
+                videoElement.pause();
+                centerBtn.style.display = 'flex';
+                controlPlayIcon.setAttribute('data-lucide', 'play');
+            }
+            safeCreateIcons();
+        }
+
+        function skipBackward() {
+            videoElement.currentTime = Math.max(0, videoElement.currentTime - 10);
+        }
+
+        function skipForward() {
+            videoElement.currentTime = Math.min(videoElement.duration || 0, videoElement.currentTime + 10);
+        }
+
+        function updateVideoProgress() {
+            const pct = (videoElement.currentTime / videoElement.duration) * 100;
+            document.getElementById('video-progress-fill').style.width = `${pct}%`;
+            document.getElementById('current-time-display').textContent = formatTime(videoElement.currentTime);
+
+            // Save seek position in localStorage every 3 seconds to avoid heavy writing
+            if (Math.floor(videoElement.currentTime) % 2 === 0) {
+                const seekKey = `vesti_seek_position_${currentUser.email}_${currentTrack}`;
+                localStorage.setItem(seekKey, videoElement.currentTime.toString());
+            }
+        }
+
+        function seekVideo(event) {
+            const rect = document.getElementById('video-progress-container').getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            const newTime = (clickX / width) * videoElement.duration;
+            videoElement.currentTime = newTime;
+        }
+
+        function toggleMute() {
+            const muteBtn = document.getElementById('mute-icon').querySelector('i');
+            videoElement.muted = !videoElement.muted;
+            if (videoElement.muted) {
+                muteBtn.setAttribute('data-lucide', 'volume-x');
+            } else {
+                muteBtn.setAttribute('data-lucide', 'volume-2');
+            }
+            safeCreateIcons();
+        }
+
+        function toggleFullscreen() {
+            if (videoElement.requestFullscreen) {
+                videoElement.requestFullscreen();
+            } else if (videoElement.webkitRequestFullscreen) {
+                videoElement.webkitRequestFullscreen(); // Safari
+            }
+        }
+
+        function onVideoCompleted() {
+            // Auto complete check box
+            toggleWatchedState(true);
+
+            // Reset seek history
+            const seekKey = `vesti_seek_position_${currentUser.email}_${currentTrack}`;
+            localStorage.setItem(seekKey, '0');
+
+            // Play overlay button back
+            document.getElementById('center-play-btn').style.display = 'flex';
+            document.getElementById('play-pause-icon').querySelector('i').setAttribute('data-lucide', 'play');
+            safeCreateIcons();
+        }
+
+        // Switch track tabs
+        function switchVisaTrack(trackId) {
+            if (trackId === currentTrack) return;
+
+            // Toggle active styles on buttons
+            document.querySelectorAll('.yt-sidebar-item').forEach(btn => {
+                if (btn.getAttribute('data-track') === trackId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Set variables
+            currentTrack = trackId;
+            const meta = visaTracks[trackId];
+
+            // Set Player Text
+            document.getElementById('video-title-header').textContent = meta.title;
+            document.getElementById('video-desc-header').textContent = meta.desc;
+
+            // Set Player Source
+            videoElement.src = meta.src;
+
+            // Set completion checkbox checked state (if exists)
+            const isCompleted = currentUser.watched[trackId] || false;
+            const checkboxEl = document.getElementById('watched-checkbox');
+            if (checkboxEl) {
+                checkboxEl.checked = isCompleted;
+            }
+            const checkLabel = document.getElementById('watched-checkbox-label');
+            if (checkLabel) {
+                if (isCompleted) {
+                    checkLabel.classList.add('completed');
+                } else {
+                    checkLabel.classList.remove('completed');
+                }
+            }
+
+            // Play overlay state
+            document.getElementById('center-play-btn').style.display = 'flex';
+            document.getElementById('play-pause-icon').querySelector('i').setAttribute('data-lucide', 'play');
+            safeCreateIcons();
+
+            // Check resume history
+            checkContinueWatchState();
+        }
+
+        // Set watch state
+        function toggleWatchedState(isWatched) {
+            currentUser.watched[currentTrack] = isWatched;
+
+            // Sync checkbox visual check label (if they exist)
+            const checkboxEl = document.getElementById('watched-checkbox');
+            if (checkboxEl) checkboxEl.checked = isWatched;
+
+            const checkLabel = document.getElementById('watched-checkbox-label');
+            if (checkLabel) {
+                if (isWatched) {
+                    checkLabel.classList.add('completed');
+                } else {
+                    checkLabel.classList.remove('completed');
+                }
+            }
+
+            // Save user profile state
+            localStorage.setItem('vesti_current_user', JSON.stringify(currentUser));
+
+            // Save in registered users list
+            const listRaw = localStorage.getItem('vesti_registered_users');
+            if (listRaw) {
+                let list = JSON.parse(listRaw);
+                const idx = list.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+                if (idx >= 0) {
+                    list[idx].watched = currentUser.watched;
+                    localStorage.setItem('vesti_registered_users', JSON.stringify(list));
+                }
+            }
+
+            // Re-render UI list details
+            updateSideTabsCompletionUI();
+
+            // Refresh Admin tracking list
+            loadAdminTrackingData();
+        }
+
+        // Time Formatter helper
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '00:00';
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        // Slide Admin Drawer Overlay
+        function toggleAdminDrawer() {
+            const drawer = document.getElementById('admin-drawer');
+            const backdrop = document.getElementById('admin-backdrop');
+            if (drawer) drawer.classList.toggle('open');
+            if (backdrop) backdrop.classList.toggle('open');
+            if (drawer && drawer.classList.contains('open')) {
+                loadAdminTrackingData();
+            }
+        }
+
+        // FAQ Accordion Toggle Logic
+        function initFaqAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const trigger = item.querySelector('.faq-trigger');
+                if (!trigger) return;
+                trigger.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+
+                    // Close all open items
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        const icon = i.querySelector('.faq-icon');
+                        if (icon) icon.innerHTML = '&plus;';
+                    });
+
+                    // If it wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const icon = item.querySelector('.faq-icon');
+                        if (icon) icon.innerHTML = '&minus;';
+                    }
+                });
+            });
+        }
+
+        function loadAdminTrackingData() {
+            const tableBody = document.getElementById('admin-table-body');
+            if (!tableBody) return;
+            const rawUsers = localStorage.getItem('vesti_registered_users');
+
+            if (rawUsers) {
+                registeredUsers = JSON.parse(rawUsers);
+                if (registeredUsers.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-8 text-slate-500">No viewers registered yet.</td></tr>`;
+                    return;
+                }
+
+                tableBody.innerHTML = '';
+                registeredUsers.forEach(user => {
+                    const row = document.createElement('tr');
+
+                    // Progress badges mapping
+                    const getBadge = (watchedVal) => {
+                        return watchedVal
+                            ? `<span class="admin-status-badge watched"><i data-lucide="check" class="inline w-3 h-3 mr-0.5"></i>Yes</span>`
+                            : `<span class="admin-status-badge pending">No</span>`;
+                    };
+
+                    const tBadge = getBadge(user.watched.tourist);
+                    const bBadge = getBadge(user.watched.business);
+                    const fBadge = getBadge(user.watched.family);
+                    const gBadge = getBadge(user.watched.group);
+
+                    row.innerHTML = `
+                        <td class="py-3">
+                            <div class="font-semibold text-white text-xs">${user.name || (user.firstName + ' ' + user.lastName)}</div>
+                            <div class="text-[10px] text-slate-400 font-medium">${user.email}</div>
+                        </td>
+                        <td class="text-xs font-medium text-slate-300 py-3">${user.country || 'N/A'}</td>
+                        <td class="text-xs font-mono text-slate-400 py-3">${user.phone || 'N/A'}</td>
+                        <td class="py-3">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="text-[10px] text-slate-500">Tour:</span> ${tBadge}
+                                <span class="text-[10px] text-slate-500 ml-1">Biz:</span> ${bBadge}
+                                <span class="text-[10px] text-slate-500 ml-1">Fam:</span> ${fBadge}
+                                <span class="text-[10px] text-slate-500 ml-1">Grp:</span> ${gBadge}
+                            </div>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="4" class="text-center py-8 text-slate-500">No viewers registered yet.</td></tr>`;
+            }
+            safeCreateIcons();
+        }
+    </script>
+<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>

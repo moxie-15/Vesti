@@ -15,7 +15,102 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link href="pages/countries/all countries/style.css" rel="stylesheet"/>
 <link href="pages/countries/all countries/scrolling.css" rel="stylesheet"/>
-<link href="assets/css/global-inline.css" rel="stylesheet"/>
+<style>
+        /* Animations */
+        @keyframes glowPulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.2); opacity: 0.4; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatIdle { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+
+        .hero-text { position: relative; z-index: 1; animation: fadeInUp 0.8s ease-out forwards; }
+        .hero-masonry > div:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.2s forwards, floatIdle 6s infinite ease-in-out 0.8s; opacity: 0; }
+        .hero-masonry > div:nth-child(2) { animation: fadeInUp 0.8s ease-out 0.4s forwards, floatIdle 7s infinite ease-in-out 1.2s; opacity: 0; }
+        .hero-masonry > div:nth-child(3) { animation: fadeInUp 0.8s ease-out 0.6s forwards, floatIdle 8s infinite ease-in-out 1.6s; opacity: 0; }
+
+        /* Glassmorphism */
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(90deg, #13110f, #737373);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    
+        /* Premium Navbar Styling */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            background-color: rgba(19, 17, 15, 0.95) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-menu a:hover {
+            color: #FFFFFF;
+            transform: translateY(-1px);
+        }
+        
+        .btn-signin {
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            margin-right: 25px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+        
+        .btn-signin:hover {
+            opacity: 0.8;
+        }
+
+        .btn-create-account {
+            background-color: #f9f5f0;
+            color: #13110f;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        
+        .btn-create-account:hover {
+            background-color: #E2E8F0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+    
+        </style>
 <style>
         .pathway-card {
             position: relative;
@@ -600,6 +695,65 @@
 </div>
 </section>
 <!-- Detailed Vesti Footer -->
+
+<script src="assets/js/script.js"></script>
+<script>
+        lucide.createIcons();
+    </script>
+
+<!-- Script to trigger modal after a few seconds -->
+<script>
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            document.getElementById('floatingAgentBtn').style.display = 'none';
+        }, 3000); // Popup appears 3 seconds after page loads
+    </script>
+<!-- Masonry Slideshow Script -->
+<script>
+        const masonry1Data = [
+            { img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Know the rules. Skip the queues.' },
+            { img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Discover the heart of Paris' },
+            { img: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Sail through Venice canals' },
+            { img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Business expansion in Dubai' },
+            { img: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Breathtaking Swiss Alps' }
+        ];
+        
+        const masonry2Data = [
+            { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'One place for all travel requirements.' },
+            { img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relax on tropical beaches' },
+            { img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'European mobility options' },
+            { img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Explore the United States' },
+            { img: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Work & live in London' }
+        ];
+        
+        const masonry3Data = [
+            { img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global opportunities await' },
+            { img: 'https://images.unsplash.com/photo-1504150558240-0b4fd8946624?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global visas made easy' },
+            { img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Pack your bags, we handle the rest' },
+            { img: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relocate to Canada fast' },
+            { img: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'New life in Australia' }
+        ];
+
+        let slideIndex = 0;
+        setInterval(() => {
+            slideIndex = (slideIndex + 1) % masonry1Data.length;
+            
+            document.getElementById('masonry-1').style.backgroundImage = `url('${masonry1Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-1').innerText = masonry1Data[slideIndex].text;
+            
+            document.getElementById('masonry-2').style.backgroundImage = `url('${masonry2Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-2').innerText = masonry2Data[slideIndex].text;
+            
+            document.getElementById('masonry-3').style.backgroundImage = `url('${masonry3Data[slideIndex].img}')`;
+            document.getElementById('masonry-text-3').innerText = masonry3Data[slideIndex].text;
+        }, 4000); // Change image and text every 4 seconds
+    </script>
+
+    <main style="padding: 150px 20px; text-align: center; min-height: 50vh;">
+        <h1 style="font-family: 'Outfit', sans-serif; font-size: 3rem; color: #13110f;">Consultation</h1>
+        <p style="font-size: 1.2rem; color: #4a5568;">This page is coming soon.</p>
+    </main>
+
 <footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
@@ -660,6 +814,14 @@
 <script src="assets/js/script.js"></script>
 <script>
         lucide.createIcons();
+    </script>
+
+<!-- Script to trigger modal after a few seconds -->
+<script>
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            document.getElementById('floatingAgentBtn').style.display = 'none';
+        }, 3000); // Popup appears 3 seconds after page loads
     </script>
 <!-- Masonry Slideshow Script -->
 <script>
@@ -774,33 +936,34 @@
         
     </div>
 </div>
+<script id="agent-modal-script">function showAssessmentState(){document.getElementById("modal-state-initial").style.display="none";document.getElementById("modal-state-assessment").style.display="flex"}function submitAssessment(){const rightPanel=document.querySelector("#modal-state-assessment .agent-modal-right");rightPanel.innerHTML=<div style="display:flex; flex-direction:column; height:100%; justify-content:center;"><div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;"><div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div><h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2></div><p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p><div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;"><p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p></div><button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button></div>}setTimeout(()=>{document.getElementById("agentModal").classList.add("active");const btn=document.getElementById("floatingAgentBtn");if(btn)btn.style.display="none"},3000);</script>
 <script id="agent-modal-script">
-    function showAssessmentState() {
-        document.getElementById('modal-state-initial').style.display = 'none';
-        document.getElementById('modal-state-assessment').style.display = 'flex';
-    }
-    
-    function submitAssessment() {
-        const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-        rightPanel.innerHTML = `
-            <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
-                <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
-                    <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
-                    <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
                 </div>
-                <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
-                <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
-                    <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
-                </div>
-                <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
-            </div>
-        `;
-    }
-    
-    setTimeout(() => {
-        document.getElementById('agentModal').classList.add('active');
-        const btn = document.getElementById('floatingAgentBtn');
-        if (btn) btn.style.display = 'none';
-    }, 10000);
-</script></body>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
 </html>

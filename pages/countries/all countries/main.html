@@ -6,16 +6,111 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Global Mobility | Vesti</title>
 <!-- Official Favicon -->
-<link href="assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../../../assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Lucide Icons CDN -->
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="pages/countries/all countries/style.css" rel="stylesheet"/>
-<link href="pages/countries/all countries/scrolling.css" rel="stylesheet"/>
-<link href="assets/css/global-inline.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="scrolling.css" rel="stylesheet"/>
+<style>
+        /* Animations */
+        @keyframes glowPulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.2); opacity: 0.4; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatIdle { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+
+        .hero-text { position: relative; z-index: 1; animation: fadeInUp 0.8s ease-out forwards; }
+        .hero-masonry > div:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.2s forwards, floatIdle 6s infinite ease-in-out 0.8s; opacity: 0; }
+        .hero-masonry > div:nth-child(2) { animation: fadeInUp 0.8s ease-out 0.4s forwards, floatIdle 7s infinite ease-in-out 1.2s; opacity: 0; }
+        .hero-masonry > div:nth-child(3) { animation: fadeInUp 0.8s ease-out 0.6s forwards, floatIdle 8s infinite ease-in-out 1.6s; opacity: 0; }
+
+        /* Glassmorphism */
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(90deg, #13110f, #737373);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    
+        /* Premium Navbar Styling */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            background-color: rgba(19, 17, 15, 0.95) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-menu a:hover {
+            color: #FFFFFF;
+            transform: translateY(-1px);
+        }
+        
+        .btn-signin {
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            margin-right: 25px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+        
+        .btn-signin:hover {
+            opacity: 0.8;
+        }
+
+        .btn-create-account {
+            background-color: #f9f5f0;
+            color: #13110f;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        
+        .btn-create-account:hover {
+            background-color: #E2E8F0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+    
+        </style>
 <style>
         .pathway-card {
             position: relative;
@@ -297,37 +392,50 @@
     <li class="dropdown" style="position: relative;">
         <a href="#" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
         <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
-            <li><a href="passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
-            <li><a href="consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
-            <li><a href="visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
-            <li><a href="banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
+            <li><a href="../../../passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
+            <li><a href="../../../consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
+            <li><a href="../../../visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
+            <li><a href="../../../banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
         </ul>
     </li>
     <li class="dropdown" style="position: relative;">
         <a href="#" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
         <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
-            <li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
-            <li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
-            <li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
-            <li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
-            <li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
-            <li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+            <li><a href="../../../about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+            <li><a href="../../../careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+            <li><a href="../../../press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+            <li><a href="../../../faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+            <li><a href="../../../contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+            <li><a href="../../../updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
         </ul>
     </li>
     <li class="dropdown" style="position: relative;">
-        <a href="index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <a href="../../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
         <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
         <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
-            <li><a href="pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
-            <li><a href="pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
-            <li><a href="pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
-            <li><a href="pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
-            <li><a href="pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
-            <li><a href="pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
-            <li><a href="pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+            <li><a href="../../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
         </ul>
     </li>
 
+</ul>
+</li>
+<li class="dropdown" style="position: relative;">
+<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
+<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+</ul>
+</li>
 </ul>
 <div class="nav-cta">
 <a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
@@ -657,9 +765,17 @@
         </div>
     </div>
 </footer>
-<script src="assets/js/script.js"></script>
+<script src="script.js"></script>
 <script>
         lucide.createIcons();
+    </script>
+
+<!-- Script to trigger modal after a few seconds -->
+<script>
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            document.getElementById('floatingAgentBtn').style.display = 'none';
+        }, 3000); // Popup appears 3 seconds after page loads
     </script>
 <!-- Masonry Slideshow Script -->
 <script>
@@ -715,7 +831,7 @@
         </button>
         
         <div id="modal-state-initial" style="display: flex; width: 100%; height: 100%;">
-            <div class="agent-modal-left" style="background: url('assets/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+            <div class="agent-modal-left" style="background: url('../../../assets/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
                 <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
                 <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
                 <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
@@ -774,33 +890,34 @@
         
     </div>
 </div>
+<script id="agent-modal-script">function showAssessmentState(){document.getElementById("modal-state-initial").style.display="none";document.getElementById("modal-state-assessment").style.display="flex"}function submitAssessment(){const rightPanel=document.querySelector("#modal-state-assessment .agent-modal-right");rightPanel.innerHTML=<div style="display:flex; flex-direction:column; height:100%; justify-content:center;"><div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;"><div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div><h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2></div><p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p><div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;"><p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p></div><button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button></div>}setTimeout(()=>{document.getElementById("agentModal").classList.add("active");const btn=document.getElementById("floatingAgentBtn");if(btn)btn.style.display="none"},3000);</script>
 <script id="agent-modal-script">
-    function showAssessmentState() {
-        document.getElementById('modal-state-initial').style.display = 'none';
-        document.getElementById('modal-state-assessment').style.display = 'flex';
-    }
-    
-    function submitAssessment() {
-        const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-        rightPanel.innerHTML = `
-            <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
-                <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
-                    <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
-                    <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
                 </div>
-                <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
-                <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
-                    <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
-                </div>
-                <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
-            </div>
-        `;
-    }
-    
-    setTimeout(() => {
-        document.getElementById('agentModal').classList.add('active');
-        const btn = document.getElementById('floatingAgentBtn');
-        if (btn) btn.style.display = 'none';
-    }, 10000);
-</script></body>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
 </html>

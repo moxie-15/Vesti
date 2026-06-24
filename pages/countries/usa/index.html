@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vesti AU | Seamless Travel &amp; Fintech for United States Pathways</title>
+<meta content="Travel, bank, and explore United States with ease. Vesti helps visitors with visa pathways, instant USD wallets, proof of funds letters, and AI-powered travel guidance." name="description"/>
+<!-- Official Favicon -->
+<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<link href="../../../assets/css/scrolling.css" rel="stylesheet"/>
+
+
+    
+    <style>
+        .agent-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(19, 17, 15, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .agent-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .agent-modal {
+            background: #FFFFFF;
+            width: 90%;
+            max-width: 750px;
+            border-radius: 24px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .agent-modal-overlay.active .agent-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .agent-modal-left {
+            width: 45%;
+            background: #13110f; /* Vesti Green */
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .agent-modal-left::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+
+        .agent-modal-left img {
+            width: 130%;
+            max-width: none;
+            margin-bottom: -10px;
+            margin-left: -15px;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.3));
+        }
+
+        .agent-modal-right {
+            width: 55%;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .agent-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #F7FAFC;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #13110f;
+            transition: all 0.2s;
+        }
+        
+        .agent-close-btn:hover {
+            background: #f9f5f0;
+            transform: rotate(90deg);
+        }
+
+        .agent-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #13110f;
+            margin: 0 0 15px;
+            line-height: 1.1;
+        }
+
+        .agent-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #4A5568;
+            margin: 0 0 30px;
+            line-height: 1.6;
+        }
+        
+        .agent-action-btn {
+            background: #13110f;
+            color: #FFF;
+            border: none;
+            padding: 16px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .agent-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(19, 17, 15, 0.2);
+        }
+
+        /* Mobile specific hiding for the left side if screen is small */
+        @media (max-width: 768px) {
+            .agent-modal-left {
+                display: none;
+            }
+            .agent-modal-right {
+                width: 100%;
+                padding: 40px 25px;
+            }
+        }
+    </style>
+\n
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body>
+<!-- Top Announcement Bar for credibility -->
+<div class="top-announcement-bar">
+<span>🚀 Vesti Travel Support: Proudly helping 15,000+ global citizens travel and explore the world.</span>
+</div>
+<!-- Navigation Bar (Replicated from live wevesti.com) -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<!-- Official Vesti SVG Logo -->
+<a class="logo-area" href="#" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<!-- Top-right yellow-green leaf -->
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<!-- Left small yellow leaf -->
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<!-- Middle dark green leaf -->
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#B31942"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
+<span class="au-indicator" style="margin-left:10px;">US</span>
+</a>
+<ul class="nav-menu" id="nav-menu">
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
+            <li><a href="../../../consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
+            <li><a href="../../../visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
+            <li><a href="../../../banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+            <li><a href="../../../careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+            <li><a href="../../../press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+            <li><a href="../../../faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+            <li><a href="../../../contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+            <li><a href="../../../updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="../../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+        <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
+            <li><a href="../../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+        </ul>
+    </li>
+
+</ul>
+<div class="nav-cta">
+<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</div>
+<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
+<i data-lucide="menu"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+<ul class="mobile-menu">
+<li><a class="mobile-link" href="#pathways">Products</a></li>
+<li><a class="mobile-link" href="#scroll-stacking">Company</a></li>
+<li><a class="mobile-link" href="../../../travel-fees.html">Travel Fees</a></li>
+<li class="mobile-drawer-ctas">
+<a class="btn btn-outline w-full" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary w-full" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Create an account</a>
+</li>
+</ul>
+</div> <!-- Awwwards-Style Bento Grid Hero Section -->
+<section class="hero-bento-section" style="position: relative; background-color: #030B17; padding: 40px 20px 60px; overflow: hidden; font-family: 'Inter', sans-serif;">
+<!-- Ambient Background Glows -->
+<div style="position: absolute; top: -10%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(179,25,66,0.15) 0%, rgba(3,11,23,0) 70%); filter: blur(80px); pointer-events: none;"></div>
+<div style="position: absolute; bottom: -10%; right: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(10,49,97,0.3) 0%, rgba(3,11,23,0) 70%); filter: blur(80px); pointer-events: none;"></div>
+<div class="container" style="max-width: 1400px; margin: 0 auto; position: relative; z-index: 2;">
+<div class="bento-grid" style="display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 30px; height: 550px;">
+<!-- Main Block -->
+<div class="bento-main" style="position: relative; border-radius: 40px; overflow: hidden; background: url('assets/usa_1.png') center/cover no-repeat; box-shadow: 0 25px 60px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;">
+<!-- Smooth elegant gradient overlay for text readability -->
+<div style="position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(3, 11, 23, 0.95) 0%, rgba(3, 11, 23, 0.4) 50%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
+<!-- Clean Content (No muddy box) -->
+<div style="position: relative; z-index: 2;">
+<div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 50px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.2);">
+<img alt="US Flag" src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" style="width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"/>
+<span style="color: #FFF; font-weight: 600; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;">United States Pathways</span>
+</div>
+<h1 class="kinetic-text" style="font-size: 4rem; font-weight: 800; color: white; margin-bottom: 15px; line-height: 1.05; font-family: 'Outfit', sans-serif; letter-spacing: -1.5px;">
+                            Explore the Magic <br/>of <span style="background: linear-gradient(to right, #FFFFFF, #9BA3AF); -webkit-background-clip: text; background-clip: text; color: transparent;">America</span>
+</h1>
+<p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 0; line-height: 1.6; max-width: 550px; font-weight: 400; font-family: 'Inter', sans-serif;">
+                            Experience the breathtaking beauty of the United States. Whether you're planning a scenic vacation or attending business meetings, Vesti helps you secure your pathways.
+                        </p>
+</div>
+</div>
+<!-- Secondary Blocks -->
+<div class="bento-sidebar" style="display: flex; flex-direction: column; gap: 30px;">
+<!-- Top Sidebar Block -->
+<div class="bento-side-top" style="flex: 1.3; border-radius: 40px; overflow: hidden; position: relative; background: url('assets/usa_2.png') center/cover no-repeat; box-shadow: 0 25px 60px rgba(0,0,0,0.3); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);">
+<!-- Hover Gradient -->
+<div class="bento-overlay" style="position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(10,49,97,0.4), rgba(0,0,0,0.2)); transition: opacity 0.5s ease;"></div>
+<!-- Beautiful frosted badge -->
+<div style="position: absolute; top: 30px; right: 30px; background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 10px 20px; border-radius: 50px; color: white; font-weight: 600; font-size: 14px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+<i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline-block; margin-right: 6px; margin-bottom: -2px;"></i>
+                            New York City
+                        </div>
+</div>
+<!-- Bottom Sidebar Block (Clean CTA) -->
+<div class="bento-side-bottom" style="flex: 0.7; border-radius: 40px; overflow: hidden; position: relative; background: linear-gradient(135deg, #0A3161 0%, #05162E 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 25px 60px rgba(10,49,97,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 30px;">
+<!-- Subtle Pattern -->
+<div style="position: absolute; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
+<div style="position: relative; z-index: 2; width: 100%; display: flex; align-items: center; justify-content: space-between;">
+<div>
+<h3 style="color: white; font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; margin: 0 0 8px; line-height: 1.1;">Start Your<br/>Journey</h3>
+<p style="color: rgba(255,255,255,0.6); font-size: 14px; margin: 0;">AI-powered visa pathways.</p>
+</div>
+<a class="bento-cta-btn" href="../../../clarity.html" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: white; border-radius: 50%; color: #0A3161; text-decoration: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+            .bento-cta-btn:hover {
+                transform: translateX(10px) scale(1.05);
+                box-shadow: 0 15px 35px rgba(255,255,255,0.2);
+                background: #B31942;
+                color: white !important;
+            }
+            .liquid-glass-panel {
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.5s ease;
+            }
+            .bento-main:hover .liquid-glass-panel {
+                transform: translateY(-8px);
+                background: rgba(255,255,255,0.05);
+                box-shadow: 0 25px 45px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.08);
+            }
+            .bento-side-top:hover {
+                transform: scale(1.03);
+            }
+            .bento-side-top:hover .bento-overlay {
+                opacity: 0;
+            }
+            @media (max-width: 1024px) {
+                .bento-grid { grid-template-columns: 1fr !important; height: auto !important; }
+                .bento-main { height: 500px; }
+                .bento-sidebar { height: 600px; }
+            }
+        </style>
+</section>
+<!-- Our Services Section -->
+<!-- Our Services Section -->
+<section class="section-services" style="padding: 100px 0; background-color: #f9f5f0; border-top: 1px solid rgba(0,0,0,0.05);">
+<div class="container">
+<div class="services-header" style="text-align: center; margin-bottom: 60px;">
+<span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px;">What We Offer</span>
+<h2 class="services-title" style="font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 800; color: var(--bg-main); margin-top: 10px; margin-bottom: 20px; letter-spacing: -1px;">Our Core Services</h2>
+<p style="color: #4A5568; font-size: 1.15rem; max-width: 650px; margin: 0 auto; line-height: 1.6;">Discover tailored mobility pathways designed to simplify your journey and support your global aspirations.</p>
+</div>
+<div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+<!-- Card 1 -->
+<div class="service-card" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" style="display: flex; flex-direction: column; background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);">
+<div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(0, 165, 68, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+</div>
+<h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Student Visa</h3>
+<p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Unlock world-class education abroad. We assist with proof of funds and securing your study permits.</p>
+<a href="../../../clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+</div>
+<!-- Card 2 -->
+<div class="service-card" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" style="display: flex; flex-direction: column; background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);">
+<div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(0, 165, 68, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28"><rect height="14" rx="2" ry="2" width="20" x="2" y="7"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+</div>
+<h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Work Permit</h3>
+<p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Elevate your career internationally. We guide you through employer sponsorships and work authorizations.</p>
+<a href="../../../clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+</div>
+<!-- Card 3 -->
+<div class="service-card" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" style="display: flex; flex-direction: column; background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);">
+<div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(0, 165, 68, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+</div>
+<h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Permanent Residency</h3>
+<p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Build your life abroad permanently. Expert assistance with Express Entry and provincial nominations.</p>
+<a href="../../../clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+</div>
+<!-- Card 4 -->
+<div class="service-card" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0,0,0,0.04)';" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)';" style="display: flex; flex-direction: column; background: #FFFFFF; border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.03);">
+<div style="width: 60px; height: 60px; border-radius: 16px; background: rgba(0, 165, 68, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+</div>
+<h3 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--bg-main); margin-bottom: 15px;">Business Visa</h3>
+<p style="font-family: 'Inter', sans-serif; font-size: 15px; color: #64748B; line-height: 1.6; margin-bottom: 25px;">Expand your enterprise globally. Seamless support for investors, entrepreneurs, and intra-company transfers.</p>
+<a href="../../../clarity.html" style="font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">Learn More <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+</div>
+</div>
+</div>
+</section>
+<!-- 340+ Success Banner -->
+<section class="success-banner-section">
+<div class="container">
+<div class="success-banner-card">
+<div class="success-banner-inner">
+<!-- Beautiful Scalloped Seal Badge -->
+<div class="seal-badge">
+<svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; fill: white; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));" viewbox="0 0 100 100">
+<path d="M50,2 C53.5,2 55.4,5.4 58.7,6.3 C62,7.2 65.2,5.2 68.2,7 C71.2,8.8 71.9,12.7 74.5,15.1 C77.1,17.5 80.9,17.7 82.9,20.6 C84.9,23.5 84.4,27.3 85.8,30.6 C87.2,33.9 90.7,35.4 91.4,38.9 C92.1,42.4 89.8,45.5 89.8,49 C89.8,52.5 92.1,55.6 91.4,59.1 C90.7,62.6 87.2,64.1 85.8,67.4 C84.4,70.7 84.9,74.5 82.9,77.4 C80.9,80.3 77.1,80.5 74.5,82.9 C71.9,85.3 71.2,89.2 68.2,91 C65.2,92.8 62,90.8 58.7,91.7 C55.4,92.6 53.5,96 50,96 C46.5,96 44.6,92.6 41.3,91.7 C38,90.8 34.8,92.8 31.8,91 C28.8,89.2 28.1,85.3 25.5,82.9 C22.9,80.5 19.1,80.3 17.1,77.4 C15.1,74.5 15.6,70.7 14.2,67.4 C12.8,64.1 9.3,62.6 8.6,59.1 C7.9,55.6 10.2,52.5 10.2,49 C10.2,45.5 7.9,42.4 8.6,38.9 C9.3,35.4 12.8,33.9 14.2,30.6 C15.6,27.3 15.1,23.5 17.1,20.6 C19.1,17.7 22.9,17.5 25.5,15.1 C28.1,12.7 28.8,8.8 31.8,7 C34.8,5.2 38,7.2 41.3,6.3 C44.6,5.4 46.5,2 50,2 Z"></path>
+</svg>
+<span class="seal-badge-text">340+</span>
+<div class="seal-badge-check">
+<i data-lucide="check" style="width: 14px; height: 14px; stroke-width: 3;"></i>
+</div>
+</div>
+<p class="success-banner-text">
+                        We have successfully processed over 340+ United States Visas for travelers and
+                        families,
+                        making dream vacations a reality.
+                    </p>
+</div>
+<button class="btn btn-success btn-lg" onclick="window.location.href='mailto:help@wevesti.com'">
+                    Reach Our Team
+                </button>
+</div>
+</div>
+</section>
+<!-- Benefits of the United States Pathways Section -->
+<section style="padding: 60px 0; background-color: #ffffff; border-top: 1px solid #f9f5f0;">
+<div class="container">
+<h2 style="font-size: 36px; font-weight: 700; color: #0A3161; text-align: center; margin-bottom: 36px; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px;">
+                Benefits of the United States Pathways</h2>
+<div class="benefits-grid">
+<!-- Left Column -->
+<div style="display: flex; flex-direction: column; gap: 30px;">
+<div style="display: flex; gap: 20px;">
+<div style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                Explore Natural Wonders</h4>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
+                                Immerse yourself in United States's majestic mountains, glaciers, pristine beaches, and
+                                national parks.
+                            </p>
+</div>
+</div>
+<div style="display: flex; gap: 20px;">
+<div style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                Visit Friends &amp; Family</h4>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
+                                Reunite with your loved ones and enjoy quality time exploring the beauty of United States
+                                together.
+                            </p>
+</div>
+</div>
+<div style="display: flex; gap: 20px;">
+<div style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                Short-Term Business</h4>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
+                                Attend conferences, corporate meetings, or execute negotiations while maintaining your
+                                global career.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Right Column -->
+<div style="display: flex; flex-direction: column; gap: 30px;">
+<div style="display: flex; gap: 20px;">
+<div style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                Pre-Arrival USD Wallets</h4>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
+                                Open your USD wallet in the Vesti App and swap currency early to protect your travel
+                                funds from inflation.
+                            </p>
+</div>
+</div>
+<div style="display: flex; gap: 20px;">
+<div style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                Seamless Fee Payments</h4>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
+                                Pay all your visa application fees, flight bookings, and travel insurance directly
+                                through Vesti.
+                            </p>
+</div>
+</div>
+<div style="display: flex; gap: 20px;">
+<div style="color: #B31942; flex-shrink: 0; margin-top: 3px; background: rgba(179, 25, 66, 0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+</div>
+<div>
+<h4 style="font-size: 18px; font-weight: 700; color: #0A3161; margin-bottom: 8px; font-family: 'Outfit', sans-serif;">
+                                Travel &amp; Settlement Support</h4>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.6; margin: 0;">
+                                Access specialized financial tools, proof of funds services, and guidance for a
+                                hassle-free trip.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Visa Pathway Details Modal (Dynamic Overlay) -->
+<div class="modal" id="pathway-modal">
+<div class="modal-content">
+<button aria-label="Close modal" class="modal-close" id="modal-close">
+<i data-lucide="x"></i>
+</button>
+<div id="modal-body-content">
+<!-- Populated dynamically via JS -->
+</div>
+</div>
+</div>
+<!-- App Download Section -->
+<section class="app-download-section">
+<div class="container text-center">
+<h2 class="download-title">Also available to<br/>download on both</h2>
+<div class="download-buttons">
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.vesti.app&amp;pli=1" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path></svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Google Play</span>
+</div>
+</div>
+</a>
+<a class="download-btn" href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Apple Store</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Detailed Vesti Footer -->
+<footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                <a href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+<svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:26px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">esti</span>
+</a>
+                <p style="font-size: 14px; color: #A3A3A3; line-height: 1.6;">The operating system for global talent migration. Built for the ambitious, guided by humans.</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">INTELLIGENCE</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">O-1 Scoring</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">EB-1A Roadmap</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">NIW Builder</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Express Entry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">HUMAN LAYER</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Expert Network</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Legal Reviews</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Concierge</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">COMPANY</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Methodology</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Pricing</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Careers</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">LEGAL</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Terms of Service</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">AML</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; padding-top: 20px; color: #A3A3A3; font-size: 12px; text-align: left;">
+        </div>
+    </div>
+</footer>
+<!-- Eligibility Modal Form -->
+<div class="modal" id="eligibility-modal">
+<div class="modal-content elig-modal-white" style="background: white; padding: 40px; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 650px; width: 90%; text-align: center; position: relative;">
+<button aria-label="Close modal" class="modal-close elig-modal-close" onclick="closeEligibilityModal()" onmouseout="this.style.background='#F7FAFC'; this.style.transform='rotate(0)';" onmouseover="this.style.background='#f9f5f0'; this.style.transform='rotate(90deg)';" style="position: absolute; top: 20px; right: 20px; background: #F7FAFC; width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer; color: #13110f; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<h2 style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800; color: #13110f; margin: 0 0 10px; letter-spacing: -0.5px;">Check Your Eligibility</h2>
+<p style="font-family: 'Inter', sans-serif; font-size: 14px; color: #4A5568; line-height: 1.5; margin: 0 auto 30px; max-width: 800px;">Connect your profile to let our intelligence layer find your best global mobility pathway in seconds.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+<!-- LinkedIn Connect -->
+<button onclick="window.location.href='../auth/signup.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(10,102,194,0.15)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(10,102,194,0.25)';" style="background: #0A66C2; color: #FFFFFF; border: none; border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(10,102,194,0.15);">
+<svg fill="currentColor" height="24" style="flex-shrink: 0;" viewbox="0 0 24 24" width="24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+<div>
+<div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 2px;">Connect LinkedIn</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,0.85); font-weight: 400;">Fastest &amp; accurate</div>
+</div>
+</button>
+<!-- Upload Resume -->
+<input accept=".pdf,.doc,.docx" id="resumeUploadInput" onchange="alert('Resume uploaded successfully! Our AI is now analyzing your profile for the best pathways.');" style="display:none;" type="file"/>
+<button onclick="document.getElementById('resumeUploadInput').click();" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.02)'; this.style.borderColor='rgba(0,0,0,0.06)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(0, 165, 68, 0.1)'; this.style.borderColor='rgba(0, 165, 68, 0.3)';" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+<div style="width: 32px; height: 32px; border-radius: 50%; background: #f9f5f0; color: #13110f; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M12 3v12"></path><path d="m17 8-5-5-5 5"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path></svg>
+</div>
+<div>
+<div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: #13110f; margin-bottom: 2px;">Upload Resume</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 11px; color: #718096; font-weight: 400;">PDF or DOCX</div>
+</div>
+</button>
+<!-- Manual Check -->
+<button onclick="window.location.href='../auth/signup.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.02)'; this.style.borderColor='rgba(0,0,0,0.06)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(0,0,0,0.06)'; this.style.borderColor='rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+<div style="width: 32px; height: 32px; border-radius: 50%; background: #f9f5f0; color: #4A5568; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path></svg>
+</div>
+<div>
+<div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: #13110f; margin-bottom: 2px;">Manual Entry</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 11px; color: #718096; font-weight: 400;">Answer questionnaire</div>
+</div>
+</button>
+</div>
+</div>
+</div>
+<style>
+    /* Modal Styles */
+    #eligibility-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(26, 26, 26, 0.95);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+    }
+    #eligibility-modal.active {
+        display: flex;
+    }
+    </style>
+<script>
+    function openEligibilityModal() {
+        document.getElementById('eligibility-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeEligibilityModal() {
+        document.getElementById('eligibility-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    </script>\n\n    <!-- Country Data -->
+<script src="js/countries.js"></script>
+<!-- Core App logic -->
+<script src="js/app.js"></script>
+<!-- Scroll Animation logic -->
+<script src="js/scrolling.js"></script>
+<!-- Hero Slideshow script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentHeroSlide = 0;
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            const heroDots = document.querySelectorAll('.slideshow-dots .dot');
+
+            function showHeroSlide(index) {
+                if (index >= heroSlides.length) index = 0;
+                if (index < 0) index = heroSlides.length - 1;
+
+                heroSlides.forEach((slide, idx) => {
+                    if (idx === index) {
+                        slide.style.opacity = '1';
+                        slide.style.zIndex = '2';
+                    } else {
+                        slide.style.opacity = '0';
+                        slide.style.zIndex = '1';
+                    }
+                });
+
+                heroDots.forEach((dot, idx) => {
+                    if (idx === index) {
+                        dot.style.opacity = '1';
+                    } else {
+                        dot.style.opacity = '0.5';
+                    }
+                });
+
+                currentHeroSlide = index;
+            }
+
+            // Set up click events for dots
+            window.setSlide = function (index) {
+                showHeroSlide(index);
+            };
+
+            // Autoplay every 3.5 seconds
+            setInterval(() => {
+                showHeroSlide(currentHeroSlide + 1);
+            }, 3500);
+
+            // Elite Pass Card Slideshow
+            let currentEliteSlide = 0;
+            const eliteSlides = document.querySelectorAll('.elite-slide');
+
+            function showEliteSlide(index) {
+                if (!eliteSlides.length) return;
+                if (index >= eliteSlides.length) index = 0;
+                if (index < 0) index = eliteSlides.length - 1;
+
+                eliteSlides.forEach((slide, idx) => {
+                    slide.style.opacity = idx === index ? '1' : '0';
+                });
+                currentEliteSlide = index;
+            }
+
+            // Autoplay every 4 seconds
+            setInterval(() => {
+                showEliteSlide(currentEliteSlide + 1);
+            }, 4000);
+        });
+    </script>
+<!-- Live Agent Floating Button -->
+<a href="tel:+1234567890" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #13110f; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(19, 17, 15, 0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s;">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+</a>
+<!-- Agent Helper Modal -->
+<div class="agent-modal-overlay" id="agentModal">
+    <div class="agent-modal">
+        <button class="agent-close-btn" onclick="document.getElementById('agentModal').classList.remove('active'); document.getElementById('floatingAgentBtn').style.display='flex';">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <div id="modal-state-initial" style="display: flex; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background: url('../../../assets/expert-bunmi-BGTZe3Yq.jpg') center/cover; position: relative;">
+                <div style="position: absolute; inset: 0; background-color: rgba(235, 226, 212, 0.5); mix-blend-mode: multiply;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(19, 17, 15, 0.8), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title">Need help with your Visa? 👋</h2>
+                <p class="agent-desc">Hi! I'm Bunmi from the Vesti support team. I noticed you're looking at our global mobility pathways. Let me know if you need an expert to guide you through the process!</p>
+                <button class="agent-action-btn" onclick="showAssessmentState()" style="padding: 16px 0; font-size: 16px; border:none; border-radius:12px; cursor:pointer; background:#13110f; color:#fff; width:100%; display:flex; justify-content:center; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Talk to a Live Agent
+                </button>
+            </div>
+        </div>
+        
+        <div id="modal-state-assessment" style="display: none; width: 100%; height: 100%;">
+            <div class="agent-modal-left" style="background-color: #13110f; position: relative;">
+                <div style="position: absolute; bottom: 30px; left: 30px; color: #FFF; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;">Bunmi from Vesti</div>
+                <div style="position: absolute; bottom: 12px; left: 30px; color: #13110f; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; z-index: 2;">
+                    <span style="width: 8px; height: 8px; background: #13110f; border-radius: 50%; display: inline-block;"></span> Available Now
+                </div>
+            </div>
+            <div class="agent-modal-right">
+                <h2 class="agent-title" style="font-size: 28px; margin-bottom: 8px;">Your Global Mobility Score</h2>
+                <p class="agent-desc" style="font-size: 14px; margin-bottom: 24px;">Based on your achievement markers, we identified six pathways. Three are within reach today.</p>
+                
+                <div class="assessment-cards" style="display: flex; flex-direction: column; gap: 12px; max-height: 350px; overflow-y: auto; padding-right: 10px;">
+                    <div class="pathway-card" style="border: 1px solid #f9f5f0; border-radius: 12px; padding: 16px; background: #f9f5f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin:0; font-family: 'Outfit', sans-serif; font-size: 16px; color: #13110f;">United States | O-1A Visa</h4>
+                            <span style="background: #E2E8F0; color: #13110f; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">84% Match</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; font-size: 12px; color: #4A5568;">
+                            <div><strong>Strength:</strong> Extraordinary</div>
+                            <div><strong>Risk Profile:</strong> Low</div>
+                            <div style="grid-column: span 2;"><strong>Processing:</strong> 15 Days (Premium)</div>
+                        </div>
+                        <button class="agent-action-btn" onclick="submitAssessment()" style="padding: 10px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">View Roadmap</button>
+                    </div>
+
+                    <div class="pathway-card" style="border: 1px solid #f9f5f0; border-radius: 12px; padding: 16px; background: #f9f5f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin:0; font-family: 'Outfit', sans-serif; font-size: 16px; color: #13110f;">United States | EB-1A</h4>
+                            <span style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">61% Match</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; font-size: 12px; color: #4A5568;">
+                            <div><strong>Strength:</strong> Emerging</div>
+                            <div><strong>Gap:</strong> 2 Peer Reviews</div>
+                            <div style="grid-column: span 2;"><strong>Timeline:</strong> 12–18 Months</div>
+                        </div>
+                        <button class="agent-action-btn" onclick="submitAssessment()" style="padding: 10px 0; font-size: 14px; background: #EDF2F7; color: #13110f; border:none; border-radius:8px; cursor:pointer; width:100%;">Bridge the Gap</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script id="agent-modal-script">function showAssessmentState(){document.getElementById("modal-state-initial").style.display="none";document.getElementById("modal-state-assessment").style.display="flex"}function submitAssessment(){const rightPanel=document.querySelector("#modal-state-assessment .agent-modal-right");rightPanel.innerHTML=<div style="display:flex; flex-direction:column; height:100%; justify-content:center;"><div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;"><div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div><h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2></div><p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p><div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;"><p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p></div><button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button></div>}setTimeout(()=>{document.getElementById("agentModal").classList.add("active");const btn=document.getElementById("floatingAgentBtn");if(btn)btn.style.display="none"},3000);</script>
+\n<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>

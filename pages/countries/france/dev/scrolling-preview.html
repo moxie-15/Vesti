@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scrolling Experience</title>
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/scrolling.css" rel="stylesheet"/>
+<!-- Inter Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<!-- Optional Tailwind CDN (if you want Tailwind utilities on this page) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#13110f',
+            lemon: '#FAFFD1',
+            emerald: '#10b981',
+            forest: '#0a2511',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body class="font-sans" data-scroll="">
+<!-- Scroll‑stacking section (copied from index.html) -->
+<section aria-label="Scrolling cards section" class="relative" id="scroll-stacking" role="region" style="background-color: #ffffff; padding-bottom: 0;">
+<div class="container max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8">
+<div class="scroll-cards-wrapper" data-scroll-container="">
+<!-- Navigation hint -->
+<div class="scroll-navigation-hint" style="color: #475467; justify-content: center; margin-top: 25px; display: flex; align-items: center; gap: 8px;">
+<i class="bounce-animation" data-lucide="arrow-down" style="color: #2E6F25;"></i>
+<span>Scroll to stack cards and reveal products</span>
+</div>
+<!-- Stack of Cards -->
+<div class="scroll-cards-stack">
+<!-- Card 1: Student Loan Card -->
+<div class="scroll-card" id="card-student-loan" style="background-color: #e8f7d9; color: #0f1c09; border: 1px solid rgba(0,0,0,0.05);">
+<div class="scroll-card-info">
+<span class="scroll-card-badge" style="background: #0b112e; color: #ffffff;">Study Without Limits 🚀</span>
+<h3 class="scroll-card-title" style="color: #274719;">Education Loans Made Simple &amp; Accessible</h3>
+<p class="scroll-card-desc" style="color: #1a2e11;">Whether you're studying locally or abroad, Vesti's Education Loan helps you focus on what matters most. Get financial support for tuition, housing, and living expenses, all in one smooth process.</p>
+<div class="scroll-card-cta-row">
+<a class="btn" href="https://wevesti.com/edu" rel="noopener" style="color: #18330e; font-size: 1.1rem;" target="_blank">Apply for loan <i data-lucide="arrow-up-right"></i></a>
+</div>
+</div>
+<div class="scroll-card-visual">
+<img alt="Education Globe" src="../assets/education-globe.png" style="max-height: 160px; width: auto; mix-blend-mode: darken; transform: scale(1.1);"/>
+</div>
+</div>
+<!-- Card 2: Global Gen Card -->
+<div class="scroll-card" id="card-global-gen" style="background-color: #4C8C35; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.05); margin-top: 5vh;">
+<div class="scroll-card-info">
+<span class="scroll-card-badge" style="background: #0b112e; color: #ffffff;">AVAILABLE TO REQUEST</span>
+<h3 class="scroll-card-title" style="color: #ffffff;">Introducing the new Vesti GlobalGeng Mastercard.</h3>
+<p class="scroll-card-desc" style="color: #ffffff;">From quick errands to big goals, it's made to keep up. Experience freedom that fits your lifestyle.</p>
+<div class="scroll-card-cta-row">
+<a class="btn" href="https://wevesti.com/globalgeng-card" rel="noopener" style="color: #ffffff; font-size: 1.1rem;" target="_blank">Learn more <i data-lucide="arrow-up-right"></i></a>
+</div>
+</div>
+<div class="scroll-card-visual">
+<img alt="Vesti GlobalGeng Mastercard" src="../assets/vesti-cards.png" style="max-height: 160px; width: auto; mix-blend-mode: screen; transform: scale(1.15);"/>
+</div>
+</div>
+<!-- Card 3: Elite Pass Card -->
+<div class="scroll-card" id="card-elite-pass" style="background-color: #264B20; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.05); margin-top: 5vh;">
+<div class="scroll-card-info">
+<span class="scroll-card-badge" style="background: #0b112e; color: #ffffff;">AVAILABLE OFFER 🚀</span>
+<h3 class="scroll-card-title" style="color: #ffffff;">Get First Class Treatment with Vesti Elitepass</h3>
+<p class="scroll-card-desc" style="color: #ffffff;">Your personal gateway to stress-free, luxury airport experiences worldwide.</p>
+<div class="scroll-card-cta-row">
+<a class="btn" href="https://wevesti.com/elite-pass" rel="noopener" style="color: #ffffff; font-size: 1.1rem;" target="_blank">Get Elitepass <i data-lucide="arrow-up-right"></i></a>
+</div>
+</div>
+<div class="scroll-card-visual" style="position: relative;">
+<img alt="Seamless Booking Portrait" src="../assets/elite-man.png" style="max-height: 160px; width: auto; mix-blend-mode: multiply; transform: scale(1.15);"/>
+<div style="position: absolute; top: 30%; left: -20px; background: white; color: black; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+<i data-lucide="check-circle" style="width: 14px; height: 14px; color: #2E6F25;"></i> Seamless Booking
+                </div>
+<div style="position: absolute; bottom: 15%; right: -20px; background: white; color: black; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+<span style="color: #2E6F25; font-weight: 800; font-size: 14px;">(V)</span> Unique Discounts
+                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<script src="../js/app.js"></script>
+<script src="../js/scrolling.js"></script>
+<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>

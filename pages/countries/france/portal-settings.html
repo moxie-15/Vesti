@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portal Settings — Vesti AU Admin</title>
+<meta content="Vesti AU internal portal settings — manage exchange rates, travel fees, and payment details." name="description"/>
+<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<style>
+        :root {
+            --bg:         #f9f5f0;
+            --bg-card:    rgba(255, 255, 255, 0.85);
+            --green:      #13110f;
+            --green-dark: #3e6f26;
+            --green-glow: rgba(99, 161, 70, 0.15);
+            --border:     rgba(19, 17, 15, 0.08);
+            --text:       #13110f;
+            --muted:      rgba(19, 17, 15, 0.55);
+            --radius:     16px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif !important;
+            background: var(--bg) !important;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99, 161, 70, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 90% 110%, rgba(19, 17, 15, 0.04) 0%, transparent 60%) !important;
+            color: var(--text) !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── Noise texture overlay ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+
+        .nav-breadcrumb {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13.5px; color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+        .nav-breadcrumb a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-breadcrumb a:hover { color: var(--green); }
+        .nav-breadcrumb .current { color: #ffffff; font-weight: 600; }
+
+
+        /* ─── Hero Header ─── */
+        .page-hero {
+            position: relative;
+            z-index: 1;
+            padding: 52px 32px 44px;
+            max-width: 1240px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(99, 161, 70, 0.08);
+            border: 1px solid rgba(99, 161, 70, 0.28);
+            color: var(--green-dark);
+            font-size: 0.72rem; font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 100px;
+            margin-bottom: 18px;
+        }
+        .hero-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px rgba(99, 161, 70, 0.5);
+            animation: pulse-green 1.8s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-green { from { opacity: 1; } to { opacity: 0.4; } }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+        .hero-title .accent {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 1rem; color: var(--muted);
+            max-width: 520px; line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .hero-meta {
+            display: flex; align-items: center; gap: 20px;
+            flex-wrap: wrap;
+        }
+        .hero-meta-item {
+            display: flex; align-items: center; gap: 7px;
+            font-size: 12.5px; color: var(--muted);
+        }
+        .hero-meta-item i { color: var(--green); }
+        .last-saved-text { font-size: 12px; color: var(--muted); font-style: italic; }
+
+        /* ─── Main Grid ─── */
+        main {
+            flex: 1;
+            position: relative; z-index: 1;
+            padding: 0 32px 120px;
+        }
+        .settings-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        /* ─── Setting Cards ─── */
+        .s-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(19, 17, 15, 0.015);
+        }
+        .s-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--card-accent, var(--green));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .s-card:hover {
+            border-color: rgba(99, 161, 70, 0.2);
+            box-shadow: 0 20px 40px rgba(19, 17, 15, 0.05);
+            transform: translateY(-2px);
+        }
+        .s-card:hover::before { opacity: 1; }
+        .s-card:focus-within {
+            border-color: rgba(99, 161, 70, 0.3);
+            box-shadow: 0 20px 40px rgba(19, 17, 15, 0.05);
+        }
+        .s-card:focus-within::before { opacity: 1; }
+
+        /* Card accents by type */
+        .s-card.green  { --card-accent: linear-gradient(90deg, #13110f, #86efac); }
+        .s-card.blue   { --card-accent: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .s-card.amber  { --card-accent: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .s-card.purple { --card-accent: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+        .card-head {
+            padding: 22px 26px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: rgba(19, 17, 15, 0.015);
+        }
+        .card-icon-wrap {
+            width: 44px; height: 44px; flex-shrink: 0;
+            border-radius: 12px;
+            border: 1px solid;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .card-head-text { flex: 1; }
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            color: var(--text); margin-bottom: 3px;
+        }
+        .card-subtitle { font-size: 12px; color: var(--muted); }
+
+        .card-body { padding: 22px 26px; }
+
+        /* ─── Field Rows ─── */
+        .field-grid { display: flex; flex-direction: column; gap: 16px; }
+        .field-row { display: flex; flex-direction: column; gap: 6px; }
+        .field-row.two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .field-inner { display: flex; flex-direction: column; gap: 6px; }
+
+        .f-label {
+            font-size: 11px; font-weight: 700;
+            color: rgba(19, 17, 15, 0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .f-label i { opacity: 0.6; }
+
+        .input-wrap {
+            position: relative;
+            display: flex; align-items: center;
+        }
+        .f-input {
+            width: 100%;
+            background: #fff;
+            border: 1.5px solid rgba(19, 17, 15, 0.12);
+            border-radius: 11px;
+            padding: 11px 14px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .f-input.mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; letter-spacing: 0.3px; }
+        .f-input::placeholder { color: rgba(19, 17, 15, 0.25); }
+        .f-input:focus {
+            border-color: var(--green);
+            background: rgba(99, 161, 70, 0.03);
+            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.1);
+        }
+        .f-input:hover:not(:focus) { border-color: rgba(19, 17, 15, 0.25); }
+        .f-suffix {
+            position: absolute; right: 13px;
+            font-size: 11.5px; font-weight: 800;
+            color: rgba(19, 17, 15, 0.45);
+            pointer-events: none;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .f-hint {
+            font-size: 11px; color: rgba(19, 17, 15, 0.45);
+            line-height: 1.45; padding-left: 2px;
+        }
+
+        /* Input with prefix icon */
+        .input-prefix {
+            position: absolute; left: 12px;
+            color: rgba(19, 17, 15, 0.45);
+            pointer-events: none;
+        }
+        .f-input.has-prefix { padding-left: 36px; }
+
+        /* ─── Divider inside card ─── */
+        .card-divider {
+            height: 1px; background: var(--border);
+            margin: 16px 0;
+        }
+
+        /* ─── Sticky Save Footer ─── */
+        .save-footer {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 90;
+            background: rgba(249, 245, 240, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(19, 17, 15, 0.08);
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            box-shadow: 0 -10px 40px rgba(19, 17, 15, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .footer-info {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .footer-info-text { font-size: 13px; color: var(--muted); }
+        .footer-info-text strong { color: var(--text); }
+        .unsaved-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #f59e0b;
+            box-shadow: 0 0 8px rgba(245,158,11,0.7);
+            animation: pulse-amber 1.5s ease-in-out infinite alternate;
+            display: none;
+        }
+        .unsaved-dot.visible { display: block; }
+        @keyframes pulse-amber { from { opacity: 1; } to { opacity: 0.3; } }
+
+        .footer-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-reset {
+            background: transparent;
+            border: 1px solid rgba(19, 17, 15, 0.15);
+            color: var(--muted);
+            padding: 9px 20px;
+            border-radius: 10px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-reset:hover { background: rgba(19, 17, 15, 0.04); color: var(--text); border-color: rgba(19, 17, 15, 0.3); }
+        .btn-save {
+            background: linear-gradient(135deg, #13110f 0%, #3e8f2a 100%);
+            border: none;
+            color: #fff;
+            padding: 11px 32px;
+            border-radius: 11px;
+            font-size: 13.5px; font-weight: 700;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 22px rgba(99,161,70,0.35);
+            font-family: 'Outfit', sans-serif;
+        }
+        .btn-save:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(99,161,70,0.45); }
+        .btn-save:active { transform: translateY(0); }
+
+        /* ─── Toast ─── */
+        .toast {
+            position: fixed;
+            bottom: 88px; right: 28px;
+            background: rgba(16, 28, 12, 0.95);
+            border: 1px solid rgba(99,161,70,0.45);
+            color: #86efac;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13.5px; font-weight: 600;
+            z-index: 9999;
+            display: flex; align-items: center; gap: 9px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            transform: translateY(20px); opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast-icon { color: var(--green); }
+
+        /* ─── Page Footer ─── */
+        .footer {
+            padding-bottom: 120px !important;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 860px) {
+            .settings-grid { grid-template-columns: 1fr; }
+            .page-hero, main { padding-left: 18px; padding-right: 18px; }
+            .hero-title { font-size: 2rem; }
+            .save-footer { padding-left: 18px; padding-right: 18px; }
+            .navbar { padding: 0 18px; }
+            .nav-breadcrumb { display: none; }
+            .field-row.two-col { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 540px) {
+            .footer-info-text { display: none; }
+        }
+
+        /* ─── Number input cleanup ─── */
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+        input[type=number] { -moz-appearance: textfield; }
+    </style>
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body>
+<!-- Top Announcement Bar -->
+<div class="top-announcement-bar">
+<span>🔒 Admin Area — Vesti FR Internal Portal Settings &amp; Configuration</span>
+</div>
+<!-- Navigation Bar -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<a class="logo-area" href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
+<span class="au-indicator" style="margin-left:10px;">FR</span>
+</a>
+<ul class="nav-menu" id="nav-menu">
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
+            <li><a href="../../../consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
+            <li><a href="../../../visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
+            <li><a href="../../../banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+            <li><a href="../../../careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+            <li><a href="../../../press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+            <li><a href="../../../faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+            <li><a href="../../../contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+            <li><a href="../../../updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="../../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+        <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
+            <li><a href="../../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+        </ul>
+    </li>
+
+</ul>
+</li>
+<li class="dropdown" style="position: relative;">
+<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
+<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+</ul>
+</li>
+</ul>
+<div class="nav-cta">
+<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</div>
+<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
+<i data-lucide="menu"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+<ul class="mobile-menu">
+<li><a class="mobile-link" href="index.html#pathways">Products</a></li>
+<li><a class="mobile-link" href="index.html#scroll-stacking">Company</a></li>
+<li><a class="mobile-link" href="../../../travel-fees.html">Travel Fees</a></li>
+<li><a class="mobile-link" href="video-catalog.html">← Clarity Sessions</a></li>
+<li class="mobile-drawer-ctas">
+<a class="btn btn-outline w-full" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary w-full" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</li>
+</ul>
+</div>
+<!-- Hero Header -->
+<section class="page-hero">
+<!-- Breadcrumbs inside hero header content -->
+<div class="nav-breadcrumb" style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 13.5px; font-weight: 500;">
+<a href="../../../admin-logs.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 5px;"><i data-lucide="layout-dashboard" style="width: 14.5px; height: 14.5px;"></i> Dashboard</a>
+<i data-lucide="chevron-right" style="width: 11px; height: 11px; opacity: 0.5; color: var(--muted);"></i>
+<span class="current" style="color: var(--text); font-weight: 600;">Portal Settings</span>
+</div>
+<div class="hero-eyebrow">
+<span class="hero-dot"></span>
+            Admin Configuration Panel
+        </div>
+<h1 class="hero-title">
+            Portal <span class="accent">Settings</span>
+</h1>
+<p class="hero-desc">
+            Control exchange rates, service fees, and bank details shown to customers across the Vesti FR travel portal. All changes sync instantly to every page.
+        </p>
+<div class="hero-meta">
+<div class="hero-meta-item">
+<i data-lucide="shield-check" style="width:14px;height:14px;"></i>
+<span>Changes saved to browser localStorage</span>
+</div>
+<div class="hero-meta-item">
+<i data-lucide="zap" style="width:14px;height:14px;"></i>
+<span>Instant sync — no server required</span>
+</div>
+<span class="last-saved-text" id="last-saved-label"></span>
+</div>
+</section>
+<!-- Main Settings Grid -->
+<main>
+<div class="settings-grid">
+<!-- ── CARD 1: Exchange Rates ── -->
+<div class="s-card green">
+<div class="card-head">
+<div class="card-icon-wrap" style="background:rgba(99,161,70,0.12);border-color:rgba(99,161,70,0.3);">
+<i data-lucide="trending-up" style="width:20px;height:20px;color:#13110f;"></i>
+</div>
+<div class="card-head-text">
+<div class="card-title">Exchange Rates</div>
+<div class="card-subtitle">Base rate: 1 USD → X local currency · per Vesti wallet</div>
+</div>
+</div>
+<div class="card-body">
+<div class="field-grid">
+<div class="field-row two-col">
+<div class="field-inner">
+<label class="f-label" for="rate-ngn">
+<i data-lucide="globe" style="width:11px;height:11px;"></i> NGN Rate
+                                </label>
+<div class="input-wrap">
+<input class="f-input mono" id="rate-ngn" min="1" oninput="markUnsaved()" placeholder="1650" step="1" type="number" value="1650"/>
+<span class="f-suffix">₦/USD</span>
+</div>
+</div>
+<div class="field-inner">
+<label class="f-label" for="rate-ghs">
+<i data-lucide="globe" style="width:11px;height:11px;"></i> GHS Rate
+                                </label>
+<div class="input-wrap">
+<input class="f-input mono" id="rate-ghs" min="0.01" oninput="markUnsaved()" placeholder="15.20" step="0.01" type="number" value="15.20"/>
+<span class="f-suffix">₵/USD</span>
+</div>
+</div>
+</div>
+<div class="field-row two-col">
+<div class="field-inner">
+<label class="f-label" for="rate-kes">
+<i data-lucide="globe" style="width:11px;height:11px;"></i> KES Rate
+                                </label>
+<div class="input-wrap">
+<input class="f-input mono" id="rate-kes" min="0.01" oninput="markUnsaved()" placeholder="135" step="0.01" type="number" value="135.00"/>
+<span class="f-suffix">KSh/USD</span>
+</div>
+</div>
+<div class="field-inner">
+<label class="f-label" for="markup">
+<i data-lucide="percent" style="width:11px;height:11px;"></i> Markup
+                                </label>
+<div class="input-wrap">
+<input class="f-input mono" id="markup" max="100" min="0" oninput="markUnsaved()" placeholder="7.5" step="0.1" type="number" value="7.5"/>
+<span class="f-suffix">%</span>
+</div>
+</div>
+</div>
+<p class="f-hint">Markup % is added on top of the base rate before displaying customer totals.</p>
+</div>
+</div>
+</div>
+<!-- ── CARD 2: Government Fees ── -->
+<div class="s-card blue">
+<div class="card-head">
+<div class="card-icon-wrap" style="background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.3);">
+<i data-lucide="landmark" style="width:20px;height:20px;color:#60a5fa;"></i>
+</div>
+<div class="card-head-text">
+<div class="card-title">Government Fees</div>
+<div class="card-subtitle">Official EUR fees · auto-converted to USD for display</div>
+</div>
+</div>
+<div class="card-body">
+<div class="field-grid">
+<div class="field-row">
+<label class="f-label" for="fee-visa">
+<i data-lucide="file-text" style="width:11px;height:11px;"></i> Schengen Visa Application Fee
+                            </label>
+<div class="input-wrap">
+<input class="f-input mono" id="fee-visa" min="0" oninput="markUnsaved()" placeholder="300" step="1" type="number" value="300"/>
+<span class="f-suffix">AUD</span>
+</div>
+</div>
+<div class="field-row">
+<label class="f-label" for="fee-immigration">
+<i data-lucide="stamp" style="width:11px;height:11px;"></i> Schengen Immigration Handling Fee
+                            </label>
+<div class="input-wrap">
+<input class="f-input mono" id="fee-immigration" min="0" oninput="markUnsaved()" placeholder="41" step="1" type="number" value="41"/>
+<span class="f-suffix">AUD</span>
+</div>
+</div>
+<div class="field-row">
+<label class="f-label" for="fee-ivl">
+<i data-lucide="globe-2" style="width:11px;height:11px;"></i> FR Visitor Levy (IVL)
+                            </label>
+<div class="input-wrap">
+<input class="f-input mono" id="fee-ivl" min="0" oninput="markUnsaved()" placeholder="100" step="1" type="number" value="100"/>
+<span class="f-suffix">AUD</span>
+</div>
+</div>
+<p class="f-hint">All values are in EUR and automatically converted to USD on the Travel Fees page using the current EUR→USD rate.</p>
+</div>
+</div>
+</div>
+<!-- ── CARD 3: Vesti Platform Fees ── -->
+<div class="s-card amber">
+<div class="card-head">
+<div class="card-icon-wrap" style="background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.3);">
+<i data-lucide="coins" style="width:20px;height:20px;color:#fbbf24;"></i>
+</div>
+<div class="card-head-text">
+<div class="card-title">Vesti Platform Fees</div>
+<div class="card-subtitle">Service charges shown on the cost breakdown · per passenger</div>
+</div>
+</div>
+<div class="card-body">
+<div class="field-grid">
+<div class="field-row two-col">
+<div class="field-inner">
+<label class="f-label" for="fee-vesti-gross">
+<i data-lucide="tag" style="width:11px;height:11px;"></i> Original Price
+                                </label>
+<div class="input-wrap">
+<input class="f-input mono" id="fee-vesti-gross" min="0" oninput="markUnsaved(); previewDiscount();" placeholder="1500" step="0.01" type="number" value="1500.00"/>
+<span class="f-suffix">USD</span>
+</div>
+<p class="f-hint" style="margin-top:4px;">Shown with strikethrough</p>
+</div>
+<div class="field-inner">
+<label class="f-label" for="fee-vesti-net">
+<i data-lucide="badge-percent" style="width:11px;height:11px;"></i> Discounted Price
+                                </label>
+<div class="input-wrap">
+<input class="f-input mono" id="fee-vesti-net" min="0" oninput="markUnsaved(); previewDiscount();" placeholder="891.40" step="0.01" type="number" value="891.40"/>
+<span class="f-suffix">USD</span>
+</div>
+<p class="f-hint" style="margin-top:4px;">What the customer pays</p>
+</div>
+</div>
+<!-- Live discount preview -->
+<div id="discount-preview" style="background:rgba(99,161,70,0.07);border:1px solid rgba(99,161,70,0.2);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+<div style="font-size:12px;color:rgba(255,255,255,0.45);">Live discount preview</div>
+<div style="display:flex;align-items:center;gap:10px;">
+<span id="preview-original" style="text-decoration:line-through;color:rgba(255,100,100,0.7);font-size:13px;font-weight:600;font-family:monospace;">$1,500.00</span>
+<span id="preview-net" style="color:#86efac;font-size:14px;font-weight:800;font-family:monospace;">$891.40</span>
+<span id="preview-savings" style="background:rgba(99,161,70,0.15);color:#86efac;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;"></span>
+</div>
+</div>
+<div class="card-divider"></div>
+<div class="field-row">
+<label class="f-label" for="fee-elite">
+<i data-lucide="sparkles" style="width:11px;height:11px;color:#fbbf24;"></i> Vesti Elitepass Add-on
+                            </label>
+<div class="input-wrap">
+<input class="f-input mono" id="fee-elite" min="0" oninput="markUnsaved()" placeholder="150" step="0.01" type="number" value="150.00"/>
+<span class="f-suffix">USD</span>
+</div>
+<p class="f-hint" style="margin-top:4px;">Priority advisor, document review &amp; airport transfer in FR.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ── CARD 4: Bank Transfer Details ── -->
+<div class="s-card purple">
+<div class="card-head">
+<div class="card-icon-wrap" style="background:rgba(139,92,246,0.12);border-color:rgba(139,92,246,0.3);">
+<i data-lucide="building-2" style="width:20px;height:20px;color:#a78bfa;"></i>
+</div>
+<div class="card-head-text">
+<div class="card-title">Bank Transfer Details</div>
+<div class="card-subtitle">Displayed to customers who choose the bank transfer option</div>
+</div>
+</div>
+<div class="card-body">
+<div class="field-grid">
+<div class="field-row">
+<label class="f-label" for="bank-beneficiary">
+<i data-lucide="user-check" style="width:11px;height:11px;"></i> Beneficiary Account Name
+                            </label>
+<input class="f-input" id="bank-beneficiary" oninput="markUnsaved()" placeholder="Vesti Technologies Ltd" type="text" value="Vesti Technologies Ltd"/>
+</div>
+<div class="field-row two-col">
+<div class="field-inner">
+<label class="f-label" for="bank-name">
+<i data-lucide="landmark" style="width:11px;height:11px;"></i> Bank Name
+                                </label>
+<input class="f-input" id="bank-name" oninput="markUnsaved()" placeholder="Providus Bank" type="text" value="Providus Bank"/>
+</div>
+<div class="field-inner">
+<label class="f-label" for="bank-account">
+<i data-lucide="hash" style="width:11px;height:11px;"></i> Account Number
+                                </label>
+<input class="f-input mono" id="bank-account" maxlength="15" oninput="markUnsaved()" placeholder="1023948576" type="text" value="1023948576"/>
+</div>
+</div>
+<p class="f-hint">These details appear on the checkout page when a customer selects "Bank Transfer" as their payment method.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAQ Section -->
+<section class="section faq-section" style="background-color: var(--bg-light); padding: 60px 0; color: white;">
+<div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 60px; max-width: 1200px;">
+<div style="flex: 1; min-width: 300px;">
+<h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; color: white;">Some of the things you may want to know</h2>
+<a href="#" style="color: white; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 5px;">Frequently asked questions <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+</div>
+<div class="faq-accordion" style="flex: 1.5; min-width: 300px;">
+<div class="faq-item active">
+<h5 class="faq-trigger">What can I do with Vesti? <span class="faq-icon">−</span></h5>
+<div class="faq-content">
+<p>With Vesti you get the opportunity to be financially stable in life, whether you choose to move abroad (temporarily/permanently) or stay back at home. On Vesti you can pay for difficult immigration related payments (International Payments) in your local currency, seamlessly.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">Is my money secure with Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>Yes, Vesti complies with strict regulatory standards. All banking services and cards are provided in partnership with licensed and regulated financial institutions, including Stripe Payments Company and Celtic Bank (Member FDIC). Your funds are held securely at partner banks, and all transactions are protected by bank-grade SSL encryption and multi-factor authentication.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">How do I pay for WES on Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>To pay for WES (World Education Services) or other credential assessments, simply log into the Vesti app, navigate to the "Services" or "Payments" tab, select "Credential Assessment Services", enter your WES reference details, and pay in your local currency. Vesti takes care of the currency conversion and processes the payment to WES on your behalf instantly.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">Can I send dollar to someone with Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>Yes! With Vesti's Multi-Currency Wallets, you can convert local currency to USD (and other major currencies) instantly. You can send dollars directly to other Vesti users using their @username (peer-to-peer, free), or initiate a wire transfer to a US or international bank account directly from the app.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Download Section -->
+<section class="app-download-section">
+<div class="container text-center">
+<h2 class="download-title">Also available to<br/>download on both</h2>
+<div class="download-buttons">
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.vesti.app&amp;pli=1" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path></svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Google Play</span>
+</div>
+</div>
+</a>
+<a class="download-btn" href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Apple Store</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Detailed Vesti Footer -->
+<footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                <a href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+<svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:26px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">esti</span>
+</a>
+                <p style="font-size: 14px; color: #A3A3A3; line-height: 1.6;">The operating system for global talent migration. Built for the ambitious, guided by humans.</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">INTELLIGENCE</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">O-1 Scoring</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">EB-1A Roadmap</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">NIW Builder</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Express Entry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">HUMAN LAYER</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Expert Network</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Legal Reviews</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Concierge</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">COMPANY</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Methodology</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Pricing</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Careers</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">LEGAL</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Terms of Service</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">AML</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; padding-top: 20px; color: #A3A3A3; font-size: 12px; text-align: left;">
+        </div>
+    </div>
+</footer>
+<!-- Sticky Save Footer -->
+<div class="save-footer">
+<div class="footer-info">
+<div class="unsaved-dot" id="unsaved-dot"></div>
+<div class="footer-info-text" id="footer-status">
+<strong>All changes saved.</strong> Sync applies to travel-fees and checkout pages.
+            </div>
+</div>
+<div class="footer-actions">
+<button class="btn-reset" onclick="resetToDefaults()">
+<i data-lucide="rotate-ccw" style="width:14px;height:14px;"></i>
+                Reset Defaults
+            </button>
+<button class="btn-save" id="save-btn" onclick="saveConfig()">
+<i data-lucide="save" style="width:15px;height:15px;"></i>
+                Save Configuration
+            </button>
+</div>
+</div>
+<!-- Toast -->
+<div class="toast" id="toast">
+<span class="toast-icon"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></span>
+<span id="toast-msg">Configuration saved!</span>
+</div>
+<script>
+        /* ── Icon Init ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            loadConfig();
+            previewDiscount();
+            updateLastSaved();
+
+            window.addEventListener('scroll', () => {
+                document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            if (mobileMenuBtn && mobileDrawer) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileDrawer.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', mobileDrawer.classList.contains('active') ? 'x' : 'menu');
+                        if (typeof lucide !== 'undefined') lucide.createIcons();
+                    }
+                });
+            }
+        });
+
+        /* ── Defaults ── */
+        const DEFAULTS = {
+            rates: { USD: 1.0, NGN: 1650, GHS: 15.20, KES: 135.00 },
+            markup: 7.5,
+            payment: { beneficiary: 'Vesti Technologies Ltd', bankName: 'Providus Bank', accountNumber: '1023948576' },
+            fees: { visaNZD: 300, immigrationNZD: 41, ivlNZD: 100, vestiGrossUSD: 1500.00, vestiNetUSD: 891.40, eliteUSD: 150.00 }
+        };
+
+        /* ── Load ── */
+        function loadConfig() {
+            let cfg = DEFAULTS;
+            try {
+                const raw = localStorage.getItem('vesti_portal_config_france');
+                if (raw) cfg = { ...DEFAULTS, ...JSON.parse(raw) };
+                if (cfg.rates) cfg.rates = { ...DEFAULTS.rates, ...cfg.rates };
+                if (cfg.payment) cfg.payment = { ...DEFAULTS.payment, ...cfg.payment };
+                if (cfg.fees) cfg.fees = { ...DEFAULTS.fees, ...cfg.fees };
+            } catch(e) { cfg = DEFAULTS; }
+
+            document.getElementById('rate-ngn').value     = cfg.rates.NGN;
+            document.getElementById('rate-ghs').value     = cfg.rates.GHS;
+            document.getElementById('rate-kes').value     = cfg.rates.KES;
+            document.getElementById('markup').value       = cfg.markup;
+            document.getElementById('fee-visa').value     = cfg.fees.visaNZD;
+            document.getElementById('fee-immigration').value = cfg.fees.immigrationNZD;
+            document.getElementById('fee-ivl').value      = cfg.fees.ivlNZD;
+            document.getElementById('fee-vesti-gross').value = cfg.fees.vestiGrossUSD;
+            document.getElementById('fee-vesti-net').value   = cfg.fees.vestiNetUSD;
+            document.getElementById('fee-elite').value    = cfg.fees.eliteUSD;
+            document.getElementById('bank-beneficiary').value = cfg.payment.beneficiary;
+            document.getElementById('bank-name').value    = cfg.payment.bankName;
+            document.getElementById('bank-account').value = cfg.payment.accountNumber;
+        }
+
+        /* ── Save ── */
+        function saveConfig() {
+            const config = buildConfig();
+            localStorage.setItem('vesti_portal_config_france', JSON.stringify(config));
+            localStorage.setItem('vesti_portal_config_france_saved', new Date().toISOString());
+            markSaved();
+            showToast('✓ Configuration saved — all pages updated!');
+        }
+
+        function buildConfig() {
+            return {
+                rates: {
+                    USD: 1.0,
+                    NGN: parseFloat(document.getElementById('rate-ngn').value) || 1650,
+                    GHS: parseFloat(document.getElementById('rate-ghs').value) || 15.20,
+                    KES: parseFloat(document.getElementById('rate-kes').value) || 135,
+                },
+                markup: parseFloat(document.getElementById('markup').value) || 7.5,
+                payment: {
+                    beneficiary:   document.getElementById('bank-beneficiary').value || 'Vesti Technologies Ltd',
+                    bankName:      document.getElementById('bank-name').value        || 'Providus Bank',
+                    accountNumber: document.getElementById('bank-account').value     || '1023948576',
+                },
+                fees: {
+                    visaNZD:        parseFloat(document.getElementById('fee-visa').value)        || 300,
+                    immigrationNZD: parseFloat(document.getElementById('fee-immigration').value) || 41,
+                    ivlNZD:         parseFloat(document.getElementById('fee-ivl').value)         || 100,
+                    vestiGrossUSD:  parseFloat(document.getElementById('fee-vesti-gross').value) || 1500,
+                    vestiNetUSD:    parseFloat(document.getElementById('fee-vesti-net').value)   || 891.40,
+                    eliteUSD:       parseFloat(document.getElementById('fee-elite').value)       || 150,
+                }
+            };
+        }
+
+        function resetToDefaults() {
+            if (!confirm('Reset all settings back to defaults? This cannot be undone.')) return;
+            localStorage.setItem('vesti_portal_config_france', JSON.stringify(DEFAULTS));
+            loadConfig();
+            previewDiscount();
+            markSaved();
+            showToast('Settings reset to defaults.');
+        }
+
+        /* ── Unsaved state ── */
+        let _hasUnsaved = false;
+        function markUnsaved() {
+            if (_hasUnsaved) return;
+            _hasUnsaved = true;
+            document.getElementById('unsaved-dot').classList.add('visible');
+            document.getElementById('footer-status').innerHTML =
+                '<strong style="color:#fbbf24;">Unsaved changes</strong> · click Save to apply.';
+        }
+        function markSaved() {
+            _hasUnsaved = false;
+            document.getElementById('unsaved-dot').classList.remove('visible');
+            updateLastSaved();
+        }
+        function updateLastSaved() {
+            const ts = localStorage.getItem('vesti_portal_config_france_saved');
+            const label = document.getElementById('last-saved-label');
+            const footerStatus = document.getElementById('footer-status');
+            if (ts) {
+                const d = new Date(ts);
+                const formatted = d.toLocaleString('en-GB', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+                if (label) label.textContent = `Last saved: ${formatted}`;
+                if (!_hasUnsaved) {
+                    footerStatus.innerHTML = `<strong>All changes saved.</strong> Last saved: ${formatted}`;
+                }
+            }
+        }
+
+        /* ── Discount preview ── */
+        function previewDiscount() {
+            const gross = parseFloat(document.getElementById('fee-vesti-gross').value) || 0;
+            const net   = parseFloat(document.getElementById('fee-vesti-net').value)   || 0;
+            const saved = gross - net;
+            const pct   = gross > 0 ? Math.round((saved / gross) * 100) : 0;
+
+            document.getElementById('preview-original').textContent = `$${gross.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+            document.getElementById('preview-net').textContent      = `$${net.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+            const savingsEl = document.getElementById('preview-savings');
+            if (saved > 0) {
+                savingsEl.textContent = `−${pct}%`;
+                savingsEl.style.display = '';
+            } else {
+                savingsEl.style.display = 'none';
+            }
+        }
+
+        /* ── Toast ── */
+        let _toastTimer;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            t.classList.add('show');
+            clearTimeout(_toastTimer);
+            _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+        }
+
+        /* ── Prevent accidental navigation when unsaved ── */
+        window.addEventListener('beforeunload', (e) => {
+            if (_hasUnsaved) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>

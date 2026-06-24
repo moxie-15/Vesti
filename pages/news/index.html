@@ -6,15 +6,15 @@
     <title>Global Mobility | Vesti</title>
     
     <!-- Official Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../Assets/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="scrolling.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/scrolling.css">
 
     <style>
         /* Ambient Glows */
@@ -120,7 +120,7 @@
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
         }
     
-        /* Agent Popup Modal */
+        
         .agent-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -331,6 +331,7 @@
         }
     </style>
 
+    <link rel="stylesheet" href="./assets/css/global.css">
 <style>
     body, h1, h2, h3, h4, h5, h6, p, a, span { 
         -webkit-font-smoothing: antialiased; 
@@ -343,7 +344,7 @@
 <nav class="navbar" id="navbar">
         <div class="nav-container">
             <!-- Official Vesti SVG Logo -->
-            <a href="../index.html" class="logo-area" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+            <a href="../../index.html" class="logo-area" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
                 <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg"
                     overflow="visible">
                     <path
@@ -360,29 +361,55 @@
                     style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
             </a>
 
+            
             <ul class="nav-menu" id="nav-menu">
                 <li class="dropdown">
-                    <a href="#" class="nav-link">Products <i data-lucide="chevron-down"
-                            class="nav-chevron"></i></a>
+                    <a href="../../index.html#pathways" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="nav-link">Company <i data-lucide="chevron-down"
-                            class="nav-chevron"></i></a>
+                    <a href="../../index.html#scroll-stacking" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="nav-link">Countries <i data-lucide="chevron-down"
-                            class="nav-chevron"></i></a>
-                </li>
+        <a href="../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+        <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
+            <li><a href="../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+        </ul>
+    </li>
+
             </ul>
 
             <div class="nav-cta">
                 <a href="https://site.wevesti.com/auth" target="_blank" rel="noopener" class="btn-signin">Sign In</a>
-                <a href="https://site.wevesti.com/register" target="_blank" rel="noopener"
-                    class="btn btn-primary">Create an account</a>
+                <a href="https://site.wevesti.com/register" target="_blank" rel="noopener" class="btn btn-primary">Create an account</a>
             </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
     <style>.dropdown:hover .dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
 </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <ul class="mobile-menu">
+            <li><a href="../../index.html#pathways" class="mobile-link">Products</a></li>
+            <li><a href="../../index.html#scroll-stacking" class="mobile-link">Company</a></li>
+            <li><a href="../../index.html" class="mobile-link">Countries</a></li>
+            <li class="mobile-drawer-ctas">
+                <a href="https://site.wevesti.com/auth" target="_blank" rel="noopener" class="btn btn-outline w-full">Sign In</a>
+                <a href="https://site.wevesti.com/register" target="_blank" rel="noopener" class="btn btn-primary w-full">Create an account</a>
+            </li>
+        </ul>
+    </div>
+
 
 
     <section style="background-color: #F7FAFC; padding: 100px 50px;">
@@ -496,5 +523,6 @@
     <script>
         lucide.createIcons();
     </script>
+<script src="../../assets/js/script.js"></script>
 </body>
 </html>

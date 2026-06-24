@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>USA Visa Travel Fee &amp; Cost Estimator | Vesti</title>
+<meta content="Calculate your USA travel fees, visa application costs, Vesti handling fees, and estimated flight ticket prices in USD and USD dynamically." name="description"/>
+<!-- Official Favicon -->
+<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Tailwind CSS for layout utilities -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Vesti Stylesheet -->
+<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<style>
+        .navbar {
+            background-color: #13110f !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .calculator-hero-banner {
+            background-color: #13110f !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f5f0;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(99, 161, 70, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(19, 17, 15, 0.03) 0px, transparent 50%);
+            background-size: 100% 100%;
+            color: #13110f;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Custom Scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(4, 9, 43, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 161, 70, 0.4);
+        }
+
+        /* Form styling focus */
+        input:focus,
+        select:focus {
+            box-shadow: 0 0 0 3px rgba(99, 161, 70, 0.3);
+            outline: none;
+        }
+
+        /* Overlapping aurora glow elements */
+        .aurora-glow-1 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+            width: 600px;
+            height: 600px;
+            background: #13110f;
+            top: -150px;
+            right: -100px;
+            animation: pulse-glow 8s infinite alternate;
+        }
+
+        .aurora-glow-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.18;
+            z-index: 1;
+            pointer-events: none;
+            width: 700px;
+            height: 700px;
+            background: #0f4c81;
+            bottom: -150px;
+            left: -200px;
+            animation: pulse-glow 12s infinite alternate-reverse;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1.15) translate(20px, 30px);
+            }
+        }
+
+        @keyframes pulse-dot {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        /* Segmented control for Trip Type */
+        .trip-type-container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 5px;
+            gap: 4px;
+        }
+
+        .trip-type-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px 16px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .trip-type-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .trip-type-btn.active {
+            background: linear-gradient(135deg, #13110f 0%, #4f8736 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(99, 161, 70, 0.35);
+        }
+
+        /* Styled inputs */
+        .glass-input-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 0.9rem;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .glass-input-field:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .glass-input-field:focus {
+            border-color: #13110f;
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 20px rgba(99, 161, 70, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        select.glass-input-field {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        /* Number stepper styling */
+        .stepper-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            overflow: hidden;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .stepper-container:focus-within {
+            border-color: #13110f;
+            box-shadow: 0 0 15px rgba(99, 161, 70, 0.15);
+        }
+
+        .stepper-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .stepper-btn:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .stepper-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            width: 100%;
+            height: 48px;
+            pointer-events: none;
+        }
+
+        /* Premium Relocation Add-on Choice Card */
+        .elitepass-select-card {
+            display: block;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .elitepass-select-card:hover {
+            border-color: rgba(99, 161, 70, 0.3);
+            background: linear-gradient(135deg, rgba(99, 161, 70, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .elitepass-select-card.active-selected {
+            border-color: #13110f;
+            background: linear-gradient(135deg, rgba(99, 161, 70, 0.12) 0%, rgba(19, 17, 15, 0.3) 100%);
+            box-shadow: 0 15px 30px rgba(99, 161, 70, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* High-tech Custom Checkboxes */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        input[type="checkbox"]:hover {
+            border-color: rgba(99, 161, 70, 0.6);
+            background: rgba(99, 161, 70, 0.05);
+        }
+
+        input[type="checkbox"]:checked {
+            border-color: #13110f;
+            background: #13110f;
+            box-shadow: 0 0 10px rgba(99, 161, 70, 0.4);
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* â”€â”€ Hero Slideshow Backgrounds â”€â”€ */
+        .calculator-hero-banner {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-slide {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: transform 18s linear;
+        }
+
+        .slide-1 {
+            background-image: linear-gradient(rgba(19, 17, 15, 0.65), rgba(19, 17, 15, 0.75)), url('assets/au-landscape-1.png');
+            animation: fadeSlide1 18s infinite;
+        }
+
+        .slide-2 {
+            background-image: linear-gradient(rgba(19, 17, 15, 0.65), rgba(19, 17, 15, 0.75)), url('assets/au-landscape-2.png');
+            animation: fadeSlide2 18s infinite;
+        }
+
+        .slide-3 {
+            background-image: linear-gradient(rgba(19, 17, 15, 0.65), rgba(19, 17, 15, 0.75)), url('assets/au-landscape-3.png');
+            animation: fadeSlide3 18s infinite;
+        }
+
+        @keyframes fadeSlide1 {
+
+            0%,
+            27.78% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            33.33%,
+            94.44% {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fadeSlide2 {
+
+            0%,
+            27.78% {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            33.33%,
+            61.11% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            66.67%,
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeSlide3 {
+
+            0%,
+            61.11% {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            66.67%,
+            94.44% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+
+        /* Centering container overriding Tailwind Play CDN */
+        .container {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        /* Grid Layout Overrides  */
+        .calc-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 20px !important;
+            /* Reduced from 30px */
+            align-items: start !important;
+            margin-top: 24px !important;
+            /* Reduced from 40px */
+            margin-bottom: 60px !important;
+            /* Reduced from 80px */
+            max-width: 1100px !important;
+            width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .calc-summary-container {
+            grid-column: span 2 !important;
+            width: 100% !important;
+            margin-top: 10px !important;
+        }
+
+        @media (max-width: 1023px) {
+            .calc-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .calc-summary-container {
+                grid-column: span 1 !important;
+            }
+        }
+
+        /* ── Premium Light Theme Container Overrides ── */
+        .calc-form-container {
+            background: #ffffff !important;
+            border: 1px solid rgba(19, 17, 15, 0.05) !important;
+            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.05), 0 0 1px 0 rgba(19, 17, 15, 0.04) !important;
+            border-radius: 24px !important;
+            padding: 24px 28px !important;
+            position: relative;
+            overflow: hidden;
+            max-width: 600px !important;
+            width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        /* Remove dark background radial glow template legacy element */
+        .calc-form-container::before {
+            display: none !important;
+        }
+
+        /* Dark headers and labels for readability on light container */
+        .calc-form-container h2,
+        .calc-card-results h2 {
+            color: #13110f !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.3px !important;
+        }
+
+        .calc-form-container label {
+            color: #475569 !important;
+            font-weight: 600 !important;
+            font-size: 0.8rem !important;
+            margin-bottom: 4px !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            display: block;
+        }
+
+        /* Modern light input field styles */
+        .calc-form-container .glass-input-field {
+            background: #f9f5f0 !important;
+            border: 1px solid #f9f5f0 !important;
+            color: #0f172a !important;
+            border-radius: 12px !important;
+            padding: 10px 14px !important;
+            font-size: 0.875rem !important;
+            width: 100% !important;
+            box-shadow: none !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .calc-form-container .glass-input-field::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        .calc-form-container .glass-input-field:hover {
+            background: #f1f5f9 !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        .calc-form-container .glass-input-field:focus {
+            border-color: #13110f !important;
+            background: #ffffff !important;
+            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.12) !important;
+            outline: none;
+        }
+
+        /* Select dropdown arrow with strict no-repeat & dark arrow */
+        .calc-form-container select.glass-input-field {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 16px center !important;
+            background-size: 12px !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            padding-right: 36px !important;
+        }
+
+        .calc-form-container select.glass-input-field option {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+        }
+
+        /* Trip type segmented controls */
+        .calc-form-container .trip-type-container {
+            background: #f1f5f9 !important;
+            border: 1px solid #f9f5f0 !important;
+            border-radius: 12px !important;
+            padding: 3px !important;
+        }
+
+        .calc-form-container .trip-type-btn {
+            color: #475569 !important;
+            font-weight: 600 !important;
+            border-radius: 8px !important;
+            padding: 8px 12px !important;
+            transition: all 0.2s ease !important;
+            background: transparent !important;
+            font-size: 0.85rem !important;
+        }
+
+        .calc-form-container .trip-type-btn:hover {
+            color: #0f172a !important;
+            background: rgba(15, 23, 42, 0.04) !important;
+        }
+
+        .calc-form-container .trip-type-btn.active {
+            background: #13110f !important;
+            color: #ffffff !important;
+            box-shadow: 0 2px 6px rgba(99, 161, 70, 0.15) !important;
+        }
+
+        /* Passengers & Bags Stepper styling */
+        .calc-form-container .stepper-container {
+            background: #f9f5f0 !important;
+            border: 1px solid #f9f5f0 !important;
+            border-radius: 12px !important;
+        }
+
+        .calc-form-container .stepper-container:focus-within {
+            border-color: #13110f !important;
+            box-shadow: 0 0 0 4px rgba(99, 161, 70, 0.12) !important;
+        }
+
+        .calc-form-container .stepper-btn {
+            color: #475569 !important;
+            width: 44px !important;
+            height: 44px !important;
+        }
+
+        .calc-form-container .stepper-btn:hover {
+            color: #0f172a !important;
+            background-color: #f9f5f0 !important;
+        }
+
+        .calc-form-container .stepper-input {
+            color: #0f172a !important;
+            height: 44px !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* Elitepass select card styling */
+        .calc-form-container .elitepass-select-card {
+            border: 1px solid #f9f5f0 !important;
+            background: #f9f5f0 !important;
+            border-radius: 16px !important;
+            padding: 14px 16px !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .calc-form-container .elitepass-select-card:hover {
+            border-color: rgba(99, 161, 70, 0.3) !important;
+            background: #f1f5f9 !important;
+        }
+
+        .calc-form-container .elitepass-select-card.active-selected {
+            border-color: #13110f !important;
+            background: #f9f5f0 !important;
+            box-shadow: 0 10px 20px rgba(99, 161, 70, 0.04) !important;
+        }
+
+        .calc-form-container .elitepass-select-card .text-white {
+            color: #13110f !important;
+        }
+
+        .calc-form-container .elitepass-select-card .text-slate-400 {
+            color: #475569 !important;
+        }
+
+        .calc-form-container .elitepass-select-card .text-emerald-400 {
+            color: #1b5e20 !important;
+        }
+
+        /* Custom Checkbox within container - LARGER SIZE (20px) with white background on checked */
+        .calc-form-container input[type="checkbox"],
+        .calc-card-results input[type="checkbox"] {
+            -webkit-appearance: none !important;
+            appearance: none !important;
+            border: 2px solid #cbd5e1 !important;
+            background: #ffffff !important;
+            border-radius: 6px !important;
+            width: 20px !important;
+            height: 20px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            position: relative;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0;
+        }
+
+        .calc-form-container input[type="checkbox"]:hover,
+        .calc-card-results input[type="checkbox"]:hover {
+            border-color: #13110f !important;
+        }
+
+        .calc-form-container input[type="checkbox"]:checked,
+        .calc-card-results input[type="checkbox"]:checked {
+            border-color: #13110f !important;
+            background: #13110f !important;
+        }
+
+        .calc-form-container input[type="checkbox"]:checked::after,
+        .calc-card-results input[type="checkbox"]:checked::after {
+            content: "" !important;
+            position: absolute !important;
+            left: 6px !important;
+            top: 2px !important;
+            width: 5px !important;
+            height: 9px !important;
+            border: solid #ffffff !important;
+            border-width: 0 2.5px 2.5px 0 !important;
+            transform: rotate(45deg) !important;
+        }
+
+        /* ── Results Container Light Redesign overrides ── */
+        .calc-card-results {
+            background: #ffffff !important;
+            border: 1px solid rgba(19, 17, 15, 0.05) !important;
+            border-radius: 24px !important;
+            padding: 24px 28px !important;
+            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.05), 0 0 1px 0 rgba(19, 17, 15, 0.04) !important;
+            max-width: 600px !important;
+            width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .results-breakdown-list .border-b {
+            border-color: #f1f5f9 !important;
+        }
+
+        .results-breakdown-list h3 {
+            color: #475569 !important;
+            font-weight: 700 !important;
+        }
+
+        /* Checklist rows with larger, cleaner typography and tight spacing */
+        .breakdown-row {
+            font-size: 0.975rem !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        .breakdown-label {
+            color: #1e293b !important;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .breakdown-value span.text-white {
+            color: #0f172a !important;
+            font-weight: 700;
+        }
+
+        .breakdown-value span.text-slate-400 {
+            color: #64748b !important;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Base subtotal row card - Light theme */
+        .results-breakdown-list div.bg-slate-900\/35 {
+            background: #f9f5f0 !important;
+            border: 1px solid #f9f5f0 !important;
+            border-radius: 12px !important;
+            padding: 10px 14px !important;
+            margin-top: 8px !important;
+            margin-bottom: 8px !important;
+        }
+
+        .results-breakdown-list div.bg-slate-900\/35 .breakdown-label {
+            color: #0f172a !important;
+            font-weight: 600;
+            font-size: 0.925rem;
+        }
+
+        /* Insurance config dropdown overrides for light card */
+        #insurance-config-container {
+            background: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 16px !important;
+        }
+
+        #insurance-config-container button {
+            background: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #475569 !important;
+            border-radius: 12px !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #insurance-config-container button:hover {
+            background: #f9f5f0 !important;
+            border-color: #94a3b8 !important;
+            color: #0f172a !important;
+        }
+
+        /* Selected plan styles inside config */
+        #insurance-config-container button.bg-\[\#13110f\]\/5 {
+            border-color: #13110f !important;
+            background: rgba(99, 161, 70, 0.05) !important;
+            color: #0f172a !important;
+            box-shadow: 0 4px 12px rgba(99, 161, 70, 0.08) !important;
+        }
+
+        #ins-summary-title {
+            color: #0f172a !important;
+        }
+
+        #ins-summary-desc {
+            color: #475569 !important;
+        }
+
+        #ins-summary-features div {
+            color: #475569 !important;
+        }
+
+        /* ── Summary Card White Redesign Overrides ── */
+        .calc-card-summary {
+            background: #ffffff !important;
+            border: 1px solid rgba(19, 17, 15, 0.05) !important;
+            border-radius: 24px !important;
+            padding: 24px 32px !important;
+            box-shadow: 0 20px 40px -15px rgba(19, 17, 15, 0.05), 0 0 1px 0 rgba(19, 17, 15, 0.04) !important;
+            width: 100% !important;
+        }
+
+        .summary-grid-container {
+            display: grid !important;
+            grid-template-columns: 1fr 1.3fr !important;
+            gap: 24px !important;
+            align-items: center !important;
+        }
+
+        @media (max-width: 768px) {
+            .summary-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                text-align: center !important;
+            }
+        }
+
+        .results-price-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results-price-label {
+            color: #475569 !important;
+            font-weight: 600 !important;
+            font-size: 0.8rem !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .results-price-value-usd {
+            color: #0f172a !important;
+            font-size: 2.25rem !important;
+            font-weight: 800 !important;
+            text-shadow: none !important;
+            margin: 4px 0 !important;
+            line-height: 1.1;
+        }
+
+        .results-price-value-nzd {
+            color: #15803d !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+        }
+
+        .summary-actions {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 12px !important;
+            width: 100% !important;
+        }
+
+        @media (max-width: 640px) {
+            .summary-actions {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+        }
+
+        /* Action buttons overrides - Compact py paddings */
+        .summary-actions a.bg-\[\#13110f\] {
+            background-color: #13110f !important;
+            color: #ffffff !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(99, 161, 70, 0.2) !important;
+            padding: 14px 20px !important;
+            font-size: 0.925rem !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            transition: all 0.2s ease !important;
+            text-decoration: none !important;
+            flex: 1.2;
+        }
+
+        .summary-actions a.bg-\[\#13110f\]:hover {
+            background-color: #3e6f26 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 6px 20px rgba(99, 161, 70, 0.25) !important;
+        }
+
+        .summary-actions button.bg-\[\#0d1854\] {
+            background-color: #f9f5f0 !important;
+            color: #475569 !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 12px !important;
+            padding: 14px 20px !important;
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            flex: 1;
+        }
+
+        .summary-actions button.bg-\[\#0d1854\]:hover {
+            background-color: #f1f5f9 !important;
+            color: #0f172a !important;
+            border-color: #94a3b8 !important;
+        }
+
+        /* Rate Conversion Alerts underneath the total */
+        /* ── FAQ Section Styles ── */
+        .faq-section {
+            margin-top: 40px !important;
+            margin-bottom: 20px !important;
+            max-width: 1100px !important;
+            width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        /* Responsive FAQ Grid for Travel Fees page */
+        .responsive-faq-grid {
+            display: grid !important;
+            grid-template-columns: 320px 1fr !important;
+            gap: 80px !important;
+            align-items: start !important;
+        }
+
+        .responsive-faq-grid-left {
+            position: sticky !important;
+            top: 120px !important;
+        }
+
+        @media (max-width: 992px) {
+            .responsive-faq-grid {
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
+            }
+
+            .responsive-faq-grid-left {
+                position: static !important;
+                /* Remove sticky positioning on mobile */
+            }
+        }
+
+        .faq-container {
+            background: #ffffff !important;
+            border: 1px solid #f9f5f0 !important;
+            border-radius: 16px !important;
+            padding: 24px 30px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .faq-title {
+            color: #13110f !important;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800 !important;
+            font-size: 1.5rem !important;
+            text-align: center;
+            margin-bottom: 20px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 10px !important;
+            background: #f9f5f0 !important;
+            overflow: hidden;
+            transition: all 0.3s ease !important;
+        }
+
+        .faq-item:hover {
+            border-color: #13110f !important;
+            background: #f1f5f9 !important;
+        }
+
+        .faq-item.active {
+            border-color: #13110f !important;
+            background: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(99, 161, 70, 0.06) !important;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 14px 18px !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.925rem !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            outline: none;
+            transition: color 0.2s ease !important;
+        }
+
+        .faq-trigger:focus {
+            outline: none;
+        }
+
+        .faq-trigger:hover {
+            color: #13110f !important;
+        }
+
+        .faq-icon {
+            width: 16px;
+            height: 16px;
+            color: #475569;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: #13110f;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .faq-content-inner {
+            padding: 0 18px 14px 18px !important;
+            font-size: 0.85rem !important;
+            color: #475569 !important;
+            line-height: 1.6 !important;
+            border-top: 1px solid transparent;
+        }
+
+        .faq-item.active .faq-content-inner {
+            border-top-color: #cbd5e1 !important;
+        }
+    </style>
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style></head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+<!-- Fixed Back Button -->
+<a class="fixed top-5 left-5 flex items-center gap-2 text-slate-300 hover:text-white text-sm font-bold transition-colors duration-200 z-50 bg-[#13110f]/50 backdrop-blur px-4 py-2 rounded-full border border-white/10" href="index.html">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        Back to Home
+    </a>
+<!-- Aurora backgrounds for visual depth -->
+<div style="position: absolute; width: 100%; top: 0; left: 0; height: 100%; overflow: hidden; pointer-events: none; z-index: 1;">
+<div class="aurora-glow-1"></div>
+<div class="aurora-glow-2"></div>
+</div>
+<!-- Top Announcement Bar for credibility -->
+<div class="top-announcement-bar">
+<span> Vesti Travel Support: Proudly helping 15,000+ global citizens travel and explore the world.</span>
+</div>
+<!-- Navigation Bar (Replicated from live wevesti.com) -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<!-- Official Vesti SVG Logo -->
+<a class="logo-area" href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<!-- Top-right yellow-green leaf -->
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<!-- Left small yellow leaf -->
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<!-- Middle dark green leaf -->
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
+<span class="au-indicator" style="margin-left:10px;">US</span>
+</a>
+<ul class="nav-menu" id="nav-menu">
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
+            <li><a href="../../../consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
+            <li><a href="../../../visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
+            <li><a href="../../../banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+            <li><a href="../../../careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+            <li><a href="../../../press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+            <li><a href="../../../faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+            <li><a href="../../../contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+            <li><a href="../../../updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="../../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+        <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
+            <li><a href="../../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+        </ul>
+    </li>
+
+</ul>
+</li>
+<li class="dropdown" style="position: relative;">
+<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
+<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+</ul>
+</li>
+</ul>
+<div class="nav-cta">
+<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</div>
+<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
+<i data-lucide="menu"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+<ul class="mobile-menu">
+<li><a class="mobile-link" href="index.html#pathways">Products</a></li>
+<li><a class="mobile-link" href="index.html#scroll-stacking">Company</a></li>
+<li><a class="mobile-link active" href="../../../travel-fees.html">Travel Fees</a></li>
+<li class="mobile-drawer-ctas">
+<a class="btn btn-outline w-full" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary w-full" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</li>
+</ul>
+</div>
+<!-- Main Content Area -->
+<main class="flex-grow pb-10 relative z-10" style="padding-top: 10px;">
+<div class="container mx-auto">
+<!-- Scenic Hero Banner Area with Ken Burns Slideshow Background -->
+<div class="calculator-hero-banner" style="position:relative; overflow:hidden; min-height:90px; display:flex; align-items:center; justify-content:center; text-align:center; padding: 14px 40px; margin-bottom:10px; border-radius:24px; border:1px solid rgba(255,255,255,0.12);">
+<!-- Slideshow Background Layers -->
+<div class="hero-bg-slide slide-1"></div>
+<div class="hero-bg-slide slide-2"></div>
+<div class="hero-bg-slide slide-3"></div>
+<!-- Dark overlay for better text readability -->
+<div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(4,9,43,0.55) 0%, rgba(19, 17, 15, 0.45) 100%); z-index:1;">
+</div>
+<!-- Content wrapper to sit above background slideshow -->
+<div style="position:relative; z-index:2; width:100%; max-width:750px; margin:0 auto;">
+<!-- Main headline -->
+<h1 style="font-family:'Outfit',sans-serif; font-size:clamp(1.35rem,2.5vw,1.9rem); font-weight:800; color:#ffffff; line-height:1.2; letter-spacing:-0.3px; margin:0 0 0 0; text-shadow:0 3px 12px rgba(0,0,0,0.5);">
+                        Planning your trip to <span style="color:#86efac;">USA?</span> Let us do the math.
+                    </h1>
+</div>
+</div>
+<!-- Stacking Calculator Grid -->
+<div class="calc-grid">
+<!-- Left Card: Inputs -->
+<div class="calc-form-container" style="display: flex; flex-direction: column; height: auto;">
+<h2 class="text-xl font-bold text-[#13110f] mb-3 font-heading flex items-center gap-2">
+<i class="text-success w-5 h-5" data-lucide="sliders-horizontal"></i> Customize Your Travel
+                        Parameters
+                    </h2>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 1.25rem;">
+<!-- Grid 1: Flying from & Billing Currency side-by-side -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" style="margin-bottom: 0;">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block" for="calc-origin">Flying From</label>
+<select class="glass-input-field w-full" id="calc-origin">
+<!-- Loaded dynamically from countries.js -->
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block" for="calc-currency">Billing Currency</label>
+<select class="glass-input-field w-full" id="calc-currency">
+<option selected="" value="USD">USD - US Dollar ($)</option>
+<option value="NGN">NGN - Nigerian Naira (₦)</option>
+<option value="GHS">GHS - Ghanaian Cedi (₵)</option>
+<option value="KES">KES - Kenyan Shilling (KSh)</option>
+</select>
+</div>
+</div>
+<!-- Hidden inputs for compatibility -->
+<input id="calc-trip-type" type="hidden" value="one-way"/>
+<input id="calc-bags" type="hidden" value="0"/>
+<!-- Grid 2: Passengers & Dynamic Exchange Rate side-by-side -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" style="margin-bottom: 0;">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Passengers</label>
+<div class="stepper-container flex items-center justify-between w-full border border-slate-200 rounded-xl bg-slate-50">
+<button class="stepper-btn px-3 py-2.5 text-slate-500 hover:bg-slate-200 rounded-l-xl transition" onclick="adjustCount('calc-passengers', -1)" type="button">
+<i class="w-3.5 h-3.5" data-lucide="minus"></i>
+</button>
+<input class="stepper-input w-full text-center font-bold text-slate-800 bg-transparent border-0 focus:ring-0 text-sm" id="calc-passengers" max="10" min="1" readonly="" type="number" value="1"/>
+<button class="stepper-btn px-3 py-2.5 text-slate-500 hover:bg-slate-200 rounded-r-xl transition" onclick="adjustCount('calc-passengers', 1)" type="button">
+<i class="w-3.5 h-3.5" data-lucide="plus"></i>
+</button>
+</div>
+</div>
+<div class="space-y-1.5" id="exchange-rate-container">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block" for="calc-exchange-rate">Vesti Dollar Rate</label>
+<div class="relative flex items-center">
+<input class="glass-input-field font-mono pr-12 w-full text-sm" id="calc-exchange-rate" min="0.01" step="0.01" style="padding-right: 48px !important;" type="number" value="1.00"/>
+<span class="absolute right-3 text-xs text-slate-400 font-bold" id="exchange-rate-suffix">USD</span>
+</div>
+</div>
+</div>
+<!-- Vesti Elitepass Add-on Choice -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Premium Relocation Add-on</label>
+<label class="elitepass-select-card cursor-pointer block" id="elitepass-card-label" style="padding: 18px 16px;">
+<div class="flex items-start gap-3">
+<input class="w-4 h-4 rounded text-success accent-emerald-500 mt-1 cursor-pointer" id="calc-elitepass" onchange="toggleElitepassCardClass(this)" type="checkbox"/>
+<div class="leading-normal flex-1">
+<span class="font-bold text-[#13110f] flex items-center gap-1.5 mb-2 text-sm">
+<i class="w-4 h-4 text-amber-500" data-lucide="sparkles"></i> Include Vesti Elitepass
+                                        </span>
+<span class="text-slate-500 block text-xs leading-relaxed mb-3">Priority 1-on-1 advisor match, official document review, and airport transfer in US.</span>
+<div class="flex items-center justify-between">
+<span class="text-emerald-700 font-mono font-bold text-sm">+$150.00 USD</span>
+<span class="text-[10px] text-slate-400 font-medium bg-slate-100 px-2 py-0.5 rounded-full">Per Passenger</span>
+</div>
+</div>
+</div>
+</label>
+</div>
+<!-- Badges integrated inside card (moved to bottom) -->
+<div class="flex flex-wrap items-center gap-2 mt-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold font-heading bg-blue-50 text-blue-700 border border-blue-200">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                Approval Rate: 96%
+                            </span>
+</div>
+</div>
+</div>
+<!-- Right Card: Checklist Summary -->
+<div class="calc-card-results" style="padding: 24px; background: #ffffff; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(19, 17, 15, 0.05); display: flex; flex-direction: column; height: 100%;">
+<div>
+<h2 class="text-xl font-bold text-[#13110f] mb-5 font-heading flex items-center gap-2 border-b border-slate-100 pb-3">
+<i class="text-success w-5 h-5" data-lucide="receipt"></i> Itemized Budget Summary
+                        </h2>
+<div class="space-y-2.5">
+<div class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+<span>Fee Breakdown</span>
+<span>Amount</span>
+</div>
+<!-- Visa Fee -->
+<div class="flex justify-between items-center py-2 border-b border-dashed border-slate-100" id="row-visa">
+<span class="font-medium text-slate-700 text-xs sm:text-sm">USCIS Visa Application Fee</span>
+<div class="text-right">
+<span class="font-semibold text-[#13110f] text-xs sm:text-sm" id="visa-usd-display">$0.00 USD</span>
+<span class="block text-[10px] text-slate-400" id="visa-nzd-display">($0.00)</span>
+</div>
+</div>
+<!-- Immigration Fee -->
+<div class="flex justify-between items-center py-2 border-b border-dashed border-slate-100" id="row-immigration">
+<span class="font-medium text-slate-700 text-xs sm:text-sm">USCIS Immigration Fee</span>
+<div class="text-right">
+<span class="font-semibold text-[#13110f] text-xs sm:text-sm" id="immigration-usd-display">$0.00 USD</span>
+<span class="block text-[10px] text-slate-400" id="immigration-nzd-display">($0.00)</span>
+</div>
+</div>
+<!-- IVL -->
+<div class="flex justify-between items-center py-2 border-b border-dashed border-slate-100" id="row-ivl">
+<span class="font-medium text-slate-700 text-xs sm:text-sm">US Visitor Levy (IVL)</span>
+<div class="text-right">
+<span class="font-semibold text-[#13110f] text-xs sm:text-sm" id="ivl-usd-display">$0.00 USD</span>
+<span class="block text-[10px] text-slate-400" id="ivl-nzd-display">($0.00)</span>
+</div>
+</div>
+<!-- Vesti Processing -->
+<div class="flex justify-between items-start border-b border-dashed border-slate-100" id="row-vesti" style="padding-top: 12px; padding-bottom: 18px;">
+<div>
+<span class="font-medium text-slate-700 text-xs sm:text-sm block">Vesti Processing Fee</span>
+<div class="flex items-center gap-1.5 mt-1.5" id="vesti-discount-tag"></div>
+</div>
+<div class="text-right flex flex-col items-end">
+<div class="flex items-center gap-1.5">
+<span class="text-[11px] text-slate-400 line-through font-medium" id="vesti-original-price"></span>
+<span class="font-semibold text-[#13110f] text-xs sm:text-sm" id="vesti-usd-display">$0.00 USD</span>
+</div>
+<span class="text-[10px] text-slate-400" id="vesti-nzd-display">(~ $0.00)</span>
+</div>
+</div>
+<!-- AXA Insurance Accordion Row -->
+<div class="block border-b border-dashed border-slate-100" id="row-insurance" style="padding-top: 14px; padding-bottom: 12px;">
+<button class="flex w-full items-center justify-between py-1 bg-transparent hover:opacity-80 transition-opacity cursor-pointer text-left" onclick="toggleAxaDropdown()" type="button">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 flex items-center justify-center bg-slate-100 rounded">
+<i class="w-4 h-4 text-slate-600" data-lucide="shield-check"></i>
+</div>
+<div>
+<span class="font-medium text-slate-700 text-xs sm:text-sm block">
+                AXA Travel Insurance
+                <span class="inline-block text-[9px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 mt-0.5 ml-1" id="insurance-selected-badge-summary">Basic</span>
+</span>
+<span class="block text-[10px] text-slate-400 mt-0.5" id="axa-selected-summary-duration">1 Month coverage</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="text-[10px] font-extrabold text-[#13110f] tracking-wide uppercase" id="axa-toggle-label">VIEW PLAN</span>
+<div class="w-5 h-5 flex items-center justify-center bg-slate-50 rounded-full transition-transform border border-slate-100" id="axa-chevron-wrap">
+<i class="w-3.5 h-3.5 text-[#13110f] transition-transform" data-lucide="chevron-down" id="axa-chevron"></i>
+</div>
+</div>
+<div class="text-right">
+<span class="font-semibold text-slate-800 text-xs sm:text-sm block" id="insurance-usd-display">$0.00 USD</span>
+<span class="block text-[10px] text-slate-400" id="insurance-nzd-display">($0.00 USD)</span>
+</div>
+</div>
+</button>
+<!-- Collapsible Body nested inside the row -->
+<div id="axa-dropdown-body" style="max-height: 0px; overflow: hidden; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0;">
+<!-- Plan Cards Selection -->
+<div style="padding: 10px 0 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+<!-- Basic -->
+<button id="ins-plan-basic" onclick="setInsuranceTier('basic')" style="border: 2px solid #13110f; border-radius: 8px; background: linear-gradient(135deg, #f0faf0, #e6f5e0); padding: 8px 4px; cursor: pointer; text-align: center; transition: all 0.2s; position: relative; overflow: hidden;" type="button">
+<div style="font-size: 8.5px; font-weight: 800; color: #13110f; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">Basic</div>
+<div id="ins-plan-price-basic" style="font-size: 10.5px; font-weight: 800; color: #13110f; line-height: 1;">—</div>
+<div style="margin-top: 3px; font-size: 8px; color: #64748b; line-height: 1.2;">Basic visa cover</div>
+<div id="ins-plan-check-basic" style="position: absolute; top: 3px; right: 3px; width: 12px; height: 12px; background: #13110f; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 8px; height: 8px; color: #fff;"></i>
+</div>
+</button>
+<!-- Essential -->
+<button id="ins-plan-essential" onclick="setInsuranceTier('essential')" style="border: 1.5px solid #f9f5f0; border-radius: 8px; background: #fafafa; padding: 8px 4px; cursor: pointer; text-align: center; transition: all 0.2s; position: relative; overflow: hidden;" type="button">
+<div style="font-size: 8.5px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">Essential</div>
+<div id="ins-plan-price-essential" style="font-size: 10.5px; font-weight: 800; color: #13110f; line-height: 1;">—</div>
+<div style="margin-top: 3px; font-size: 8px; color: #64748b; line-height: 1.2;">Extended cover</div>
+<div id="ins-plan-check-essential" style="position: absolute; top: 3px; right: 3px; width: 12px; height: 12px; background: #13110f; border-radius: 50%; display: none; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 8px; height: 8px; color: #fff;"></i>
+</div>
+</button>
+<!-- Premium -->
+<button id="ins-plan-premium" onclick="setInsuranceTier('premium')" style="border: 1.5px solid #f9f5f0; border-radius: 8px; background: #fafafa; padding: 8px 4px; cursor: pointer; text-align: center; transition: all 0.2s; position: relative; overflow: hidden;" type="button">
+<div style="font-size: 8.5px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;">Premium</div>
+<div id="ins-plan-price-premium" style="font-size: 10.5px; font-weight: 800; color: #13110f; line-height: 1;">—</div>
+<div style="margin-top: 3px; font-size: 8px; color: #64748b; line-height: 1.2;">Full comprehensive</div>
+<div id="ins-plan-check-premium" style="position: absolute; top: 3px; right: 3px; width: 12px; height: 12px; background: #13110f; border-radius: 50%; display: none; align-items: center; justify-content: center;">
+<i data-lucide="check" style="width: 8px; height: 8px; color: #fff;"></i>
+</div>
+</button>
+</div>
+<!-- Duration Selector Row -->
+<div style="padding: 6px 0 6px; display: flex; align-items: center; gap: 8px; border-top: 1px solid #f1f5f9; margin-top: 4px;">
+<i data-lucide="calendar" style="width: 12px; height: 12px; color: #94a3b8; flex-shrink: 0;"></i>
+<span style="font-size: 10px; font-weight: 600; color: #64748b;">Duration:</span>
+<div style="display: flex; gap: 6px; margin-left: auto;">
+<button id="dur-btn-2weeks" onclick="setInsuranceDuration('2weeks')" style="font-size: 9.5px; font-weight: 700; padding: 3px 8px; border-radius: 5px; border: 1.5px solid #f9f5f0; background: #f9f5f0; color: #475569; cursor: pointer; transition: all 0.18s;" type="button">
+                                                2 Weeks
+                                            </button>
+<button id="dur-btn-1month" onclick="setInsuranceDuration('1month')" style="font-size: 9.5px; font-weight: 700; padding: 3px 8px; border-radius: 5px; border: 2px solid #13110f; background: #f0faf0; color: #3E6F26; cursor: pointer; transition: all 0.18s;" type="button">
+                                                1 Month
+                                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Elitepass Add-on (shown dynamically) -->
+<div class="flex justify-between items-center py-2 border-b border-dashed border-slate-100" id="row-elite">
+<span class="font-medium text-slate-700 text-xs sm:text-sm">Vesti Elitepass Support</span>
+<div class="text-right">
+<span class="font-semibold text-[#13110f] text-xs sm:text-sm" id="elite-usd-display">$0.00 USD</span>
+<span class="block text-[10px] text-slate-400" id="elite-nzd-display">(~ $0.00)</span>
+</div>
+</div>
+</div>
+</div>
+<input id="calc-insurance" type="hidden" value="on"/>
+<!-- Bottom Summary & Proceed Button -->
+<div style="border-top: 1.5px solid rgba(19, 17, 15, 0.08); padding-top: 20px; margin-top: auto; width: 100%;">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 18px;">
+<div>
+<span style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Estimated Total</span>
+<span id="total-usd-display" style="font-size: 2.1rem; font-weight: 800; color: #13110f; font-family: 'Outfit', sans-serif; line-height: 1;">$0.00 USD</span>
+</div>
+<div style="text-align: right;">
+<span id="total-nzd-display" style="font-size: 1.15rem; font-weight: 700; color: #13110f; font-family: 'Outfit', sans-serif;">~ $0.00 USD</span>
+</div>
+</div>
+<a class="w-full bg-[#578A33] hover:bg-[#487528] font-bold transition-all cursor-pointer flex items-center justify-center select-none mt-4" href="checkout.html" onclick="savePaymentInfo(event)" style="color: #ffffff !important; font-size: 16px; padding: 13px 24px !important; border-radius: 10px !important; box-shadow: 0 4px 12px rgba(87, 138, 51, 0.15);">
+                            Proceed to Payment
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!--  FAQ Section (Vesti Style) -->
+<section style="background: #13110f; padding: 80px 0; position: relative; z-index: 10;">
+<div style="max-width: 1100px; margin: 0 auto; padding: 0 32px;">
+<!-- Two-column layout: left title, right accordion -->
+<div class="responsive-faq-grid">
+<!-- Left: Title block -->
+<div class="responsive-faq-grid-left">
+<h2 style="font-family:'Outfit',sans-serif; font-size: 2.2rem; font-weight: 800; color: #ffffff; line-height: 1.2; margin: 0 0 20px 0;">
+                        Some of the things you may want to know
+                    </h2>
+<a href="https://wevesti.com/faq" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;" target="_blank">
+                        Frequently asked questions
+                        <svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="14">
+<path d="M7 17L17 7M17 7H7M17 7v10"></path>
+</svg>
+</a>
+</div>
+<!-- Right: Accordion list -->
+<div id="vesti-faq-list">
+<!-- Item 2 -->
+<div class="vfaq-item" style="border-bottom: 1px solid rgba(255,255,255,0.12); padding: 20px 0;">
+<button class="vfaq-trigger" onclick="toggleVFaq(this)" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;">
+<span style="font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700; color:#ffffff;">Who
+                                is eligible for a USA Visa?</span>
+<span class="vfaq-icon" style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.5); flex-shrink:0; margin-left:20px; line-height:1; transition: transform 0.2s;">+</span>
+</button>
+<div class="vfaq-content" style="max-height:0; overflow:hidden; transition: max-height 0.35s ease;">
+<p style="margin: 16px 0 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7;">
+                                The AU Visa is available to nationals of most countries visiting for
+                                tourism,
+                                family, or short-term business. Requirements include: a valid passport (3+ months beyond
+                                travel), proof of funds, return ticket, and no intent to work. Citizens of UK, USA,
+                                Germany, and 50+ others may use an ETA instead.
+                            </p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="vfaq-item" style="border-bottom: 1px solid rgba(255,255,255,0.12); padding: 20px 0;">
+<button class="vfaq-trigger" onclick="toggleVFaq(this)" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;">
+<span style="font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700; color:#ffffff;">How
+                                long does AU Visa processing take?</span>
+<span class="vfaq-icon" style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.5); flex-shrink:0; margin-left:20px; line-height:1; transition: transform 0.2s;">+</span>
+</button>
+<div class="vfaq-content" style="max-height:0; overflow:hidden; transition: max-height 0.35s ease;">
+<p style="margin: 16px 0 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7;">
+                                Online applications typically take <strong style="color:rgba(255,255,255,0.85);">10–20
+                                    working days</strong>; paper applications take 25–35 days. Vesti recommends
+                                applying at least 6–8 weeks before travel. With Vesti Elitepass, you get priority
+                                document review to minimize delays.
+                            </p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="vfaq-item" style="border-bottom: 1px solid rgba(255,255,255,0.12); padding: 20px 0;">
+<button class="vfaq-trigger" onclick="toggleVFaq(this)" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;">
+<span style="font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700; color:#ffffff;">What
+                                documents do I need to apply?</span>
+<span class="vfaq-icon" style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.5); flex-shrink:0; margin-left:20px; line-height:1; transition: transform 0.2s;">+</span>
+</button>
+<div class="vfaq-content" style="max-height:0; overflow:hidden; transition: max-height 0.35s ease;">
+<p style="margin: 16px 0 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7;">
+                                Standard requirements: valid passport, completed DHA form, passport photos, proof of
+                                funds (bank statements), travel itinerary, return flight ticket, travel insurance, and
+                                employment/study leave letter. Vesti's document packaging service helps organize and
+                                verify all of these.
+                            </p>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="vfaq-item" style="border-bottom: 1px solid rgba(255,255,255,0.12); padding: 20px 0;">
+<button class="vfaq-trigger" onclick="toggleVFaq(this)" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;">
+<span style="font-family:'Outfit',sans-serif; font-size:1rem; font-weight:700; color:#ffffff;">What
+                                does the Vesti Elitepass include?</span>
+<span class="vfaq-icon" style="font-size:1.4rem; font-weight:300; color:rgba(255,255,255,0.5); flex-shrink:0; margin-left:20px; line-height:1; transition: transform 0.2s;">+</span>
+</button>
+<div class="vfaq-content" style="max-height:0; overflow:hidden; transition: max-height 0.35s ease;">
+<p style="margin: 16px 0 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7;">
+                                Elitepass (<strong style="color:#86efac;">$150 USD/passenger</strong>) includes: 1-on-1
+                                dedicated relocation advisor, pre-submission document review by an immigration
+                                specialist, private airport transfer on arrival in AU, and priority application routing
+                                within Vesti's system.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Download Section -->
+<section class="app-download-section">
+<div class="container text-center">
+<h2 class="download-title">Also available to<br/>download on both</h2>
+<div class="download-buttons">
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.vesti.app&amp;pli=1" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path>
+</svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Google Play</span>
+</div>
+</div>
+</a>
+<a class="download-btn" href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
+</svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Apple Store</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Detailed Vesti Footer -->
+<footer class="footer relative z-10">
+<div class="container mx-auto">
+<div class="footer-grid">
+<!-- Brand col with logo and socials -->
+<div class="footer-brand-col">
+<a class="footer-logo" href="index.html">
+<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span class="footer-logo-text">esti</span>
+<span class="au-indicator">US</span>
+</a>
+<!-- Social Icons -->
+<div class="footer-socials">
+<a aria-label="Twitter" class="social-icon-link" href="https://x.com/Vestiofficial" target="_blank">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+</svg>
+</a>
+<a aria-label="LinkedIn" class="social-icon-link" href="https://www.linkedin.com/company/vestiofficial" target="_blank">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+</svg>
+</a>
+<a aria-label="Facebook" class="social-icon-link" href="https://www.facebook.com/wevestiofficial/" target="_blank">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+</a>
+<a aria-label="Instagram" class="social-icon-link" href="https://www.instagram.com/Vestiofficial" target="_blank">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+</svg>
+</a>
+</div><div class="footer-col">
+    <h5>INTELLIGENCE</h5>
+    <ul>
+        <li><a href="../../../scoring.html">O-1 Scoring</a></li>
+        <li><a href="../../../eb1a-roadmap.html">EB-1A Roadmap</a></li>
+        <li><a href="../../../niw-builder.html">NIW Builder</a></li>
+        <li><a href="../../../express-entry.html">Express Entry</a></li>
+    </ul>
+</div>
+<div class="footer-col">
+    <h5>HUMAN LAYER</h5>
+    <ul>
+        <li><a href="../../../network.html">Expert Network</a></li>
+        <li><a href="../../../legal-reviews.html">Legal Reviews</a></li>
+        <li><a href="../../../concierge.html">Concierge</a></li>
+        <li><a href="../../../success-stories.html">Success Stories</a></li>
+    </ul>
+</div>
+<div class="footer-col">
+    <h5>COMPANY</h5>
+    <ul>
+        <li><a href="../../../methodology.html">Methodology</a></li>
+        <li><a href="../../../pricing.html">Pricing</a></li>
+        <li><a href="../../../careers.html">Careers</a></li>
+        <li><a href="../../../contact.html">Contact</a></li>
+    </ul>
+</div>
+<div class="footer-col">
+    <h5>LEGAL</h5>
+    <ul>
+        <li><a href="../../../privacy.html">Privacy Policy</a></li>
+        <li><a href="../../../terms.html">Terms of Service</a></li>
+        <li><a href="../../../aml.html">AML</a></li>
+        <li><a href="../../../disclosures.html">Disclosures</a></li>
+    </ul>
+</div><div class="footer-disclaimer">
+<p>Vesti partners with Stripe Payments Company for money transmission services and account services with
+                    funds held at Evolve Bank &amp; Trust, Member FDIC. Vesti Visa® Prepaid Cards are issued by Celtic
+                    Bank®, Member FDIC, pursuant to a license from Visa USA Inc.</p>
+<p style="margin-top: 15px;"><strong>Disclaimer :</strong> Vesti operates differently from a traditional
+                    law firm. We offer limited immigration services through licensed attorneys, but our owners are not
+                    lawyers themselves. This may impact certain protections, such as attorney-client privilege. We are
+                    also independently owned and unaffiliated with any government agency. Before using our services,
+                    please carefully review our privacy policy, terms of use, and fee agreement. Remember, nothing on
+                    our website constitutes legal advice. For personalized legal guidance, always consult a licensed
+                    attorney.</p>
+<p style="margin-top: 20px;">Copyrights © Vesti 2026 | <a href="../../../admin-logs.html" onmouseout="this.style.color='rgba(255,255,255,0.3)'" onmouseover="this.style.color='#13110f'" style="color: rgba(255,255,255,0.3); transition: color 0.2s;">Admin Portal</a></p>
+</div>
+</div>
+</footer>
+<!-- Scripts Section -->
+<script src="js/countries.js"></script>
+<script>
+        // USD Conversion Exchange Rate Constants
+        const USD_TO_NZD = 1.63;
+
+        // AXA Travel Insurance Options & Pricing (Euros)
+        const INSURANCE_DETAILS = {
+            '2weeks': {
+                basic: { eur: 39.90, name: 'Basic Plan', desc: 'Minimum coverage for USA visa', features: ['USA & North America coverage', '24/7 emergency medical assistance', '$50,000 USD medical expenses cover', 'Emergency repatriation'] },
+                essential: { eur: 61.00, name: 'Essential Plan', desc: 'Comprehensive medical and travel protection', features: ['$150,000 USD medical expenses cover', 'USA & North America coverage', '24/7 emergency medical assistance', 'Trip cancellation protection'] },
+                premium: { eur: 99.90, name: 'Premium Plan', desc: 'Ultimate peace of mind for your USA trip', features: ['$500,000 USD medical & liability cover', 'USA & North America coverage', '24/7 priority emergency support', 'Baggage loss & damage protection', 'Flight delay & trip interruption benefits'] }
+            },
+            '1month': {
+                basic: { eur: 57.10, name: 'Basic Plan', desc: 'Minimum coverage for USA visa', features: ['USA & North America coverage', '24/7 emergency medical assistance', '$50,000 USD medical expenses cover', 'Emergency repatriation'] },
+                essential: { eur: 99.00, name: 'Essential Plan', desc: 'Comprehensive medical and travel protection', features: ['$150,000 USD medical expenses cover', 'USA & North America coverage', '24/7 emergency medical assistance', 'Trip cancellation protection'] },
+                premium: { eur: 149.90, name: 'Premium Plan', desc: 'Ultimate peace of mind for your USA trip', features: ['$500,000 USD medical & liability cover', 'USA & North America coverage', '24/7 priority emergency support', 'Baggage loss & damage protection', 'Flight delay & trip interruption benefits'] }
+            }
+        };
+
+        const EUR_TO_USD = 1.09; // EUR to USD Conversion Factor
+
+        let selectedInsuranceDuration = '1month';
+        let selectedInsuranceTier = 'basic';
+
+        function setInsuranceDuration(dur) {
+            selectedInsuranceDuration = dur;
+            updateInsuranceDetailsUI();
+            calculateFees();
+        }
+
+        function setInsuranceTier(tier) {
+            selectedInsuranceTier = tier;
+            updateInsuranceDetailsUI();
+            calculateFees();
+        }
+
+        function updateInsuranceDetailsUI() {
+            const plan = INSURANCE_DETAILS[selectedInsuranceDuration][selectedInsuranceTier];
+            const capitalizedTier = selectedInsuranceTier.charAt(0).toUpperCase() + selectedInsuranceTier.slice(1);
+            const durationLabel = selectedInsuranceDuration === '1month' ? '1 Month' : '2 Weeks';
+
+            // Update badge text in the left input card
+            const badge = document.getElementById('insurance-selected-badge');
+            if (badge) badge.textContent = capitalizedTier;
+
+            // Update badge in the right summary card
+            const summaryBadge = document.getElementById('insurance-selected-badge-summary');
+            if (summaryBadge) summaryBadge.textContent = capitalizedTier;
+
+            // Update the AXA dropdown header summary text (duration label)
+            const axaSummaryDuration = document.getElementById('axa-selected-summary-duration');
+            if (axaSummaryDuration) axaSummaryDuration.textContent = `${durationLabel} coverage`;
+
+            // Update plan card details inside the dropdown container (if present)
+            const summaryTitle = document.getElementById('ins-summary-title');
+            const summaryDesc = document.getElementById('ins-summary-desc');
+            if (summaryTitle) summaryTitle.textContent = `${plan.name} (${durationLabel})`;
+            if (summaryDesc) summaryDesc.textContent = plan.desc;
+
+            const featuresList = document.getElementById('ins-summary-features');
+            if (featuresList) {
+                featuresList.innerHTML = '';
+                plan.features.forEach(feat => {
+                    const li = document.createElement('div');
+                    li.className = 'flex items-center gap-2 py-0.5 text-slate-600';
+                    li.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-[#13110f] flex-shrink-0"></i> <span class="font-medium">${feat}</span>`;
+                    featuresList.appendChild(li);
+                });
+            }
+
+            // Update tier buttons styling and checks
+            const tiers = ['basic', 'essential', 'premium'];
+            tiers.forEach(t => {
+                const btn = document.getElementById(`ins-plan-${t}`);
+                const check = document.getElementById(`ins-plan-check-${t}`);
+                if (!btn) return;
+                
+                const labelDiv = btn.querySelector('div');
+                if (t === selectedInsuranceTier) {
+                    btn.style.border = '2px solid #13110f';
+                    btn.style.background = 'linear-gradient(135deg, #f0faf0, #e6f5e0)';
+                    if (labelDiv) {
+                        labelDiv.style.color = '#13110f';
+                    }
+                    if (check) {
+                        check.style.display = 'flex';
+                    }
+                } else {
+                    btn.style.border = '1.5px solid #f9f5f0';
+                    btn.style.background = '#fafafa';
+                    if (labelDiv) {
+                        labelDiv.style.color = '#475569';
+                    }
+                    if (check) {
+                        check.style.display = 'none';
+                    }
+                }
+            });
+
+            // Update duration buttons styling
+            const dur2w = document.getElementById('dur-btn-2weeks');
+            const dur1m = document.getElementById('dur-btn-1month');
+            if (dur2w && dur1m) {
+                if (selectedInsuranceDuration === '2weeks') {
+                    dur2w.style.border = '2px solid #13110f';
+                    dur2w.style.background = '#f0faf0';
+                    dur2w.style.color = '#3E6F26';
+                    
+                    dur1m.style.border = '1.5px solid #f9f5f0';
+                    dur1m.style.background = '#f9f5f0';
+                    dur1m.style.color = '#475569';
+                } else {
+                    dur1m.style.border = '2px solid #13110f';
+                    dur1m.style.background = '#f0faf0';
+                    dur1m.style.color = '#3E6F26';
+                    
+                    dur2w.style.border = '1.5px solid #f9f5f0';
+                    dur2w.style.background = '#f9f5f0';
+                    dur2w.style.color = '#475569';
+                }
+            }
+
+            // Re-render Lucide icons
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+
+        // AXA Dropdown toggle function
+        let isAxaDropdownOpen = false; // starts collapsed by default
+
+        function toggleAxaDropdown(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const body = document.getElementById('axa-dropdown-body');
+            const chevron = document.getElementById('axa-chevron');
+            const toggleLabel = document.getElementById('axa-toggle-label');
+            if (!body) return;
+
+            isAxaDropdownOpen = !isAxaDropdownOpen;
+
+            if (isAxaDropdownOpen) {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.style.opacity = '1';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+                if (toggleLabel) toggleLabel.textContent = 'CHANGE PLAN';
+            } else {
+                body.style.maxHeight = '0px';
+                body.style.opacity = '0';
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+                if (toggleLabel) toggleLabel.textContent = 'VIEW PLAN';
+            }
+        }
+
+
+        // Vesti Wallet Exchange Rates (1 USD = X Local)
+        const VESTI_RATES = {
+            'USD': 1.0,
+            'NGN': 1650.0,
+            'GHS': 15.20,
+            'KES': 135.00
+        };
+
+        const VESTI_SYMBOLS = {
+            'USD': '$',
+            'NGN': '\u20A6', // Naira symbol (₦)
+            'GHS': '\u20B5', // Cedi symbol (₵)
+            'KES': 'KSh ',
+            'AUD': '$'
+        };
+
+        function toggleElitepassCardClass(checkbox) {
+            const label = document.getElementById('elitepass-card-label');
+            if (label) {
+                if (checkbox.checked) label.classList.add('active-selected');
+                else label.classList.remove('active-selected');
+            }
+            calculateFees();
+        }
+
+        function toggleInsuranceCardClass(checkbox) {
+            const label = document.getElementById('insurance-card-label');
+            if (label) {
+                if (checkbox.checked) label.classList.add('active-selected');
+                else label.classList.remove('active-selected');
+            }
+            const leftInsConfig = document.getElementById('insurance-left-config-group');
+            const chevron = document.getElementById('left-insurance-chevron');
+            if (leftInsConfig) {
+                if (!checkbox.checked) {
+                    leftInsConfig.style.display = 'none';
+                    if (chevron) chevron.style.transform = 'rotate(0deg)';
+                }
+            }
+            calculateFees();
+        }
+
+        function toggleLeftInsuranceDropdown(event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            const panel = document.getElementById('insurance-left-config-group');
+            const chevron = document.getElementById('left-insurance-chevron');
+            const checkbox = document.getElementById('calc-insurance');
+            
+            if (!panel || !checkbox) return;
+
+            // Auto-check main insurance checkbox if unchecked
+            if (!checkbox.checked) {
+                checkbox.checked = true;
+                toggleInsuranceCardClass(checkbox);
+            }
+
+            const isOpen = panel.style.display === 'grid';
+            if (isOpen) {
+                panel.style.display = 'none';
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+            } else {
+                panel.style.display = 'grid';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const originSelect = document.getElementById('calc-origin');
+            if (originSelect && typeof COUNTRIES_LIST !== 'undefined') {
+                const sortedCountries = [...COUNTRIES_LIST].sort((a, b) => a.name.localeCompare(b.name));
+                sortedCountries.forEach(country => {
+                    const opt = document.createElement('option');
+                    opt.value = country.name;
+                    opt.textContent = country.name;
+                    if (country.name === 'Nigeria') opt.selected = true;
+                    originSelect.appendChild(opt);
+                });
+            }
+
+            const controlIds = ['calc-origin', 'calc-passengers', 'calc-currency', 'calc-exchange-rate'];
+            controlIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('change', calculateFees);
+                    el.addEventListener('input', calculateFees);
+                }
+            });
+
+            // Handle currency change to update exchange rate input
+            const currencySelect = document.getElementById('calc-currency');
+            const rateContainer = document.getElementById('exchange-rate-container');
+            const rateInput = document.getElementById('calc-exchange-rate');
+            const rateSuffix = document.getElementById('exchange-rate-suffix');
+
+            if (currencySelect) {
+                currencySelect.addEventListener('change', () => {
+                    const curr = currencySelect.value;
+                    if (curr === 'USD') {
+                        rateInput.value = '1.00';
+                        rateSuffix.textContent = 'USD';
+                    } else {
+                        rateInput.value = (VESTI_RATES[curr] || 1.0).toFixed(2);
+                        rateSuffix.textContent = curr;
+                    }
+                    calculateFees();
+                });
+
+                // ── Step 1: Load admin-saved rates from localStorage (works without server) ──
+                try {
+                    const adminRaw = localStorage.getItem('vesti_portal_config_usa');
+                    if (adminRaw) {
+                        const adminCfg = JSON.parse(adminRaw);
+                        const markup = typeof adminCfg.markup === 'number' ? adminCfg.markup : 0;
+                        if (adminCfg.rates) {
+                            Object.keys(adminCfg.rates).forEach(k => {
+                                if (k === 'USD') {
+                                    VESTI_RATES[k] = adminCfg.rates[k];
+                                } else {
+                                    VESTI_RATES[k] = adminCfg.rates[k] * (1 + markup / 100);
+                                }
+                            });
+                        }
+                    }
+                } catch(e) { /* ignore */ }
+
+                // Render immediately with localStorage rates
+                syncAndRecalculate();
+
+                function syncAndRecalculate() {
+                    const curr = currencySelect.value;
+                    if (curr !== 'USD') {
+                        rateInput.value = (VESTI_RATES[curr] || 1.0).toFixed(2);
+                    }
+                    calculateFees();
+                }
+            }
+
+            const navbar = document.getElementById('navbar');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            });
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileDrawer.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileDrawer.classList.contains('active')) icon.setAttribute('data-lucide', 'x');
+                    else icon.setAttribute('data-lucide', 'menu');
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                });
+            }
+
+            const initialSideCheck = document.getElementById('calc-elitepass');
+            if (initialSideCheck) toggleElitepassCardClass(initialSideCheck);
+
+            // Open first FAQ item by default
+            const firstItem = document.querySelector('.vfaq-item.active');
+            if (firstItem) {
+                const content = firstItem.querySelector('.vfaq-content');
+                if (content) content.style.maxHeight = content.scrollHeight + 'px';
+            }
+
+            updateInsuranceDetailsUI();
+            calculateFees();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+
+        function adjustCount(id, diff) {
+            const input = document.getElementById(id);
+            if (!input) return;
+            let val = parseInt(input.value) || 0;
+            const min = parseInt(input.min) || 0;
+            const max = parseInt(input.max) || 99;
+            val += diff;
+            if (val < min) val = min;
+            if (val > max) val = max;
+            input.value = val;
+            calculateFees();
+        }
+
+        function calculateFees() {
+            const originCountry = document.getElementById('calc-origin').value;
+            const passengers = parseInt(document.getElementById('calc-passengers').value) || 1;
+            const billingCurrency = document.getElementById('calc-currency').value;
+
+            const isVisaChecked = true;
+            const isImmigrationChecked = true;
+            const isIvlChecked = true;
+            const isVestiChecked = true;
+            const isInsuranceChecked = true; // Insurance is always included
+            const isEliteChecked = document.getElementById('calc-elitepass').checked;
+
+            // Insurance row is hidden from table list (redundant with the selector card)
+            const rowInsurance = document.getElementById('row-insurance');
+            if (rowInsurance) rowInsurance.style.display = 'block';
+
+            const rowElite = document.getElementById('row-elite');
+            if (rowElite) {
+                rowElite.style.display = isEliteChecked ? 'flex' : 'none';
+            }
+
+            // Read exchange rate dynamically from the input control
+            const vestiRate = parseFloat(document.getElementById('calc-exchange-rate').value) || 1.0;
+
+            const rateNzdEl = document.getElementById('rate-nzd-display');
+            const rateWalletEl = document.getElementById('rate-wallet-display');
+            if (rateNzdEl) rateNzdEl.textContent = `1 USD = ${(1 / USD_TO_NZD).toFixed(2)} USD (Official USD to USD)`;
+            if (rateWalletEl) rateWalletEl.textContent = `1 USD = ${formatCurrencyValue(vestiRate, billingCurrency)} (Vesti Dollar Rate)`;
+
+            // Manage the configuration dropdown container display and toggle button state
+            const insConfigContainer = document.getElementById('insurance-config-container');
+            const insChevron = document.getElementById('insurance-chevron');
+
+            if (insConfigContainer) {
+                if (isInsuranceChecked) {
+                    if (isInsuranceDropdownOpen) {
+                        insConfigContainer.style.display = 'block';
+                        if (insChevron) insChevron.style.transform = 'rotate(180deg)';
+                    } else {
+                        insConfigContainer.style.display = 'none';
+                        if (insChevron) insChevron.style.transform = 'rotate(0deg)';
+                    }
+                } else {
+                    insConfigContainer.style.display = 'none';
+                    if (insChevron) insChevron.style.transform = 'rotate(0deg)';
+                    isInsuranceDropdownOpen = false;
+                }
+            }
+
+            // Read admin-configured fee prices from localStorage
+            let adminFees = {};
+            try {
+                const adminRaw = localStorage.getItem('vesti_portal_config_usa');
+                if (adminRaw) adminFees = JSON.parse(adminRaw).fees || {};
+            } catch(e) {}
+
+            const FEE_VISA_NZD        = adminFees.visaNZD        !== undefined ? adminFees.visaNZD        : 300;
+            const FEE_IMMIGRATION_NZD = adminFees.immigrationNZD !== undefined ? adminFees.immigrationNZD : 41;
+            const FEE_IVL_NZD         = adminFees.ivlNZD         !== undefined ? adminFees.ivlNZD         : 100;
+            const FEE_VESTI_GROSS_USD = adminFees.vestiGrossUSD  !== undefined ? adminFees.vestiGrossUSD  : 1500.00;
+            const FEE_VESTI_NET_USD   = adminFees.vestiNetUSD    !== undefined ? adminFees.vestiNetUSD    : 891.40;
+            const FEE_ELITE_USD       = adminFees.eliteUSD       !== undefined ? adminFees.eliteUSD       : 150.00;
+
+            const visaUSD        = Math.round((FEE_VISA_NZD        * passengers / USD_TO_NZD) * 100) / 100;
+            const immigrationUSD = Math.round((FEE_IMMIGRATION_NZD * passengers / USD_TO_NZD) * 100) / 100;
+            const ivlUSD         = Math.round((FEE_IVL_NZD         * passengers / USD_TO_NZD) * 100) / 100;
+
+            // Dynamic AXA Travel Insurance Pricing
+            const selectedPlan = INSURANCE_DETAILS[selectedInsuranceDuration][selectedInsuranceTier];
+            const insuranceUSD = Math.round((selectedPlan.eur * EUR_TO_USD * passengers) * 100) / 100;
+
+            const visaLocal = Math.round((visaUSD * vestiRate) * 100) / 100;
+            const immigrationLocal = Math.round((immigrationUSD * vestiRate) * 100) / 100;
+            const ivlLocal = Math.round((ivlUSD * vestiRate) * 100) / 100;
+            const insuranceLocal = Math.round((insuranceUSD * vestiRate) * 100) / 100;
+
+            // Dynamically calculate and format individual card prices in the selected currency (per passenger)
+            const basicEur = INSURANCE_DETAILS[selectedInsuranceDuration]['basic'].eur;
+            const essentialEur = INSURANCE_DETAILS[selectedInsuranceDuration]['essential'].eur;
+            const premiumEur = INSURANCE_DETAILS[selectedInsuranceDuration]['premium'].eur;
+
+            const basicUSD = basicEur * EUR_TO_USD;
+            const basicLocal = basicUSD * vestiRate;
+
+            const essentialUSD = essentialEur * EUR_TO_USD;
+            const essentialLocal = essentialUSD * vestiRate;
+
+            const premiumUSD = premiumEur * EUR_TO_USD;
+            const premiumLocal = premiumUSD * vestiRate;
+
+            // Set the prices in the button cards
+            const basicPriceEl = document.getElementById('ins-plan-price-basic');
+            if (basicPriceEl) basicPriceEl.textContent = formatCurrencyValue(basicLocal, billingCurrency);
+
+            const essentialPriceEl = document.getElementById('ins-plan-price-essential');
+            if (essentialPriceEl) essentialPriceEl.textContent = formatCurrencyValue(essentialLocal, billingCurrency);
+
+            const premiumPriceEl = document.getElementById('ins-plan-price-premium');
+            if (premiumPriceEl) premiumPriceEl.textContent = formatCurrencyValue(premiumLocal, billingCurrency);
+
+            // Update the plan summary price to show the total price in selected currency
+            const insSummaryPriceEl = document.getElementById('ins-summary-eur');
+            if (insSummaryPriceEl) {
+                insSummaryPriceEl.textContent = `${formatCurrencyValue(insuranceLocal, billingCurrency)} ${billingCurrency}`;
+            }
+
+            let subtotalUSD = 0, subtotalLocal = 0;
+            if (isVisaChecked) { subtotalUSD += visaUSD; subtotalLocal += visaLocal; }
+            if (isImmigrationChecked) { subtotalUSD += immigrationUSD; subtotalLocal += immigrationLocal; }
+            if (isIvlChecked) { subtotalUSD += ivlUSD; subtotalLocal += ivlLocal; }
+            if (isInsuranceChecked) { subtotalUSD += insuranceUSD; subtotalLocal += insuranceLocal; }
+            subtotalUSD = Math.round(subtotalUSD * 100) / 100;
+            subtotalLocal = Math.round(subtotalLocal * 100) / 100;
+
+            // Vesti service fee: Base is $1500.00, discount is $608.60, making net $891.40 per passenger
+            const eliteUSD = Math.round((isEliteChecked ? FEE_ELITE_USD * passengers : 0) * 100) / 100;
+            const eliteLocal = Math.round((eliteUSD * vestiRate) * 100) / 100;
+
+            let combinedVestiUSD = 0;
+            let vestiDiscountUSD = 0;
+            let vestiNetUSD = 0;
+            if (isVestiChecked) {
+                combinedVestiUSD = FEE_VESTI_GROSS_USD * passengers;
+                vestiNetUSD      = FEE_VESTI_NET_USD   * passengers;
+                vestiDiscountUSD = combinedVestiUSD - vestiNetUSD;
+            }
+            combinedVestiUSD = Math.round(combinedVestiUSD * 100) / 100;
+            vestiDiscountUSD = Math.round(vestiDiscountUSD * 100) / 100;
+            vestiNetUSD = Math.round(vestiNetUSD * 100) / 100;
+
+            const combinedVestiLocal = Math.round((vestiNetUSD * vestiRate) * 100) / 100;
+
+            const totalUSD = Math.round((subtotalUSD + vestiNetUSD + eliteUSD) * 100) / 100;
+            const totalLocal = Math.round((subtotalLocal + combinedVestiLocal + eliteLocal) * 100) / 100;
+            const totalNZD = Math.round((totalUSD * USD_TO_NZD) * 100) / 100;
+
+            if (billingCurrency !== 'USD') {
+                document.getElementById('total-usd-display').textContent = formatCurrencyValue(totalLocal, billingCurrency);
+                document.getElementById('total-nzd-display').textContent = `~ ${formatCurrencyValue(totalUSD, 'USD')} | ~ ${formatCurrencyValue(totalNZD, 'AUD')}`;
+            } else {
+                document.getElementById('total-usd-display').textContent = formatCurrencyValue(totalUSD, 'USD');
+                document.getElementById('total-nzd-display').textContent = `~ ${formatCurrencyValue(totalNZD, 'AUD')}`;
+            }
+
+            const subtotalEl = document.getElementById('subtotal-display');
+            if (subtotalEl) {
+                subtotalEl.textContent = formatCurrencyValue(subtotalLocal, billingCurrency);
+            }
+            document.getElementById('visa-usd-display').textContent = formatCurrencyValue(visaLocal, billingCurrency);
+            document.getElementById('visa-nzd-display').textContent = `(${formatCurrencyValue(300 * passengers, 'AUD')})`;
+            document.getElementById('immigration-usd-display').textContent = formatCurrencyValue(immigrationLocal, billingCurrency);
+            document.getElementById('immigration-nzd-display').textContent = `(${formatCurrencyValue(41 * passengers, 'AUD')})`;
+            document.getElementById('ivl-usd-display').textContent = formatCurrencyValue(ivlLocal, billingCurrency);
+            document.getElementById('ivl-nzd-display').textContent = `(${formatCurrencyValue(100 * passengers, 'AUD')})`;
+            document.getElementById('insurance-usd-display').textContent = formatCurrencyValue(insuranceLocal, billingCurrency);
+            document.getElementById('insurance-nzd-display').textContent = `(${formatCurrencyValue(insuranceUSD * USD_TO_NZD, 'AUD')})`;
+            
+            const axaHeaderPrice = document.getElementById('axa-header-price');
+            if (axaHeaderPrice) {
+                axaHeaderPrice.textContent = formatCurrencyValue(insuranceLocal, billingCurrency);
+            }
+            const axaHeaderPriceNzd = document.getElementById('axa-header-price-nzd');
+            if (axaHeaderPriceNzd) {
+                axaHeaderPriceNzd.textContent = `(${formatCurrencyValue(insuranceUSD * USD_TO_NZD, 'AUD')})`;
+            }
+
+            // Combined Vesti display
+            document.getElementById('vesti-usd-display').textContent = formatCurrencyValue(combinedVestiLocal, billingCurrency);
+            document.getElementById('vesti-nzd-display').textContent = `~ ${formatCurrencyValue(vestiNetUSD * USD_TO_NZD, 'AUD')}`;
+
+            document.getElementById('elite-usd-display').textContent = formatCurrencyValue(eliteLocal, billingCurrency);
+            document.getElementById('elite-nzd-display').textContent = `~ ${formatCurrencyValue(eliteUSD * USD_TO_NZD, 'AUD')}`;
+
+            const summaryTotalEl = document.getElementById('summary-total-display');
+            if (summaryTotalEl) summaryTotalEl.textContent = formatCurrencyValue(totalLocal, billingCurrency);
+
+            // Dynamic Vesti service fee discount text updating
+            const vestiDiscountEl = document.getElementById('vesti-discount-tag');
+            const vestiOriginalPriceEl = document.getElementById('vesti-original-price');
+            if (vestiDiscountEl) {
+                const origVal = formatCurrencyValue(FEE_VESTI_GROSS_USD * vestiRate, billingCurrency);
+                const savings = formatCurrencyValue((FEE_VESTI_GROSS_USD - FEE_VESTI_NET_USD) * vestiRate, billingCurrency);
+                vestiDiscountEl.innerHTML = `<span class="bg-[#13110f]/10 text-[#13110f] border border-[#13110f]/20 text-[9px] font-bold px-1.5 py-0.5 rounded">Discount Applied</span><span class="text-[10px] text-slate-500 font-medium">Save ${savings}</span>`;
+                
+                if (vestiOriginalPriceEl) {
+                    vestiOriginalPriceEl.textContent = origVal;
+                }
+            }
+
+            // Save numerical pricing data dynamically to sync with payment gateway
+            localStorage.setItem('vesti_payment_amount_usd', totalUSD);
+            localStorage.setItem('vesti_payment_amount_local', totalLocal);
+            localStorage.setItem('vesti_payment_currency', billingCurrency);
+            localStorage.setItem('vesti_payment_rate', vestiRate);
+
+            // Item-by-item breakdown states and individual values for checkout.html
+            localStorage.setItem('vesti_visa_checked', isVisaChecked);
+            localStorage.setItem('vesti_visa_price', visaUSD / passengers); 
+            localStorage.setItem('vesti_immigration_checked', isImmigrationChecked);
+            localStorage.setItem('vesti_immigration_price', immigrationUSD / passengers); 
+            localStorage.setItem('vesti_ivl_checked', isIvlChecked);
+            localStorage.setItem('vesti_ivl_price', ivlUSD / passengers); 
+            localStorage.setItem('vesti_insurance_checked', isInsuranceChecked);
+            localStorage.setItem('vesti_insurance_price', insuranceUSD / passengers); 
+            localStorage.setItem('vesti_vesti_checked', isVestiChecked);
+            localStorage.setItem('vesti_vesti_price',    isVestiChecked ? FEE_VESTI_GROSS_USD : 0);
+            localStorage.setItem('vesti_vesti_discount',  isVestiChecked ? (FEE_VESTI_GROSS_USD - FEE_VESTI_NET_USD) : 0);
+            localStorage.setItem('vesti_elite_checked',   isEliteChecked);
+            localStorage.setItem('vesti_elite_price',     isEliteChecked ? FEE_ELITE_USD : 0); 
+        }
+
+        let isInsuranceDropdownOpen = false;
+
+        function toggleInsuranceDropdown(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            const checkbox = document.getElementById('item-insurance-checkbox');
+            const container = document.getElementById('insurance-config-container');
+            const chevron = document.getElementById('insurance-chevron');
+
+            if (checkbox && !checkbox.checked) {
+                checkbox.checked = true;
+                isInsuranceDropdownOpen = true;
+                calculateFees(); // Re-run calculations to update the layout and set price
+                if (container) container.style.display = 'block';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+                return;
+            }
+
+            isInsuranceDropdownOpen = !isInsuranceDropdownOpen;
+
+            if (container) {
+                if (isInsuranceDropdownOpen) {
+                    container.style.display = 'block';
+                    if (chevron) chevron.style.transform = 'rotate(180deg)';
+                } else {
+                    container.style.display = 'none';
+                    if (chevron) chevron.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+
+
+        // Vesti-style FAQ Toggle
+        function toggleVFaq(button) {
+            const item = button.parentElement;
+            const content = item.querySelector('.vfaq-content');
+            const icon = button.querySelector('.vfaq-icon');
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.vfaq-item').forEach(el => {
+                el.classList.remove('active');
+                el.querySelector('.vfaq-content').style.maxHeight = '0';
+                el.querySelector('.vfaq-icon').textContent = '+';
+            });
+
+            // Open clicked if it was closed
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '\u2212';
+            }
+        }
+
+        function updateRowOpacity(rowId, isActive) {
+            const row = document.getElementById(rowId);
+            if (row) row.style.opacity = isActive ? '1' : '0.45';
+        }
+
+        function formatCurrencyValue(value, currencyCode) {
+            const sym = VESTI_SYMBOLS[currencyCode] || '$';
+            const num = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+            return `${sym}${num}`;
+        }
+
+        function printEstimate() { window.print(); }
+
+        function savePaymentInfo(event) {
+            const totalUSD = document.getElementById('total-usd-display').textContent;
+            const passengers = document.getElementById('calc-passengers').value;
+
+            localStorage.setItem('vesti_payment_amount', totalUSD);
+            localStorage.setItem('vesti_payment_passengers', passengers);
+
+            // Save selected plan info for the checkout screen summary
+            const plan = INSURANCE_DETAILS[selectedInsuranceDuration][selectedInsuranceTier];
+            const billingCurrency = document.getElementById('calc-currency').value;
+            const vestiRate = parseFloat(document.getElementById('calc-exchange-rate').value) || 1.0;
+            const durationLabel = selectedInsuranceDuration === '1month' ? '1 Month' : '2 Weeks';
+
+            // Converted total price for the selected passengers
+            const insuranceUSD = plan.eur * EUR_TO_USD * passengers;
+            const insuranceLocal = insuranceUSD * vestiRate;
+
+            localStorage.setItem('vesti_insurance_checked', 'true');
+            localStorage.setItem('vesti_insurance_plan_name', `${plan.name} (${durationLabel})`);
+            localStorage.setItem('vesti_insurance_plan_price', formatCurrencyValue(insuranceLocal, billingCurrency));
+        }
+    </script>
+<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>

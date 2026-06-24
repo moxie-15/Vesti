@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin — Viewer Logs | Vesti AU</title>
+<meta content="Internal admin dashboard for tracking registered viewer progress on Vesti AU clarity sessions." name="description"/>
+<!-- Official Favicon -->
+<link href="../../../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Vesti Stylesheet -->
+<link href="../../../assets/css/style.css" rel="stylesheet"/>
+<style>
+        :root {
+            --bg:         #f9f5f0;
+            --bg-card:    rgba(255, 255, 255, 0.85);
+            --green:      #13110f;
+            --green-dark: #3e6f26;
+            --green-glow: rgba(99, 161, 70, 0.15);
+            --border:     rgba(19, 17, 15, 0.08);
+            --text:       #13110f;
+            --muted:      rgba(19, 17, 15, 0.55);
+            --radius:     16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg) !important;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99, 161, 70, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 90% 110%, rgba(19, 17, 15, 0.04) 0%, transparent 60%) !important;
+            background-attachment: fixed;
+            color: var(--text) !important;
+            min-height: 100vh;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        *,
+        ::after,
+        ::before {
+            border-color: var(--border) !important;
+        }
+
+        /* ── Stats Cards ── */
+        .stat-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 16px;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 20px rgba(19, 17, 15, 0.015);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 12px 30px rgba(19, 17, 15, 0.05) !important;
+            border-color: rgba(99, 161, 70, 0.2) !important;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted) !important;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text) !important;
+            line-height: 1;
+        }
+
+        /* ── Search & Filter Bar ── */
+        .search-input {
+            background: rgba(255, 255, 255, 0.8) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 10px;
+            padding: 10px 16px 10px 42px;
+            color: var(--text) !important;
+            font-size: 14px;
+            width: 100%;
+            max-width: 360px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--green) !important;
+            background: #ffffff !important;
+            box-shadow: 0 0 0 3px rgba(99, 161, 70, 0.15) !important;
+        }
+
+        .search-input::placeholder {
+            color: var(--muted) !important;
+            opacity: 0.7;
+        }
+
+        /* ── Full Table ── */
+        .logs-table-wrap {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(19, 17, 15, 0.02) !important;
+        }
+
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .logs-table thead {
+            background: rgba(19, 17, 15, 0.02) !important;
+            border-bottom: 1px solid var(--border) !important;
+        }
+
+        .logs-table th {
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted) !important;
+            white-space: nowrap;
+        }
+
+        .logs-table td {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border) !important;
+            vertical-align: middle;
+            color: var(--text) !important;
+        }
+
+        .logs-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .logs-table tbody tr:hover {
+            background: rgba(99, 161, 70, 0.03) !important;
+        }
+
+        /* ── Progress Pill ── */
+        .track-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .track-pill.done {
+            background: rgba(99, 161, 70, 0.1) !important;
+            color: var(--green-dark) !important;
+            border: 1px solid rgba(99, 161, 70, 0.3) !important;
+        }
+
+        .track-pill.pending {
+            background: rgba(19, 17, 15, 0.03) !important;
+            color: var(--muted) !important;
+            border: 1px solid var(--border) !important;
+        }
+
+        /* ── Progress Bar ── */
+        .progress-bar-outer {
+            background: rgba(19, 17, 15, 0.06) !important;
+            border-radius: 10px;
+            height: 6px;
+            width: 100%;
+            min-width: 80px;
+        }
+
+        .progress-bar-inner {
+            height: 6px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #13110f, #13110f);
+            transition: width 0.4s ease;
+        }
+
+        /* ── Empty State ── */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        /* ── Delete Button ── */
+        .delete-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--muted) !important;
+            padding: 6px;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .delete-btn:hover {
+            color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.08) !important;
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffffff !important;
+            border: 1px solid rgba(99, 161, 70, 0.3) !important;
+            color: var(--green-dark) !important;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(19, 17, 15, 0.08) !important;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+
+    </style>
+<style id="custom-dropdown-css">
+    .nav-menu .dropdown { position: relative; }
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #13110f;
+        padding: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        min-width: 180px;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    .nav-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .nav-menu .dropdown-menu li { padding: 0; margin: 0; }
+    .nav-menu .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: rgba(255,255,255,0.8);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu .dropdown-menu li a:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+</style>
+<style id="dropdown-hover-css">.nav-menu .dropdown:hover .dropdown-menu { display: block !important; } .nav-menu .dropdown-menu li a:hover { background: rgba(255,255,255,0.1); color: #fff; }</style><style>
+    body, h1, h2, h3, h4, h5, h6, p, a, span { 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+        text-rendering: optimizeLegibility; 
+    }
+</style>
+</head>
+<body>
+<!-- Top Announcement Bar -->
+<div class="top-announcement-bar">
+<span>🔒 Admin Area — Vesti AU Internal Viewer Tracking Dashboard</span>
+</div>
+<!-- Navigation Bar -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<a class="logo-area" href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none;">
+<svg fill="none" height="38" overflow="visible" viewbox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:22px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px;">esti</span>
+<span class="au-indicator" style="margin-left:10px;">AU</span>
+</a>
+<ul class="nav-menu" id="nav-menu">
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Products <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../passports.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Passports</a></li>
+            <li><a href="../../../consultation.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Consultation</a></li>
+            <li><a href="../../../visas.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Visas</a></li>
+            <li><a href="../../../banking.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Global Banking</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="#" class="nav-link">Company <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+            <li><a href="../../../about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+            <li><a href="../../../careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+            <li><a href="../../../press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+            <li><a href="../../../faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+            <li><a href="../../../contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+            <li><a href="../../../updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="position: relative;">
+        <a href="../../../index.html" class="nav-link">Countries <i data-lucide="chevron-down" class="nav-chevron"></i></a>
+        <style>.dropdown:hover .country-dropdown-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; display: block !important; }</style>
+        <ul class="country-dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; transform: translateY(10px);">
+            <li><a href="../../../pages/countries/usa/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">USA</a></li>
+            <li><a href="../../../pages/countries/canada/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Canada</a></li>
+            <li><a href="../../../pages/countries/australia/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Australia</a></li>
+            <li><a href="../../../pages/countries/New_zealand/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">New Zealand</a></li>
+            <li><a href="../../../pages/countries/france/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">France</a></li>
+            <li><a href="../../../pages/countries/spain/index.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Spain</a></li>
+            <li><a href="../../../pages/countries/all countries/main.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">All Countries</a></li>
+        </ul>
+    </li>
+
+</ul>
+</li>
+<li class="dropdown" style="position: relative;">
+<a class="nav-link" href="#">Company <i class="nav-chevron" data-lucide="chevron-down"></i></a>
+<ul class="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; background: #13110f; padding: 10px 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; list-style: none; margin: 0;">
+<li><a href="about.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">About Vesti</a></li>
+<li><a href="careers.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Careers</a></li>
+<li><a href="press.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Press</a></li>
+<li><a href="faqs.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">FAQs</a></li>
+<li><a href="contact.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Contact Us</a></li>
+<li><a href="updates.html" style="display: block; padding: 10px 20px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px;">Vesti Updates</a></li>
+</ul>
+</li>
+</ul>
+<div class="nav-cta">
+<a class="btn-signin" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</div>
+<button aria-label="Toggle menu" class="mobile-menu-btn" id="mobile-menu-btn">
+<i data-lucide="menu"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-drawer" id="mobile-drawer">
+<ul class="mobile-menu">
+<li><a class="mobile-link" href="index.html#pathways">Products</a></li>
+<li><a class="mobile-link" href="index.html#scroll-stacking">Company</a></li>
+<li><a class="mobile-link" href="../../../travel-fees.html">Travel Fees</a></li>
+<li><a class="mobile-link" href="video-catalog.html">← Clarity Sessions</a></li>
+<li class="mobile-drawer-ctas">
+<a class="btn btn-outline w-full" href="https://site.wevesti.com/auth" rel="noopener" target="_blank">Sign In</a>
+<a class="btn btn-primary w-full" href="https://site.wevesti.com/register" rel="noopener" target="_blank">Create an account</a>
+</li>
+</ul>
+</div>
+<!-- Main Content -->
+<main style="padding: 32px 0 80px; min-height: calc(100vh - 130px);">
+<div class="container mx-auto px-4" style="max-width: 1200px;">
+<!-- Page Header -->
+<div style="margin-bottom: 32px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+<div>
+<span class="section-tag" style="margin-bottom: 8px;">
+<i data-lucide="database"></i> Admin Dashboard
+                    </span>
+<h1 style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text); margin: 0 0 6px; line-height: 1.2;">
+                        Viewer Logs
+                    </h1>
+<p style="color: var(--muted); font-size: 14px; margin: 0;">
+                        All registered viewer data is read from <code style="background: rgba(19, 17, 15, 0.05); color: var(--text); padding: 2.2px 6px; border-radius: 4px; font-size: 12px;">localStorage</code> in the browser. Data is client-side only.
+                    </p>
+</div>
+<div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+<a href="portal-settings.html" id="settings-btn" onmouseout="this.style.background='rgba(19, 17, 15, 0.04)'" onmouseover="this.style.background='rgba(19, 17, 15, 0.08)'" style="background: rgba(19, 17, 15, 0.04); border: 1px solid var(--border); color: var(--text); font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s; text-decoration: none;">
+<i data-lucide="settings" style="width: 14px; height: 14px;"></i>
+                        Portal Settings
+                    </a>
+<button id="export-btn" onclick="exportCSV()" style="background: rgba(99, 161, 70, 0.1); border: 1px solid rgba(99, 161, 70, 0.3); color: var(--green-dark); font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s;">
+<i data-lucide="download" style="width: 14px; height: 14px;"></i>
+                        Export CSV
+                    </button>
+<button id="clear-btn" onclick="confirmClearAll()" style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); color: #dc2626; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s;">
+<i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                        Clear All
+                    </button>
+</div>
+</div>
+<!-- Stats Row -->
+<div id="stats-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;">
+<div class="stat-card">
+<div class="stat-icon" style="background: rgba(99,161,70,0.15);">
+<i data-lucide="users" style="width: 22px; height: 22px; color: #13110f;"></i>
+</div>
+<div>
+<div class="stat-label">Total Viewers</div>
+<div class="stat-value" id="stat-total">0</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon" style="background: rgba(0, 199, 88, 0.12);">
+<i data-lucide="video" style="width: 22px; height: 22px; color: #13110f;"></i>
+</div>
+<div>
+<div class="stat-label">Tourist Completed</div>
+<div class="stat-value" id="stat-tourist">0</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon" style="background: rgba(59,130,246,0.12);">
+<i data-lucide="briefcase" style="width: 22px; height: 22px; color: #60a5fa;"></i>
+</div>
+<div>
+<div class="stat-label">Business Completed</div>
+<div class="stat-value" id="stat-business">0</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon" style="background: rgba(168,85,247,0.12);">
+<i data-lucide="heart" style="width: 22px; height: 22px; color: #c084fc;"></i>
+</div>
+<div>
+<div class="stat-label">Family Completed</div>
+<div class="stat-value" id="stat-family">0</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon" style="background: rgba(251,146,60,0.12);">
+<i data-lucide="globe" style="width: 22px; height: 22px; color: #fb923c;"></i>
+</div>
+<div>
+<div class="stat-label">Group Completed</div>
+<div class="stat-value" id="stat-group">0</div>
+</div>
+</div>
+</div>
+<!-- Search & Filter -->
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+<div style="position: relative; flex: 1; max-width: 360px;">
+<i data-lucide="search" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: rgba(255,255,255,0.3);"></i>
+<input class="search-input" id="search-input" oninput="renderTable()" placeholder="Search by name, email, country…" type="text"/>
+</div>
+<div id="record-count" style="font-size: 13px; color: rgba(255,255,255,0.35); white-space: nowrap;">
+                    — viewers
+                </div>
+<button onclick="refreshData()" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,0.5)'" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 13px; padding: 9px 14px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;">
+<i data-lucide="refresh-cw" style="width: 13px; height: 13px;"></i> Refresh
+                </button>
+</div>
+<!-- Main Table -->
+<div class="logs-table-wrap">
+<table class="logs-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Viewer</th>
+<th>Country</th>
+<th>Phone</th>
+<th>Tourist</th>
+<th>Business</th>
+<th>Family</th>
+<th>Group</th>
+<th>Overall</th>
+<th></th>
+</tr>
+</thead>
+<tbody id="logs-tbody">
+<!-- Filled dynamically -->
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- FAQ Section -->
+<section class="section faq-section" style="background-color: var(--bg-light); padding: 60px 0; color: white;">
+<div class="container" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 60px; max-width: 1200px;">
+<div style="flex: 1; min-width: 300px;">
+<h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; color: white;">Some of the things you may want to know</h2>
+<a href="#" style="color: white; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 5px;">Frequently asked questions <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+</div>
+<div class="faq-accordion" style="flex: 1.5; min-width: 300px;">
+<div class="faq-item active">
+<h5 class="faq-trigger">What can I do with Vesti? <span class="faq-icon">−</span></h5>
+<div class="faq-content">
+<p>With Vesti you get the opportunity to be financially stable in life, whether you choose to move abroad (temporarily/permanently) or stay back at home. On Vesti you can pay for difficult immigration related payments (International Payments) in your local currency, seamlessly.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">Is my money secure with Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>Yes, Vesti complies with strict regulatory standards. All banking services and cards are provided in partnership with licensed and regulated financial institutions, including Stripe Payments Company and Celtic Bank (Member FDIC). Your funds are held securely at partner banks, and all transactions are protected by bank-grade SSL encryption and multi-factor authentication.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">How do I pay for WES on Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>To pay for WES (World Education Services) or other credential assessments, simply log into the Vesti app, navigate to the "Services" or "Payments" tab, select "Credential Assessment Services", enter your WES reference details, and pay in your local currency. Vesti takes care of the currency conversion and processes the payment to WES on your behalf instantly.</p>
+</div>
+</div>
+<div class="faq-item">
+<h5 class="faq-trigger">Can I send dollar to someone with Vesti? <span class="faq-icon">+</span></h5>
+<div class="faq-content">
+<p>Yes! With Vesti's Multi-Currency Wallets, you can convert local currency to USD (and other major currencies) instantly. You can send dollars directly to other Vesti users using their @username (peer-to-peer, free), or initiate a wire transfer to a US or international bank account directly from the app.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Download Section -->
+<section class="app-download-section">
+<div class="container text-center">
+<h2 class="download-title">Also available to<br/>download on both</h2>
+<div class="download-buttons">
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.vesti.app&amp;pli=1" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path></svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Google Play</span>
+</div>
+</div>
+</a>
+<a class="download-btn" href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank">
+<div class="download-btn-content">
+<svg class="download-btn-icon" fill="currentColor" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+<div class="download-btn-text">
+<span class="download-btn-sub">AVAILABLE ON</span>
+<span class="download-btn-main">Apple Store</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Detailed Vesti Footer -->
+<footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; max-width: 350px;">
+                <a href="index.html" style="display:flex; align-items:center; gap:0px; text-decoration:none; margin-bottom: 20px;">
+<svg fill="none" height="42" overflow="visible" viewbox="0 0 34 38" width="38" xmlns="http://www.w3.org/2000/svg">
+<path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
+<path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#FFFFFF"></path>
+<path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#FFFFFF"></path>
+</svg>
+<span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:26px; color:white; letter-spacing:-0.5px; line-height:1; margin-left:-6px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">esti</span>
+</a>
+                <p style="font-size: 14px; color: #A3A3A3; line-height: 1.6;">The operating system for global talent migration. Built for the ambitious, guided by humans.</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 60px;">
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">INTELLIGENCE</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">O-1 Scoring</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">EB-1A Roadmap</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">NIW Builder</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Express Entry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">HUMAN LAYER</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Expert Network</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Legal Reviews</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Concierge</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">COMPANY</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Methodology</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Pricing</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Careers</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5 style="font-size: 12px; font-weight: 700; color: #FFF; margin-bottom: 20px; letter-spacing: 1px;">LEGAL</h5>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Terms of Service</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">AML</a></li>
+                        <li><a href="#" style="color: #A3A3A3; text-decoration: none; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#A3A3A3'">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; padding-top: 20px; color: #A3A3A3; font-size: 12px; text-align: left;">
+        </div>
+    </div>
+</footer>
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+<i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+<span id="toast-msg">Done!</span>
+</div>
+<script>
+        let allUsers = [];
+
+        const safeCreateIcons = () => {
+            if (typeof lucide !== 'undefined') {
+                try { lucide.createIcons(); } catch (e) { }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileDrawer.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.setAttribute('data-lucide', mobileDrawer.classList.contains('active') ? 'x' : 'menu');
+                    safeCreateIcons();
+                });
+            }
+
+            loadData();
+            initFaqAccordion();
+            safeCreateIcons();
+        });
+
+        function initFaqAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const trigger = item.querySelector('.faq-trigger');
+                if (!trigger) return;
+                trigger.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        const icon = i.querySelector('.faq-icon');
+                        if (icon) icon.innerHTML = '&plus;';
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const icon = item.querySelector('.faq-icon');
+                        if (icon) icon.innerHTML = '&minus;';
+                    }
+                });
+            });
+        }
+
+        function loadData() {
+            const raw = localStorage.getItem('vesti_registered_users');
+            allUsers = raw ? JSON.parse(raw) : [];
+            updateStats();
+            renderTable();
+        }
+
+        function refreshData() {
+            loadData();
+            showToast('Data refreshed');
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = allUsers.length;
+            document.getElementById('stat-tourist').textContent = allUsers.filter(u => u.watched?.tourist).length;
+            document.getElementById('stat-business').textContent = allUsers.filter(u => u.watched?.business).length;
+            document.getElementById('stat-family').textContent = allUsers.filter(u => u.watched?.family).length;
+            document.getElementById('stat-group').textContent = allUsers.filter(u => u.watched?.group).length;
+        }
+
+        function renderTable() {
+            const query = (document.getElementById('search-input').value || '').toLowerCase();
+            const tbody = document.getElementById('logs-tbody');
+
+            const filtered = allUsers.filter(u => {
+                const name = (u.name || `${u.firstName || ''} ${u.lastName || ''}`).toLowerCase();
+                const email = (u.email || '').toLowerCase();
+                const country = (u.country || '').toLowerCase();
+                return name.includes(query) || email.includes(query) || country.includes(query);
+            });
+
+            document.getElementById('record-count').textContent = `${filtered.length} viewer${filtered.length !== 1 ? 's' : ''}`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10">
+                            <div class="empty-state">
+                                <i data-lucide="inbox" style="width: 48px; height: 48px; color: var(--muted); opacity: 0.3; margin: 0 auto 16px; display: block;"></i>
+                                <p style="color: var(--muted); font-size: 15px; font-weight: 500;">${query ? 'No results match your search.' : 'No viewers registered yet.'}</p>
+                                ${query ? `<button onclick="document.getElementById('search-input').value=''; renderTable();" style="margin-top: 12px; background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 7px 16px; border-radius: 8px; cursor: pointer; font-size: 13px;">Clear search</button>` : ''}
+                            </div>
+                        </td>
+                    </tr>`;
+                safeCreateIcons();
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((u, i) => {
+                const name = u.name || `${u.firstName || ''} ${u.lastName || ''}`.trim() || 'Unknown';
+                const email = u.email || '—';
+                const country = u.country || '—';
+                const phone = u.phone || '—';
+                const watched = u.watched || {};
+                const tracks = ['tourist', 'business', 'family', 'group'];
+                const doneCount = tracks.filter(t => watched[t]).length;
+                const pct = Math.round((doneCount / 4) * 100);
+
+                const pill = (done) => done
+                    ? `<span class="track-pill done"><i data-lucide="check" style="width:10px;height:10px;"></i> Done</span>`
+                    : `<span class="track-pill pending">—</span>`;
+
+                return `
+                    <tr>
+                        <td style="color: var(--muted); opacity: 0.6; font-size: 12px; font-weight: 600; width: 36px;">${allUsers.indexOf(u) + 1}</td>
+                        <td>
+                            <div style="font-weight: 600; color: var(--text); font-size: 14px; line-height: 1.3;">${name}</div>
+                            <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">${email}</div>
+                        </td>
+                        <td style="font-size: 13px; color: var(--text);">${country}</td>
+                        <td style="font-size: 12px; color: var(--muted); font-family: monospace;">${phone}</td>
+                        <td>${pill(watched.tourist)}</td>
+                        <td>${pill(watched.business)}</td>
+                        <td>${pill(watched.family)}</td>
+                        <td>${pill(watched.group)}</td>
+                        <td style="min-width: 100px;">
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <div style="font-size: 11px; font-weight: 700; color: ${pct === 100 ? '#13110f' : 'var(--muted)'};">${pct}%</div>
+                                <div class="progress-bar-outer">
+                                    <div class="progress-bar-inner" style="width: ${pct}%;"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteUser('${email}')" title="Remove viewer">
+                                <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+            }).join('');
+
+            safeCreateIcons();
+        }
+
+        function deleteUser(email) {
+            allUsers = allUsers.filter(u => u.email !== email);
+            localStorage.setItem('vesti_registered_users', JSON.stringify(allUsers));
+            updateStats();
+            renderTable();
+            showToast('Viewer removed');
+        }
+
+        function confirmClearAll() {
+            if (allUsers.length === 0) { showToast('No data to clear'); return; }
+            if (!confirm(`Delete all ${allUsers.length} viewer records? This cannot be undone.`)) return;
+            allUsers = [];
+            localStorage.removeItem('vesti_registered_users');
+            updateStats();
+            renderTable();
+            showToast('All records cleared');
+        }
+
+        function exportCSV() {
+            if (allUsers.length === 0) { showToast('No data to export'); return; }
+            const headers = ['Name', 'Email', 'Country', 'Phone', 'Tourist', 'Business', 'Family', 'Group'];
+            const rows = allUsers.map(u => {
+                const name = u.name || `${u.firstName || ''} ${u.lastName || ''}`.trim();
+                const w = u.watched || {};
+                return [name, u.email || '', u.country || '', u.phone || '',
+                    w.tourist ? 'Yes' : 'No', w.business ? 'Yes' : 'No',
+                    w.family ? 'Yes' : 'No', w.group ? 'Yes' : 'No'
+                ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(',');
+            });
+            const csv = [headers.join(','), ...rows].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vesti_nz_viewers_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('CSV exported!');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.add('show');
+            safeCreateIcons();
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+
+    </script>
+<script id="agent-modal-script">
+        function showAssessmentState() {
+            document.getElementById('modal-state-initial').style.display = 'none';
+            document.getElementById('modal-state-assessment').style.display = 'flex';
+        }
+        
+        function submitAssessment() {
+            const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
+            rightPanel.innerHTML = 
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+                    <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
+                        <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
+                        <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
+                    </div>
+                    <p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p>
+                    <div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;">
+                        <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
+                    </div>
+                    <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
+                </div>
+            ;
+        }
+        
+        setTimeout(() => {
+            document.getElementById('agentModal').classList.add('active');
+            const btn = document.getElementById('floatingAgentBtn');
+            if (btn) btn.style.display = 'none';
+        }, 3000);
+    </script></body>
+</html>
