@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Global Mobility | Vesti</title>
 <!-- Official Favicon -->
-<link href="/assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/images/vesti-icon.svg" rel="icon" type="image/svg+xml"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -351,7 +351,7 @@
 <h1 style="font-family: 'Outfit', sans-serif; font-size: 52px; font-weight: 800; color: #13110f; line-height: 1.1; margin: 0 0 20px; letter-spacing: -1px;">The world belongs <br/>to the <span class="gradient-text">ambitious.</span></h1>
 <p style="font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 500; color: #13110f; margin-bottom: 20px;">You may qualify for more visa pathways than you realize.</p>
 <p style="font-family: 'Inter', sans-serif; font-size: 16px; color: #4A5568; line-height: 1.6; margin-bottom: 25px;">Our AI parses your career signals to map your global future — in seconds. Select a pathway or upload your profile to see your eligibility instantly.</p>
-<a class="btn-scan-ai" href="#ai-scan-widget" style="position: relative; display: inline-block; background-color: #13110f; color: #FFF; border: none; border-radius: 8px; padding: 16px 40px; font-size: 16px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; transition: all 0.2s;">Scan My Profile</a>
+<a class="btn-scan-ai" href="scan-profile.html" style="position: relative; display: inline-block; background-color: #13110f; color: #FFF; border: none; border-radius: 8px; padding: 16px 40px; font-size: 16px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; transition: all 0.2s;">Scan My Profile</a>
 </div>
 <!-- Right Masonry Grid -->
 <div class="hero-masonry" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; height: 500px; position: relative;">
@@ -378,7 +378,7 @@
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
 <!-- LinkedIn Connect -->
-<button onclick="window.location.href='../auth/signup.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(10,102,194,0.15)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(10,102,194,0.25)';" style="background: #0A66C2; color: #FFFFFF; border: none; border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(10,102,194,0.15);">
+<button onclick="window.location.href='pages/auth/signup.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(10,102,194,0.15)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(10,102,194,0.25)';" style="background: #0A66C2; color: #FFFFFF; border: none; border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(10,102,194,0.15);">
 <svg fill="currentColor" height="24" style="flex-shrink: 0;" viewbox="0 0 24 24" width="24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
 <div>
 <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 2px;">Connect LinkedIn</div>
@@ -386,7 +386,7 @@
 </div>
 </button>
 <!-- Upload Resume -->
-<input accept=".pdf,.doc,.docx" id="resumeUploadInput" onchange="alert('Resume uploaded successfully! Our AI is now analyzing your profile for the best pathways.');" style="display:none;" type="file"/>
+<input accept=".pdf,.doc,.docx" id="resumeUploadInput" onchange="window.location.href='scan-profile.html';" style="display:none;" type="file"/>
 <button onclick="document.getElementById('resumeUploadInput').click();" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.02)'; this.style.borderColor='rgba(0,0,0,0.06)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(0, 165, 68, 0.1)'; this.style.borderColor='rgba(0, 165, 68, 0.3)';" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
 <div style="width: 32px; height: 32px; border-radius: 50%; background: #f9f5f0; color: #13110f; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
 <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M12 3v12"></path><path d="m17 8-5-5-5 5"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path></svg>
@@ -397,7 +397,7 @@
 </div>
 </button>
 <!-- Manual Check -->
-<button onclick="window.location.href='../auth/signup.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.02)'; this.style.borderColor='rgba(0,0,0,0.06)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(0,0,0,0.06)'; this.style.borderColor='rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+<button onclick="window.location.href='scan-profile.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.02)'; this.style.borderColor='rgba(0,0,0,0.06)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(0,0,0,0.06)'; this.style.borderColor='rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: 12px; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
 <div style="width: 32px; height: 32px; border-radius: 50%; background: #f9f5f0; color: #4A5568; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path></svg>
 </div>
@@ -421,7 +421,7 @@
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1200px; margin: 0 auto;">
 <!-- United States -->
-<div onclick="window.location.href='../usa/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div onclick="window.location.href='pages/countries/usa/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
 <div style="height: 180px; background: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover; position: relative;">
 <div style="position: absolute; bottom: -20px; left: 20px; width: 44px; height: 44px; background: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 <img alt="US" src="https://flagcdn.com/w40/us.png" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;"/>
@@ -434,7 +434,7 @@
 </div>
 </div>
 <!-- Australia -->
-<div onclick="window.location.href='../australia/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div onclick="window.location.href='pages/countries/australia/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
 <div style="height: 180px; background: url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover; position: relative;">
 <div style="position: absolute; bottom: -20px; left: 20px; width: 44px; height: 44px; background: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 <img alt="Australia" src="https://flagcdn.com/w40/au.png" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;"/>
@@ -447,7 +447,7 @@
 </div>
 </div>
 <!-- Canada -->
-<div onclick="window.location.href='../canada/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div onclick="window.location.href='pages/countries/canada/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
 <div style="height: 180px; background: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover; position: relative;">
 <div style="position: absolute; bottom: -20px; left: 20px; width: 44px; height: 44px; background: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 <img alt="Canada" src="https://flagcdn.com/w40/ca.png" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;"/>
@@ -460,7 +460,7 @@
 </div>
 </div>
 <!-- New Zealand -->
-<div onclick="window.location.href='../New_zealand/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div onclick="window.location.href='pages/countries/New_zealand/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
 <div style="height: 180px; background: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover; position: relative;">
 <div style="position: absolute; bottom: -20px; left: 20px; width: 44px; height: 44px; background: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 <img alt="New Zealand" src="https://flagcdn.com/w40/nz.png" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;"/>
@@ -473,7 +473,7 @@
 </div>
 </div>
 <!-- France -->
-<div onclick="window.location.href='../france/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div onclick="window.location.href='pages/countries/france/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
 <div style="height: 180px; background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover; position: relative;">
 <div style="position: absolute; bottom: -20px; left: 20px; width: 44px; height: 44px; background: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 <img alt="France" src="https://flagcdn.com/w40/fr.png" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;"/>
@@ -486,7 +486,7 @@
 </div>
 </div>
 <!-- Spain -->
-<div onclick="window.location.href='../spain/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+<div onclick="window.location.href='pages/countries/spain/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.05)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.1)';" style="background: #FFFFFF; border: 1px solid #f9f5f0; border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
 <div style="height: 180px; background: url('https://images.unsplash.com/photo-1543783207-ec64e4d95325?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover; position: relative;">
 <div style="position: absolute; bottom: -20px; left: 20px; width: 44px; height: 44px; background: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 <img alt="Spain" src="https://flagcdn.com/w40/es.png" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;"/>
@@ -500,7 +500,7 @@
 </div>
 </div>
 <div style="text-align: center; margin-top: 40px;">
-<button onmouseout="this.style.backgroundColor='#FFFFFF'; this.style.color='#13110f';" onmouseover="this.style.backgroundColor='#13110f'; this.style.color='#FFFFFF';" style="background-color: #FFFFFF; color: #13110f; border: 2px solid #13110f; border-radius: 8px; padding: 12px 30px; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s;">View All Countries</button>
+<button onclick="window.location.href='pages/countries/all countries/main.html'" onmouseout="this.style.backgroundColor='#FFFFFF'; this.style.color='#13110f';" onmouseover="this.style.backgroundColor='#13110f'; this.style.color='#FFFFFF';" style="background-color: #FFFFFF; color: #13110f; border: 2px solid #13110f; border-radius: 8px; padding: 12px 30px; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s;">View All Countries</button>
 </div>
 </section>
 <!-- News & Travel Guides Section -->
@@ -511,7 +511,7 @@
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; margin-bottom: 50px;">
 <!-- Card 1 -->
-<div class="news-card" onclick="window.location.href='../news.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" style="border: 1px solid #edf2f7; border-radius: 16px; overflow: hidden; background: #FFF; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+<div class="news-card" onclick="window.location.href='pages/news/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" style="border: 1px solid #edf2f7; border-radius: 16px; overflow: hidden; background: #FFF; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
 <div style="height: 200px; background: url('https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover;"></div>
 <div style="padding: 25px;">
 <h3 style="font-family: 'Outfit', sans-serif; font-size: 18px; color: #13110f; margin: 0 0 10px; line-height: 1.4;">Do I Need a Visa for New Zealand? Your Complete 2026 Travel Guide</h3>
@@ -519,7 +519,7 @@
 </div>
 </div>
 <!-- Card 2 -->
-<div class="news-card" onclick="window.location.href='../news.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" style="border: 1px solid #edf2f7; border-radius: 16px; overflow: hidden; background: #FFF; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+<div class="news-card" onclick="window.location.href='pages/news/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" style="border: 1px solid #edf2f7; border-radius: 16px; overflow: hidden; background: #FFF; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
 <div style="height: 200px; background: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover;"></div>
 <div style="padding: 25px;">
 <h3 style="font-family: 'Outfit', sans-serif; font-size: 18px; color: #13110f; margin: 0 0 10px; line-height: 1.4;">Indonesia Visa Tips: Your Guide to Bali and Beyond</h3>
@@ -527,7 +527,7 @@
 </div>
 </div>
 <!-- Card 3 -->
-<div class="news-card" onclick="window.location.href='../news.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" style="border: 1px solid #edf2f7; border-radius: 16px; overflow: hidden; background: #FFF; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+<div class="news-card" onclick="window.location.href='pages/news/index.html'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.02)';" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" style="border: 1px solid #edf2f7; border-radius: 16px; overflow: hidden; background: #FFF; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
 <div style="height: 200px; background: url('https://images.unsplash.com/photo-1508004526072-3be43a5005f6?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80') center/cover;"></div>
 <div style="padding: 25px;">
 <h3 style="font-family: 'Outfit', sans-serif; font-size: 18px; color: #13110f; margin: 0 0 10px; line-height: 1.4;">Heading to the World Cup? Check Your Travel Requirements First</h3>
@@ -536,7 +536,7 @@
 </div>
 </div>
 <div style="text-align: center;">
-<a href="../news/index.html" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#13110f';" onmouseover="this.style.backgroundColor='#13110f'; this.style.color='#FFF';" style="display: inline-block; padding: 14px 35px; border: 2px solid #13110f; color: #13110f; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.2s;">View All News</a>
+<a href="pages/news/index.html" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#13110f';" onmouseover="this.style.backgroundColor='#13110f'; this.style.color='#FFF';" style="display: inline-block; padding: 14px 35px; border: 2px solid #13110f; color: #13110f; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.2s;">View All News</a>
 </div>
 </section>
 <!-- FAQ Section -->
@@ -600,65 +600,6 @@
 </div>
 </section>
 <!-- Detailed Vesti Footer -->
-
-<script src="assets/js/script.js"></script>
-<script>
-        lucide.createIcons();
-    </script>
-
-<!-- Script to trigger modal after a few seconds -->
-<script>
-        setTimeout(() => {
-            document.getElementById('agentModal').classList.add('active');
-            document.getElementById('floatingAgentBtn').style.display = 'none';
-        }, 3000); // Popup appears 3 seconds after page loads
-    </script>
-<!-- Masonry Slideshow Script -->
-<script>
-        const masonry1Data = [
-            { img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Know the rules. Skip the queues.' },
-            { img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Discover the heart of Paris' },
-            { img: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Sail through Venice canals' },
-            { img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Business expansion in Dubai' },
-            { img: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Breathtaking Swiss Alps' }
-        ];
-        
-        const masonry2Data = [
-            { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'One place for all travel requirements.' },
-            { img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relax on tropical beaches' },
-            { img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'European mobility options' },
-            { img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Explore the United States' },
-            { img: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Work & live in London' }
-        ];
-        
-        const masonry3Data = [
-            { img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global opportunities await' },
-            { img: 'https://images.unsplash.com/photo-1504150558240-0b4fd8946624?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Global visas made easy' },
-            { img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Pack your bags, we handle the rest' },
-            { img: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'Relocate to Canada fast' },
-            { img: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', text: 'New life in Australia' }
-        ];
-
-        let slideIndex = 0;
-        setInterval(() => {
-            slideIndex = (slideIndex + 1) % masonry1Data.length;
-            
-            document.getElementById('masonry-1').style.backgroundImage = `url('${masonry1Data[slideIndex].img}')`;
-            document.getElementById('masonry-text-1').innerText = masonry1Data[slideIndex].text;
-            
-            document.getElementById('masonry-2').style.backgroundImage = `url('${masonry2Data[slideIndex].img}')`;
-            document.getElementById('masonry-text-2').innerText = masonry2Data[slideIndex].text;
-            
-            document.getElementById('masonry-3').style.backgroundImage = `url('${masonry3Data[slideIndex].img}')`;
-            document.getElementById('masonry-text-3').innerText = masonry3Data[slideIndex].text;
-        }, 4000); // Change image and text every 4 seconds
-    </script>
-
-    <main style="padding: 150px 20px; text-align: center; min-height: 50vh;">
-        <h1 style="font-family: 'Outfit', sans-serif; font-size: 3rem; color: #13110f;">Express Entry</h1>
-        <p style="font-size: 1.2rem; color: #4a5568;">This page is coming soon.</p>
-    </main>
-
 <footer class="footer" style="background-color: #13110f; color: #FFF; padding: 80px 0 40px; font-family: 'Inter', sans-serif;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
@@ -761,8 +702,10 @@
         }, 4000); // Change image and text every 4 seconds
     </script>
 <!-- Live Agent Floating Button -->
-<a href="javascript:void(0)" onclick="document.getElementById('agentModal').classList.add('active'); this.style.display='none';" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #13110f; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(19, 17, 15, 0.3); z-index: 9999; text-decoration: none; transition: transform 0.2s;">
-<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<a href="javascript:void(0)" onclick="document.getElementById('agentModal').classList.add('active'); this.style.display='none';" id="floatingAgentBtn" onmouseout="this.style.transform='scale(1.0)';" onmouseover="this.style.transform='scale(1.1)';" style="position: fixed; bottom: 30px; right: 30px; background-color: #f9f5f0; padding: 6px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; text-decoration: none; transition: transform 0.2s; box-shadow: none;">
+    <div style="background-color: #13110f; color: #FFF; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <i data-lucide="phone"></i>
+    </div>
 </a>
 <!-- Agent Helper Modal -->
 <div class="agent-modal-overlay" id="agentModal">
