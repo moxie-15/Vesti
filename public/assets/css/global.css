@@ -11,32 +11,36 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 40px;
+    position: relative;
 }
 
-/* Nav Menu */
+/* Nav Menu — absolutely centered within navbar */
 .nav-menu {
     display: flex;
-    gap: 30px;
+    gap: 36px;
     align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-menu .nav-link {
     color: rgba(255, 255, 255, 0.85);
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.2s ease, transform 0.2s ease;

@@ -755,8 +755,7 @@
         
     </div>
 </div>
-<script id="agent-modal-script">function showAssessmentState(){document.getElementById("modal-state-initial").style.display="none";document.getElementById("modal-state-assessment").style.display="flex"}function submitAssessment(){const rightPanel=document.querySelector("#modal-state-assessment .agent-modal-right");rightPanel.innerHTML=<div style="display:flex; flex-direction:column; height:100%; justify-content:center;"><div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;"><div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div><h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2></div><p class="agent-desc">Hi! I'm Bunmi. I see you're looking at the US pathways. Let's get started on your application roadmap.</p><div style="background:#f9f5f0; border:1px solid #f9f5f0; border-radius:12px; padding:16px; margin-bottom:20px;"><p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p></div><button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button></div>}setTimeout(()=>{document.getElementById("agentModal").classList.add("active");const btn=document.getElementById("floatingAgentBtn");if(btn)btn.style.display="none"},3000);</script>
-\n<script id="agent-modal-script">
+<script id="agent-modal-script">
         function showAssessmentState() {
             document.getElementById('modal-state-initial').style.display = 'none';
             document.getElementById('modal-state-assessment').style.display = 'flex';
@@ -764,7 +763,7 @@
         
         function submitAssessment() {
             const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-            rightPanel.innerHTML = 
+            rightPanel.innerHTML = `
                 <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
                     <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
                         <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
@@ -776,7 +775,7 @@
                     </div>
                     <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
                 </div>
-            ;
+            `;
         }
         
         setTimeout(() => {

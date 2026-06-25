@@ -529,8 +529,7 @@
         
         function submitAssessment() {
             const rightPanel = document.querySelector('#modal-state-assessment .agent-modal-right');
-            rightPanel.innerHTML = 
-                <div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
+            rightPanel.innerHTML = `<div style="display:flex; flex-direction:column; height:100%; justify-content:center;">
                     <div style="display:flex; align-items:center; gap: 12px; margin-bottom:20px;">
                         <div style="width:12px; height:12px; background:#13110f; border-radius:50%; animation: pulse 1.5s infinite;"></div>
                         <h2 class="agent-title" style="font-size: 24px; margin:0;">Live Agent Connected</h2>
@@ -540,8 +539,7 @@
                         <p style="margin:0; font-size:14px; color:#4A5568;"><em>Type your message here...</em></p>
                     </div>
                     <button class="agent-action-btn" style="padding: 12px 0; font-size: 14px; border:none; border-radius:8px; cursor:pointer; background:#13110f; color:#fff; width:100%;">Start Chat</button>
-                </div>
-            ;
+                </div>`;
         }
         
         setTimeout(() => {
