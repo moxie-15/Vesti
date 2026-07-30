@@ -182,39 +182,39 @@ const Countries = () => {
                 }
             ` }} />
 
-            {/* Sub-Nav Tabs Bar (Vesti Dark Theme) */}
-            <div className="fc-subnav">
-                <div style={{ maxWidth: '1180px', margin: '0 auto', width: '100%', display: 'flex', gap: '8px', overflowX: 'auto' }}>
-                    {[
-                        { id: 'all', icon: '✈️', label: 'All Pathways' },
-                        { id: 'work', icon: '💼', label: 'Work & EB-1A' },
-                        { id: 'study', icon: '🎓', label: 'Student Visas' },
-                        { id: 'nomad', icon: '💻', label: 'Digital Nomad' },
-                        { id: 'pr', icon: '🛂', label: 'Permanent Residency' }
-                    ].map(tab => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setSelectedTab(tab.id)}
-                            className={`fc-subnav-btn ${selectedTab === tab.id ? 'active' : ''}`}
-                        >
-                            <span>{tab.icon}</span>
-                            <span>{tab.label}</span>
-                        </button>
-                    ))}
-                </div>
-            </div>
-
             {/* Vesti Dark Ambient Hero Section */}
             <section style={{
                 position: 'relative',
                 backgroundColor: '#030B17',
                 backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(0, 165, 68, 0.25) 0%, rgba(3, 11, 23, 0.98) 65%)',
-                padding: '85px 20px 95px',
+                padding: '40px 20px 95px',
                 color: '#FFF',
                 overflow: 'hidden'
             }}>
                 <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
+                    
+                    {/* Category Filter Pills (Inside Hero Container) */}
+                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', marginBottom: '32px', paddingBottom: '4px' }}>
+                        {[
+                            { id: 'all', icon: '✈️', label: 'All Pathways' },
+                            { id: 'work', icon: '💼', label: 'Work & EB-1A' },
+                            { id: 'study', icon: '🎓', label: 'Student Visas' },
+                            { id: 'nomad', icon: '💻', label: 'Digital Nomad' },
+                            { id: 'pr', icon: '🛂', label: 'Permanent Residency' }
+                        ].map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setSelectedTab(tab.id)}
+                                className={`fc-subnav-btn ${selectedTab === tab.id ? 'active' : ''}`}
+                            >
+                                <span>{tab.icon}</span>
+                                <span>{tab.label}</span>
+                            </button>
+                        ))}
+                    </div>
+
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '30px' }}>
+
                         
                         {/* Hero Text */}
                         <div style={{ flex: '1 1 500px' }}>
