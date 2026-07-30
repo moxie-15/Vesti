@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sign Up | Vesti</title>
+    <link href="/assets/images/favicon.svg" rel="icon" type="image/svg+xml"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f5f0;
+            color: #13110f;
+            min-height: 100vh;
+            display: block;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .signup-container {
+            display: flex;
+            width: 100%;
+            max-width: 900px; /* slightly narrower */
+            margin: 4vh auto; /* Centers horizontally, slight push from top */
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .info-panel {
+            background: #13110f;
+            color: #fff;
+            width: 45%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-panel::before, .info-panel::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            animation: floatOrb 12s ease-in-out infinite alternate;
+        }
+        
+        .info-panel::before {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.04);
+            top: -100px;
+            right: -100px;
+        }
+
+        .info-panel::after {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            bottom: -50px;
+            left: -100px;
+            animation-delay: -6s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 50px) scale(1.1); }
+        }
+
+        .info-content {
+            position: relative;
+            z-index: 1;
+            margin-top: 15vh;
+            margin-bottom: auto;
+        }
+
+        .info-panel .illustration {
+            margin-bottom: 45px;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #icon-main-container {
+            width: 92px;
+            height: 92px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            position: relative;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-badge-sub {
+            width: 64px; 
+            height: 64px; 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3); 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            color: #FFF;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes float1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes float2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        @keyframes float3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes float4 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .info-panel h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ffffff, #d1d5db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-panel p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #fff;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .action-panel {
+            width: 55%;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+
+        .action-panel .logo {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .action-panel .logo span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #13110f;
+            letter-spacing: -0.5px;
+            margin-left: -6px;
+        }
+
+        .btn-primary {
+            background: #13110f;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 320px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(19,17,15,0.2);
+            background: #2D3748 !important;
+            color: #fff !important;
+        }
+
+        .divider {
+            color: #A0AEC0;
+            font-size: 13px;
+            margin: 10px 0 15px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            position: relative;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #E2E8F0;
+        }
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        .btn-social {
+            background: #fff;
+            color: #4A5568;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 320px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-social:hover {
+            background: #f9f5f0 !important;
+            border-color: #CBD5E0 !important;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #718096;
+            text-align: center;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .terms a {
+            color: #13110f;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                flex-direction: column;
+                margin: 20px;
+            }
+            .info-panel, .action-panel {
+                width: 100%;
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <!-- Left Panel -->
+        <div class="info-panel">
+            <div class="info-content">
+                <div class="illustration">
+                    <div id="icon-main-container" style="animation: float1 6s ease-in-out infinite;">
+                        <i id="slide-icon-main" data-lucide="plane" style="width: 56px; height: 56px; color: #FFF; transition: opacity 0.3s ease;"></i>
+                    </div>
+                    <div class="glass-badge-sub" id="icon-sub-container" style="animation: float2 5.5s ease-in-out infinite;">
+                        <i id="slide-icon-sub" data-lucide="calendar" style="width: 32px; height: 32px; transition: opacity 0.3s ease;"></i>
+                    </div>
+                    <div class="glass-badge-sub" id="icon-extra1-container" style="animation: float3 7s ease-in-out infinite;">
+                        <i id="slide-icon-extra1" data-lucide="globe" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>
+                    </div>
+                    <div class="glass-badge-sub" id="icon-extra2-container" style="animation: float4 6.2s ease-in-out infinite;">
+                        <i id="slide-icon-extra2" data-lucide="shield-check" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>
+                    </div>
+                </div>
+                <h2 id="slide-title" style="transition: opacity 0.3s ease;">Secure Your Global Pathways</h2>
+                <p id="slide-desc" style="transition: opacity 0.3s ease;">Easily access and manage your visa applications, international accounts, and relocations anywhere, anytime.</p>
+            </div>
+            <div class="carousel-indicators">
+                <div class="dot active" id="dot-0"></div>
+                <div class="dot" id="dot-1"></div>
+                <div class="dot" id="dot-2"></div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="action-panel">
+            <a href="../../index.html" class="logo">
+                <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#13110f" />
+                    <path d="M0 9.4H7.5C8.2 9.4 8.2 9.45 7.9 10.1C6.8 12.82 5.6 15.54 4.4 18.26C4.3 18.42 4.3 18.69 4.1 18.69C3.8 18.68 3.8 18.41 3.7 18.25C2.6 15.67 1.4 13.07 0.3 10.47C0.2 10.26 0.1 10.07 0 9.87V9.4Z" fill="#13110f" />
+                    <path d="M5.1 21.31C5.1 21.19 5.2 21.06 5.2 20.94C6.5 17.95 7.8 14.99 9.1 12C9.4 11.29 9.7 10.6 10.1 9.89C10.2 9.62 10.4 9.4 10.7 9.28C13.7 7.99 16.8 6.72 19.8 5.45C20 5.38 20.2 5.23 20.3 5.36C20.5 5.53 20.3 5.7 20.2 5.87C17.9 10.99 15.6 16.11 13.4 21.24C12.1 24.22 10.8 27.22 9.6 30.21C9.5 30.36 9.5 30.6 9.3 30.62C9.1 30.64 9 30.38 8.9 30.22C7.7 27.27 6.4 24.32 5.2 21.38C5.1 21.36 5.1 21.34 5.1 21.31Z" fill="#13110f" />
+                </svg>
+                <span>esti</span>
+            </a>
+
+            <div style="width: 100%; max-width: 350px; margin-bottom: 25px; text-align: center;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; color: #13110f; margin: 0 0 5px;">Create an account</h3>
+                <p style="color: #718096; font-size: 14px; margin: 0;">Start your global journey today.</p>
+            </div>
+
+            <form style="width: 100%; max-width: 350px;">
+                <div style="position: relative; margin-bottom: 20px;">
+                    <input type="text" id="fullname" placeholder="Full Name" style="width: 100%; padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 15px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
+                </div>
+                <div style="position: relative; margin-bottom: 20px;">
+                    <input type="email" id="email" placeholder="Email Address" style="width: 100%; padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 15px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
+                </div>
+                <div style="position: relative; margin-bottom: 25px;">
+                    <input type="password" id="password" placeholder="Password" style="width: 100%; padding: 16px 18px; border: 1px solid #E2E8F0; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 15px; color: #13110f; outline: none; transition: border-color 0.2s; box-sizing: border-box;" onfocus="this.style.borderColor='#13110f'" onblur="this.style.borderColor='#E2E8F0'">
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                    <button type="button" class="btn-primary" style="flex: 1; height: 54px; padding: 0; margin-bottom: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 16px;" onclick="window.location.href='login.html'">Sign Up</button>
+                    <button type="button" style="flex: 1; height: 54px; padding: 0; margin-bottom: 0; box-sizing: border-box; border: 1px solid #E2E8F0; border-radius: 12px; background: #fff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #13110f; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">
+                        <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+                        Google
+                    </button>
+                </div>
+            </form>
+
+            <p style="font-size: 14px; color: #4A5568; margin-top: 20px; text-align: center;">Already have an account? <a href="login.html" style="color: #13110f; font-weight: 600; text-decoration: none;">Log in</a></p>
+
+            <p class="terms">By clicking "Sign Up," you agree to our <br><a href="#">Privacy Policy</a> and <a href="#">Terms & Conditions</a></p>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        // Carousel logic
+        const slides = [
+            {
+                title: "Secure Your Global Pathways",
+                desc: "Easily access and manage your visa applications, international accounts, and relocations anywhere, anytime.",
+                iconMain: "plane",
+                iconSub: "calendar",
+                iconExtra1: "globe",
+                iconExtra2: "shield-check"
+            },
+            {
+                title: "Expert Guidance on Tap",
+                desc: "Get matched with legal professionals and AI-driven insights to ensure your application is flawless.",
+                iconMain: "scale",
+                iconSub: "message-circle",
+                iconExtra1: "gavel",
+                iconExtra2: "sparkles"
+            },
+            {
+                title: "Your Journey, Simplified",
+                desc: "Join thousands who have successfully migrated. We handle the paperwork so you can focus on your future.",
+                iconMain: "briefcase",
+                iconSub: "check-circle",
+                iconExtra1: "map",
+                iconExtra2: "users"
+            }
+        ];
+        
+        let currentSlide = 0;
+        
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            const titleEl = document.getElementById('slide-title');
+            const descEl = document.getElementById('slide-desc');
+            const iconMainContainer = document.getElementById('icon-main-container');
+            const iconSubContainer = document.getElementById('icon-sub-container');
+            const iconExtra1Container = document.getElementById('icon-extra1-container');
+            const iconExtra2Container = document.getElementById('icon-extra2-container');
+            
+            // Fade out
+            titleEl.style.opacity = 0;
+            descEl.style.opacity = 0;
+            iconMainContainer.style.opacity = 0;
+            iconSubContainer.style.opacity = 0;
+            iconExtra1Container.style.opacity = 0;
+            iconExtra2Container.style.opacity = 0;
+            
+            setTimeout(() => {
+                // Update content
+                titleEl.innerText = slides[currentSlide].title;
+                descEl.innerText = slides[currentSlide].desc;
+                
+                iconMainContainer.innerHTML = `<i id="slide-icon-main" data-lucide="${slides[currentSlide].iconMain}" style="width: 56px; height: 56px; color: #FFF; transition: opacity 0.3s ease;"></i>`;
+                iconSubContainer.innerHTML = `<i id="slide-icon-sub" data-lucide="${slides[currentSlide].iconSub}" style="width: 32px; height: 32px; transition: opacity 0.3s ease;"></i>`;
+                iconExtra1Container.innerHTML = `<i id="slide-icon-extra1" data-lucide="${slides[currentSlide].iconExtra1}" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>`;
+                iconExtra2Container.innerHTML = `<i id="slide-icon-extra2" data-lucide="${slides[currentSlide].iconExtra2}" style="width: 28px; height: 28px; color: rgba(255,255,255,0.8); transition: opacity 0.3s ease;"></i>`;
+                
+                lucide.createIcons();
+                
+                // Fade in
+                titleEl.style.opacity = 1;
+                descEl.style.opacity = 1;
+                iconMainContainer.style.opacity = 1;
+                iconSubContainer.style.opacity = 1;
+                iconExtra1Container.style.opacity = 1;
+                iconExtra2Container.style.opacity = 1;
+                
+                // Update dots
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }, 300); // Wait for fade out
+            
+        }, 4000);
+    </script>
+</body>
+</html>

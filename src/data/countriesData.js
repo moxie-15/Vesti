@@ -2,6 +2,10 @@ export const getCountryData = (countryId) => {
     return countries[countryId] || null;
 };
 
+export const getAllCountries = () => {
+    return Object.values(countries);
+};
+
 const countries = {
     usa: {
         id: 'usa',
@@ -11,8 +15,14 @@ const countries = {
         successRate: '98.5%',
         primaryColor: '#0A3161',
         pricing: { basic: 50, premium: 499 },
-        heroMainImg: '/images/countries/usa/usa_1.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         heroSideImg: '/images/countries/usa/usa_2.png',
+        galleryImages: [
+            '/images/countries/usa/usa_2.png',
+            'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        ],
         locationName: 'New York City',
         services: [
             { title: 'O-1 Visa', icon: 'star', desc: 'For individuals with extraordinary ability or achievement. We provide expert guidance on building your portfolio.' },
@@ -40,8 +50,14 @@ const countries = {
         successRate: '97.8%',
         primaryColor: '#D80621',
         pricing: { basic: 45, premium: 450 },
-        heroMainImg: '/images/countries/canada/canada_1.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         heroSideImg: '/images/countries/canada/canada_2.png',
+        galleryImages: [
+            '/images/countries/canada/canada_1.png',
+            '/images/countries/canada/canada_2.png',
+            'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1519832979-6fa011b87667?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        ],
         locationName: 'Toronto',
         services: [
             { title: 'Express Entry', icon: 'award', desc: 'Fast-track your permanent residency through the Federal Skilled Worker or Canadian Experience Class.' },
@@ -69,8 +85,14 @@ const countries = {
         successRate: '96.4%',
         primaryColor: '#00008B',
         pricing: { basic: 60, premium: 550 },
-        heroMainImg: '/images/countries/australia/au-landscape-1.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         heroSideImg: '/images/countries/australia/au-landscape-2.png',
+        galleryImages: [
+            '/images/countries/australia/au-landscape-1.png',
+            '/images/countries/australia/au-landscape-2.png',
+            'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        ],
         locationName: 'Sydney',
         services: [
             { title: 'Subclass 189 / 190', icon: 'award', desc: 'Skilled independent and nominated visas for permanent residency in Australia.' },
@@ -98,8 +120,14 @@ const countries = {
         successRate: '95.2%',
         primaryColor: '#002654',
         pricing: { basic: 40, premium: 399 },
-        heroMainImg: '/images/countries/france/france_1.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         heroSideImg: '/images/countries/france/france_2.png',
+        galleryImages: [
+            '/images/countries/france/france_1.png',
+            '/images/countries/france/france_2.png',
+            'https://images.unsplash.com/photo-1509299349698-ab22323ae696?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        ],
         locationName: 'Paris',
         services: [
             { title: 'Tech Visa / Talent Passport', icon: 'star', desc: 'Fast-track visa for tech founders, investors, and highly skilled employees.' },
@@ -127,8 +155,14 @@ const countries = {
         successRate: '97.1%',
         primaryColor: '#AA151B',
         pricing: { basic: 40, premium: 399 },
-        heroMainImg: '/images/countries/spain/spain_1.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         heroSideImg: '/images/countries/spain/spain_2.png',
+        galleryImages: [
+            '/images/countries/spain/spain_1.png',
+            '/images/countries/spain/spain_2.png',
+            'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        ],
         locationName: 'Madrid',
         services: [
             { title: 'Digital Nomad Visa', icon: 'laptop', desc: 'Live in Spain while working remotely. We handle the complex tax and income requirements.' },
@@ -156,8 +190,14 @@ const countries = {
         successRate: '98.0%',
         primaryColor: '#00247D',
         pricing: { basic: 55, premium: 499 },
-        heroMainImg: '/images/countries/New_zealand/hero-landscape.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         heroSideImg: '/images/countries/New_zealand/education-globe.png',
+        galleryImages: [
+            '/images/countries/New_zealand/hero-landscape.png',
+            '/images/countries/New_zealand/education-globe.png',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+        ],
         locationName: 'Auckland',
         services: [
             { title: 'Skilled Migrant Category', icon: 'award', desc: 'Points-based system for permanent residency. We maximize your EOI score.' },
@@ -178,5 +218,6 @@ const countries = {
         ]
     }
 };
+
 
 export default countries;

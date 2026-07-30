@@ -18,25 +18,31 @@ const AgentModal = () => {
     const [userInput, setUserInput] = useState('');
     const chatEndRef = useRef(null);
 
-    // Auto-open and jiggle behavior after 30 seconds of inactivity
+    // Auto-open behavior: shows once per 3 hours (timestamp stored in localStorage)
     useEffect(() => {
-        // Removed localStorage check for demo purposes so it always triggers
-        // const onboarded = localStorage.getItem('vesti_agent_onboarded') === 'true';
-        // if (onboarded) return;
+        const COOLDOWN_MS = 3 * 60 * 60 * 1000; // 3 hours
+        const lastShown = localStorage.getItem('bunmi_modal_last_shown');
+        const cooldownActive = lastShown && (Date.now() - parseInt(lastShown, 10)) < COOLDOWN_MS;
+        if (cooldownActive) return;
 
         // Jiggle at 13 seconds
         const jiggleTimeout = setTimeout(() => {
-            if (!isOpen) {
+            const ls = localStorage.getItem('bunmi_modal_last_shown');
+            const active = ls && (Date.now() - parseInt(ls, 10)) < COOLDOWN_MS;
+            if (!isOpen && !active) {
                 setIsJiggling(true);
             }
         }, 13000);
 
-        // Open modal at 15 seconds
+        // Auto open modal at 15 seconds (once per 3-hour window)
         const openTimeout = setTimeout(() => {
-            if (!isOpen) {
+            const ls = localStorage.getItem('bunmi_modal_last_shown');
+            const active = ls && (Date.now() - parseInt(ls, 10)) < COOLDOWN_MS;
+            if (!isOpen && !active) {
                 setIsOpen(true);
                 setModalState('greeting');
                 setIsJiggling(false);
+                localStorage.setItem('bunmi_modal_last_shown', Date.now().toString());
             }
         }, 15000);
 
@@ -56,6 +62,7 @@ const AgentModal = () => {
     // Handle manual opening
     const handleOpenModal = () => {
         setIsOpen(true);
+        localStorage.setItem('bunmi_modal_last_shown', Date.now().toString());
         const onboarded = localStorage.getItem('vesti_agent_onboarded') === 'true';
         // If they already completed onboarding, go directly to Details or Chat
         if (onboarded) {
@@ -69,14 +76,13 @@ const AgentModal = () => {
         }
     };
 
-    // Close Modal and save onboarding state
+    // Close Modal — record timestamp so it won't re-open for 3 hours
     const handleCloseModal = () => {
+        localStorage.setItem('bunmi_modal_last_shown', Date.now().toString());
         if (modalState === 'greeting') {
-            // Instead of closing completely, show the coach mark to teach them where to find Bunmi
             setModalState('onboarding');
         } else {
             setIsOpen(false);
-            // localStorage.setItem('vesti_agent_onboarded', 'true');
         }
     };
 
