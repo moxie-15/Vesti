@@ -114,7 +114,7 @@ const Country = () => {
 
 
 
-            <main style={{ maxWidth: '1180px', margin: '30px auto 80px', padding: '0 20px' }}>
+            <main style={{ maxWidth: '1180px', margin: '16px auto 80px', padding: '0 20px' }}>
                 
                 {/* Flight Centre Style Bento Photo Gallery */}
                 <div className="fc-gallery-grid">
