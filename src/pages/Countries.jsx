@@ -74,14 +74,14 @@ const Countries = () => {
                     display: flex;
                     gap: 8px;
                     overflow-x: auto;
-                    padding: 12px 20px;
+                    padding: 22px 20px 18px;
                     background-color: #030B17;
                     border-bottom: 1px solid rgba(255,255,255,0.08);
                 }
                 .fc-subnav-btn {
-                    padding: 8px 16px;
+                    padding: 10px 20px;
                     border-radius: 50px;
-                    font-size: 13px;
+                    font-size: 13.5px;
                     font-weight: 600;
                     border: none;
                     cursor: pointer;
@@ -89,7 +89,7 @@ const Countries = () => {
                     transition: all 0.2s ease;
                     display: inline-flex;
                     align-items: center;
-                    gap: 6px;
+                    gap: 8px;
                 }
                 .fc-subnav-btn.active {
                     background-color: #00A544;
@@ -209,7 +209,7 @@ const Countries = () => {
                 position: 'relative',
                 backgroundColor: '#030B17',
                 backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(0, 165, 68, 0.25) 0%, rgba(3, 11, 23, 0.98) 65%)',
-                padding: '65px 20px 95px',
+                padding: '85px 20px 95px',
                 color: '#FFF',
                 overflow: 'hidden'
             }}>
