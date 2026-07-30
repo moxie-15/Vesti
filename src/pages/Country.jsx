@@ -111,16 +111,8 @@ const Country = () => {
                 }
             ` }} />
 
-            {/* Breadcrumb Header */}
-            <div style={{ backgroundColor: '#030B17', color: '#FFF', padding: '16px 20px' }}>
-                <div style={{ maxWidth: '1180px', margin: '0 auto', fontSize: '13px', display: 'flex', gap: '8px', opacity: 0.8 }}>
-                    <Link to="/" style={{ color: '#FFF', textDecoration: 'none' }}>Home</Link>
-                    <span>/</span>
-                    <Link to="/countries" style={{ color: '#FFF', textDecoration: 'none' }}>Countries</Link>
-                    <span>/</span>
-                    <span style={{ color: '#34D399', fontWeight: '700' }}>{country.name}</span>
-                </div>
-            </div>
+
+
 
             <main style={{ maxWidth: '1180px', margin: '30px auto 80px', padding: '0 20px' }}>
                 
