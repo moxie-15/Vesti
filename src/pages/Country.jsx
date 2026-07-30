@@ -34,7 +34,7 @@ const Country = () => {
     }
 
     return (
-        <div style={{ backgroundColor: '#FAF9F6', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+        <div style={{ backgroundColor: '#FAF9F6', minHeight: '100vh', fontFamily: "'Inter', sans-serif", paddingTop: '24px' }}>
             <style dangerouslySetInnerHTML={{ __html: `
                 .fc-gallery-grid {
                     display: grid;
@@ -114,7 +114,7 @@ const Country = () => {
 
 
 
-            <main style={{ maxWidth: '1180px', margin: '24px auto 80px', padding: '0 20px' }}>
+            <main style={{ maxWidth: '1180px', margin: '40px auto 80px', padding: '0 20px' }}>
                 
                 {/* Flight Centre Style Bento Photo Gallery */}
                 <div className="fc-gallery-grid">

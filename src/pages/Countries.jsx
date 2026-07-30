@@ -297,9 +297,39 @@ const Countries = () => {
             <div className="fc-search-widget">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
                     <div style={{ display: 'flex', gap: '16px', fontSize: '13px', fontWeight: '600', color: '#475569' }}>
-                        <span style={{ color: '#00A544', borderBottom: '2px solid #00A544', paddingBottom: '4px' }}>Immigration Pathways</span>
-                        <span>Study Permits</span>
-                        <span>Work Visas</span>
+                        <span 
+                            onClick={() => setSelectedTab('all')} 
+                            style={{ 
+                                cursor: 'pointer', 
+                                color: selectedTab === 'all' ? '#00A544' : '#64748B', 
+                                borderBottom: selectedTab === 'all' ? '2px solid #00A544' : 'none', 
+                                paddingBottom: '4px',
+                                fontWeight: selectedTab === 'all' ? '700' : '600'
+                            }}>
+                            Immigration Pathways
+                        </span>
+                        <span 
+                            onClick={() => setSelectedTab('study')} 
+                            style={{ 
+                                cursor: 'pointer', 
+                                color: selectedTab === 'study' ? '#00A544' : '#64748B', 
+                                borderBottom: selectedTab === 'study' ? '2px solid #00A544' : 'none', 
+                                paddingBottom: '4px',
+                                fontWeight: selectedTab === 'study' ? '700' : '600'
+                            }}>
+                            Study Permits
+                        </span>
+                        <span 
+                            onClick={() => setSelectedTab('work')} 
+                            style={{ 
+                                cursor: 'pointer', 
+                                color: selectedTab === 'work' ? '#00A544' : '#64748B', 
+                                borderBottom: selectedTab === 'work' ? '2px solid #00A544' : 'none', 
+                                paddingBottom: '4px',
+                                fontWeight: selectedTab === 'work' ? '700' : '600'
+                            }}>
+                            Work Visas
+                        </span>
                     </div>
 
                     <Link to="/scan-profile" style={{ fontSize: '13px', fontWeight: '700', color: '#00A544', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -340,18 +370,28 @@ const Countries = () => {
                         />
                     </div>
 
-                    <button style={{
-                        padding: '16px',
-                        backgroundColor: '#00A544',
-                        color: '#FFFFFF',
-                        border: 'none',
-                        borderRadius: '12px',
-                        fontWeight: '800',
-                        fontSize: '15px',
-                        cursor: 'pointer',
-                        boxShadow: '0 8px 20px rgba(0, 165, 68, 0.3)',
-                        transition: 'transform 0.2s ease'
-                    }}>
+                    <button 
+                        onClick={() => {
+                            const catalog = document.getElementById('all-countries-catalog');
+                            if (catalog) {
+                                catalog.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                        style={{
+                            padding: '16px',
+                            backgroundColor: '#00A544',
+                            color: '#FFFFFF',
+                            border: 'none',
+                            borderRadius: '12px',
+                            fontWeight: '800',
+                            fontSize: '15px',
+                            cursor: 'pointer',
+                            boxShadow: '0 8px 20px rgba(0, 165, 68, 0.3)',
+                            transition: 'transform 0.2s ease'
+                        }}
+                        onMouseDown={e => e.currentTarget.style.transform = 'scale(0.97)'}
+                        onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                    >
                         Search Pathways →
                     </button>
                 </div>
@@ -401,7 +441,7 @@ const Countries = () => {
             </section>
 
             {/* Top Trending Mobility Packages with Vesti Green Badges & Dual Pricing */}
-            <main style={{ maxWidth: '1180px', margin: '0 auto', padding: '0 20px 120px' }}>
+            <main id="all-countries-catalog" style={{ maxWidth: '1180px', margin: '0 auto', padding: '0 20px 120px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
                     <div>
                         <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '28px', fontWeight: '800', color: '#0F172A', margin: 0 }}>
