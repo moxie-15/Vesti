@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../components/Footer';
 
 const LegalCommandCenter = () => {
     const jurisdiction = 'Nigeria & US Global';
@@ -196,7 +195,6 @@ const LegalCommandCenter = () => {
                 </div>
             </main>
 
-            <Footer />
         </div>
     );
 };
