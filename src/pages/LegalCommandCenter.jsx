@@ -159,38 +159,116 @@ const LegalCommandCenter = () => {
                     </div>
                 </div>
 
-                {/* Legal Templates & Documents Vault */}
-                <div style={{ backgroundColor: '#FFFFFF', borderRadius: '24px', padding: '32px', border: '1px solid #E2E8F0' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
+                {/* My Matters Section */}
+                <div style={{ marginTop: '50px', marginBottom: '50px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
                         <div>
-                            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '22px', color: '#0F172A', margin: 0 }}>
-                                Active Matters & Legal Document Vault
-                            </h3>
-                            <span style={{ fontSize: '13.5px', color: '#64748B' }}>Draft contracts, petition forms, and advisory briefs.</span>
+                            <h2 style={{ fontFamily: "'Newsreader', serif", fontSize: '32px', fontWeight: '400', color: '#0F172A', margin: '0 0 4px' }}>
+                                My Matters
+                            </h2>
+                            <p style={{ fontSize: '14px', color: '#64748B', margin: 0 }}>Open legal matters.</p>
                         </div>
-                        <Link to="/scan-profile" style={{ padding: '10px 20px', backgroundColor: '#0F172A', color: '#FFF', borderRadius: '50px', fontWeight: '700', fontSize: '13px', textDecoration: 'none' }}>
-                            + Start New Legal Matter
+                        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                            <button style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '13px', color: '#475569', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: '600' }}>
+                                ✏ Refresh summaries
+                            </button>
+                            <Link to="/zyra" style={{ fontSize: '13px', color: '#0F172A', fontWeight: '700', textDecoration: 'none' }}>
+                                + Start a matter
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div style={{ backgroundColor: '#FFFFFF', borderRadius: '20px', border: '1px solid #E2E8F0', padding: '60px 24px', textAlign: 'center' }}>
+                        <h3 style={{ fontFamily: "'Newsreader', serif", fontSize: '22px', fontWeight: '400', color: '#0F172A', margin: '0 0 10px' }}>
+                            No open matters yet
+                        </h3>
+                        <p style={{ fontSize: '14px', color: '#64748B', margin: '0 0 24px' }}>
+                            Describe a situation with <span style={{ color: '#00A544', fontWeight: '600' }}>Zyra</span> — saved matters appear here.
+                        </p>
+                        <Link to="/zyra" style={{
+                            display: 'inline-flex', alignItems: 'center', gap: '6px',
+                            backgroundColor: '#0F172A', color: '#FFF',
+                            padding: '12px 24px', borderRadius: '50px',
+                            textDecoration: 'none', fontWeight: '700', fontSize: '14px'
+                        }}>
+                            Open Zyra ↗
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Documents Section */}
+                <div style={{ marginBottom: '50px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
+                        <div>
+                            <h2 style={{ fontFamily: "'Newsreader', serif", fontSize: '32px', fontWeight: '400', color: '#0F172A', margin: '0 0 4px' }}>
+                                Documents
+                            </h2>
+                            <p style={{ fontSize: '14px', color: '#64748B', margin: 0 }}>
+                                Drafted, saved, <span style={{ color: '#00A544', fontWeight: '600' }}>ready</span> to send.
+                            </p>
+                        </div>
+                        <Link to="/scan-profile" style={{ fontSize: '13px', color: '#0F172A', fontWeight: '700', textDecoration: 'none' }}>
+                            All documents ↗
                         </Link>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-                        {[
-                            { title: 'Delaware C-Corp Founder Agreement', tag: 'Incorporation', status: 'Ready to File' },
-                            { title: 'O-1A Peer Advisory Opinion Request', tag: 'USCIS Visa', status: 'Drafting' },
-                            { title: 'US Federal EIN Application Form SS-4', tag: 'Tax ID', status: 'Pending Review' },
-                            { title: 'IP & Tech Transfer Agreement', tag: 'Corporate', status: 'Template' }
-                        ].map((item, idx) => (
-                            <div key={idx} style={{ padding: '18px', borderRadius: '16px', border: '1px solid #E2E8F0', backgroundColor: '#F8FAFC' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                    <span style={{ fontSize: '11px', fontWeight: '800', color: '#00A544', textTransform: 'uppercase' }}>{item.tag}</span>
-                                    <span style={{ fontSize: '11px', fontWeight: '700', color: '#64748B', backgroundColor: '#E2E8F0', padding: '2px 8px', borderRadius: '4px' }}>{item.status}</span>
-                                </div>
-                                <h4 style={{ margin: '0 0 12px', fontSize: '15px', color: '#0F172A', fontWeight: '700' }}>{item.title}</h4>
-                                <Link to="/zyra" style={{ fontSize: '12.5px', fontWeight: '700', color: '#0F172A', textDecoration: 'none' }}>
-                                    Open with Zyra AI →
-                                </Link>
-                            </div>
-                        ))}
+                    <div style={{ backgroundColor: '#FFFFFF', borderRadius: '20px', border: '1px solid #E2E8F0', padding: '60px 24px', textAlign: 'center' }}>
+                        <h3 style={{ fontFamily: "'Newsreader', serif", fontSize: '22px', fontWeight: '400', color: '#0F172A', margin: '0 0 10px' }}>
+                            No documents yet
+                        </h3>
+                        <p style={{ fontSize: '14px', color: '#64748B', margin: '0 0 24px' }}>
+                            Pick a template and draft your <span style={{ color: '#00A544', fontWeight: '600' }}>first document</span>.
+                        </p>
+                        <Link to="/scan-profile" style={{
+                            display: 'inline-flex', alignItems: 'center', gap: '6px',
+                            backgroundColor: '#0F172A', color: '#FFF',
+                            padding: '12px 24px', borderRadius: '50px',
+                            textDecoration: 'none', fontWeight: '700', fontSize: '14px'
+                        }}>
+                            Browse templates ↗
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Your Conversations Section */}
+                <div style={{ marginBottom: '80px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
+                        <div>
+                            <h2 style={{ fontFamily: "'Newsreader', serif", fontSize: '32px', fontWeight: '400', color: '#0F172A', margin: '0 0 4px' }}>
+                                Your conversations
+                            </h2>
+                            <p style={{ fontSize: '14px', color: '#64748B', margin: 0 }}>
+                                Pick up where you left off with the Vesti team.
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent('openAgentModal'))}
+                            style={{ fontSize: '13px', color: '#0F172A', fontWeight: '700', background: 'none', border: 'none', cursor: 'pointer' }}
+                        >
+                            + Start a new chat
+                        </button>
+                    </div>
+
+                    <div style={{ backgroundColor: '#FFFFFF', borderRadius: '20px', border: '1px solid #E2E8F0', padding: '60px 24px', textAlign: 'center' }}>
+                        <h3 style={{ fontFamily: "'Newsreader', serif", fontSize: '22px', fontWeight: '400', color: '#0F172A', margin: '0 0 10px' }}>
+                            No previous chats yet
+                        </h3>
+                        <p style={{ fontSize: '14px', color: '#64748B', margin: '0 0 24px', maxWidth: '440px', lineHeight: '1.6', marginLeft: 'auto', marginRight: 'auto' }}>
+                            When you message a Vesti expert, your conversations will appear here so you can pick up right where you left off.
+                        </p>
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent('openAgentModal'))}
+                            style={{
+                                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                                backgroundColor: 'transparent', color: '#0F172A',
+                                padding: '11px 22px', borderRadius: '50px',
+                                border: '1.5px solid #CBD5E1',
+                                cursor: 'pointer', fontWeight: '700', fontSize: '14px',
+                                fontFamily: "'Inter', sans-serif"
+                            }}
+                        >
+                            Start a chat ↗
+                        </button>
                     </div>
                 </div>
             </main>
