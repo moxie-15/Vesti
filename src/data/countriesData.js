@@ -10,42 +10,44 @@ const countries = {
     usa: {
         id: 'usa',
         name: 'United States',
-        heroTitle: 'Explore the Magic of America',
-        heroDescription: 'Experience the breathtaking beauty of the United States. Whether you\'re planning a scenic vacation or attending business meetings, Vesti helps you secure your pathways.',
+        heroTitle: 'Work & Migrate to the United States',
+        heroDescription: 'Unlock career advancement, tech innovation hubs, and extraordinary ability petitions (O-1, EB-1A, EB-2 NIW, H-1B). Vesti helps ambitious professionals, founders, and talent build petition-ready portfolios.',
         successRate: '98.5%',
         primaryColor: '#0A3161',
         pricing: { basic: 50, premium: 499 },
-        heroMainImg: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80',
+        heroMainImg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80', // Tech skyscraper / corporate headquarters
+        heroSideImg: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80', // Tech workspace & team innovation
         galleryImages: [
-            'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1506966953377-36574c4d6c4b?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=800&q=80'
+            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80', // Corporate Financial & Tech Hub
+            'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80', // Tech Team & Product Leadership
+            'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80', // Software Engineering & AI Research Lab
+            'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80', // NYC Skyline Landmark
+            'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80', // Executive Business Leader
+            'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80', // Golden Gate Bridge & Silicon Valley
+            'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80', // Aerospace & Science Research
+            'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80', // Statue of Liberty Landmark
+            'https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=800&q=80', // Innovation Campus
+            'https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=800&q=80' // Modern Office Architecture
         ],
-        locationName: 'New York City',
+        locationName: 'Silicon Valley & New York City',
         services: [
-            { title: 'O-1 Visa', icon: 'star', desc: 'For individuals with extraordinary ability or achievement. We provide expert guidance on building your portfolio.' },
-            { title: 'EB-1A / NIW', icon: 'award', desc: 'Secure your Green Card through exceptional ability or national interest waiver pathways.' },
-            { title: 'Student Visa (F-1)', icon: 'student', desc: 'Unlock world-class education. We assist with proof of funds, SEVIS fees, and securing your study permits.' },
-            { title: 'B1/B2 Visitor', icon: 'plane', desc: 'Whether for tourism or business meetings, we simplify the US visitor visa application process.' }
+            { title: 'O-1 Extraordinary Ability', icon: 'star', desc: 'Self-petition or employer sponsored pathway for extraordinary tech, business, & science talent.' },
+            { title: 'EB-2 NIW Waiver', icon: 'award', desc: 'National Interest Waiver bypasses labor certification for STEM innovators & founders.' },
+            { title: 'EB-1A Green Card', icon: 'award', desc: 'Direct Permanent Residency for leaders with proven extraordinary acclaim.' },
+            { title: 'H-1B & L-1 Specialty Work', icon: 'work', desc: 'Employer sponsored specialty occupation and corporate transferee visas.' },
+            { title: 'Student Visa (F-1 / OPT)', icon: 'student', desc: 'Access world-class US universities with post-study STEM OPT work authorization.' },
+            { title: 'B1/B2 Business & Visitor', icon: 'plane', desc: 'Fast-track visa processing for business conferences, trade expos, and leisure.' }
         ],
-        clarityHeroTitle: 'Your Path to the American Dream Starts Here',
-        clarityHeroDesc: 'Looking to take your career to the next level? The US Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
+        clarityHeroTitle: 'Your Path to the American Dream & Global Career',
+        clarityHeroDesc: 'Looking to take your career to the next level? US work and talent pathways (O-1, EB-1A, NIW) give you direct access to Silicon Valley, Wall Street, and world-class innovation networks.',
         clarityStats: '850+',
         clarityFlag: 'us',
-        clarityAdvisorImg: 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80',
+        clarityAdvisorImg: '/assets/expert-bunmi-BGTZe3Yq.jpg',
         benefits: [
-            { title: 'Career Growth', description: 'Gain exposure to cutting-edge technologies and collaborate with some of the world\'s most innovative companies and academic institutions.' },
-            { title: 'Permanent Residency', description: 'Work toward permanent residency for yourself and your family in the United States.' },
-            { title: 'Competitive Salary', description: 'Gain access to lucrative opportunities and high-paying roles in a competitive job market.' },
-            { title: 'No Sponsorship Hassles', description: 'Certain pathways give you full control over your career because they don\'t require employer sponsorship.' }
+            { title: 'Extraordinary Career Growth', description: 'Gain exposure to cutting-edge AI, biotechnology, and venture-backed tech ecosystems.' },
+            { title: 'Self-Petition Green Cards', description: 'EB-2 NIW and EB-1A allow you to sponsor your own permanent residency without employer dependencies.' },
+            { title: 'Competitive Remuneration', description: 'Command industry-leading tech and executive compensation in the United States.' },
+            { title: 'No Labor Certification Required', description: 'Specialized talent pathways bypass lengthy PERM labor certification requirements.' }
         ]
     },
     canada: {

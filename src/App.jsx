@@ -23,6 +23,7 @@ import Press from './pages/Press';
 import Faqs from './pages/Faqs';
 import Contact from './pages/Contact';
 import Updates from './pages/Updates';
+import ZyraAI from './pages/ZyraAI';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/countries/:id/payment" element={<MainLayout><CountryPayment /></MainLayout>} />
         <Route path="/news" element={<MainLayout><News /></MainLayout>} />
         <Route path="/scan-profile" element={<MainLayout><ScanProfile /></MainLayout>} />
+        <Route path="/zyra" element={<MainLayout><ZyraAI /></MainLayout>} />
         <Route path="/admin" element={<Admin />} />
         
         {/* Products Dropdown Routes */}

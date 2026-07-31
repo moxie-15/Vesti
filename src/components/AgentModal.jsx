@@ -265,7 +265,7 @@ const AgentModal = () => {
                             <div style={{ width: '44%', position: 'relative', background: '#13110f' }}>
                                 <img 
                                     src="/assets/expert-bunmi-BGTZe3Yq.jpg" 
-                                    alt="Bunmi" 
+                                    alt="Olubunmi" 
                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                                 <div style={{
@@ -276,7 +276,7 @@ const AgentModal = () => {
                                     position: 'absolute', bottom: '24px', left: '24px', color: '#FFF',
                                     fontFamily: "'Outfit', sans-serif", fontSize: '18px', fontWeight: 700
                                 }}>
-                                    Bunmi from Vesti
+                                    Olubunmi & Vesti Expert Team (4 Advisors)
                                 </div>
                             </div>
 
@@ -285,8 +285,8 @@ const AgentModal = () => {
                                 <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '28px', fontWeight: 800, color: '#13110f', margin: '0 0 12px 0', lineHeight: 1.1, letterSpacing: '-0.5px' }}>
                                     Need help with your Visa? 👋
                                 </h3>
-                                <p style={{ fontFamily: "'Inter', sans-serif", color: '#4A5568', fontSize: '15px', lineHeight: 1.6, margin: '0 0 28px 0' }}>
-                                    Hi! I'm Bunmi from the Vesti support team. I noticed you're looking at our global mobility pathways. Let me know if you need an expert to guide you through the process!
+                                <p style={{ fontFamily: "'Inter', sans-serif", color: '#4A5568', fontSize: '14.5px', lineHeight: 1.6, margin: '0 0 24px 0' }}>
+                                    Hi! I'm Olubunmi from the Vesti team. Our 4 specialized advisors are live to evaluate your O-1, EB-1A, EB-2 NIW, and global visa pathways.
                                 </p>
                                 <button
                                     onClick={() => setModalState('details')}
@@ -299,7 +299,7 @@ const AgentModal = () => {
                                     }}
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                    Talk to a Live Agent
+                                    Connect with 4 Live Advisors
                                 </button>
                             </div>
                         </div>
@@ -330,27 +330,32 @@ const AgentModal = () => {
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#13110f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
 
-                            {/* LEFT COLUMN: Identity Panel */}
-                            <div style={{ width: '38%', background: '#13110f', color: '#fff', padding: '40px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                            {/* LEFT COLUMN: Identity Panel featuring 4 Expert Advisors */}
+                            <div style={{ width: '38%', background: '#13110f', color: '#fff', padding: '35px 25px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                                 <div>
-                                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '5px 12px', background: 'rgba(255,255,255,0.08)', borderRadius: '20px', marginBottom: '25px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '5px 12px', background: 'rgba(255,255,255,0.08)', borderRadius: '20px', marginBottom: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
                                         <span style={{ width: '8px', height: '8px', background: '#10B981', borderRadius: '50%', display: 'inline-block' }}></span>
-                                        <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.5px', fontFamily: "'Inter', sans-serif" }}>AI ACTIVE</span>
+                                        <span style={{ fontSize: '11.5px', fontWeight: 600, letterSpacing: '0.5px', fontFamily: "'Inter', sans-serif" }}>4 EXPERTS ONLINE</span>
                                     </div>
-                                    <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '28px', fontWeight: 700, lineHeight: 1.25, marginBottom: '15px' }}>Meet Bunmi</h2>
-                                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '14px', color: 'rgba(255,255,255,0.65)', lineHeight: 1.6 }}>Your personal AI Mobility Advisor designed to map your immigration profile to global pathways.</p>
+                                    <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '24px', fontWeight: 700, lineHeight: 1.2, marginBottom: '10px' }}>Meet Olubunmi & Team</h2>
+                                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>Vetti's 4 dedicated legal advisors mapped to your immigration profile.</p>
                                 </div>
                                 
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <img 
-                                        src="/assets/expert-bunmi-BGTZe3Yq.jpg" 
-                                        alt="Bunmi" 
-                                        style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(255,255,255,0.2)' }}
-                                    />
-                                    <div>
-                                        <div style={{ fontSize: '16px', fontWeight: 700, fontFamily: "'Outfit', sans-serif" }}>Bunmi from Vesti</div>
-                                        <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', fontFamily: "'Inter', sans-serif" }}>Immigration Specialist</div>
-                                    </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                    {[
+                                        { name: 'Olubunmi Opadoyin', role: 'O-1 & EB-1A Lead', img: '/assets/expert-bunmi-BGTZe3Yq.jpg' },
+                                        { name: 'Damola Oni', role: 'EB-1A Attorney', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80' },
+                                        { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80' },
+                                        { name: 'Michael Chen', role: 'Global Mobility Specialist', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80' }
+                                    ].map((exp, i) => (
+                                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                            <img src={exp.img} alt={exp.name} style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '1px solid rgba(255,255,255,0.3)' }} />
+                                            <div>
+                                                <div style={{ fontSize: '13px', fontWeight: 700, color: '#FFF' }}>{exp.name}</div>
+                                                <div style={{ fontSize: '10.5px', color: 'rgba(255,255,255,0.6)' }}>{exp.role}</div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 

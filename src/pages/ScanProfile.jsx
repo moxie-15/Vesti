@@ -633,20 +633,21 @@ const ScanProfile = () => {
                                         Vetted Legal Advisors & Attorney Network
                                     </h4>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
                                         {[
-                                            { name: 'Bunmi Opadoyin', role: 'O-1 & EB-1A Specialist', img: '/assets/expert-bunmi-BGTZe3Yq.jpg', status: 'Online' },
+                                            { name: 'Olubunmi Opadoyin', role: 'O-1 & EB-1A Lead Specialist', img: '/assets/expert-bunmi-BGTZe3Yq.jpg', status: 'Online' },
                                             { name: 'Damola Oni', role: 'EB-1A Immigration Attorney', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80', status: 'Online' },
-                                            { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80', status: 'Available' }
+                                            { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80', status: 'Available' },
+                                            { name: 'Michael Chen', role: 'Global Mobility Specialist', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80', status: 'Online' }
                                         ].map((expert, i) => (
                                             <div key={i} style={{ backgroundColor: '#FFFFFF', padding: '18px', borderRadius: '16px', border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', gap: '14px' }}>
                                                 <img src={expert.img} alt={expert.name} style={{ width: '52px', height: '52px', borderRadius: '50%', objectFit: 'cover' }} />
                                                 <div style={{ flex: 1 }}>
                                                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                                        <span style={{ fontWeight: '800', fontSize: '15px', color: '#0F172A' }}>{expert.name}</span>
+                                                        <span style={{ fontWeight: '800', fontSize: '14.5px', color: '#0F172A' }}>{expert.name}</span>
                                                         <span style={{ width: '8px', height: '8px', backgroundColor: '#00A544', borderRadius: '50%' }}></span>
                                                     </div>
-                                                    <span style={{ fontSize: '12px', color: '#64748B', display: 'block', marginBottom: '8px' }}>{expert.role}</span>
+                                                    <span style={{ fontSize: '11.5px', color: '#64748B', display: 'block', marginBottom: '8px' }}>{expert.role}</span>
                                                     <Link to="/countries/usa/clarity" style={{ fontSize: '12px', fontWeight: '700', color: '#00A544', textDecoration: 'none' }}>
                                                         Chat Now →
                                                     </Link>

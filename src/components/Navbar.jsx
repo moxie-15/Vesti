@@ -16,38 +16,41 @@ const Navbar = () => {
                     <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: '24px', color: 'white', letterSpacing: '-0.5px', lineHeight: 1, marginLeft: '-6px' }}>esti</span>
                 </Link>
 
-                <ul className="nav-menu" id="nav-menu">
-                    <li className="dropdown" style={{ position: 'relative' }}>
-                        <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Products <ChevronDown className="nav-chevron" size={16} /></a>
-                        <ul className="dropdown-menu">
-                            <li><Link to="/passports" className="dropdown-item-link">Passports</Link></li>
-                            <li><Link to="/consultation" className="dropdown-item-link">Consultation</Link></li>
-                            <li><Link to="/visas" className="dropdown-item-link">Visas</Link></li>
-                            <li><Link to="/banking" className="dropdown-item-link">Global Banking</Link></li>
-                        </ul>
+                {/* Mode Pill Toggle matching Image 1 */}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                    borderRadius: '50px',
+                    padding: '3px',
+                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    fontSize: '12.5px',
+                    fontWeight: '600'
+                }}>
+                    <span style={{ backgroundColor: '#FFFFFF', color: '#0F172A', padding: '4px 14px', borderRadius: '50px', fontWeight: '700' }}>Legal</span>
+                    <Link to="/countries" style={{ color: 'rgba(255, 255, 255, 0.75)', padding: '4px 14px', textDecoration: 'none' }}>Migration</Link>
+                </div>
+
+                <ul className="nav-menu" id="nav-menu" style={{ display: 'flex', alignItems: 'center', gap: '24px', listStyle: 'none', margin: 0, padding: 0 }}>
+                    <li>
+                        <Link to="/countries" className="nav-link" style={{ fontSize: '14.5px', fontWeight: '600', color: '#FFF', textDecoration: 'none' }}>
+                            Migration
+                        </Link>
                     </li>
-                    <li className="dropdown" style={{ position: 'relative' }}>
-                        <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Company <ChevronDown className="nav-chevron" size={16} /></a>
-                        <ul className="dropdown-menu">
-                            <li><Link to="/about" className="dropdown-item-link">About Vesti</Link></li>
-                            <li><Link to="/careers" className="dropdown-item-link">Careers</Link></li>
-                            <li><Link to="/press" className="dropdown-item-link">Press</Link></li>
-                            <li><Link to="/faqs" className="dropdown-item-link">FAQs</Link></li>
-                            <li><Link to="/contact" className="dropdown-item-link">Contact Us</Link></li>
-                            <li><Link to="/updates" className="dropdown-item-link">Vesti Updates</Link></li>
-                        </ul>
+                    <li>
+                        <Link to="/scan-profile" className="nav-link" style={{ fontSize: '14.5px', fontWeight: '600', color: '#FFF', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                            ⚖ Matters
+                        </Link>
                     </li>
-                    <li className="dropdown" style={{ position: 'relative' }}>
-                        <Link to="/countries" className="nav-link">Countries <ChevronDown className="nav-chevron" size={16} /></Link>
-                        <ul className="country-dropdown-menu">
-                            <li><Link to="/countries/usa" className="dropdown-item-link">USA</Link></li>
-                            <li><Link to="/countries/canada" className="dropdown-item-link">Canada</Link></li>
-                            <li><Link to="/countries/australia" className="dropdown-item-link">Australia</Link></li>
-                            <li><Link to="/countries/new-zealand" className="dropdown-item-link">New Zealand</Link></li>
-                            <li><Link to="/countries/france" className="dropdown-item-link">France</Link></li>
-                            <li><Link to="/countries/spain" className="dropdown-item-link">Spain</Link></li>
-                            <li><Link to="/countries" className="dropdown-item-link">All Countries</Link></li>
-                        </ul>
+                    <li>
+                        <Link to="/zyra" className="nav-link" style={{ fontSize: '14.5px', fontWeight: '600', color: '#FFF', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                            🗡 Zyra
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/scan-profile" className="nav-link" style={{ fontSize: '14.5px', fontWeight: '600', color: '#FFF', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                            👥 Experts
+                        </Link>
                     </li>
                 </ul>
 
