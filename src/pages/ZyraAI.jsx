@@ -185,41 +185,69 @@ const ZyraAI = () => {
             <main style={{ maxWidth: '850px', margin: '40px auto 140px', padding: '0 20px' }}>
                 {messages.length > 0 && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '40px' }}>
-                        {messages.map((msg, i) => (
-                            <div
-                                key={i}
-                                style={{
-                                    display: 'flex',
-                                    gap: '12px',
-                                    alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-                                    maxWidth: '85%'
-                                }}
-                            >
-                                {msg.sender === 'zyra' && (
-                                    <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#0F172A', color: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', flexShrink: 0 }}>
-                                        🗡
-                                    </div>
-                                )}
+                        {messages.map((msg, i) => {
+                            const isUser = msg.sender === 'user';
+                            // Parse **bold** markdown into <strong> tags
+                            const parsedText = msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-                                <div style={{
-                                    padding: '16px 20px',
-                                    borderRadius: msg.sender === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
-                                    backgroundColor: msg.sender === 'user' ? '#0F172A' : '#FFFFFF',
-                                    color: msg.sender === 'user' ? '#FFFFFF' : '#0F172A',
-                                    border: msg.sender === 'user' ? 'none' : '1px solid #E2E8F0',
-                                    boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
-                                    fontSize: '14.5px',
-                                    lineHeight: '1.6',
-                                    whiteSpace: 'pre-line'
-                                }}>
-                                    {msg.text}
+                            return (
+                                <div
+                                    key={i}
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: isUser ? 'flex-end' : 'flex-start',
+                                        alignItems: 'flex-start',
+                                        gap: '10px',
+                                        width: '100%'
+                                    }}
+                                >
+                                    {/* Zyra avatar on left */}
+                                    {!isUser && (
+                                        <div style={{
+                                            width: '36px', height: '36px', borderRadius: '50%',
+                                            backgroundColor: '#0F172A', color: '#FFF',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            fontWeight: '800', flexShrink: 0, fontSize: '16px'
+                                        }}>
+                                            🗡
+                                        </div>
+                                    )}
+
+                                    {/* Bubble */}
+                                    <div style={{
+                                        maxWidth: '75%',
+                                        padding: '14px 18px',
+                                        borderRadius: isUser ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+                                        backgroundColor: isUser ? '#0F172A' : '#FFFFFF',
+                                        color: isUser ? '#FFFFFF' : '#0F172A',
+                                        border: isUser ? 'none' : '1px solid #E2E8F0',
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
+                                        fontSize: '14.5px',
+                                        lineHeight: '1.65',
+                                        whiteSpace: 'pre-line'
+                                    }}
+                                        dangerouslySetInnerHTML={{ __html: parsedText }}
+                                    />
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
 
                         {isSimulating && (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#00A544', fontWeight: '700', fontSize: '13px' }}>
-                                <span>🗡 Zyra AI is reasoning over USCIS precedent...</span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <div style={{
+                                    width: '36px', height: '36px', borderRadius: '50%',
+                                    backgroundColor: '#0F172A', color: '#FFF',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    fontSize: '16px', flexShrink: 0
+                                }}>🗡</div>
+                                <div style={{
+                                    padding: '12px 18px', borderRadius: '20px 20px 20px 4px',
+                                    backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0',
+                                    color: '#00A544', fontWeight: '700', fontSize: '13px'
+                                }}>
+                                    Zyra AI is reasoning over USCIS precedent...
+                                </div>
                             </div>
                         )}
 

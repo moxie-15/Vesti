@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllCountries } from '../data/countriesData';
-import Footer from '../components/Footer';
+
 
 const countryCodes = {
     usa: 'US',
@@ -839,8 +839,7 @@ const Countries = () => {
                 </div>
             </section>
 
-            {/* Footer */}
-            <Footer />
+
         </div>
     );
 };

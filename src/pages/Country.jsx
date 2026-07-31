@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { getCountryData } from '../data/countriesData';
-import Footer from '../components/Footer';
+
 
 const getIcon = (iconName) => {
     switch (iconName) {
@@ -588,8 +588,7 @@ const Country = () => {
                 </div>
             </section>
 
-            {/* Footer */}
-            <Footer />
+
         </div>
     );
 };
