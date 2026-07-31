@@ -64,8 +64,8 @@ const Navbar = () => {
 
                 <ul className="nav-menu" id="nav-menu" style={{ display: 'flex', alignItems: 'center', gap: '24px', listStyle: 'none', margin: 0, padding: 0 }}>
                     <li>
-                        <Link to="/countries" className="nav-link" style={{ fontSize: '14.5px', fontWeight: '600', color: '#FFF', textDecoration: 'none' }}>
-                            Migration
+                        <Link to="/" className="nav-link" style={{ fontSize: '14.5px', fontWeight: '600', color: '#FFF', textDecoration: 'none' }}>
+                            Home
                         </Link>
                     </li>
                     <li>
