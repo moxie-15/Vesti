@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+    const location = useLocation();
+    const isLegalMode = location.pathname.startsWith('/legal');
+
     return (
         <nav className="navbar" id="navbar">
             <div className="nav-container" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
@@ -28,8 +30,34 @@ const Navbar = () => {
                         fontSize: '12px',
                         fontWeight: '600'
                     }}>
-                        <span style={{ backgroundColor: '#FFFFFF', color: '#0F172A', padding: '4px 12px', borderRadius: '50px', fontWeight: '700' }}>Legal</span>
-                        <Link to="/countries" style={{ color: 'rgba(255, 255, 255, 0.75)', padding: '4px 12px', textDecoration: 'none' }}>Migration</Link>
+                        <Link
+                            to="/legal"
+                            style={{
+                                backgroundColor: isLegalMode ? '#FFFFFF' : 'transparent',
+                                color: isLegalMode ? '#0F172A' : 'rgba(255, 255, 255, 0.75)',
+                                padding: '4px 14px',
+                                borderRadius: '50px',
+                                fontWeight: isLegalMode ? '700' : '600',
+                                textDecoration: 'none',
+                                transition: 'all 0.2s ease'
+                            }}
+                        >
+                            Legal
+                        </Link>
+                        <Link
+                            to="/countries"
+                            style={{
+                                backgroundColor: !isLegalMode ? '#FFFFFF' : 'transparent',
+                                color: !isLegalMode ? '#0F172A' : 'rgba(255, 255, 255, 0.75)',
+                                padding: '4px 14px',
+                                borderRadius: '50px',
+                                fontWeight: !isLegalMode ? '700' : '600',
+                                textDecoration: 'none',
+                                transition: 'all 0.2s ease'
+                            }}
+                        >
+                            Migration
+                        </Link>
                     </div>
                 </div>
 

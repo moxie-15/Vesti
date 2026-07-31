@@ -24,6 +24,7 @@ import Faqs from './pages/Faqs';
 import Contact from './pages/Contact';
 import Updates from './pages/Updates';
 import ZyraAI from './pages/ZyraAI';
+import LegalCommandCenter from './pages/LegalCommandCenter';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/news" element={<MainLayout><News /></MainLayout>} />
         <Route path="/scan-profile" element={<MainLayout><ScanProfile /></MainLayout>} />
         <Route path="/zyra" element={<MainLayout><ZyraAI /></MainLayout>} />
+        <Route path="/legal" element={<MainLayout><LegalCommandCenter /></MainLayout>} />
         <Route path="/admin" element={<Admin />} />
         
         {/* Products Dropdown Routes */}
