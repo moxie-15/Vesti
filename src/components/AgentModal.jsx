@@ -261,22 +261,81 @@ const AgentModal = () => {
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#13110f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
 
-                            {/* Left Image Side */}
-                            <div style={{ width: '44%', position: 'relative', background: '#13110f' }}>
-                                <img 
-                                    src="/assets/expert-bunmi-BGTZe3Yq.jpg" 
-                                    alt="Olubunmi" 
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                />
+                            {/* Left Image Side: 4 Circular Agent Avatars */}
+                            <div style={{ 
+                                width: '44%', 
+                                background: '#13110f', 
+                                padding: '30px 20px', 
+                                display: 'flex', 
+                                flexDirection: 'column', 
+                                justifyContent: 'space-between', 
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}>
                                 <div style={{
-                                    position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                                    background: 'linear-gradient(to top, rgba(19, 17, 15, 0.85) 0%, rgba(19, 17, 15, 0.25) 50%, rgba(19, 17, 15, 0.1) 100%)'
+                                    position: 'absolute',
+                                    top: '-80px',
+                                    left: '-80px',
+                                    width: '300px',
+                                    height: '300px',
+                                    background: 'radial-gradient(circle, rgba(0, 165, 68, 0.25) 0%, rgba(19, 17, 15, 0) 70%)',
+                                    borderRadius: '50%',
+                                    pointerEvents: 'none'
                                 }}></div>
-                                <div style={{
-                                    position: 'absolute', bottom: '24px', left: '24px', color: '#FFF',
-                                    fontFamily: "'Outfit', sans-serif", fontSize: '18px', fontWeight: 700
-                                }}>
-                                    Olubunmi & Vesti Expert Team (4 Advisors)
+
+                                <div style={{ position: 'relative', zIndex: 2 }}>
+                                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: 'rgba(255,255,255,0.08)', padding: '4px 12px', borderRadius: '50px', border: '1px solid rgba(255,255,255,0.15)', marginBottom: '16px' }}>
+                                        <span style={{ width: '8px', height: '8px', backgroundColor: '#00A544', borderRadius: '50%' }}></span>
+                                        <span style={{ fontSize: '11px', color: '#FFF', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>4 Advisors Online</span>
+                                    </div>
+
+                                    {/* 4 Circular Avatar Circles */}
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', margin: '4px 0 10px' }}>
+                                        {[
+                                            { name: 'Olubunmi', role: 'O-1 & EB-1A', img: '/assets/expert-bunmi-BGTZe3Yq.jpg' },
+                                            { name: 'Damola', role: 'EB-1A Counsel', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80' },
+                                            { name: 'Abimbola', role: 'NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80' },
+                                            { name: 'Michael', role: 'Global Mobility', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80' }
+                                        ].map((agent, idx) => (
+                                            <div key={idx} style={{ textAlign: 'center' }}>
+                                                <div style={{ position: 'relative', width: '62px', height: '62px', margin: '0 auto 4px' }}>
+                                                    <img 
+                                                        src={agent.img} 
+                                                        alt={agent.name} 
+                                                        style={{ 
+                                                            width: '62px', 
+                                                            height: '62px', 
+                                                            borderRadius: '50%', 
+                                                            objectFit: 'cover', 
+                                                            border: '2.5px solid #00A544',
+                                                            boxShadow: '0 6px 16px rgba(0,0,0,0.3)'
+                                                        }} 
+                                                    />
+                                                    <span style={{
+                                                        position: 'absolute',
+                                                        bottom: '2px',
+                                                        right: '2px',
+                                                        width: '12px',
+                                                        height: '12px',
+                                                        backgroundColor: '#00A544',
+                                                        border: '2px solid #13110f',
+                                                        borderRadius: '50%'
+                                                    }}></span>
+                                                </div>
+                                                <div style={{ color: '#FFF', fontWeight: '700', fontSize: '11.5px' }}>{agent.name}</div>
+                                                <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '9.5px' }}>{agent.role}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div style={{ position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '12px' }}>
+                                    <div style={{ color: '#FFF', fontFamily: "'Outfit', sans-serif", fontSize: '14.5px', fontWeight: 700, lineHeight: '1.3' }}>
+                                        Olubunmi & Vesti Team
+                                    </div>
+                                    <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '11px', marginTop: '2px' }}>
+                                        4 Verified Mobility Advisors
+                                    </div>
                                 </div>
                             </div>
 
