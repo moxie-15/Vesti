@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Footer from '../components/Footer';
 
 const ZyraAI = () => {
     const [messages, setMessages] = useState([]);
@@ -70,7 +69,7 @@ const ZyraAI = () => {
             {/* Header Hero Section */}
             <section style={{
                 backgroundColor: '#F3F6F3',
-                padding: '80px 20px 60px',
+                padding: '80px 20px 120px',
                 textAlign: 'center',
                 borderBottom: '1px solid #E2E8F0'
             }}>
@@ -290,8 +289,6 @@ const ZyraAI = () => {
                     </button>
                 </form>
             </div>
-
-            <Footer />
         </div>
     );
 };
