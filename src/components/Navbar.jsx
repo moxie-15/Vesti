@@ -4,12 +4,13 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
     const location = useLocation();
     const isLegalMode = location.pathname.startsWith('/legal');
+    const isMigrationMode = location.pathname.startsWith('/countries');
 
     return (
         <nav className="navbar" id="navbar">
             <div className="nav-container" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
                 {/* Left Brand Area: Logo + Mode Switcher */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }}>
                     <Link className="logo-area" to="/" style={{ display: 'flex', alignItems: 'center', gap: '0px', textDecoration: 'none' }}>
                         <svg fill="none" height="38" overflow="visible" viewBox="0 0 34 38" width="34" xmlns="http://www.w3.org/2000/svg">
                             <path d="M33 0C32.7 1.08 32.2 2.06 31.8 3.07C30.4 6.45 28.8 9.83 27.3 13.22C24.5 19.53 21.7 25.84 18.9 32.16C18.7 32.76 18.4 33 17.7 33H10.9C10.2 33 10.2 32.93 10.4 32.37C12.5 27.68 14.5 22.99 16.6 18.3C18.6 13.73 20.6 9.2 22.6 4.61C22.7 4.3 22.9 4.14 23.2 4.02C26.3 2.73 29.4 1.43 32.5 0.14C32.6 0.1 32.7 0.05 32.8 0H33Z" fill="#FFFFFF"></path>
@@ -47,11 +48,11 @@ const Navbar = () => {
                         <Link
                             to="/countries"
                             style={{
-                                backgroundColor: !isLegalMode ? '#FFFFFF' : 'transparent',
-                                color: !isLegalMode ? '#0F172A' : 'rgba(255, 255, 255, 0.75)',
+                                backgroundColor: isMigrationMode ? '#FFFFFF' : 'transparent',
+                                color: isMigrationMode ? '#0F172A' : 'rgba(255, 255, 255, 0.75)',
                                 padding: '4px 14px',
                                 borderRadius: '50px',
-                                fontWeight: !isLegalMode ? '700' : '600',
+                                fontWeight: isMigrationMode ? '700' : '600',
                                 textDecoration: 'none',
                                 transition: 'all 0.2s ease'
                             }}
