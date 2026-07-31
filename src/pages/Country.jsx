@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { getCountryData } from '../data/countriesData';
+import Footer from '../components/Footer';
 
 const getIcon = (iconName) => {
     switch (iconName) {
@@ -24,14 +25,48 @@ const Country = () => {
     const country = getCountryData(id);
     const [applicants, setApplicants] = useState('1 Candidate');
     const [processingSpeed, setProcessingSpeed] = useState('Standard (3-6 Months)');
+    const [activeFaq, setActiveFaq] = useState(0);
+    const [hoverStates, setHoverStates] = useState({});
+
+    const handleMouseOver = (idKey) => setHoverStates(prev => ({ ...prev, [idKey]: true }));
+    const handleMouseOut = (idKey) => setHoverStates(prev => ({ ...prev, [idKey]: false }));
+
+    const galleryList = country?.galleryImages && country.galleryImages.length > 0 
+        ? country.galleryImages 
+        : [country.heroMainImg, country.heroSideImg];
+
+    const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [id]);
 
+    // Auto rotate gallery images every 3.5 seconds across all 10+ country photos
+    useEffect(() => {
+        if (!galleryList || galleryList.length <= 1) return;
+        const timer = setInterval(() => {
+            setCurrentSlideIndex(prev => (prev + 1) % galleryList.length);
+        }, 3500);
+        return () => clearInterval(timer);
+    }, [galleryList]);
+
     if (!country) {
         return <Navigate to="/countries" replace />;
     }
+
+    const mainImage = galleryList[currentSlideIndex];
+    const subImages = [1, 2, 3, 4].map(offset => {
+        const idx = (currentSlideIndex + offset) % galleryList.length;
+        return { url: galleryList[idx], index: idx };
+    });
+
+    const nextSlide = () => {
+        setCurrentSlideIndex(prev => (prev + 1) % galleryList.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlideIndex(prev => (prev - 1 + galleryList.length) % galleryList.length);
+    };
 
     return (
         <div style={{ backgroundColor: '#FAF9F6', minHeight: '100vh', fontFamily: "'Inter', sans-serif", paddingTop: '24px' }}>
@@ -51,6 +86,35 @@ const Country = () => {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 16px;
+                }
+                .fc-gallery-sub-item {
+                    height: 202px;
+                    border-radius: 16px;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+                .fc-gallery-sub-item:hover {
+                    transform: scale(1.02);
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                }
+                .fc-gallery-nav-btn {
+                    background: rgba(15, 23, 42, 0.65);
+                    color: #FFF;
+                    border: none;
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    backdrop-filter: blur(6px);
+                    transition: all 0.2s ease;
+                    font-size: 16px;
+                }
+                .fc-gallery-nav-btn:hover {
+                    background: #00A544;
+                    transform: scale(1.1);
                 }
                 .fc-split-container {
                     display: grid;
@@ -116,16 +180,33 @@ const Country = () => {
 
             <main style={{ maxWidth: '1180px', margin: '40px auto 80px', padding: '0 20px' }}>
                 
-                {/* Flight Centre Style Bento Photo Gallery */}
+                {/* Dynamic Bento Slideshow Gallery (10+ Images per Country) */}
                 <div className="fc-gallery-grid">
-                    {/* Main Big Photo */}
+                    {/* Main Big Featured Photo */}
                     <div style={{
                         height: '420px',
                         position: 'relative',
-                        background: `url('${country.heroMainImg}') center/cover no-repeat`,
                         borderRadius: '20px',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        backgroundColor: '#0F172A'
                     }}>
+                        <img 
+                            src={mainImage} 
+                            alt={country.name}
+                            onError={(e) => {
+                                e.currentTarget.src = country.heroMainImg;
+                            }}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                position: 'absolute',
+                                inset: 0,
+                                transition: 'opacity 0.4s ease-in-out'
+                            }}
+                        />
+
+                        {/* Top Promo Tag */}
                         <div style={{
                             position: 'absolute',
                             top: '16px',
@@ -136,11 +217,29 @@ const Country = () => {
                             fontWeight: '800',
                             padding: '6px 14px',
                             borderRadius: '50px',
-                            boxShadow: '0 4px 12px rgba(0,165,68,0.4)'
+                            boxShadow: '0 4px 12px rgba(0,165,68,0.4)',
+                            zIndex: 2
                         }}>
                             SAVE UP TO $350* ON ATTORNEY PETITIONS
                         </div>
 
+                        {/* Navigation Arrows */}
+                        <div style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '16px',
+                            right: '16px',
+                            transform: 'translateY(-50%)',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            pointerEvents: 'none',
+                            zIndex: 2
+                        }}>
+                            <button onClick={prevSlide} className="fc-gallery-nav-btn" style={{ pointerEvents: 'auto' }}>❮</button>
+                            <button onClick={nextSlide} className="fc-gallery-nav-btn" style={{ pointerEvents: 'auto' }}>❯</button>
+                        </div>
+
+                        {/* Bottom Location Label */}
                         <div style={{
                             position: 'absolute',
                             bottom: '16px',
@@ -151,16 +250,38 @@ const Country = () => {
                             padding: '8px 16px',
                             borderRadius: '50px',
                             fontSize: '13px',
-                            fontWeight: '700'
+                            fontWeight: '700',
+                            zIndex: 2
                         }}>
                             📍 {country.name} • {country.locationName}
                         </div>
                     </div>
 
-                    {/* Sub 4 Grid Photos */}
+                    {/* Sub 4 Rotating Grid Photos */}
                     <div className="fc-gallery-sub">
-                        {(country.galleryImages || [country.heroSideImg, country.heroMainImg, country.heroSideImg, country.heroMainImg]).map((img, idx) => (
-                            <div key={idx} style={{ height: '202px', borderRadius: '16px', background: `url('${img}') center/cover no-repeat` }}></div>
+                        {subImages.map((sub, idx) => (
+                            <div 
+                                key={idx} 
+                                className="fc-gallery-sub-item"
+                                onClick={() => setCurrentSlideIndex(sub.index)}
+                                title="Click to expand this photo"
+                                style={{ overflow: 'hidden', position: 'relative' }}
+                            >
+                                <img 
+                                    src={sub.url} 
+                                    alt={`${country.name} photo ${sub.index + 1}`}
+                                    onError={(e) => {
+                                        e.currentTarget.src = country.heroMainImg;
+                                    }}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                        display: 'block',
+                                        borderRadius: '16px'
+                                    }}
+                                />
+                            </div>
                         ))}
                     </div>
 
@@ -235,24 +356,21 @@ const Country = () => {
                             display: 'flex',
                             gap: '20px',
                             alignItems: 'center',
-                            flexWrap: 'wrap',
-                            marginBottom: '32px'
+                            flexWrap: 'wrap'
                         }}>
-                            <div style={{
-                                width: '70px',
-                                height: '70px',
-                                borderRadius: '50%',
-                                background: 'linear-gradient(135deg, #00A544 0%, #030B17 100%)',
-                                color: '#FFF',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontWeight: '800',
-                                fontSize: '24px',
-                                flexShrink: 0
-                            }}>
-                                BO
-                            </div>
+                            <img 
+                                src="/assets/expert-bunmi-BGTZe3Yq.jpg" 
+                                alt="Bunmi Opadoyin" 
+                                style={{
+                                    width: '70px',
+                                    height: '70px',
+                                    borderRadius: '50%',
+                                    objectFit: 'cover',
+                                    border: '2px solid #00A544',
+                                    boxShadow: '0 4px 12px rgba(0, 165, 68, 0.2)',
+                                    flexShrink: 0
+                                }}
+                            />
 
                             <div style={{ flex: 1, minWidth: '220px' }}>
                                 <span style={{ fontSize: '11px', color: '#00A544', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Assigned Vesti Specialist</span>
@@ -278,28 +396,6 @@ const Country = () => {
                             >
                                 Book Advisory Call
                             </Link>
-                        </div>
-
-                        {/* Core Visa Services */}
-                        <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '22px', fontWeight: '800', color: '#0F172A', marginBottom: '16px' }}>
-                            Available Sub-Pathways
-                        </h3>
-
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
-                            {country.services.map((service, i) => (
-                                <div key={i} style={{ backgroundColor: '#FFFFFF', padding: '24px', borderRadius: '18px', border: '1px solid #E2E8F0' }}>
-                                    <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(0,165,68,0.1)', color: '#00A544', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                            {getIcon(service.icon)}
-                                        </svg>
-                                    </div>
-                                    <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '17px', fontWeight: '700', color: '#0F172A', marginBottom: '8px' }}>{service.title}</h4>
-                                    <p style={{ fontSize: '13px', color: '#64748B', lineHeight: '1.5', marginBottom: '16px' }}>{service.desc}</p>
-                                    <Link to={`/countries/${id}/clarity`} style={{ fontSize: '13px', fontWeight: '700', color: '#00A544', textDecoration: 'none' }}>
-                                        Check Eligibility →
-                                    </Link>
-                                </div>
-                            ))}
                         </div>
                     </div>
 
@@ -365,7 +461,135 @@ const Country = () => {
                     </div>
 
                 </div>
+
+                {/* Available Sub-Pathways - Full Container Width */}
+                <div style={{ marginTop: '48px' }}>
+                    <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '24px', fontWeight: '800', color: '#0F172A', marginBottom: '20px' }}>
+                        Available Sub-Pathways
+                    </h3>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+                        {country.services.map((service, i) => (
+                            <div key={i} style={{ backgroundColor: '#FFFFFF', padding: '24px', borderRadius: '18px', border: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                                <div>
+                                    <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(0,165,68,0.1)', color: '#00A544', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            {getIcon(service.icon)}
+                                        </svg>
+                                    </div>
+                                    <h4 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '17px', fontWeight: '700', color: '#0F172A', marginBottom: '8px' }}>{service.title}</h4>
+                                    <p style={{ fontSize: '13px', color: '#64748B', lineHeight: '1.5', marginBottom: '16px' }}>{service.desc}</p>
+                                </div>
+                                <Link to={`/countries/${id}/clarity`} style={{ fontSize: '13px', fontWeight: '700', color: '#00A544', textDecoration: 'none' }}>
+                                    Check Eligibility →
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </main>
+
+            {/* FAQ Section */}
+            <section id="faqs" className="faq-section" style={{ padding: '80px 20px', backgroundColor: '#13110f', color: '#FFF' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'flex-start' }}>
+                    <div>
+                        <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: '36px', fontWeight: 800, color: '#FFF', margin: '0 0 20px' }}>How to apply for your Visa</h2>
+                        <a href="#faqs" style={{ color: '#A3A3A3', textDecoration: 'none', fontFamily: 'Inter, sans-serif', fontSize: '16px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', transition: 'color 0.2s' }} onMouseOver={(e) => e.target.style.color = '#FFF'} onMouseOut={(e) => e.target.style.color = '#A3A3A3'}>
+                            Frequently asked questions <span style={{ fontSize: '18px' }}>↗</span>
+                        </a>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        {[
+                            {
+                                num: '1.',
+                                title: 'Apply Online',
+                                text: 'Fill out our secure online visa application form in minutes. Our system ensures all data meets consulate standards to avoid rejections.'
+                            },
+                            {
+                                num: '2.',
+                                title: 'Submit Documents',
+                                text: 'Upload scans of your passport and required documents. Our expert visa consultants will review them for accuracy before submission.'
+                            },
+                            {
+                                num: '3.',
+                                title: 'Receive Visa',
+                                text: 'Once approved by the embassy, we will securely deliver your travel documents and visa straight to your email or doorstep.'
+                            }
+                        ].map((item, index) => {
+                            const isOpen = activeFaq === index;
+                            return (
+                                <div 
+                                    key={index} 
+                                    onClick={() => setActiveFaq(isOpen ? null : index)}
+                                    style={{ 
+                                        borderTop: '1px solid rgba(255, 255, 255, 0.15)', 
+                                        borderBottom: index === 2 ? '1px solid rgba(255, 255, 255, 0.15)' : 'none',
+                                        padding: '24px 0', 
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <h5 style={{ 
+                                        fontFamily: 'Outfit, sans-serif', 
+                                        fontSize: '20px', 
+                                        fontWeight: 600, 
+                                        color: '#FFF', 
+                                        margin: 0, 
+                                        display: 'flex', 
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center'
+                                    }}>
+                                        <span>{item.num} {item.title}</span>
+                                        <span style={{ fontSize: '24px', fontWeight: 300 }}>{isOpen ? '−' : '+'}</span>
+                                    </h5>
+                                    <div style={{ 
+                                        maxHeight: isOpen ? '200px' : '0', 
+                                        overflow: 'hidden', 
+                                        transition: 'max-height 0.3s ease, opacity 0.3s ease',
+                                        opacity: isOpen ? 1 : 0
+                                    }}>
+                                        <p style={{ 
+                                            fontFamily: 'Inter, sans-serif', 
+                                            fontSize: '15px', 
+                                            color: 'rgba(255, 255, 255, 0.7)', 
+                                            margin: '15px 0 0', 
+                                            lineHeight: 1.6 
+                                        }}>
+                                            {item.text}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* App Download Section */}
+            <section className="app-download-section" style={{ backgroundColor: '#13110f', padding: '100px 20px', color: '#FFF' }}>
+                <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+                    <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: '42px', fontWeight: 800, margin: '0 0 40px', lineHeight: 1.2 }}>Also available to<br/>download on both</h2>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                        <a href="https://play.google.com/store/apps/details?id=com.vesti.app&pli=1" target="_blank" rel="noreferrer" onMouseOut={() => handleMouseOut('app-android')} onMouseOver={() => handleMouseOver('app-android')} style={{ background: '#FFF', color: '#13110f', borderRadius: '10px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', transition: 'all 0.3s', transform: hoverStates['app-android'] ? 'translateY(-3px)' : 'translateY(0)', boxShadow: hoverStates['app-android'] ? '0 10px 20px rgba(0,0,0,0.2)' : 'none' }}>
+                            <svg fill="currentColor" viewBox="0 0 512 512" style={{ width: '24px', height: '24px' }}><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path></svg>
+                            <div style={{ textAlign: 'left' }}>
+                                <div style={{ fontSize: '10px', fontWeight: 500, opacity: 0.8 }}>AVAILABLE ON</div>
+                                <div style={{ fontSize: '16px', fontWeight: 700, fontFamily: 'Outfit, sans-serif' }}>Google Play</div>
+                            </div>
+                        </a>
+                        <a href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank" rel="noreferrer" onMouseOut={() => handleMouseOut('app-ios')} onMouseOver={() => handleMouseOver('app-ios')} style={{ background: '#FFF', color: '#13110f', borderRadius: '10px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', transition: 'all 0.3s', transform: hoverStates['app-ios'] ? 'translateY(-3px)' : 'translateY(0)', boxShadow: hoverStates['app-ios'] ? '0 10px 20px rgba(0,0,0,0.2)' : 'none' }}>
+                            <svg fill="currentColor" viewBox="0 0 384 512" style={{ width: '24px', height: '24px' }}><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+                            <div style={{ textAlign: 'left' }}>
+                                <div style={{ fontSize: '10px', fontWeight: 500, opacity: 0.8 }}>AVAILABLE ON</div>
+                                <div style={{ fontSize: '16px', fontWeight: 700, fontFamily: 'Outfit, sans-serif' }}>Apple Store</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };

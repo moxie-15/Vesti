@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllCountries } from '../data/countriesData';
+import Footer from '../components/Footer';
 
 const countryCodes = {
     usa: 'US',
@@ -11,31 +12,40 @@ const countryCodes = {
     'new-zealand': 'NZ'
 };
 
+const countryFlagCodes = {
+    usa: 'us',
+    canada: 'ca',
+    australia: 'au',
+    france: 'fr',
+    spain: 'es',
+    'new-zealand': 'nz'
+};
+
 const countrySubtitles = {
-    usa: 'O-1, EB-1A, NIW & F-1 Student Pathways',
-    canada: 'Express Entry, PNP & Study Permits',
-    australia: 'Subclass 189, 190, 500 & 482 Pathways',
-    france: 'Talent Passport, Tech Visa & Schengen',
-    spain: 'Digital Nomad, Golden Visa & Non-Lucrative',
-    'new-zealand': 'Skilled Migrant & Working Holiday'
+    usa: 'Work Visas, EB-1A, O-1A, NIW & Green Cards for Ambitious Professionals',
+    canada: 'Express Entry CRS, Provincial Nominee Programs & Study Permits',
+    australia: 'Subclass Skilled Visas, Points-Based PR & Regional Opportunities',
+    france: 'Tech Talent Passport, Schengen Mobility & Business Residency',
+    spain: 'Digital Nomad Tax Exemption & Golden Visa Investor Pathways',
+    'new-zealand': 'Skilled Migrant Category, Working Holiday & Essential Skills'
 };
 
 const countryDealBadges = {
-    usa: 'SAVE UP TO $350 ON PETITION DRAFTING',
-    canada: 'BONUS 2 FREE LEGAL REVIEWS',
-    australia: 'FAST-TRACK EOI ASSESSMENT',
-    france: 'SCHENGEN TAX GUIDE INCLUDED',
+    usa: 'SAVE UP TO $350',
+    canada: 'BONUS 2 FREE REVIEWS',
+    australia: 'FAST-TRACK ASSESSMENT',
+    france: 'SCHENGEN TAX GUIDE',
     spain: 'DIGITAL NOMAD EXPEDITED',
-    'new-zealand': 'BONUS WORKING HOLIDAY KIT'
+    'new-zealand': 'BONUS WORKING KIT'
 };
 
 const countryDualPricing = {
-    usa: { clarity: '$50', full: '$450' },
-    canada: { clarity: '$45', full: '$380' },
-    australia: { clarity: '$60', full: '$420' },
-    france: { clarity: '$40', full: '$350' },
-    spain: { clarity: '$40', full: '$350' },
-    'new-zealand': { clarity: '$55', full: '$390' }
+    usa: { clarity: '$50', full: '$350' },
+    canada: { clarity: '$40', full: '$350' },
+    australia: { clarity: '$55', full: '$390' },
+    france: { clarity: '$50', full: '$350' },
+    spain: { clarity: '$45', full: '$320' },
+    'new-zealand': { clarity: '$45', full: '$340' }
 };
 
 const countryInclusions = {
@@ -47,12 +57,44 @@ const countryInclusions = {
     'new-zealand': ['Skilled Migrant EOI', 'Working Holiday Support', 'Employer Job Match']
 };
 
+const heroThemeSlides = [
+    { name: 'New York City, USA', img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1600&q=80', color: 'rgba(0, 165, 68, 0.45)', accent: '#00A544' },
+    { name: 'Toronto, Canada', img: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80', color: 'rgba(6, 182, 212, 0.45)', accent: '#06B6D4' },
+    { name: 'Sydney, Australia', img: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1600&q=80', color: 'rgba(59, 130, 246, 0.45)', accent: '#3B82F6' },
+    { name: 'Paris, France', img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80', color: 'rgba(168, 85, 247, 0.45)', accent: '#A855F7' },
+    { name: 'Madrid, Spain', img: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80', color: 'rgba(245, 158, 11, 0.45)', accent: '#F59E0B' },
+    { name: 'London, United Kingdom', img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80', color: 'rgba(244, 63, 94, 0.45)', accent: '#F43F5E' },
+    { name: 'Tokyo, Japan', img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80', color: 'rgba(236, 72, 153, 0.45)', accent: '#EC4899' },
+    { name: 'Banff, Canada', img: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600&q=80', color: 'rgba(20, 184, 166, 0.45)', accent: '#14B8A6' },
+    { name: 'San Francisco, USA', img: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80', color: 'rgba(251, 146, 60, 0.45)', accent: '#FB923C' },
+    { name: 'Singapore', img: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1600&q=80', color: 'rgba(10, 185, 129, 0.45)', accent: '#10B981' },
+    { name: 'Barcelona, Spain', img: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80', color: 'rgba(234, 179, 8, 0.45)', accent: '#EAB308' },
+    { name: 'Dubai, UAE', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80', color: 'rgba(99, 102, 241, 0.45)', accent: '#6366F1' },
+    { name: 'Auckland, New Zealand', img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80', color: 'rgba(14, 165, 233, 0.45)', accent: '#0EA5E9' },
+    { name: 'Rome, Italy', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1600&q=80', color: 'rgba(225, 29, 72, 0.45)', accent: '#E11D48' },
+    { name: 'Amsterdam, Netherlands', img: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1600&q=80', color: 'rgba(139, 92, 246, 0.45)', accent: '#8B5CF6' }
+];
+
 const Countries = () => {
     const countries = getAllCountries();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTab, setSelectedTab] = useState('all');
     const [originLocation, setOriginLocation] = useState('Lagos, Nigeria');
     const [targetTimeline, setTargetTimeline] = useState('2026 - 2027');
+    const [heroIndex, setHeroIndex] = useState(0);
+    const [activeFaq, setActiveFaq] = useState(0);
+    const [hoverStates, setHoverStates] = useState({});
+
+    const handleMouseOver = (id) => setHoverStates(prev => ({ ...prev, [id]: true }));
+    const handleMouseOut = (id) => setHoverStates(prev => ({ ...prev, [id]: false }));
+
+    // Auto-rotate hero theme gradient & background images every 4 seconds
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setHeroIndex(prev => (prev + 1) % heroThemeSlides.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
 
     const filteredCountries = countries.filter(c => {
         const matchesSearch = c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -75,7 +117,7 @@ const Countries = () => {
                     gap: 8px;
                     overflow-x: auto;
                     padding: 22px 20px 18px;
-                    background-color: #030B17;
+                    background-color: #13110f;
                     border-bottom: 1px solid rgba(255,255,255,0.08);
                 }
                 .fc-subnav-btn {
@@ -166,51 +208,100 @@ const Countries = () => {
                 }
 
                 .deal-badge {
-                    position: absolute;
-                    top: 14px;
-                    left: 14px;
+                    position: relative;
+                    z-index: 3;
                     background-color: #00A544;
                     color: #FFFFFF;
-                    font-size: 11px;
+                    font-size: 10.5px;
                     font-weight: 800;
-                    padding: 5px 12px;
+                    padding: 5px 10px;
                     border-radius: 50px;
                     text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    z-index: 5;
+                    letter-spacing: 0.4px;
                     box-shadow: 0 4px 12px rgba(0, 165, 68, 0.4);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 58%;
                 }
             ` }} />
 
-            {/* Vesti Dark Ambient Hero Section */}
+            {/* Vesti Dynamic Ambient Slideshow Hero Section */}
             <section style={{
                 position: 'relative',
-                backgroundColor: '#030B17',
-                backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(0, 165, 68, 0.25) 0%, rgba(3, 11, 23, 0.98) 65%)',
+                backgroundColor: '#13110f',
                 padding: '40px 20px 95px',
                 color: '#FFF',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                minHeight: '400px'
             }}>
+                {/* 15 Crossfading Image & Gradient Color Layers */}
+                {heroThemeSlides.map((slide, i) => (
+                    <div
+                        key={i}
+                        style={{
+                            position: 'absolute',
+                            inset: 0,
+                            backgroundImage: `radial-gradient(circle at 80% 20%, ${slide.color} 0%, rgba(19, 17, 15, 0.94) 70%), url('${slide.img}')`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            opacity: i === heroIndex ? 1 : 0,
+                            transform: i === heroIndex ? 'scale(1.04)' : 'scale(1)',
+                            transition: 'opacity 1.5s ease-in-out, transform 6s ease-in-out',
+                            zIndex: 1
+                        }}
+                    />
+                ))}
+
+                {/* Dark Deep Chocolate Vignette Overlay for Ultimate Contrast */}
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to right, rgba(19, 17, 15, 0.92) 0%, rgba(19, 17, 15, 0.76) 55%, rgba(19, 17, 15, 0.5) 100%)',
+                    zIndex: 1
+                }}></div>
+
                 <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
                     
-                    {/* Category Filter Pills (Inside Hero Container) */}
-                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', marginBottom: '32px', paddingBottom: '4px' }}>
-                        {[
-                            { id: 'all', icon: '✈️', label: 'All Pathways' },
-                            { id: 'work', icon: '💼', label: 'Work & EB-1A' },
-                            { id: 'study', icon: '🎓', label: 'Student Visas' },
-                            { id: 'nomad', icon: '💻', label: 'Digital Nomad' },
-                            { id: 'pr', icon: '🛂', label: 'Permanent Residency' }
-                        ].map(tab => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setSelectedTab(tab.id)}
-                                className={`fc-subnav-btn ${selectedTab === tab.id ? 'active' : ''}`}
-                            >
-                                <span>{tab.icon}</span>
-                                <span>{tab.label}</span>
-                            </button>
-                        ))}
+                    {/* Category Filter Pills & Dynamic Destination Pill */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+                            {[
+                                { id: 'all', icon: '✈️', label: 'All Pathways' },
+                                { id: 'work', icon: '💼', label: 'Work & EB-1A' },
+                                { id: 'study', icon: '🎓', label: 'Student Visas' },
+                                { id: 'nomad', icon: '💻', label: 'Digital Nomad' },
+                                { id: 'pr', icon: '🛂', label: 'Permanent Residency' }
+                            ].map(tab => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setSelectedTab(tab.id)}
+                                    className={`fc-subnav-btn ${selectedTab === tab.id ? 'active' : ''}`}
+                                >
+                                    <span>{tab.icon}</span>
+                                    <span>{tab.label}</span>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Live Destination Theme Pill */}
+                        <div style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            backdropFilter: 'blur(12px)',
+                            padding: '6px 14px',
+                            borderRadius: '50px',
+                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                            fontSize: '12px',
+                            fontWeight: '700',
+                            color: '#FFF',
+                            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+                        }}>
+                            <span style={{ width: '8px', height: '8px', backgroundColor: heroThemeSlides[heroIndex].accent, borderRadius: '50%', boxShadow: `0 0 8px ${heroThemeSlides[heroIndex].accent}` }}></span>
+                            <span>📍 {heroThemeSlides[heroIndex].name}</span>
+                        </div>
                     </div>
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '30px' }}>
@@ -228,7 +319,7 @@ const Countries = () => {
                                 border: '1px solid rgba(255, 255, 255, 0.15)',
                                 marginBottom: '16px'
                             }}>
-                                <span style={{ width: '8px', height: '8px', backgroundColor: '#00A544', borderRadius: '50%', display: 'inline-block' }}></span>
+                                <span style={{ width: '8px', height: '8px', backgroundColor: heroThemeSlides[heroIndex].accent, borderRadius: '50%', display: 'inline-block' }}></span>
                                 <span style={{ fontSize: '12px', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase', color: '#FFF' }}>
                                     Global Mobility & Visa Engine
                                 </span>
@@ -243,13 +334,12 @@ const Countries = () => {
                                 marginBottom: '16px'
                             }}>
                                 Explore Global Pathways with <span style={{
-                                    background: 'linear-gradient(135deg, #00A544 0%, #34D399 100%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent'
+                                    color: heroThemeSlides[heroIndex].accent,
+                                    transition: 'color 1.5s ease-in-out'
                                 }}>Vesti</span>
                             </h1>
 
-                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.78)', maxWidth: '540px', margin: 0, lineHeight: '1.55' }}>
+                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.85)', maxWidth: '540px', margin: 0, lineHeight: '1.55', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
                                 Compare visa routes, estimate processing timelines, and book AI-assisted petition packages for top destinations.
                             </p>
                         </div>
@@ -257,39 +347,62 @@ const Countries = () => {
                         {/* Vesti Styled Promo Deal Badges */}
                         <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
                             <div style={{
-                                background: 'rgba(255, 255, 255, 0.06)',
+                                background: 'rgba(255, 255, 255, 0.08)',
                                 backdropFilter: 'blur(16px)',
-                                border: '1px solid rgba(0, 165, 68, 0.3)',
+                                border: `1px solid ${heroThemeSlides[heroIndex].accent}`,
                                 borderRadius: '20px',
                                 padding: '20px',
                                 width: '210px',
-                                boxShadow: '0 12px 30px rgba(0,0,0,0.3)'
+                                boxShadow: '0 12px 30px rgba(0,0,0,0.3)',
+                                transition: 'border-color 1.5s ease-in-out'
                             }}>
-                                <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#34D399' }}>WORK & EB-1A</span>
+                                <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: heroThemeSlides[heroIndex].accent, transition: 'color 1.5s ease-in-out' }}>WORK & EB-1A</span>
                                 <div style={{ fontSize: '28px', fontWeight: '900', color: '#FFF', margin: '4px 0 2px', fontFamily: "'Outfit', sans-serif" }}>
-                                    FROM <span style={{ color: '#00A544' }}>$50</span>
+                                    FROM <span style={{ color: heroThemeSlides[heroIndex].accent, transition: 'color 1.5s ease-in-out' }}>$50</span>
                                 </div>
                                 <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>USD PER PETITION</span>
                             </div>
 
                             <div style={{
-                                background: 'rgba(255, 255, 255, 0.06)',
+                                background: 'rgba(255, 255, 255, 0.08)',
                                 backdropFilter: 'blur(16px)',
-                                border: '1px solid rgba(255, 255, 255, 0.15)',
+                                border: `1px solid ${heroThemeSlides[heroIndex].accent}`,
                                 borderRadius: '20px',
                                 padding: '20px',
                                 width: '210px',
-                                boxShadow: '0 12px 30px rgba(0,0,0,0.3)'
+                                boxShadow: '0 12px 30px rgba(0,0,0,0.3)',
+                                transition: 'border-color 1.5s ease-in-out'
                             }}>
-                                <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: 'rgba(255,255,255,0.85)' }}>EXPRESS ENTRY</span>
+                                <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: heroThemeSlides[heroIndex].accent, transition: 'color 1.5s ease-in-out' }}>EXPRESS ENTRY</span>
                                 <div style={{ fontSize: '28px', fontWeight: '900', color: '#FFF', margin: '4px 0 2px', fontFamily: "'Outfit', sans-serif" }}>
-                                    FROM <span style={{ color: '#34D399' }}>$45</span>
+                                    FROM <span style={{ color: heroThemeSlides[heroIndex].accent, transition: 'color 1.5s ease-in-out' }}>$45</span>
                                 </div>
                                 <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>USD PER PROFILE</span>
                             </div>
                         </div>
 
                     </div>
+
+                    {/* Interactive 15-Slide Indicator Dots */}
+                    <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', marginTop: '36px' }}>
+                        {heroThemeSlides.map((_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setHeroIndex(i)}
+                                title={heroThemeSlides[i].name}
+                                style={{
+                                    width: i === heroIndex ? '24px' : '8px',
+                                    height: '8px',
+                                    borderRadius: '50px',
+                                    backgroundColor: i === heroIndex ? heroThemeSlides[i].accent : 'rgba(255, 255, 255, 0.25)',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.4s ease'
+                                }}
+                            />
+                        ))}
+                    </div>
+
                 </div>
             </section>
 
@@ -501,28 +614,45 @@ const Countries = () => {
                                             background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.7) 100%)'
                                         }}></div>
 
-                                        {/* Vesti Green Deal Badge */}
-                                        <div className="deal-badge">
-                                            {countryDealBadges[country.id] || 'SPECIAL OFFER'}
-                                        </div>
-
-                                        {/* Country Code & Name Badge */}
+                                        {/* Card Top Badges Container (Flex Layout - Zero Overlap) */}
                                         <div style={{
                                             position: 'relative',
-                                            zIndex: 2,
-                                            display: 'inline-flex',
+                                            zIndex: 3,
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
                                             alignItems: 'center',
-                                            gap: '6px',
-                                            background: '#FFFFFF',
-                                            padding: '5px 12px',
-                                            borderRadius: '50px',
-                                            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                                            marginLeft: 'auto'
+                                            width: '100%',
+                                            gap: '8px'
                                         }}>
-                                            <span style={{ fontSize: '11px', fontWeight: '800', color: '#475569', textTransform: 'uppercase', backgroundColor: '#F1F5F9', padding: '2px 6px', borderRadius: '4px' }}>
-                                                {countryCodes[country.id] || 'GL'}
-                                            </span>
-                                            <span style={{ fontWeight: '700', fontSize: '13.5px', color: '#0F172A' }}>{country.name}</span>
+                                            {/* Vesti Green Deal Badge */}
+                                            <div className="deal-badge" title={countryDealBadges[country.id] || 'SPECIAL OFFER'}>
+                                                {countryDealBadges[country.id] || 'SPECIAL OFFER'}
+                                            </div>
+
+                                            {/* Country Flag & Name Badge */}
+                                            <div style={{
+                                                display: 'inline-flex',
+                                                alignItems: 'center',
+                                                gap: '6px',
+                                                background: '#FFFFFF',
+                                                padding: '5px 12px',
+                                                borderRadius: '50px',
+                                                boxShadow: '0 4px 14px rgba(0,0,0,0.18)',
+                                                flexShrink: 0
+                                            }}>
+                                                <img 
+                                                    src={`https://flagcdn.com/w40/${(countryFlagCodes[country.id] || 'us')}.png`}
+                                                    alt={`${country.name} flag`}
+                                                    style={{
+                                                        width: '20px',
+                                                        height: '14px',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '3px',
+                                                        boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
+                                                    }}
+                                                />
+                                                <span style={{ fontWeight: '700', fontSize: '13px', color: '#0F172A', whiteSpace: 'nowrap' }}>{country.name}</span>
+                                            </div>
                                         </div>
 
                                         {/* Location Label inside Image */}
@@ -609,6 +739,108 @@ const Countries = () => {
                     </div>
                 )}
             </main>
+
+            {/* FAQ Section */}
+            <section id="faqs" className="faq-section" style={{ padding: '80px 20px', backgroundColor: '#13110f', color: '#FFF' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'flex-start' }}>
+                    <div>
+                        <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: '36px', fontWeight: 800, color: '#FFF', margin: '0 0 20px' }}>How to apply for your Visa</h2>
+                        <a href="#faqs" style={{ color: '#A3A3A3', textDecoration: 'none', fontFamily: 'Inter, sans-serif', fontSize: '16px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', transition: 'color 0.2s' }} onMouseOver={(e) => e.target.style.color = '#FFF'} onMouseOut={(e) => e.target.style.color = '#A3A3A3'}>
+                            Frequently asked questions <span style={{ fontSize: '18px' }}>↗</span>
+                        </a>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        {[
+                            {
+                                num: '1.',
+                                title: 'Apply Online',
+                                text: 'Fill out our secure online visa application form in minutes. Our system ensures all data meets consulate standards to avoid rejections.'
+                            },
+                            {
+                                num: '2.',
+                                title: 'Submit Documents',
+                                text: 'Upload scans of your passport and required documents. Our expert visa consultants will review them for accuracy before submission.'
+                            },
+                            {
+                                num: '3.',
+                                title: 'Receive Visa',
+                                text: 'Once approved by the embassy, we will securely deliver your travel documents and visa straight to your email or doorstep.'
+                            }
+                        ].map((item, index) => {
+                            const isOpen = activeFaq === index;
+                            return (
+                                <div 
+                                    key={index} 
+                                    onClick={() => setActiveFaq(isOpen ? null : index)}
+                                    style={{ 
+                                        borderTop: '1px solid rgba(255, 255, 255, 0.15)', 
+                                        borderBottom: index === 2 ? '1px solid rgba(255, 255, 255, 0.15)' : 'none',
+                                        padding: '24px 0', 
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    <h5 style={{ 
+                                        fontFamily: 'Outfit, sans-serif', 
+                                        fontSize: '20px', 
+                                        fontWeight: 600, 
+                                        color: '#FFF', 
+                                        margin: 0, 
+                                        display: 'flex', 
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center'
+                                    }}>
+                                        <span>{item.num} {item.title}</span>
+                                        <span style={{ fontSize: '24px', fontWeight: 300 }}>{isOpen ? '−' : '+'}</span>
+                                    </h5>
+                                    <div style={{ 
+                                        maxHeight: isOpen ? '200px' : '0', 
+                                        overflow: 'hidden', 
+                                        transition: 'max-height 0.3s ease, opacity 0.3s ease',
+                                        opacity: isOpen ? 1 : 0
+                                    }}>
+                                        <p style={{ 
+                                            fontFamily: 'Inter, sans-serif', 
+                                            fontSize: '15px', 
+                                            color: 'rgba(255, 255, 255, 0.7)', 
+                                            margin: '15px 0 0', 
+                                            lineHeight: 1.6 
+                                        }}>
+                                            {item.text}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* App Download Section */}
+            <section className="app-download-section" style={{ backgroundColor: '#13110f', padding: '100px 20px', color: '#FFF' }}>
+                <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+                    <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: '42px', fontWeight: 800, margin: '0 0 40px', lineHeight: 1.2 }}>Also available to<br/>download on both</h2>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                        <a href="https://play.google.com/store/apps/details?id=com.vesti.app&pli=1" target="_blank" rel="noreferrer" onMouseOut={() => handleMouseOut('app-android')} onMouseOver={() => handleMouseOver('app-android')} style={{ background: '#FFF', color: '#13110f', borderRadius: '10px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', transition: 'all 0.3s', transform: hoverStates['app-android'] ? 'translateY(-3px)' : 'translateY(0)', boxShadow: hoverStates['app-android'] ? '0 10px 20px rgba(0,0,0,0.2)' : 'none' }}>
+                            <svg fill="currentColor" viewBox="0 0 512 512" style={{ width: '24px', height: '24px' }}><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path></svg>
+                            <div style={{ textAlign: 'left' }}>
+                                <div style={{ fontSize: '10px', fontWeight: 500, opacity: 0.8 }}>AVAILABLE ON</div>
+                                <div style={{ fontSize: '16px', fontWeight: 700, fontFamily: 'Outfit, sans-serif' }}>Google Play</div>
+                            </div>
+                        </a>
+                        <a href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank" rel="noreferrer" onMouseOut={() => handleMouseOut('app-ios')} onMouseOver={() => handleMouseOver('app-ios')} style={{ background: '#FFF', color: '#13110f', borderRadius: '10px', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', transition: 'all 0.3s', transform: hoverStates['app-ios'] ? 'translateY(-3px)' : 'translateY(0)', boxShadow: hoverStates['app-ios'] ? '0 10px 20px rgba(0,0,0,0.2)' : 'none' }}>
+                            <svg fill="currentColor" viewBox="0 0 384 512" style={{ width: '24px', height: '24px' }}><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+                            <div style={{ textAlign: 'left' }}>
+                                <div style={{ fontSize: '10px', fontWeight: 500, opacity: 0.8 }}>AVAILABLE ON</div>
+                                <div style={{ fontSize: '16px', fontWeight: 700, fontFamily: 'Outfit, sans-serif' }}>Apple Store</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };

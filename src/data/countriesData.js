@@ -15,13 +15,19 @@ const countries = {
         successRate: '98.5%',
         primaryColor: '#0A3161',
         pricing: { basic: 50, premium: 499 },
-        heroMainImg: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: '/images/countries/usa/usa_2.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1200&q=80',
+        heroSideImg: 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80',
         galleryImages: [
-            '/images/countries/usa/usa_2.png',
-            'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1506966953377-36574c4d6c4b?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=800&q=80'
         ],
         locationName: 'New York City',
         services: [
@@ -34,7 +40,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? The US Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
         clarityStats: '850+',
         clarityFlag: 'us',
-        clarityAdvisorImg: '/images/countries/usa/usa_2.png',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80',
         benefits: [
             { title: 'Career Growth', description: 'Gain exposure to cutting-edge technologies and collaborate with some of the world\'s most innovative companies and academic institutions.' },
             { title: 'Permanent Residency', description: 'Work toward permanent residency for yourself and your family in the United States.' },
@@ -50,13 +56,19 @@ const countries = {
         successRate: '97.8%',
         primaryColor: '#D80621',
         pricing: { basic: 45, premium: 450 },
-        heroMainImg: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: '/images/countries/canada/canada_2.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=80',
+        heroSideImg: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=800&q=80',
         galleryImages: [
-            '/images/countries/canada/canada_1.png',
-            '/images/countries/canada/canada_2.png',
-            'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1519832979-6fa011b87667?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1519832979-6fa011b87667?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1519178614-68693b05f61c?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1489447068241-b349021d0b81?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1508672019048-805479767513?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=800&q=80'
         ],
         locationName: 'Toronto',
         services: [
@@ -69,7 +81,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? The Canadian Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
         clarityStats: '620+',
         clarityFlag: 'ca',
-        clarityAdvisorImg: '/images/countries/canada/canada_1.png',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=800&q=80',
         benefits: [
             { title: 'Quality of Life', description: 'Consistently ranked among the best countries to live in, offering universal healthcare and safety.' },
             { title: 'Fast-Track PR', description: 'One of the most streamlined immigration systems in the world for skilled workers.' },
@@ -85,13 +97,19 @@ const countries = {
         successRate: '96.4%',
         primaryColor: '#00008B',
         pricing: { basic: 60, premium: 550 },
-        heroMainImg: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: '/images/countries/australia/au-landscape-2.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1200&q=80',
+        heroSideImg: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
         galleryImages: [
-            '/images/countries/australia/au-landscape-1.png',
-            '/images/countries/australia/au-landscape-2.png',
-            'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1524338198850-8a2ff63aaceb?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1545048702-79362596cdc9?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=800&q=80'
         ],
         locationName: 'Sydney',
         services: [
@@ -104,7 +122,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? The Australian Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
         clarityStats: '450+',
         clarityFlag: 'au',
-        clarityAdvisorImg: '/images/countries/australia/au-landscape-1.png',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
         benefits: [
             { title: 'High Minimum Wage', description: 'Australia offers one of the highest minimum wages globally.' },
             { title: 'Work-Life Balance', description: 'A laid-back lifestyle with world-class beaches and outdoor activities.' },
@@ -120,13 +138,19 @@ const countries = {
         successRate: '95.2%',
         primaryColor: '#002654',
         pricing: { basic: 40, premium: 399 },
-        heroMainImg: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: '/images/countries/france/france_2.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
+        heroSideImg: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80',
         galleryImages: [
-            '/images/countries/france/france_1.png',
-            '/images/countries/france/france_2.png',
-            'https://images.unsplash.com/photo-1509299349698-ab22323ae696?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1509299349698-ab22323ae696?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1568084680786-a84f91d1153c?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1549144511-f099e773c147?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1500315331616-db4f707c24d1?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=800&q=80'
         ],
         locationName: 'Paris',
         services: [
@@ -139,7 +163,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? The French Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
         clarityStats: '210+',
         clarityFlag: 'fr',
-        clarityAdvisorImg: '/images/countries/france/france_1.png',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80',
         benefits: [
             { title: 'European Mobility', description: 'Travel freely across all Schengen member states without restrictions.' },
             { title: 'Vibrant Culture', description: 'Unmatched culinary, artistic, and historical experiences.' },
@@ -155,13 +179,19 @@ const countries = {
         successRate: '97.1%',
         primaryColor: '#AA151B',
         pricing: { basic: 40, premium: 399 },
-        heroMainImg: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: '/images/countries/spain/spain_2.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1200&q=80',
+        heroSideImg: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80',
         galleryImages: [
-            '/images/countries/spain/spain_1.png',
-            '/images/countries/spain/spain_2.png',
-            'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1509840841025-9088ba78a826?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1583422409516-2895a771deda?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1512753358964-15c0e15250ff?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1504019347908-b45f9b0b8dd5?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1548625361-185e6833b378?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1561632669-6e0e908990cf?auto=format&fit=crop&w=800&q=80'
         ],
         locationName: 'Madrid',
         services: [
@@ -174,7 +204,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? The Spanish Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
         clarityStats: '185+',
         clarityFlag: 'es',
-        clarityAdvisorImg: '/images/countries/spain/spain_1.png',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80',
         benefits: [
             { title: 'Sunny Lifestyle', description: 'Exceptional weather and relaxed lifestyle with a low cost of living.' },
             { title: 'Digital Nomad Friendly', description: 'Favorable tax regimes for remote workers and freelancers.' },
@@ -190,13 +220,19 @@ const countries = {
         successRate: '98.0%',
         primaryColor: '#00247D',
         pricing: { basic: 55, premium: 499 },
-        heroMainImg: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        heroSideImg: '/images/countries/New_zealand/education-globe.png',
+        heroMainImg: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1200&q=80',
+        heroSideImg: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
         galleryImages: [
-            '/images/countries/New_zealand/hero-landscape.png',
-            '/images/countries/New_zealand/education-globe.png',
-            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1508672019048-805479767513?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1524338198850-8a2ff63aaceb?auto=format&fit=crop&w=800&q=80'
         ],
         locationName: 'Auckland',
         services: [
@@ -209,7 +245,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? The New Zealand Visa pathways give you access to world-class networking, career opportunities and resources to bring your expertise to life.',
         clarityStats: '310+',
         clarityFlag: 'nz',
-        clarityAdvisorImg: '/images/countries/New_zealand/hero-landscape.png',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
         benefits: [
             { title: 'Stunning Environments', description: 'Unmatched natural beauty and outdoor adventuring.' },
             { title: 'Work-Life Balance', description: 'A culture that highly prioritizes family and personal time.' },
@@ -218,6 +254,5 @@ const countries = {
         ]
     }
 };
-
 
 export default countries;
