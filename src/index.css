@@ -60,18 +60,18 @@ body {
     flex: 0 0 auto !important;
 }
 
-/* Nav Menu — absolutely centered within navbar */
+/* Nav Menu — relative flex flow within navbar */
 #navbar .nav-menu {
     display: flex !important;
-    gap: 36px !important;
+    gap: 24px !important;
     align-items: center !important;
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
 }
 
 #navbar .nav-menu .nav-link {
