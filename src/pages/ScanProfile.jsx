@@ -636,8 +636,8 @@ const ScanProfile = () => {
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
                                         {[
                                             { name: 'Olubunmi Opadoyin', role: 'O-1 & EB-1A Lead Specialist', img: '/assets/expert-bunmi-BGTZe3Yq.jpg', status: 'Online' },
-                                            { name: 'Damola Oni', role: 'EB-1A Immigration Attorney', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80', status: 'Online' },
-                                            { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80', status: 'Available' },
+                                            { name: 'Damola Oni', role: 'EB-1A Immigration Attorney', img: '/assets/expert-damola-Boun5OzB.jpg', status: 'Online' },
+                                            { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: '/assets/expert-abimbola-DltcJknE.jpg', status: 'Available' },
                                             { name: 'Michael Chen', role: 'Global Mobility Specialist', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80', status: 'Online' }
                                         ].map((expert, i) => (
                                             <div key={i} style={{ backgroundColor: '#FFFFFF', padding: '18px', borderRadius: '16px', border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', gap: '14px' }}>

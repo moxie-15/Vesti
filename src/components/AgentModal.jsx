@@ -293,8 +293,8 @@ const AgentModal = () => {
                                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', margin: '4px 0 10px' }}>
                                         {[
                                             { name: 'Olubunmi', role: 'O-1 & EB-1A', img: '/assets/expert-bunmi-BGTZe3Yq.jpg' },
-                                            { name: 'Damola', role: 'EB-1A Counsel', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80' },
-                                            { name: 'Abimbola', role: 'NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80' },
+                                            { name: 'Damola', role: 'EB-1A Counsel', img: '/assets/expert-damola-Boun5OzB.jpg' },
+                                            { name: 'Abimbola', role: 'NIW Counsel', img: '/assets/expert-abimbola-DltcJknE.jpg' },
                                             { name: 'Michael', role: 'Global Mobility', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80' }
                                         ].map((agent, idx) => (
                                             <div key={idx} style={{ textAlign: 'center' }}>
@@ -403,8 +403,8 @@ const AgentModal = () => {
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                     {[
                                         { name: 'Olubunmi Opadoyin', role: 'O-1 & EB-1A Lead', img: '/assets/expert-bunmi-BGTZe3Yq.jpg' },
-                                        { name: 'Damola Oni', role: 'EB-1A Attorney', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80' },
-                                        { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80' },
+                                        { name: 'Damola Oni', role: 'EB-1A Attorney', img: '/assets/expert-damola-Boun5OzB.jpg' },
+                                        { name: 'Abimbola Amusan', role: 'EB-2 NIW Counsel', img: '/assets/expert-abimbola-DltcJknE.jpg' },
                                         { name: 'Michael Chen', role: 'Global Mobility Specialist', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80' }
                                     ].map((exp, i) => (
                                         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
