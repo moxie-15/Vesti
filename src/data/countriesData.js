@@ -42,7 +42,7 @@ const countries = {
         clarityHeroDesc: 'Looking to take your career to the next level? US work and talent pathways (O-1, EB-1A, NIW) give you direct access to Silicon Valley, Wall Street, and world-class innovation networks.',
         clarityStats: '850+',
         clarityFlag: 'us',
-        clarityAdvisorImg: '/assets/expert-bunmi-BGTZe3Yq.jpg',
+        clarityAdvisorImg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
         benefits: [
             { title: 'Extraordinary Career Growth', description: 'Gain exposure to cutting-edge AI, biotechnology, and venture-backed tech ecosystems.' },
             { title: 'Self-Petition Green Cards', description: 'EB-2 NIW and EB-1A allow you to sponsor your own permanent residency without employer dependencies.' },

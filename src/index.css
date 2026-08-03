@@ -553,3 +553,78 @@ body {
 .launcher-jiggling {
     animation: launcher-jiggle 1s ease-in-out infinite !important;
 }
+
+/* Comprehensive Mobile & Screen-Type Responsiveness */
+@media (max-width: 768px) {
+    /* Prevent Horizontal Page Overflow */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* Navbar Mobile Padding & Layout */
+    #navbar .nav-container {
+        padding: 0 16px !important;
+    }
+
+    /* FAQ Section Mobile Stacking */
+    .faq-section {
+        padding: 40px 16px !important;
+    }
+
+    .faq-section > div {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .faq-section h2 {
+        font-size: 26px !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Footer Mobile Responsiveness */
+    .footer {
+        padding: 40px 0 30px !important;
+    }
+
+    .footer .container > div {
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .footer-col {
+        min-width: 100% !important;
+    }
+
+    /* Pathway Cards on Touch Devices */
+    .pathway-card {
+        height: 320px !important;
+    }
+
+    .pathway-details {
+        padding: 24px 18px 18px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Mobile App Banner Links */
+    .mobile-app-banner {
+        padding: 50px 16px !important;
+    }
+
+    .mobile-app-banner h2 {
+        font-size: 28px !important;
+    }
+
+    .mobile-app-links {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .mobile-app-links a {
+        justify-content: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+

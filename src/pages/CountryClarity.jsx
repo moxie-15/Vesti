@@ -126,7 +126,7 @@ const CountryClarity = () => {
                             
                             {/* Masked Image */}
                             <div style={{ width: '100%', height: '100%', position: 'relative', zIndex: 2, overflow: 'hidden', animation: 'blobBreathe 8s ease-in-out infinite' }}>
-                                <img alt={`${country.name} Visa Specialist`} src={country.clarityAdvisorImg} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                <img alt={`${country.name} Visa Pathway`} src={country.heroMainImg || country.heroSideImg} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
                             </div>
                             
                             {/* Floating Badge */}
@@ -209,81 +209,7 @@ const CountryClarity = () => {
                         ))}
                     </div>
                 </div>
-            </section>
-
-            {/* Premium FAQ Section */}
-            <section style={{ background: `linear-gradient(135deg, #0A0F1C, #131A2F)`, padding: '120px 20px', color: 'white' }}>
-                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '80px', maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ flex: '1', minWidth: '320px' }}>
-                        <span style={{ display: 'block', color: country.primaryColor, fontWeight: '700', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>Got Questions?</span>
-                        <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '42px', fontWeight: '800', marginBottom: '24px', color: 'white', lineHeight: '1.1' }}>
-                            Some things you may want to know
-                        </h2>
-                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '16px', lineHeight: '1.7', marginBottom: '30px' }}>
-                            We've compiled answers to the most common questions our users ask about navigating global mobility and international payments.
-                        </p>
-                        <a href="#" style={{ color: 'white', textDecoration: 'none', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '12px', transition: 'all 0.3s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>
-                            Visit Help Center <ArrowRight size={16} />
-                        </a>
-                    </div>
-                    
-                    <div style={{ flex: '1.5', minWidth: '320px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="faq-item" style={{ overflow: 'hidden' }}>
-                                <div 
-                                    onClick={() => setActiveFaq(activeFaq === index ? -1 : index)} 
-                                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', padding: '24px', userSelect: 'none' }}
-                                >
-                                    <h5 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '18px', fontWeight: '700', margin: 0, color: activeFaq === index ? 'white' : 'rgba(255,255,255,0.8)', transition: 'color 0.3s' }}>
-                                        {faq.q}
-                                    </h5>
-                                    <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: activeFaq === index ? country.primaryColor : 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s', transform: activeFaq === index ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                                        <ChevronDown size={18} color="white" />
-                                    </div>
-                                </div>
-                                <div style={{ maxHeight: activeFaq === index ? '300px' : '0', opacity: activeFaq === index ? 1 : 0, overflow: 'hidden', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-                                    <div style={{ padding: '0 24px 24px 24px' }}>
-                                        <div style={{ width: '100%', height: '1px', background: 'rgba(255,255,255,0.1)', marginBottom: '20px' }}></div>
-                                        <p style={{ margin: 0, color: 'rgba(255,255,255,0.6)', fontSize: '15px', lineHeight: '1.7' }}>
-                                            {faq.a}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Premium App Download Section */}
-            <section style={{ padding: '120px 20px', background: 'linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)', textAlign: 'center' }}>
-                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '48px', fontWeight: '800', color: '#0f172a', marginBottom: '50px', lineHeight: '1.1', letterSpacing: '-1px' }}>
-                        Take global mobility<br />everywhere you go.
-                    </h2>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', flexWrap: 'wrap' }}>
-                        <a href="https://play.google.com/store/apps/details?id=com.vesti.app&pli=1" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '16px', backgroundColor: '#0f172a', color: 'white', padding: '16px 36px', borderRadius: '20px', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: '0 15px 35px rgba(15, 23, 42, 0.2)' }} onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 25px 50px rgba(15, 23, 42, 0.3)'; }} onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; e.currentTarget.style.boxShadow = '0 15px 35px rgba(15, 23, 42, 0.2)'; }}>
-                            <svg fill="currentColor" viewBox="0 0 512 512" style={{ width: '32px', height: '32px' }}>
-                                <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"></path>
-                            </svg>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '1px', color: '#94a3b8' }}>GET IT ON</div>
-                                <div style={{ fontSize: '20px', fontWeight: '800', fontFamily: "'Outfit', sans-serif" }}>Google Play</div>
-                            </div>
-                        </a>
-                        <a href="https://apps.apple.com/ca/app/vesti-move-abroad-pay-bills/id1564444402" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '16px', backgroundColor: '#0f172a', color: 'white', padding: '16px 36px', borderRadius: '20px', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: '0 15px 35px rgba(15, 23, 42, 0.2)' }} onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 25px 50px rgba(15, 23, 42, 0.3)'; }} onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; e.currentTarget.style.boxShadow = '0 15px 35px rgba(15, 23, 42, 0.2)'; }}>
-                            <svg fill="currentColor" viewBox="0 0 384 512" style={{ width: '36px', height: '36px' }}>
-                                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
-                            </svg>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '1px', color: '#94a3b8' }}>DOWNLOAD ON THE</div>
-                                <div style={{ fontSize: '20px', fontWeight: '800', fontFamily: "'Outfit', sans-serif" }}>App Store</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </div>
+            </section>        </div>
     );
 };
 
