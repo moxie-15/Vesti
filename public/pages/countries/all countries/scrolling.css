@@ -1,0 +1,179 @@
+/* scrolling.css – custom styles for scroll‑stacking section */
+
+/* Ensure smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Wrapper for the scrolling cards */
+.scroll-cards-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Stack container – holds the sticky wrappers */
+.scroll-cards-stack {
+  position: relative;
+  width: 100%;
+  margin-bottom: -65vh; /* Pulls the footer up to eliminate the white space when cards are stacked */
+}
+
+/* Each wrapper gets 100vh of space so it can scroll naturally */
+.scroll-card-wrapper {
+  position: relative !important;
+  height: 100vh !important;
+  width: 100% !important;
+  margin-bottom: 0 !important; /* Overrides the -240px margin in style.css that was causing them to show all at once! */
+}
+.scroll-card-wrapper:last-child {
+  height: auto !important;
+  min-height: 100vh !important;
+  margin-bottom: 0 !important;
+}
+
+/* Card inner visual – sticks to the top as you scroll */
+.scroll-card {
+  position: sticky;
+  margin: 0 auto;
+  height: 360px !important;
+  width: 100% !important;
+  border-radius: 40px;
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  transform-origin: center top;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+  will-change: filter;
+}
+
+/* Staggered widths to create a framing effect behind the front cards - uses percentages so the effect works at all screen widths */
+#card-student-loan {
+  max-width: 1400px;
+  width: 100% !important;
+  height: 420px !important;
+  top: 15vh;
+  z-index: 1;
+}
+
+#card-global-gen {
+  max-width: 1300px;
+  width: 95% !important;
+  height: 400px !important;
+  top: 17vh;
+  z-index: 2;
+}
+
+#card-elite-pass {
+  max-width: 1200px;
+  width: 90% !important;
+  height: 380px !important;
+  top: 19vh;
+  z-index: 3;
+}
+
+.scroll-card-info {
+  flex: 1;
+  max-width: 650px; /* Wider text area so text wraps less, reducing height naturally */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Tighter gap to reduce height */
+  align-items: flex-start;
+}
+
+.scroll-card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.scroll-card-title {
+  font-size: 2.2rem; /* Slightly smaller to fit on fewer lines */
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.scroll-card-desc {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.scroll-card-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.scroll-card-cta-row a {
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.scroll-card-cta-row a i {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mobile fallback – stacked cards without transforms */
+@media (max-width: 992px) {
+  #scroll-stacking {
+    display: none !important;
+  }
+  .scroll-cards-stack {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .scroll-card-wrapper {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  .scroll-card {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin-bottom: 24px !important;
+    transform: none !important;
+    filter: none !important;
+    flex-direction: column;
+    padding: 30px 20px !important;
+    gap: 30px;
+  }
+  #card-student-loan,
+  #card-global-gen,
+  #card-elite-pass {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin-bottom: 24px !important;
+    margin-top: 0 !important;
+    transform: none !important;
+    filter: none !important;
+    max-width: 100% !important;
+  }
+  .scroll-card-info {
+    max-width: 100%;
+  }
+  .scroll-card-title {
+    font-size: 2rem;
+  }
+}
+
+
